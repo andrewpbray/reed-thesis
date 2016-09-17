@@ -4,7 +4,7 @@ The structure of this repository should serve as a starting point in organizing 
 
 #### literature-review folder
 
-It is very helpful to organize high-level thoughts on the articles and books that you read as part of your literature review. This could take the form of a markdown document or a spreadsheet. As you read a new work, add an entry to your file that notes things such as a) citation (broken into author, title, year) b) very brief summary c) how does this (if at all) relate to my thesis?
+It is very helpful to organize high-level thoughts on the articles and books that you read as part of your literature review. This could take the form of a markdown document or a spreadsheet. As you read a new work, add an entry to your file that notes things such as a) citation (broken into author, title, year) b) very brief summary c) how does this (if at all) relate to my thesis? Note that you probably should not add actual pdfs of articles here as it may violate copyright.
 
 #### thesis folder
 
