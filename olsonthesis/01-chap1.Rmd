@@ -30,6 +30,8 @@ The two battle formats being covered are Over Used (OU) and Random Battles (Rand
 * Erickson, Paul. The World the Game Theorists Made. N.p.: n.p., n.d. Print. Chapter 6: Game Theory without Rationality (pp. 204-239)* 
 * Random Battle Format (2016). Retrieved from: http://www.smogon.com/smog/issue35/randbats-expert* 
 * Over Used Teams (2016). Retrieved from: http://pokemonshowdownteams.com/over-used-ou/* 
+
+
 ## End thesis Chapter 1 
 
 
