@@ -1,5 +1,4 @@
 ## Log 2
-
 #### This Week
 
 ** I met with Chester and worked on getting the thesis template working with R. Some issues were encountered when updating R/Rstudio and keeping git integration. I was nonetheless able to commit and push the current template to the github repository.** 

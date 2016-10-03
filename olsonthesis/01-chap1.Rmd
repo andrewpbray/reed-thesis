@@ -1,7 +1,7 @@
 ---
-output: html_document
+output: pdf_document
 ---
-
+      
 <!--
 This is for including Chapter 1.  Notice that it's also good practice to name your chunk.  This will help you debug potential issues as you knit.  The chunk above is called intro and the one below is called chapter1.  Feel free to change the name of the Rmd file as you wish, but don't forget to change it here from chap1.Rmd.
 -->
@@ -9,6 +9,34 @@ This is for including Chapter 1.  Notice that it's also good practice to name yo
 <!--
 The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
 -->
+# Introduction
+
+## Literature Review
+
+Scant rigorous or academic research has been conducted within the scope of Pokémon-related topics. Given the depth of the decision-making process involved in Pokémon battling, this fact is especially resonant. 
+
+Typically papers have focused on the use of algorithms for the purpose of simulating player behavior and the analysis of battles in Pokémon Showdown. One paper focuses explicitly on 1v1 battles (*Gildardo 2013*). Similarly, even the more nuanced works have operated under gross simplifications. Nonetheless some have worked within the most current framework of Pokémon battling, specifically the currently used format in *Pokémon Showdown* (*Ho et al. 2016*). 
+The host site of thus game is Smogon University, found at http://www.smogon.com/. This website offers a wide variety of resources, ranging from Pokémon usage statistics to open forums discussing team compositions. 
+
+The two battle formats being covered are Over Used (OU) and Random Battles (Randbats). The former has a variety of different team compositions, found at http://pokemonshowdownteams.com/over-used-ou/. The latter format focuses more specifically on move strategies, which often give basis for a number of team strategies. The introduction to this battle format is found at http://www.smogon.com/smog/issue35/randbats-exper. 
+
+## References
+
+* Sanchez-Ante, Gildardo (2013, Dec) Sistemas Inteligentes: Reportes Finales Ago-Dic 2013. Retrieved from: https://www.researchgate.net/publication/259343975_Sistemas_Inteligentes_Reportes_Fi nales_Ago-Dic_2013* 
+* Ho, Harrison & Ramesh, Varun (2016) Percymon: A Pokemon Showdown Artifical Intelligence. Retrieved from: http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf*
+* Usage Stats (2016). Retrieved from: http://sweepercalc.com/stats/*
+* Smogon University (2016). Retrieved from: http://www.smogon.com/* 
+* Ariely, Dan. Predictably Irrational: The Hidden Forces That Shape Our Decisions. New York, NY: Harper, 2009. Print. Chapter 8: Keeping Doors Open (pp. 139-154)* 
+* Erickson, Paul. The World the Game Theorists Made. N.p.: n.p., n.d. Print. Chapter 6: Game Theory without Rationality (pp. 204-239)* 
+* Random Battle Format (2016). Retrieved from: http://www.smogon.com/smog/issue35/randbats-expert* 
+* Over Used Teams (2016). Retrieved from: http://pokemonshowdownteams.com/over-used-ou/* 
+## End thesis Chapter 1 
+
+
+
+
+
+# MARKDOWN TEMPLATE 
 
 # R Markdown Basics {#rmd-basics}
 

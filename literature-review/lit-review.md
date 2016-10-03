@@ -14,7 +14,7 @@ Unique, Mixed Strategy Equilibria"
 - **Author:** Michael Wunder, Michael Kaisers, John Robert Yaros, Michael Littman
 - **Year:** 2011 
 - **Title:** Using Iterated Reasoning to Predict Opponent Strategies
-- **Summary:**
+- **Summary:** 
 - **How does this relate?**
 
 * * *
