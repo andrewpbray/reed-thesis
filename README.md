@@ -7,7 +7,7 @@
 
 ##### Projected Finish Dates
 
-1. Literature Review: 10/02/2016
+1. Literature Review: 10/03/2016 
 
 2. Outline and First Chapter: 11/30/2016 
 

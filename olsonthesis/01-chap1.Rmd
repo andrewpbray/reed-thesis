@@ -10,15 +10,48 @@ This is for including Chapter 1.  Notice that it's also good practice to name yo
 The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
 -->
 # Introduction
+The world of Pokémon emerged in 1995 with the games Pokémon Red and Pokémon Green. For western audiences, the latter would become known as Pokémon Blue. These two games introduced a new flavor of turn-based gaming that would become known as Pokémon battling. Numerous other games have copied the Pokémon battling format, though none have been able to equal its widespread appeal and dedicated player base. By adding new items, Pokémon types, and of course new Pokémon into the game, the world of Pokémon continues to evolve and grow. The most recent iterations of Pokémon games, Pokémon Omega Ruby and Alpha Sapophire, have continued the tradition of adding layers to an already complex system of battling. 
+
+Since 2011 the program Pokémon Showdown has offered a stripped version of Pokémon games, based solely on the Pokémon battling system. With well-over 12,000 daily registered users and counting, this program has become the go-to program to test and practice battling strategies in the ultimate pursuit of becoming the very best that no one ever was.
+
+A prominent line of inquiry embedded in the practice of game theory involves the process of decision making. This process has been explored rigorously in the past, especially so in the newly emerging field behavioral economics and behavioral game theory. I expand upon the recent studies in these fields by analyzing specific battling strategies and gauge their effectiveness in general play. Effectiveness is gauged using the experimental probability of winning given specific strategy sets. This will require categorizing different moves into sets indicative of specific behavior. To begin with I analyze the effectiveness of purely aggressive strategies, noted by the use of purely damaging moves. These aggressive strategy sets are compared to mixed defense-offense and purely defensive strategy sets. However my ultimate pursuit is to analyze and highlight the relevant conditions on which to base such hypotheses. By incorporating tenants of behavioral economics and game theory together, I hope to bridge two fields that up until recently have refrained from interdisciplinary inquiry.  
+
+## Methodology 
+The data used is a compilation of battle logs from the Pokémon Showdown servers. Each battle log is stored as a separate .json file. The data spans across the year 2015, composed of four different months of data. The four months are March, June, September, and December. There are no lapses in data, i.e. each day of each month has numerous battle logs to account for. No dramatic overhaul was done to the Pokémon battling format at this time, though some minor adjustments were made. Furthermore only ranked games are included in the dataset, indicating that each player stands to gain or lose from the battle. 
+
+### Pokémon Battling Basics
+The Pokémon battle starts with Pokémon being sent out. For the purposes of the data used, one Pokémon is sent out for each opponent, totalling two Pokémon being out at any given time. Following this, each Pokémon has 4 moves to choose from, along with the option to switch to a different Pokémon (when applicable). After both players make a decision, the moves are weighted for priority and speed to determine the order of play. If both players decide not to switch one Pokémon will attack the other, after which the next Pokémon will do the same if it has not fainted. After each move has been executed the turn ends and the process is repeated. When one of the Pokémon faints, the player whose Pokémon fainted will be prompted to select another Pokémon from the bench. The first player to lose all of their Pokémon loses the battle. 
+
+#### Battle Formats 
+The data used for this study include two different Pokémon battling formats. The two formats are known as Over Used and Random Battles, abbreviated as OU and Randbats respectively. Both formats have teams of six Pokémon and only allow one Pokémon to be out at any given time. While both battle formats are subsets of what are known as single battles, each has their own unique spin on the Pokémon battling format. 
+
+Random Battles are the most frequently played format. Neither player gets to decide on their initial Pokémon nor do they have any input on the composition of the team. The format uses an algorithm to determine team compositions. However it is important to note that there are restrictions to the Randbats format that center around team composition and move composition for specific Pokémon. 
+
+The Over Used battle format includes team composition. By including team composition, players are able to decide what Pokémon to include on their team, the moves of each Pokémon, and other factors such as held items and abilities. Further restrictions to the OU format include banning specific Pokémon. The restricted Pokémon are included in the "Uber" tier along with the Pokémon Mega-Rayquaza. Additionally certain "hidden" abilities are locked for Pokémon. 
+
+### Pokémon Attributes 
+Generally, there are a number of factors that are specific to each Pokémon. Some of these factors are considered static, meaning that they do not change over the course of the battle. These types of factors are noted as "Fixed" Attributes. However there are some factors that are generally regarded as Fixed Attributes but are affected by certain moves, at least when the Pokémon is sent out. These types of factors are considered "Mixed Attributes". Additionally there are attributes that are inherently influenced throughout the course of the battle. These are noted as "Variable Attributes". The terminology is largely taken from the Ho et al. paper for ease of translation.
+#### Pokémon Fixed Attributes
+Fixed attributes include the type(s) of the Pokémon, the four moves the Pokémon has learned, the one item the Pokémon holds, the Pokémon's one selected ability, the level of the Pokémon, and the Pokémon's baseline stats. The latter factor is divided into six categories. These categories include (baseline) Health, Attack, Special Attack, Defense, Special Defense, and Speed. There is further nuance with the inclusion of Pokémon natures and Individual Values, or IVs. These factors influence the base stats of each Pokémon. However due to the sheer number of trivial combinations of IV spreads and nature choices, these two factors will not be a pivotal aspect of framework used. 
+
+####  Pokémon Types 
+The type(s) of each Pokémon influence not only the potential weaknesses of each Pokémon, but also influence the amount of damage certain type-specific moves are able to do. Each Pokémon has at least one and at most two types. If a Pokémon uses a damaging move whose type corresponds to type of the Pokémon that used it, that Pokémon gets a same type attack bonus, abbreviated as a "stab" bonus. This causes the move to do 50% more damage, potentially 100% if the Pokémon also has the ability Adaptability. 
+
+#### Pokémon Mixed Attributes 
+
+#### Pokémon Variable Attributes
+Variable Attributes include the current health of the Pokémon, the status of the Pokémon, the volatile status of the Pokémon, boost data of the Pokémon, and whether the Pokémon in question is currently active. 
 
 ## Literature Review
+Scant rigorous or academic research has been conducted within the scope of Pokémon-related topics. The most frequent publications focusing on Pokémon have been strategies guides for each new Pokémon iteration. However these publications have focused more specifically on the games, not necessarily the mechanics of the battling in the games. The most recent publication of *The Official Hoenn Region Strategy Guide* focuses on both the game and the underlying system. 
 
-Scant rigorous or academic research has been conducted within the scope of Pokémon-related topics. The most frequent publications focusing on Pokémon have been strategies guides for each new Pokémon iteration. However these publications have focused more specifically on the games, not necessarily the mechanics of the battling in the games. Nonetheless recent publications have focused on both the game and the underlying system (*The Official Hoenn Region Strategy Guide*). Given the depth of the decision-making process involved in Pokémon battling, this fact is especially resonant. 
+Typically academic papers have focused on the use of algorithms to simulate and play against human players in Pokémon Showdown. One paper gives a rudimentary background on Pokémon battling and focuses explicitly on 1v1 battles (*Gildardo 2013*). Recent literature following that followed included more nuance. The most relevant publication focuses on the most current framework of Pokémon battling (*Ho et al. 2016*). This publication used the latest iteration of Pokémon Showdown, available at http://pokemonshowdown.com/. The site provides a hub for information on Pokémon battling basics and specific battle format descriptions. Replays and ladder ranking are available for public viewing, along with links to usage statistics and a damage calculator. 
 
-Typically academic papers have focused on the use of algorithms to simulate and play against human players in Pokémon Showdown. One paper gives a rudimentary background on Pokémon battling and focuses explicitly on 1v1 battles (*Gildardo 2013*). Recent literature following that followed included more nuance. The most relevant publication focuses on the most current framework of Pokémon battling (*Ho et al. 2016*). This publication used the latest iteration of Pokémon Showdown, available at http://pokemonshowdown.com/. 
-The host site of this game is Smogon University, found at http://www.smogon.com/. This website offers a wide variety of resources, ranging from Pokémon usage statistics to open forums discussing team compositions. 
+Specific usage statistics are found in a subsidiary website, found at http://sweepercalc.com/stats/. The usage statistics track the frequency of use for specific Pokémon, items, abilities, and a host of other relevant variables for Pokémon battling.
 
-The two battle formats being covered are Over Used (OU) and Random Battles (Randbats). The former has a variety of different team compositions, found at http://pokemonshowdownteams.com/over-used-ou/. The latter format focuses more specifically on move strategies, which often give basis for a number of team strategies. The introduction to this battle format is found at http://www.smogon.com/smog/issue35/randbats-exper. 
+A number of links redirect users to the host site of this game: Smogon University. The host site can be found at http://www.smogon.com/. This website offers a wide variety of resources, similar to those found at the Pokémon Showdown website. Most importantly the Smogon forums are a prominent site for discussion of Pokémon battling strategies. 
+
+Unsurprisingly game theory vernacular have not entered into the discussion of Pokémon battling strategies. Applying such vernacular to the context of Pokémon battling offers a framework to discuss strategies. In this vein, exploring whether a player will switch Pokémon will necessarily invoke ideas found in behavioral economics. One specific concept engrained in behavioral economics that relates to Pokémon battling is the idea of "keeping doors open". In Chapter 6 of Ariel's foundational work, results indicates that players prefer to keep options available even if doing so incurs costs and/or reduces the payoff (*Predicably Irrational*). The idea of sunk costs in specific relation to Pokémon battling may also provide further insight into the decision making process involved in Pokémon battling. #Include Citation Here# 
 
 ## References
 
@@ -29,12 +62,9 @@ The two battle formats being covered are Over Used (OU) and Random Battles (Rand
 * Pokémon Showdown (2016). Retrieved from: http://pokemonshowdown.com/ 
 * Ariely, Dan. Predictably Irrational: The Hidden Forces That Shape Our Decisions. New York, NY: Harper, 2009. Print. Chapter 8: Keeping Doors Open (pp. 139-154) 
 * Erickson, Paul. The World the Game Theorists Made. N.p.: n.p., n.d. Print. Chapter 6: Game Theory without Rationality (pp. 204-239) 
-* Random Battle Format (2016). Retrieved from: http://www.smogon.com/smog/issue35/randbats-expert 
-* Over Used Teams (2016). Retrieved from: http://pokemonshowdownteams.com/over-used-ou/ 
 * Pokémon Omega Ruby & Pokémon Alpha Sapphire: The Official Hoenn Region Strategy Guide. N.p.: n.p., n.d. Print.
 * Camerer, Colin. Behavioral Game Theory: Experiments in Strategic Interaction. New York, NY: Russell Sage Foundation, 2003. Print.
-* Over Used Teams (2016). Retrieved from: http://pokemonshowdownteams.com/over-used-ou/ 
-
+* Pokémon Showdown Github Master Repository (2016). Retrieved from: https://github.com/Zarel/Pokemon-Showdown/tree/master/data in
 
 
 ## End thesis Chapter 1 
