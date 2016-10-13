@@ -4,3 +4,23 @@
 
 library(jsonlite)
 data1 <- fromJSON("battle-randombattle-214637002.log.json", simplifyDataFrame = TRUE)
+
+
+filenames <- list.files()
+
+# this loops through all files in the directory, opening each and saving it as 
+# an element of a list.
+pages <- list()
+for(i in seq_along(filenames)) {
+  mydata <- fromJSON(filenames[i], simplifyDataFrame = TRUE)
+  pages[[i]] <- mydata
+}
+
+turn_lengths <- rep(0, length(pages))
+for(i in seq_along(pages)) {
+  turn_lengths[i] <- pages[[i]]$turns
+}
+
+library(ggplot2)
+d <- data.frame(turn_lengths)
+ggplot(d, aes(x = turn_lengths)) + geom_histogram()
