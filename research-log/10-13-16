@@ -39,3 +39,7 @@ ggplot(d, aes(x = turn_lengths)) + geom_histogram()
 # rankdif <- abs((as.numeric(p1rank) - as.numeric(p2rank)))
 # Difference b/w player rankings 
 # abs(as.numeric($p1rating$r) - as.numeric($p2rating$r))
+# Rank spread
+# rankspr <- abs((as.numeric(p1rank) + as.numeric(p2rank)))/2 
+# Graph 
+# plot(rankdif, rankspr)
