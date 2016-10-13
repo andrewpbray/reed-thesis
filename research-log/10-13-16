@@ -26,6 +26,7 @@ d <- data.frame(turn_lengths)
 ggplot(d, aes(x = turn_lengths)) + geom_histogram()
 
 # New practice code 
+# This code works 
 # p1rank <- rep(0, length(pages))
 # for(i in seq_along(pages)) {
 #  p1rank[i] <- pages[[i]]$p1rating$r
@@ -34,10 +35,7 @@ ggplot(d, aes(x = turn_lengths)) + geom_histogram()
 # for(i in seq_along(pages)) {
 #  p2rank[i] <- pages[[i]]$p2rating$r
 # }
-# Difference code; SHOULD NOT WORK CURRENTLY 
-# rankdif <- rep(0, length(pages))
-# for(i in seq_along(pages)) {
-#  rankdif[i] <- abs(pages[[i]](as.numeric($p1rating$r) - as.numeric($p2rating$r))) 
-# }
+# Difference code
+# rankdif <- abs((as.numeric(p1rank) - as.numeric(p2rank)))
 # Difference b/w player rankings 
 # abs(as.numeric($p1rating$r) - as.numeric($p2rating$r))
