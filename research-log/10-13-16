@@ -1,0 +1,6 @@
+# https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html
+# https://cran.r-project.org/web/packages/tidyjson/tidyjson.pdf
+# https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
+
+library(jsonlite)
+data1 <- fromJSON("battle-randombattle-214637002.log.json", simplifyDataFrame = TRUE)
