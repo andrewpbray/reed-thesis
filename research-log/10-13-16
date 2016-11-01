@@ -27,21 +27,26 @@ ggplot(d, aes(x = turn_lengths)) + geom_histogram()
 
 # New practice code 
 # This code works 
-# p1rank <- rep(0, length(pages))
-# for(i in seq_along(pages)) {
-#  p1rank[i] <- pages[[i]]$p1rating$r
-# }
-# p2rank <- rep(0, length(pages))
-# for(i in seq_along(pages)) {
-#  p2rank[i] <- pages[[i]]$p2rating$r
-# }
+p1rank <- rep(0, length(pages))
+for(i in seq_along(pages)) {
+ p1rank[i] <- pages[[i]]$p1rating$r
+}
+p2rank <- rep(0, length(pages))
+for(i in seq_along(pages)) {
+p2rank[i] <- pages[[i]]$p2rating$r
+}
 # Note: plrating$r vs. p1rating$rpr 
 # Difference code
-# rankdif <- abs((as.numeric(p1rank) - as.numeric(p2rank)))
+rankdif <- abs((as.numeric(p1rank) - as.numeric(p2rank)))
 # Difference b/w player rankings 
-# abs(as.numeric($p1rating$r) - as.numeric($p2rating$r))
+abs(as.numeric($p1rating$r) - as.numeric($p2rating$r))
 # Rank spread
-# rankspr <- abs((as.numeric(p1rank) + as.numeric(p2rank)))/2 
+rankspr <- abs((as.numeric(p1rank) + as.numeric(p2rank)))/2 
 # Graph 
-# plot(rankdif, rankspr)
-# plot(rankspr, rankdif)
+plot(rankdif, rankspr)
+plot(rankspr, rankdif)
+## End game sorting
+endType <- rep("", length(pages))
+for(i in seq_along(pages)) {
+  endType[i] <- pages[[i]]$endType
+}
