@@ -50,3 +50,18 @@ endType <- rep("", length(pages))
 for(i in seq_along(pages)) {
   endType[i] <- pages[[i]]$endType
 }
+## unique ids 
+filenames <- list.files()
+userids <- matrix(vector(mode = "character", length = length(filenames)*2), ncol = 2)
+for(i in 1:length(filenames)) {
+  mydata <- fromJSON(filenames[i], simplifyDataFrame = TRUE)
+  userids[i, ] <- c(mydata$p1rating$userid, mydata$p2rating$userid)
+}
+
+userid <- unique(as.character(userids))
+
+set.seed(502)
+uid <- sample(100000:999999)[1:length(userid)]
+
+lookup <- data.frame("userid" = userid,
+                     "uid" = uid)
