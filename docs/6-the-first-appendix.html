@@ -37,8 +37,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="5-ref-labels.html">
-<link rel="next" href="6-the-first-appendix.html">
+<link rel="prev" href="conclusion.html">
+<link rel="next" href="7-the-second-appendix-for-fun.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -168,24 +168,45 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conclusion" class="section level1 unnumbered">
-<h1>Conclusion</h1>
-<p> </p>
-<p>If we don’t want Conclusion to have a chapter number next to it, we can add the <code>{.unnumbered}</code> attribute. This has an unintended consequence of the sections being labeled as 3.6 for example though instead of 4.1. The  commands immediately following the Conclusion declaration get things back on track.</p>
-<p><strong>More info</strong></p>
-<p>And here’s some other random info: the first paragraph after a chapter title or section head <em>shouldn’t be</em> indented, because indents are to tell the reader that you’re starting a new paragraph. Since that’s obvious after a chapter or section title, proper typesetting doesn’t add an indent there.</p>
-<!--
-If you feel it necessary to include an appendix, it goes here.
--->
-<p></p>
+<div id="the-first-appendix" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> The First Appendix</h1>
+<p>This first appendix includes all of the R chunks of code that were hidden throughout the document (using the <code>include = FALSE</code> chunk tag) to help with readibility and/or setup.</p>
+<p><strong>In the main Rmd file</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This chunk ensures that the thesisdown package is</span>
+<span class="co"># installed and loaded. This thesisdown package includes</span>
+<span class="co"># the template files for the thesis.</span>
+if(!<span class="kw">require</span>(devtools))
+  <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
+if(!<span class="kw">require</span>(thesisdown))
+  devtools::<span class="kw">install_github</span>(<span class="st">&quot;ismayc/thesisdown&quot;</span>)
+<span class="kw">library</span>(thesisdown)</code></pre></div>
+<p><strong>In Chapter <a href="5-ref-labels.html#ref-labels">5</a>:</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># This chunk ensures that the thesisdown package is</span>
+<span class="co"># installed and loaded. This thesisdown package includes</span>
+<span class="co"># the template files for the thesis and also two functions</span>
+<span class="co"># used for labeling and referencing</span>
+if(!<span class="kw">require</span>(devtools))
+  <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
+if(!<span class="kw">require</span>(dplyr))
+    <span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
+if(!<span class="kw">require</span>(ggplot2))
+    <span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
+if(!<span class="kw">require</span>(ggplot2))
+    <span class="kw">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
+if(!<span class="kw">require</span>(thesisdown)){
+  <span class="kw">library</span>(devtools)
+  devtools::<span class="kw">install_github</span>(<span class="st">&quot;ismayc/thesisdown&quot;</span>)
+  }
+<span class="kw">library</span>(thesisdown)
+flights &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="5-ref-labels.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-the-first-appendix.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="conclusion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="7-the-second-appendix-for-fun.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

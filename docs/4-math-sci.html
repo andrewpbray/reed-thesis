@@ -37,8 +37,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="5-ref-labels.html">
-<link rel="next" href="6-the-first-appendix.html">
+<link rel="prev" href="3-rmd-basics.html">
+<link rel="next" href="5-ref-labels.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -168,24 +168,120 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conclusion" class="section level1 unnumbered">
-<h1>Conclusion</h1>
-<p> </p>
-<p>If we don’t want Conclusion to have a chapter number next to it, we can add the <code>{.unnumbered}</code> attribute. This has an unintended consequence of the sections being labeled as 3.6 for example though instead of 4.1. The  commands immediately following the Conclusion declaration get things back on track.</p>
-<p><strong>More info</strong></p>
-<p>And here’s some other random info: the first paragraph after a chapter title or section head <em>shouldn’t be</em> indented, because indents are to tell the reader that you’re starting a new paragraph. Since that’s obvious after a chapter or section title, proper typesetting doesn’t add an indent there.</p>
+<div id="math-sci" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Mathematics and Science</h1>
+<!-- Required to number equations in HTML files -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<div id="math" class="section level2">
+<h2><span class="header-section-number">4.1</span> Math</h2>
+<p> is the best way to typeset mathematics. Donald Knuth designed  when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics. One nice feature of <em>R Markdown</em> is its ability to read LaTeX code directly.</p>
+<p>If you are doing a thesis that will involve lots of math, you will want to read the following section which has been commented out. If you’re not going to use math, skip over or delete this next commented section.</p>
+<!-- MATH and PHYSICS majors: Uncomment the following section -->
 <!--
-If you feel it necessary to include an appendix, it goes here.
+$$\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}}
+\left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2
+$$
+
+From Informational Dynamics, we have the following (Dave Braden):
+
+After _n_ such encounters the posterior density for $\theta$ is
+
+$$
+\pi(\theta|X_1< y_1,\dots,X_n<y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i}
+   \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx
+$$
+
+Another equation:
+
+$$\det\left|\,\begin{matrix}%
+c_0&c_1\hfill&c_2\hfill&\ldots&c_n\hfill\cr
+c_1&c_2\hfill&c_3\hfill&\ldots&c_{n+1}\hfill\cr
+c_2&c_3\hfill&c_4\hfill&\ldots&c_{n+2}\hfill\cr
+\,\vdots\hfill&\,\vdots\hfill&
+  \,\vdots\hfill&&\,\vdots\hfill\cr
+c_n&c_{n+1}\hfill&c_{n+2}\hfill&\ldots&c_{2n}\hfill\cr
+\end{matrix}\right|>0$$
+
+
+Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and
+Engineering.  Page 54
+
+$$
+\int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0,
+   \qquad\quad i=1,2,3.
+$$
+
+L\&P  Galerkin method weighting functions.  Page 55
+
+$$
+\sum_{j=1}^3 T_j\int_0^1\left\{{d\phi_j\over dt} + k\phi_j\right\} \phi_i\ dt
+   = \int_{0}^1k\,T_e\phi_idt, \qquad i=1,2,3 $$
+
+Another L\&P (p145)
+
+$$
+\int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big)
+   = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big).
+$$
+
+Another L\&P (p126)
+
+$$
+\int_{A_e} (\,\cdot\,) dx dy = \int_{-1}^1\!\int_{-1}^1 (\,\cdot\,) \det[J] d\xi d\eta.
+$$
 -->
-<p></p>
+</div>
+<div id="chemistry-101-symbols" class="section level2">
+<h2><span class="header-section-number">4.2</span> Chemistry 101: Symbols</h2>
+<p>Chemical formulas will look best if they are not italicized. Get around math mode’s automatic italicizing in LaTeX by using the argument <code>$\mathrm{formula here}$</code>, with your formula inside the curly brackets. (Notice the use of the backticks here which enclose text that acts as code.)</p>
+<p>So, <span class="math inline">\(\mathrm{Fe_2^{2+}Cr_2O_4}\)</span> is written <code>$\mathrm{Fe_2^{2+}Cr_2O_4}$</code>.</p>
+<!--
+The \noindent command below does what you'd expect:  it forces the current line/paragraph to not indent. This was done here to match the format of the LaTeX thesis PDF.
+-->
+<p>Exponent or Superscript: <span class="math inline">\(\mathrm{O^-}\)</span></p>
+<p>Subscript: <span class="math inline">\(\mathrm{CH_4}\)</span></p>
+<p>To stack numbers or letters as in <span class="math inline">\(\mathrm{Fe_2^{2+}}\)</span>, the subscript is defined first, and then the superscript is defined.</p>
+<p>Bullet: CuCl <span class="math inline">\(\bullet\)</span> <span class="math inline">\(\mathrm{7H_{2}O}\)</span></p>
+<p>Delta: <span class="math inline">\(\Delta\)</span></p>
+<p>Reaction Arrows: <span class="math inline">\(\longrightarrow\)</span> or <span class="math inline">\(\xrightarrow{solution}\)</span></p>
+<p>Resonance Arrows: <span class="math inline">\(\leftrightarrow\)</span></p>
+<p>Reversible Reaction Arrows: <span class="math inline">\(\rightleftharpoons\)</span></p>
+<div id="typesetting-reactions" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Typesetting reactions</h3>
+<p>You may wish to put your reaction in an equation environment, which means that LaTeX will place the reaction where it fits and will number the equations for you.</p>
+\begin{equation}
+  \mathrm{C_6H_{12}O_6  + 6O_2} \longrightarrow \mathrm{6CO_2 + 6H_2O}
+  \label{eq:reaction}
+\end{equation}
+<p>We can reference this combustion of glucose reaction via Equation \ref{eq:reaction}.</p>
+</div>
+<div id="other-examples-of-reactions" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Other examples of reactions</h3>
+<p><span class="math inline">\(\mathrm{NH_4Cl_{(s)}}\)</span> <span class="math inline">\(\rightleftharpoons\)</span> <span class="math inline">\(\mathrm{NH_{3(g)}+HCl_{(g)}}\)</span></p>
+<p><span class="math inline">\(\mathrm{MeCH_2Br + Mg}\)</span> <span class="math inline">\(\xrightarrow[below]{above}\)</span> <span class="math inline">\(\mathrm{MeCH_2\bullet Mg \bullet Br}\)</span></p>
+</div>
+</div>
+<div id="physics" class="section level2">
+<h2><span class="header-section-number">4.3</span> Physics</h2>
+<p>Many of the symbols you will need can be found on the math page <a href="http://web.reed.edu/cis/help/latex/math.html" class="uri">http://web.reed.edu/cis/help/latex/math.html</a> and the Comprehensive LaTeX Symbol Guide (<a href="http://mirror.utexas.edu/ctan/info/symbols/comprehensive/symbols-letter.pdf" class="uri">http://mirror.utexas.edu/ctan/info/symbols/comprehensive/symbols-letter.pdf</a>).</p>
+</div>
+<div id="biology" class="section level2">
+<h2><span class="header-section-number">4.4</span> Biology</h2>
+<p>You will probably find the resources at <a href="http://www.lecb.ncifcrf.gov/~toms/latex.html" class="uri">http://www.lecb.ncifcrf.gov/~toms/latex.html</a> helpful, particularly the links to bsts for various journals. You may also be interested in TeXShade for nucleotide typesetting (<a href="http://homepages.uni-tuebingen.de/beitz/txe.html" class="uri">http://homepages.uni-tuebingen.de/beitz/txe.html</a>). Be sure to read the proceeding chapter on graphics and tables.</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="5-ref-labels.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-the-first-appendix.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="3-rmd-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-ref-labels.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
