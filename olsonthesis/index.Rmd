@@ -5,12 +5,12 @@ division: 'Mathematics and Natural Sciences'
 advisor: 'Prof. Bray'
 altadvisor: 'Prof. Lau'
 department: 'Mathematics'
-title: 'A Game Theoretic Approach to Pokémon Battling'
+title: 'A Big Data Analysis of Pokémon Battling'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
 output: 
-#  thesisdown::thesis_pdf: default
-  thesisdown::thesis_gitbook: default
+  thesisdown::thesis_pdf: default
+# thesisdown::thesis_gitbook: default
 #  thesisdown::thesis_word: default
 #  thesisdown::thesis_epub: default
 # If you are creating a PDF you'll need to write your preliminary content here or

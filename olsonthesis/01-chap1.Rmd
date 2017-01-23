@@ -10,18 +10,17 @@ This is for including Chapter 1.  Notice that it's also good practice to name yo
 The {#rmd-basics} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 1.  These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase.  Look for the reference to this label at the beginning of Chapter 2.
 -->
 # Introduction
-  The world of Pokémon began in 1995 with the pair of games Pokémon Red and Green. For Westerners, the latter would become known as Pokémon Blue. These two games introduced the turn-based battling system that became the foundation of the Pokémon games. Numerous other games have attempted to copy the Pokémon battling format, but none have been able to equal its widespread appeal and dedicated player base. With each successive iteration, new items, types, and of course Pokémon are added to the Pokémon lexicon. The world of Pokémon has continued to grow and evolve into one of the largest video games franchises to date. The most recent iterations of Pokémon games, Pokémon Sun and Moon, have continued the tradition of adding layers onto an already complex system of battling. 
+  The world of Pokémon began in 1995 with pair of games Pokémon Red and Green. For Western audiences, the latter game would become known as Pokémon Blue. These two games introduced a unique system of turn-based that continues to define Pokémon games. Numerous other games have attempted to copy the Pokémon battling format, but none have been able to equal its widespread appeal and dedicated player base. With each successive iteration, new items, Pokémon types, and of course new creatures are added to the Pokémon lexicon. The world of Pokémon has continued to grow and evolve into one of the largest video games franchises to date. The most recent iteration of Pokémon games, Pokémon Sun and Moon, have continued Pokémon's commercial and historical trend of turning profits while adding layers to an already complex system of battling. 
 
-  Since 2011 the program Pokémon Showdown has offered a 'stripped' version of Pokémon games. This 'stripped' version allows players to exclusively battle one another, replicating the most recent iteration of the Pokémon games in the process. This has allowed players to hone and test their Pokémon battling skills through the years. With well-over 20,000 daily registered users and counting, this program has become the go-to program to test and practice Pokémon battling strategies in the ultimate pursuit of becoming the very best that no one ever was.
+  Since 2011 the program Pokémon Showdown has offered a simplified version of Pokémon games. This simplified version allows players to exclusively battle one another, replicating the most recent iteration of the Pokémon games in the process. This has allowed players to hone and test their Pokémon battling skills through the years. With well-over 20,000 daily registered users and counting, this program has become the go-to program to test and practice Pokémon battling strategies in the ultimate pursuit of becoming the very best that no one ever was.
 
-To begin formal analysis of Pokémon battling however, the battling system must be rigorously detailed for laymen and game theorists alike. 
+However, before any formal analysis of Pokémon battling is discussed, the battling system must be rigorously detailed for laymen and theorists alike. 
 
-### A Brief Overview 
-First, there needs to be a formal model. At its core, Pokémon battling takes place exclusively between two players. Each of the two players has a team composed of six different Pokémon. Depending on the battle format, the team of six Pokémon is either dictated by the player or randomly assigned. Regardless of format, each turn each player simultaneously makes a decision. The decisions are then executed, with priority given first to priority moves and then, if neither player decided on a priority move, by a comparative assessment of each Pokémon's speed. Once a player's Pokémon loses all of its health, an event referred to as fainting, the player must switch into another Pokémon. If a player has no other Pokémon to switch into, the battle ends. As would be expected, the player whose Pokémon have all fainted loses the battle, and the other player wins. 
+First and foremost, Pokémon battling occurs exclusively between two players during a battle. Each of the two players has a team composed of six Pokémon. For the purposes of analysis, teams with duplicate Pokémon will not be considered, meaning that each team is composed of six distinct Pokémon. Each turn players simultaneously makes a decision for the Pokémon they have on the field. The decisions are then executed. The order of play is decided first by the priority of the moves being executed and then, if neither player decided on a priority move, by a comparative assessment of each Pokémon's speed. The executed moves are able to do a variety of effects to the opposing Pokémon, but once a player's Pokémon loses all of its health, an event referred to as fainting, the player must switch into another Pokémon. If a player has no other Pokémon to switch into, the battle ends. As would be expected, the player whose Pokémon have all fainted loses the battle, and the other player wins. Depending on the battle format, the team of six Pokémon is either dictated by the player or randomly assigned. 
 
-There are a number of parameters and variables to consider beyond those already detailed. To begin with, each Pokémon has at most four moves to choose from for any turn of a battle. Additionally, whenever a player has at least two Pokémon that have not fainted, they have the choice to switch into another Pokémon. Doing so counts as the player's action for the turn. Thus, players almost always have five different choices to make each turn. However, if switches are considered distinct choices, the number of potential decisions is at most nine for a given turn. Hence, for the purposes of analysis, the supremum of decisions for any given turn is nine. 
+Furthermore, each Pokémon has at most four possible moves to execute for any turn of a battle. Whenever a player has at least two Pokémon that have not fainted, they have the choice to switch into another Pokémon. Doing so counts as the player's action for the turn. Thus, players almost always have five different choices to make each turn. 
 
-There are a number of other parameters to consider, though these parameters are case-specific, i.e. dependent upon Pokémon, held item, Pokémon ability, etc. Such parameters will be further detailed in the methodology section, along with further specifications on specific moves and Pokémon types. 
+There are a number of parameters and variables to consider beyond those already detailed. While some of these parameters are fixed during the battle such as the Pokémon composing a player's team, some variables of interest are case-specific, i.e. dependent upon what moves a Pokémon has used previously, a Pokémon's held item, the fielded Pokémon's ability, etc. These parameters will be further detailed in the methodology section, along with further details on specific moves and Pokémon types. 
 
 That being said, Pokémon must be formally denoted as a specific type of game in game theoretic terms. With this in mind, it bears noting that there are only two outcomes to any battle: One player wins and the other loses. Because of this, Pokémon is by definition a zero-sum game. However, it is important to note that there are distinct ways that a player may win or lose a game. Notably, the same set of decisions made by one player over multiple battles may not lead to the same outcome in each battle. That is to say, uniqueness of strategies is derived from the decisions of both players for any given battle. 
 
@@ -29,16 +28,16 @@ A point glossed over previously is the existence of different end games. Though 
 
 Within the scope of game theoretic terms, it is vital to note that each player is able to see all past decisions made over the course of a battle, and that battles span over multiple turns. Speaking to the former point, players are able to recall not only their past decisions but also those of their opponent, including how much damage was done by a specific move during a previous turn. As this information is available at any time during the battle, Pokémon battling is a perfect recall game. Furthermore as each game is composed of a sequence of turns, Pokémon battling is also a sequential game. 
 
-The points noted on information allude to a unique trait of Pokémon battling that further details the type of game Pokémon battling is: An incomplete information game. Though the extent of incompleteness is format specific, each player is given limited information about the opposing players team at the beginning of the battle. After each turn, players are able learn not only the different moves each opposing Pokémon has, but also their abilities, held items, and sometimes what other Pokémon compose the opposing team. Generally speaking, there is almost always new information revealed each turn. The extent to which player strategies are revealed from information is an ongoing topic of discussion, both here and in current game theory literature. Naturally, the analysis of such a topic relies upon at least one apriori assumption, namely that player strategies are revealed by their past decisions. However, whether player strategies are rational and consistent is another matter entirely; nonetheless, at the very least it is important to note that incorporating such information into players own decision-making complicates analysis and is a central topic in analyzing Pokémon battling. 
+The points noted on information allude to a unique trait of Pokémon battling that further details the type of game Pokémon battling is: An incomplete information game. Though the extent of incompleteness is format specific, each player is given limited information about the opposing player's team at the beginning of the battle. After each turn, players are able learn not only the different moves each opposing Pokémon has, but also their abilities, held items, and sometimes what other Pokémon compose the opposing team. Generally speaking, there is almost always new information revealed each turn. The extent to which player strategies are revealed from information is an ongoing topic of discussion, both here and in current game theory literature. Naturally, the analysis of such a topic relies upon at least one apriori assumption, namely that player strategies are revealed by their past decisions. However, whether player strategies are rational and consistent is another matter entirely; nonetheless, it is important to note that incorporating such information into players own decision-making complicates analysis and is a central topic in analyzing Pokémon battling. 
 
-Taken together, Pokémon battling is a special case of a sequential, zero-sum two-player game with incomplete information and perfect recall. As Pokémon battling lends itself to a discussion of imperfect information, it is all the more vital to consider the role of decision making in sequential games. A great portion of game theory literature has explored such topics, including the revolutionary work of John Forbes Nash Jr.
+Taken together, Pokémon battling is a special case of a sequential, zero-sum two-player game with incomplete information and perfect recall. As Pokémon battling lends itself to a discussion of imperfect information, it is all the more vital to consider the role of decision making in sequential games. A great portion of game theory literature has explored such topics, and this work will attempt to expand upon it. 
 
 Theoretics aside, there are also notes on the computation side of analyzing Pokémon. In this regard, my initial computations and analysis focus on the distributions of turn length based on win type, i.e. the length of games played when one player forfeited or had all of their Pokémon faint. After distributional computations I categorize moves by their type, specifically whether a specific move is damaging, non-damaging, or a mix. After categorizing each move individually, I then categorize sets of four moves, again using categorizations of damaging, non-damaging, or a mix. Using this categorization I gauge the effectiveness of specific move sets based on their ability to faint Pokémon and by their likelihood to increase a players probability of winning.
   
-Overall I hope explore how information gathered turn-by-turn feeds into the decision-making process of Pokémon battling. By incorporating tenants of behavioral economics and game theory, I hope to rigorously analyze and detail phenomena that occur in Pokémon battling. However, even more specifically I want to verify the theoretical findings of Pokémon battling in a game theoretic framework, specifically the existence of one or more mixed Nash equilibrium. 
+Overall I explore how information gathered turn-by-turn feeds into the decision-making process of Pokémon battling. By incorporating tenants of behavioral economics and game theory, I hope to analyze and highlight phenomena that occur in the Pokémon battling simulator Pokémon Showdown. However, even more specifically I will continue the recent trend of 'Big Data' analysis to explore macro trends in player's decision making process. 
 
 ## Literature Review
-A few points on Pokémon battling are worth noting as they relate Nash's literature on game theory mentioned previously. First, each Pokémon battle lasts a finite number of turns. Furthermore, each player has finitely many choices to make at any given turn. Thus there exists finitely many pure strategies for players to choose from each game. Thus via application of Nash's Existence Theorem, Pokémon battling has at least one Nash equilibrium (Nash 1950). 
+A few points on Pokémon battling are worth noting as they relate to literature on game theory mentioned previously. First, each Pokémon battle lasts a finite number of turns. Furthermore, each player has finitely many choices to make at any given turn. Thus there exists finitely many pure strategies for players to choose from each game. Thus via application of Nash's Existence Theorem, Pokémon battling has at least one Nash equilibrium (Nash 1950). 
 
 The question then is to determine what the Nash equilibrium, possibly equilibria, is in Pokémon battling. To address this question, it will be necessary to consider other theorems and propositions of Nash that relate to non-cooperative games. Namely, the goal of analyzing Pokémon battling is to determine solutions, strong solutions, and sub-solutions; however, it is possible that solutions as defined by Nash do not exist. This follows from Nash's note that non-cooperative games do not always have a solution; however there do exist sub-solutions (Nash 1951). Thus, a central question will be in determining whether Pokémon battling has a solution, and if so, if it is unique. Furthermore, it will be important to determine what sub-solutions exist, along with how parameterization potentially influences such solutions and sub-solutions.  
 
@@ -72,7 +71,7 @@ This being said, concepts of game theory are not the only relevant ideas for ana
 * Nash, J. F., Jr. (1951, September). Non-Cooperative Games. The Annals of Mathematics, Second Series, 54(2), 286-295. Retrieved November 29, 2016, from http://lcm.csa.iisc.ernet.in/gametheory/Classics/NCG.pdf
 
 ## Methodology 
-The data used is a compilation of battle logs from the Pokémon Showdown servers. Each battle log is stored as a separate .json file. The data spans across the year 2015, composed of four different months of data. The four months are March, June, September, and December. There are no lapses in data, i.e. each day of each month has numerous battle logs to account for. No dramatic overhaul was done to the Pokémon battling format at this time, though some minor adjustments were made. Furthermore only ranked games are included in the dataset, indicating that each player stands to gain or lose from the battle. 
+The data used is a compilation of battle logs from the Pokémon Showdown servers. Each battle log is stored as a separate .json file. The data spans across the year 2015, composed of four different months of data. The four months are March, June, September, and December. There are no lapses in data, i.e. each day of each month has numerous battle logs to account for. No dramatic overhaul was done to the Pokémon battling format at this time, though some minor adjustments were made. Furthermore only ranked games are included in the dataset. Ranked battles are battles that count towards a players global ranking in Pokémon Showdown. For each battle, players stand to gain or lose ranking points depending on whether they win or lose the battle.
 
 Specific usage statistics are found in a subsidiary website, found at http://sweepercalc.com/stats/. The usage statistics track the frequency of use for specific Pokémon, items, abilities, and a host of other relevant variables for Pokémon battling.
 
@@ -92,6 +91,8 @@ The Over Used battle format includes team composition. By including team composi
 Generally, there are a number of factors that are specific to each Pokémon. Some of these factors are considered static, meaning that they do not change over the course of the battle. These types of factors are noted as "Fixed" Attributes. However there are some factors that are generally regarded as Fixed Attributes but are affected by certain moves, at least when the Pokémon is sent out. These types of factors are a distinct subcategory of "Variable Attributes", and will be outlined further. Additionally there are attributes that are inherently influenced throughout the course of the battle. These are noted as "Variable Attributes". The terminology is largely taken from the Ho et al. paper for ease of translation.
 
 ####  Pokémon Types 
+Currently there are 18 different Pokémon types. However, a Pokémon can be at most two different types. This means that there are actually 
+
 The type(s) of each Pokémon influence not only the potential weaknesses of each Pokémon, but also influence the amount of damage certain type-specific moves are able to do. Each Pokémon has at least one and at most two types. If a Pokémon uses a damaging move whose type corresponds to type of the Pokémon that used it, that Pokémon gets a same type attack bonus, abbreviated as a "stab" bonus. This causes the move to do 50% more damage, potentially 100% if the Pokémon also has the ability Adaptability. 
 
 #### Pokémon Fixed Attributes
@@ -100,171 +101,7 @@ Fixed attributes include the type(s) of the Pokémon, the four moves the Pokémo
 #### Pokémon Variable Attributes
 Variable Attributes include the current health of the Pokémon, the status of the Pokémon, the volatile status of the Pokémon, boost data of the Pokémon, and whether the Pokémon in question is currently active. 
 
-### Game Theory Methodology 
-Let the index of Player 1 and 2's Pokémon be denoted by i and j respectively. 
-Let the set of Player 1's Pokémon be given as follows: $$A=\{A_1,A_2,A_3,A_4,A_5,A_6\}$$
-Similarly let the set of player 2's Pokémon be given by: $$B=\{B_1,B_2,B_3,B_4,B_5,B_6\}$$
-Furthermore let N denote the number of turns a given Pokémon battle lasts. 
-Let the cumulative total of damage done to Player 1's ith Pokémon be denoted: $\sum_{t=0}^{N} d_{A_i,t}$. It follows that the damage done to Player 1's ith Pokémon on turn t is given by: $d_{A_i,t}$
-Similarly tet the cumulative total of damage done to Player 2's jth Pokémon is given by: $\sum_{t=0}^{N} d_{B_j,t}$; additionally, the damage done to Player 2's jth Pokémon on turn t is given by: $d_{B_j,t}$
-
-Let the payoff function of Player 1 and Player 2 be respectively denoted by $P_1 and P_2$. Note that neither player is able to revive a fainted Pokémon during a battle. Thus, the amount of damage done to an opponent's Pokémon directly corresponds to the payoff they receive during a given turn. Furthermore, players are able to utilize moves that heal their Pokémon during the turn. Thus, the payoff function must include not only the current health of the opposing Pokémon, but also the amount of damage done to the opponent's Pokémon and the amount of health the opponent's Pokémon heals during the turn. Additionally, it is important to incorporate the current health of the opponent's Pokémon at the beginning of the turn. This is to account for potential healing and damage that may result at the end of each turn. 
-
-Let the current health of Player 2's jth Pokémon on turn t be given by:$H_{B_{j,t}}$. Furthermore, let the amount of damage done to Player 2's jth Pokémon on turn t be given by: $d_{B_{j,t}}$. Finally let $h_{B{j,t}}$ denote the amount of health regained by Player 2's jth Pokémon on turn t. We may write the payoff function at turn t as a function of three variables. However, it is important to note that while damage is independent of current health and healing done on turn t, the amount of healing done to an opponent's Pokémon is contrained by it's health at the beginning of turn t. 
-
-Thus we may write $P_1$ as a function of $H_{B_{j,t}}$, $d_{B_{j,t}}$, $h_{B{j,t}}$. Next, let an opponent's fainted Pokémon corresponds to a payoff of 1. As each player has six Pokémon, max($P_1$)=6. This payoff corresponds to Player 1 fainting all of Player 2's Pokémon. 
-
-Now we need to create an equation to model the payoff of Player 1 at turn t. To do so, we need to construct a piecewise function that corresponds to the values given previously. To begin with, we note that if Player 1's damage to the opposing Pokémon is greater than that opposing Pokémon's health at the beginning of the turn, that Pokémon faints. Intuitively, this means that the payoff from fainting an opponent's Pokémon is the same for Player 1 regardless of whether they exceeded the amount of damage needed to faint the opponents Pokémon. With this in mind, let $n_1$ denote the number of Pokémon Player 1 has knocked out. We may then write the payoff function for Player 1 after turn t as follows: 
-$$P(H,h,d)_{1,t} = \left\{
-        \begin{array}{ll}
-            n_1 +1  &\quad if (\sum_{t=0}^{N} d_{B_i,t} - h_{B{j,t}}) > H_{B_{j,t}}\\
-            (n_1 + \sum_{t=0}^{N} (d_{A_i,t} - h_{B{j,t}}))/H_{B_{j,t}}& \quad otherwise
-        \end{array}
-    \right.
-$$
-
-We now have an equation to model the payoff function of Player 1 at any turn of a Pokémon battle. Let $n_2$ denote the number of Pokémon Player 2 has knocked out. Thus, we may similarly construct a piecewise function for Player 2's payoff function at turn t as: $$P(H,h,d)_{2,t} = \left\{
-        \begin{array}{ll}
-            n_2 + 1  &\quad if (\sum_{t=0}^{N} d_{A_i,t} - h_{A{j,t}}) > H_{B_{j,t}}\\
-            (n_2 + \sum_{t=0}^{N} (d_{A_i,t} - h_{A{j,t}}))/H_{A_{j,t}}& \quad otherwise
-        \end{array}
-    \right.
-$$
-
-We may now assemble the ordered pairs corresponding to each combination of Player 1 and Player 2's possible decisions for any given turn. However, before doing so, it is important to note that the three functions corresponding to Pokémon health, damage, and healing are left for further detailing. Before going on to the normal form version of Pokémon battling, these functions will be given further detail. 
-
-#### Creating the Damage Function
-
-#### Normal Form Version of Pokémon Battling 
-
 ## End thesis Chapter 1 
-
-
-
-
-
-# MARKDOWN TEMPLATE 
-
-```{r cars}
-summary(cars)
-```
-
-## Inline code
-
-If you'd like to put the results of your analysis directly into your discussion, add inline code like this:
-
-> The `cos` of $2 \pi$ is `r cos(2*pi)`. 
-
-Another example would be the direct calculation of the standard deviation:
-
-> The standard deviation of `speed` in `cars` is `r sd(cars$speed)`.
-
-One last neat feature is the use of the `ifelse` conditional statement which can be used to output text depending on the result of an **R** calculation:
-
-> `r ifelse(sd(cars$speed) < 6, "The standard deviation is less than 6.", "The standard deviation is equal to or greater than 6.")`
-
-Note the use of `>` here, which signifies a quotation environment that will be indented.
-
-As you see with `$2 \pi$` above, mathematics can be added by surrounding the mathematical text with dollar signs.  More examples of this are in [Mathematics and Science] if you uncomment the code in [Math].  
-
-## Including plots
-
-You can also embed plots.  For example, here is a way to use the base **R** graphics package to produce a plot using the built-in `pressure` dataset:
-
-```{r pressure, echo=FALSE, cache=TRUE}
-plot(pressure)
-```
-
-Note that the `echo=FALSE` parameter was added to the code chunk to prevent printing of the **R** code that generated the plot.  There are plenty of other ways to add chunk options.  More information is available at <http://yihui.name/knitr/options/>.  
-
-Another useful chunk option is the setting of `cache=TRUE` as you see here.  If document rendering becomes time consuming due to long computations or plots that are expensive to generate you can use knitr caching to improve performance.  Later in this file, you'll see a way to reference plots created in **R** or external figures.
-
-## Loading and exploring data
-
-Included in this template is a file called `flights.csv`.  This file includes a subset of the larger dataset of information about all flights that departed from Seattle and Portland in 2014.  More information about this dataset and its **R** package is available at <http://github.com/ismayc/pnwflights14>.  This subset includes only Portland flights and only rows that were complete with no missing values.  Merges were also done with the `airports` and `airlines` data sets in the `pnwflights14` package to get more descriptive airport and airline names.
-
-We can load in this data set using the following command:
-
-```{r load_data}
-flights <- read.csv("data/flights.csv")
-```
-
-The data is now stored in the data frame called `flights` in **R**.  To get a better feel for the variables included in this dataset we can use a variety of functions.  Here we can see the dimensions (rows by columns) and also the names of the columns.
-
-```{r str}
-dim(flights)
-names(flights)
-```
-
-Another good idea is to take a look at the dataset in table form.  With this dataset having more than 50,000 rows, we won't explicitly show the results of the command here.  I recommend you enter the command into the Console **_after_** you have run the **R** chunks above to load the data into **R**.
-
-```{r view_flights, eval=FALSE}
-View(flights)
-```
-
-While not required, it is highly recommended you use the `dplyr` package to manipulate and summarize your data set as needed.  It uses a syntax that is easy to understand using chaining operations.  Below I've created a few examples of using `dplyr` to get information about the Portland flights in 2014.  You will also see the use of the `ggplot2` package, which produces beautiful, high-quality academic visuals.
-
-We begin by checking to ensure that needed packages are installed and then we load them into our current working environment:
-
-```{r load_pkgs, message=FALSE}
-# List of packages required for this analysis
-pkg <- c("dplyr", "ggplot2", "knitr", "bookdown", "devtools")
-# Check if packages are not installed and assign the
-# names of the packages not installed to the variable new.pkg
-new.pkg <- pkg[!(pkg %in% installed.packages())]
-# If there are any packages in the list that aren't installed,
-# install them
-if (length(new.pkg))
-  install.packages(new.pkg, repos = "http://cran.rstudio.com")
-# Load packages (thesisdown will load all of the packages as well)
-library(thesisdown)
-```
-
-\clearpage
-
-The example we show here does the following:
-
-- Selects only the `carrier_name` and `arr_delay` from the `flights` dataset and then assigns this subset to a new variable called `flights2`. 
-
-- Using `flights2`, we determine the largest arrival delay for each of the carriers.
-
-```{r max_delays}
-flights2 <- flights %>% 
-  select(carrier_name, arr_delay)
-max_delays <- flights2 %>% 
-  group_by(carrier_name) %>%
-  summarize(max_arr_delay = max(arr_delay, na.rm = TRUE))
-```
-
-A useful function in the `knitr` package for making nice tables in _R Markdown_ is called `kable`.  It is much easier to use than manually entering values into a table by copying and pasting values into Excel or LaTeX.  This again goes to show how nice reproducible documents can be! (Note the use of `results="asis"`, which will produce the table instead of the code to create the table.)  The `caption.short` argument is used to include a shorter title to appear in the List of Tables.
-
-```{r maxdelays, results="asis"}
-kable(max_delays, 
-      col.names = c("Airline", "Max Arrival Delay"),
-      caption = "Maximum Delays by Airline",
-      caption.short = "Max Delays by Airline",
-      longtable = TRUE,
-      booktabs = TRUE)
-```
-
-The last two options make the table a little easier-to-read.
-
-We can further look into the properties of the largest value here for American Airlines Inc.  To do so, we can isolate the row corresponding to the arrival delay of 1539 minutes for American in our original `flights` dataset.
-
-
-```{r max_props}
-flights %>% filter(arr_delay == 1539, 
-                  carrier_name == "American Airlines Inc.") %>%
-  select(-c(month, day, carrier, dest_name, hour, 
-            minute, carrier_name, arr_delay))
-```
-
-We see that the flight occurred on March 3rd and departed a little after 2 PM on its way to Dallas/Fort Worth.  Lastly, we show how we can visualize the arrival delay of all departing flights from Portland on March 3rd against time of departure.
-
-```{r march3plot, fig.height=3, fig.width=6}
-flights %>% filter(month == 3, day == 3) %>%
-  ggplot(aes(x = dep_time, y = arr_delay)) + geom_point()
-```
 
 ## Additional resources
 
