@@ -3,7 +3,8 @@
 # https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
 
 library(jsonlite)
-data1 <- fromJSON("battle-randombattle-214637002.log.json", simplifyDataFrame = TRUE)
+# For test sample coding
+# data1 <- fromJSON("battle-ou-302912470.log.json", simplifyDataFrame = TRUE)
 
 
 filenames <- list.files()
