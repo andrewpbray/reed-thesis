@@ -58,6 +58,11 @@ p2team <- mydata$p2team$species
 ## rbind returns the necessary data
 ## this data needs to be returned and iterated with whether the pokemon on the team lost the specific battle
 rbind(data1$p1team$species,data1$p1team$item)
+teamp2 <- rbind(data1$p2team$species,data1$p2team$item)
+teamp1 <- rbind(data1$p1team$species,data1$p1team$item)
+# need to merge teamp1 and teamp2
+# should include battle outcome before merging? 
+# want a 2x12 matrix...likely a 3x12 matrix to include outcome
 ## the merge
 # pokep1 <- data_frame(data1$p1team$species)
 # pokep2 <- data_frame(data1$p2team$species)
