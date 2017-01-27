@@ -1,11 +1,31 @@
 # https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html
 # https://cran.r-project.org/web/packages/tidyjson/tidyjson.pdf
 # https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
+# grab_comp <-
+# Just for Sticky Web
+# grep([|]Sticky Web[|]p1a"|"[|]Sticky Web[|]p2a",data1$log,value=TRUE)
+# gregexpr(Sticky Web[|]p1a"|"Sticky Web[|]p2a",data1$log)
+# any(grep("Sticky Web[|]p1a", data1$log)) 
+# grep("[|]Sticky Web[|]p1a"|"[|]Sticky Web[|]p2a", data1$log) 
+# For both Sticky Webs 
+# any(grep("(Sticky Web[|]p1a)(Sticky Web[|]p2a)",data1$log))
+# For p1 sticky
+any(grep("(Sticky Web[|]p1a)",data1$log))
+# For p2 sticky
+any(grep("(Sticky Web[|]p2a)",data1$log))
+
 
 library(jsonlite)
 # For test sample coding
 # data1 <- fromJSON("battle-ou-302912470.log.json", simplifyDataFrame = TRUE)
+# Cases: None, 1, 2, Both 
+# Work in Progress 
+stickyreturn <- function(log) { 
+  for(i in (pages[[i]])$log) { if(any(grep("(Sticky Web[|]p1a)(Sticky Web[|]p2a)",(pages[[i]])$log)) == "FALSE") {stickyuse[i] <- "NA"} 
+     if((any(grep("([|]Sticky Web[|]p1a)(Sticky Web[|]p2a)", (pages[[i]])$log))) == "TRUE") {stickyuse[i] <- "Both"} 
+     if((any(grep("[|]Sticky Web[|]p1a", (pages[[i]])$log))) == "TRUE") {stickyuse[i] <- "P1"} else {stickyuse[i] <- "P2"}}}
 
+# may not need this code: if((any(grep("[|]Sticky Web[|]p2a", data1$log))) == "TRUE") {print("P2")}} 
 
 filenames <- list.files()
 
