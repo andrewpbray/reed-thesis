@@ -10,6 +10,8 @@
 # For both Sticky Webs 
 # any(grep("(Sticky Web[|]p1a)(Sticky Web[|]p2a)",data1$log))
 # For p1 sticky
+# 2 things: qualitative
+# accompanying code 
 any(grep("(Sticky Web[|]p1a)",data1$log))
 # For p2 sticky
 any(grep("(Sticky Web[|]p2a)",data1$log))
@@ -20,13 +22,51 @@ library(jsonlite)
 # data1 <- fromJSON("battle-ou-302912470.log.json", simplifyDataFrame = TRUE)
 # Cases: None, 1, 2, Both 
 # Work in Progress 
-stickyreturn <- function(log) { 
-  for(i in (pages[[i]])$log) { if(any(grep("(Sticky Web[|]p1a)(Sticky Web[|]p2a)",(pages[[i]])$log)) == "FALSE") {stickyuse[i] <- "NA"} 
-     if((any(grep("([|]Sticky Web[|]p1a)(Sticky Web[|]p2a)", (pages[[i]])$log))) == "TRUE") {stickyuse[i] <- "Both"} 
-     if((any(grep("[|]Sticky Web[|]p1a", (pages[[i]])$log))) == "TRUE") {stickyuse[i] <- "P1"} else {stickyuse[i] <- "P2"}}}
+stickyreturn <- function(battlelog) { 
+     if(any(grep("(Sticky Web[|]p1a)(Sticky Web[|]p2a)", battlelog)) == TRUE) {stickyuse <- "both"} 
+     if(any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE) {
+       stickyuse <- "p1"} 
+  if(any(grep("(Sticky Web[|]p2a)", battlelog)) == TRUE) {stickyuse <- "p2"}
+  else {stickyuse <- NA}
+stickyuse
+}
+
+stickyreturn(pages[[i]]$log) 
+stickyverdict <- rep(NA, length(pages))
+for(i in 1:length(pages)) { stickyverdict[i] <- stickyreturn(pages[[i]]$log)} 
+
+playerout <- function(battlelog) {
+  if((battlelog$endType) == "draw"){
+    playout <- NA} 
+  if((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) {
+    playout <- "p1"}
+  else {
+    playout <- "p2"}
+  playout
+}
+
+playerout(pages[[i]])
+winlose <- rep(NA, length(pages)) 
+for(i in 1:length(pages)) {winlose[i] <- playerout(pages[[i]])} 
+
+stickystat <- function(stickyverdict, winlose) {
+  if(is.na(stickyverdict)) {
+    stickywin <- NA}
+  if(stickyverdict="both") {
+    stickywin <- NA}
+  if(winlose==stickyverdict) {
+    stickywin <- 1}
+  else {stickywin <- 0}
+  stickywin 
+}
+
+stickystat(winlose[i], stickyverdict[i])  
+stickyout <- rep(NA, length(pages))
+for(i in 1:length(pages)) {stickyout[i] <- stickystat(winlose[i], stickyverdict[i])} 
 
 # may not need this code: if((any(grep("[|]Sticky Web[|]p2a", data1$log))) == "TRUE") {print("P2")}} 
-
+# verdict <- rep(NA, n) 
+# for(i in 1:n) {verdict[i] <- stickreturn()} 
 filenames <- list.files()
 
 # this loops through all files in the directory, opening each and saving it as 
