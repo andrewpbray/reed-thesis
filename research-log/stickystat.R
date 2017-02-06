@@ -1,5 +1,6 @@
 # preliminary code
 filenames <- list.files()
+library(jsonlite)
 pages <- list()
 for(i in seq_along(filenames)) {
   mydata <- fromJSON(filenames[i], simplifyDataFrame = TRUE)
@@ -46,17 +47,18 @@ for(i in 1:length(pages)) {winlose[i] <- playerout(pages[[i]])}
 # then the code checks if the winning player used the move and returns a 1 if they did
 # otherwise the function outputs a 0 if the player who used the move lost and their opponent did not use the move
 stickystat <- function(stickyverdict, winlose) {
-  if(is.na(stickyverdict)) {
-    stickywin <- NA}
-  if(stickyverdict="both") {
-    stickywin <- NA}
-  if(winlose==stickyverdict) {
+  if((winlose=stickyverdict)==TRUE) {
     stickywin <- 1}
-  else {stickywin <- 0}
+  if(winlose="p1" & stickyverdict="p2") {
+    stickywin <-0}
+  if(winlose="p2" & stickyverdict="p2") {
+    stickywin <-0}
+  else {
+    stickywin <- NA}
   stickywin 
 }
 
-stickystat(winlose[i], stickyverdict[i])  
+stickystat(stickyverdict[i], winlose[i])  
 stickyout <- rep(NA, length(pages))
-for(i in 1:length(pages)) {stickyout[i] <- stickystat(winlose[i], stickyverdict[i])} 
+for(i in 1:length(pages)) {stickyout[i] <- stickystat(stickyverdict[i], winlose[i])} 
 # whenever I use this code it just returns an "unexpected '}' in "}" error 
