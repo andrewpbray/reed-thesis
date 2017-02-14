@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 <!--
 The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
 -->
@@ -10,9 +13,16 @@ delete "References" and replace it.
 -->
 
 # References
-
-<!--
-To remove the indentation of the first entry.
+* Ariely, D. (2009). Predictably irrational: The hidden forces that shape our decisions. New York, NY: Harper. Chapter 8: Keeping Doors Open (pp. 139-154).
+* Ho, H., Ramesh, V. (2016) Percymon: A Pokemon Showdown Artifical Intelligence. Retrieved October 31, 2016, from: http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf
+* Pokémon Company International (Nov. 21, 2014) Pokémon Omega Ruby & Pokémon Alpha Sapphire: The Official Hoenn Region Strategy Guide.
+* Pokémon Showdown! battle simulator (n.d.). Retrieved October 31, 2016, from http://pokemonshowdown.com/
+* Pokémon Showdown Github Master Repository (2016). Zarel/Pokemon-Showdown. Retrieved October 31, 2016, from https://github.com/Zarel/Pokemon-Showdown/tree/master/data
+* Sanchez-Ante, Gildardo (Dec., 2013) Sistemas Inteligentes: Reportes Finales Ago-Dic 2013. Retrieved October 31, 2016, from: https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf#page=140
+* Schwalbe, U., & Walker, P. (2001). Zermelo and the Early History of Game Theory. Games and Economic Behavior, 34(1), 123-137. doi:10.1006/game.2000.0794
+* Smogon University (n.d.). Retrieved October 31, 2016, from http://www.smogon.com/
+* Usage Stats (n.d.). Retrived October 31, 2016, from http://sweepercalc.com/stats/
+* Wunder, M., Kaisers, M., Yaros, J., Littman, M., (May, 2011) Using Iterated Reasoning to Predict Opponent Strategies. Proc. of 10th Int. Conf. on Autonomous Agents and Multiagent Systems (AAMAS 2011), Tumer, Yolum, Sonenberg and Stone (eds.), 593-600. 
 -->
 \noindent
 
@@ -30,6 +40,3 @@ This is just for testing with more citations for the bibliography at the end.  A
 -->
 
 ---
-nocite: | 
-  @angel2000, @angel2001, @angel2002a
-...

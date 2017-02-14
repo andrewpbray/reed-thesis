@@ -70,7 +70,7 @@
 
 
 % To pass between YAML and LaTeX the dollar signs are added by CII
-\title{A Game Theoretic Approach to Pokémon Battling}
+\title{A Big Data Analysis of Pokémon Battling}
 \author{Samuel D. Olson}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
 \date{May 2017}
@@ -176,71 +176,24 @@ starts here.
   \mainmatter % here the regular arabic numbering starts
   \pagestyle{fancyplain} % turns page numbering back on
 
-  \chapter*{Introduction}\label{introduction}
-  \addcontentsline{toc}{chapter}{Introduction}
-  
-  Welcome to the \emph{R Markdown} thesis template. This template is based
-  on (and in many places copied directly from) the Reed College LaTeX
-  template, but hopefully it will provide a nicer interface for those that
-  have never used TeX or LaTeX before. Using \emph{R Markdown} will also
-  allow you to easily keep track of your analyses in \textbf{R} chunks of
-  code, with the resulting plots and output included as well. The hope is
-  this \emph{R Markdown} template gets you in the habit of doing
-  reproducible research, which benefits you long-term as a researcher, but
-  also will greatly help anyone that is trying to reproduce or build onto
-  your results down the road.
-  
-  Hopefully, you won't have much of a learning period to go through and
-  you will reap the benefits of a nicely formatted thesis. The use of
-  LaTeX in combination with \emph{Markdown} is more consistent than the
-  output of a word processor, much less prone to corruption or crashing,
-  and the resulting file is smaller than a Word file. While you may have
-  never had problems using Word in the past, your thesis is likely going
-  to be about twice as large and complex as anything you've written
-  before, taxing Word's capabilities. After working with \emph{Markdown}
-  and \textbf{R} together for a few weeks, we are confident this will be
-  your reporting style of choice going forward.
-  
-  \textbf{Why use it?}
-  
-  \emph{R Markdown} creates a simple and straightforward way to interface
-  with the beauty of LaTeX. Packages have been written in \textbf{R} to
-  work directly with LaTeX to produce nicely formatting tables and
-  paragraphs. In addition to creating a user friendly interface to LaTeX,
-  \emph{R Markdown} also allows you to read in your data, to analyze it
-  and to visualize it using \textbf{R} functions, and also to provide the
-  documentation and commentary on the results of your project. Further, it
-  allows for \textbf{R} results to be passed inline to the commentary of
-  your results. You'll see more on this later.
-  
-  \textbf{Who should use it?}
-  
-  Anyone who needs to use data analysis, math, tables, a lot of figures,
-  complex cross-references, or who just cares about the final appearance
-  of their document should use \emph{R Markdown}. Of particular use should
-  be anyone in the sciences, but the user-friendly nature of
-  \emph{Markdown} and its ability to keep track of and easily include
-  figures, automatically generate a table of contents, index, references,
-  table of figures, etc. should make it of great benefit to nearly anyone
-  writing a thesis project.
-  
-  \chapter{Introduction}\label{introduction-1}
+  \chapter{Introduction}\label{introduction}
   
   The world of Pokémon began in 1995 with the pair of games Pokémon Red
-  and Green. For Westerners, the latter would become known as Pokémon
-  Blue. These two games introduced the turn-based battling system that
-  became the foundation of the Pokémon games. Numerous other games have
-  attempted to copy the Pokémon battling format, but none have been able
-  to equal its widespread appeal and dedicated player base. With each
-  successive iteration, new items, types, and of course Pokémon are added
-  to the Pokémon lexicon. The world of Pokémon has continued to grow and
-  evolve into one of the largest video games franchises to date. The most
-  recent iterations of Pokémon games, Pokémon Sun and Moon, have continued
-  the tradition of adding layers onto an already complex system of
-  battling.
+  and Green. For Western audiences, the latter game would become known as
+  Pokémon Blue. These two games introduced a unique system of turn-based
+  that continues to define the franchise of Pokémon games. Numerous other
+  games have attempted to copy the Pokémon battling format, but none have
+  been able to equal its widespread appeal and dedicated player base. With
+  each successive iteration, new items, Pokémon types, and of course new
+  species of Pokémon are added to the Pokémon lexicon. As a result the
+  world of Pokémon has continued to grow and evolve into one of the
+  largest video games franchises to date. The most recent iteration of
+  Pokémon games, Pokémon Sun and Moon, have continued Pokémon's commercial
+  and historical trend of turning profits while adding layers to an
+  already complex system of battling.
   
-  Since 2011 the program Pokémon Showdown has offered a `stripped' version
-  of Pokémon games. This `stripped' version allows players to exclusively
+  Since 2011 the program Pokémon Showdown has offered a simplified version
+  of Pokémon games. This simplified version allows players to exclusively
   battle one another, replicating the most recent iteration of the Pokémon
   games in the process. This has allowed players to hone and test their
   Pokémon battling skills through the years. With well-over 20,000 daily
@@ -248,57 +201,71 @@ starts here.
   to test and practice Pokémon battling strategies in the ultimate pursuit
   of becoming the very best that no one ever was.
   
-  To begin formal analysis of Pokémon battling however, the battling
-  system must be rigorously detailed for laymen and game theorists alike.
+  However, before any formal analysis of Pokémon battling is discussed the
+  battling system must be rigorously detailed for laymen and theorists
+  alike.
   
-  \subsection{A Brief Overview}\label{a-brief-overview}
+  \begin{figure}[htbp]
+  \centering
+  \includegraphics{img1.png}
+  \caption{Inspiration}
+  \end{figure}
   
-  First, there needs to be a formal model. At its core, Pokémon battling
-  takes place exclusively between two players. Each of the two players has
-  a team composed of six different Pokémon. Depending on the battle
-  format, the team of six Pokémon is either dictated by the player or
-  randomly assigned. Regardless of format, each turn each player
-  simultaneously makes a decision. The decisions are then executed, with
-  priority given first to priority moves and then, if neither player
-  decided on a priority move, by a comparative assessment of each
-  Pokémon's speed. Once a player's Pokémon loses all of its health, an
-  event referred to as fainting, the player must switch into another
-  Pokémon. If a player has no other Pokémon to switch into, the battle
-  ends. As would be expected, the player whose Pokémon have all fainted
-  loses the battle, and the other player wins.
+  First and foremost, each Pokémon battle occurs exclusively between two
+  players. Each of the two players has a team composed of six Pokémon. For
+  the purposes of analysis teams with duplicate Pokémon will not be
+  considered, namely because such teams are not allowed in ranked battles.
+  As such, teams are composed of six distinct Pokémon. Depending on the
+  battle format, the team of six Pokémon is either randomly assigned or
+  dictated by the player. The two formats being considered in this study
+  -random battles and overused- provide an example of each respectively.
+  As a point of note, only battles in the `Anything Goes' category allow
+  any Pokémon to be used, including duplicate species within a player's
+  team.
   
-  There are a number of parameters and variables to consider beyond those
-  already detailed. To begin with, each Pokémon has at most four moves to
-  choose from for any turn of a battle. Additionally, whenever a player
-  has at least two Pokémon that have not fainted, they have the choice to
-  switch into another Pokémon. Doing so counts as the player's action for
-  the turn. Thus, players almost always have five different choices to
-  make each turn. However, if switches are considered distinct choices,
-  the number of potential decisions is at most nine for a given turn.
-  Hence, for the purposes of analysis, the supremum of decisions for any
-  given turn is nine.
+  Regardless of the battle format, each turn each player simultaneously
+  make a decision for the Pokémon they have on the field. The decisions
+  are then executed. The order of play is decided by comparison of the
+  selected moves. Priority is given first to priority moves and then, if
+  neither player selected a priority move for the turn, by a comparative
+  assessment of the two Pokémons' speeds.
   
-  There are a number of other parameters to consider, though these
-  parameters are case-specific, i.e.~dependent upon Pokémon, held item,
-  Pokémon ability, etc. Such parameters will be further detailed in the
-  methodology section, along with further specifications on specific moves
-  and Pokémon types.
+  The potential moves Pokémon are able to execute have a wide variety of
+  effects. This will be detailed later however. Regardless of the damage
+  or effects of the executed moves, once a player's Pokémon loses all of
+  its health, an event referred to as fainting, the player must switch
+  into another Pokémon. If a player has no other Pokémon to switch into,
+  the battle ends. As would be expected, the player whose Pokémon have all
+  fainted loses the battle. Consequently the player who eliminates all of
+  their opponent's Pokémon wins.
   
-  That being said, Pokémon must be formally denoted as a specific type of
-  game in game theoretic terms. With this in mind, it bears noting that
-  there are only two outcomes to any battle: One player wins and the other
-  loses. Because of this, Pokémon is by definition a zero-sum game.
-  However, it is important to note that there are distinct ways that a
-  player may win or lose a game. Notably, the same set of decisions made
-  by one player over multiple battles may not lead to the same outcome in
-  each battle. That is to say, uniqueness of strategies is derived from
-  the decisions of both players for any given battle.
+  Furthermore, each Pokémon has at most four possible moves to chose from
+  during any turn of a battle. Whenever a player has at least two Pokémon
+  that have not fainted, they have additional choice to switch into
+  another Pokémon. Doing so counts as the player's action for the turn. As
+  a result, players almost always have five different choices to make each
+  turn.
   
-  A point glossed over previously is the existence of different end games.
+  There are still a number of other details that are relevant to consider
+  beyond those already mentioned. Namely, while some information is fixed
+  during the battle -such as the opposing players team composition- some
+  variables of interest are case-specific. These include what moves an
+  opposing Pokémon has already used, and consequently revealed, along with
+  a given Pokémon's held item, its ability, and a slew of other variables.
+  However, similar to the different type of moves a Pokémon can chose
+  from, these points will be detailed in the methodology section.
+  
+  That being said, to formally analyze Pokémon battling the game itself
+  must be formally denoted in game theoretic terms. This will aid in both
+  describing the game and in highlighting its complexity. With this in
+  mind, it bears noting that there are only two outcomes to any battle:
+  One player wins and the other loses. Because of this, Pokémon battling
+  is by definition a zero-sum game. However, it is important to note that
+  there some distinctions between how a player wins or loses a game.
   Though the game ends when all of the Pokémon on one team have fainted,
   any player has the choice to forfeit the game any time before this
   occurs. Thus, the two ways to win or lose a battle are either by
-  forfeiture or by having all of their Pokémon faint; the latter outcome
+  forfeiture or by having all of their Pokémon faint; this latter outcome
   is referred to as a ``normal'' game. Additionally, there is the
   potential for a game to result in a draw. However, draws result in a
   neutral payoff as neither player raises or lowers their ranking after a
@@ -306,112 +273,117 @@ starts here.
   
   Within the scope of game theoretic terms, it is vital to note that each
   player is able to see all past decisions made over the course of a
-  battle, and that battles span over multiple turns. Speaking to the
-  former point, players are able to recall not only their past decisions
-  but also those of their opponent, including how much damage was done by
-  a specific move during a previous turn. As this information is available
-  at any time during the battle, Pokémon battling is a perfect recall
-  game. Furthermore as each game is composed of a sequence of turns,
-  Pokémon battling is also a sequential game.
+  battle, and that battles typically last a number of turns. Speaking to
+  the former point, players are able to recall not only their past
+  decisions but also those of their opponent, including how much damage
+  was done by a specific move during a previous turn. As this information
+  is available at any time during the battle, Pokémon battling is a
+  perfect recall game. Furthermore as each game is composed of a sequence
+  of turns, Pokémon battling is also a sequential game.
   
   The points noted on information allude to a unique trait of Pokémon
   battling that further details the type of game Pokémon battling is: An
   incomplete information game. Though the extent of incompleteness is
   format specific, each player is given limited information about the
-  opposing players team at the beginning of the battle. After each turn,
-  players are able learn not only the different moves each opposing
-  Pokémon has, but also their abilities, held items, and sometimes what
-  other Pokémon compose the opposing team. Generally speaking, there is
-  almost always new information revealed each turn. The extent to which
-  player strategies are revealed from information is an ongoing topic of
-  discussion, both here and in current game theory literature. Naturally,
-  the analysis of such a topic relies upon at least one apriori
-  assumption, namely that player strategies are revealed by their past
-  decisions. However, whether player strategies are rational and
-  consistent is another matter entirely; nonetheless, at the very least it
-  is important to note that incorporating such information into players
-  own decision-making complicates analysis and is a central topic in
-  analyzing Pokémon battling.
+  opposing player's team at the beginning of the battle. After each turn,
+  players learn not only the different moves each opposing Pokémon has,
+  but also their abilities, held items, and sometimes what other Pokémon
+  compose the opposing team. Generally speaking, there is almost always
+  new information revealed each turn.
+  
+  However, the extent to which player strategies are revealed from
+  revealed information is an open topic of discussion, both in this study
+  and in current game theory literature. Naturally, the analysis of such a
+  topic relies upon at least one apriori assumption, namely that player
+  strategies are revealed by their past decisions. However, whether player
+  strategies are rational and consistent is another matter entirely;
+  nonetheless, it is important to note that incorporating such information
+  into players own decision-making complicates analysis and is a central
+  topic in analyzing Pokémon battling.
   
   Taken together, Pokémon battling is a special case of a sequential,
   zero-sum two-player game with incomplete information and perfect recall.
   As Pokémon battling lends itself to a discussion of imperfect
   information, it is all the more vital to consider the role of decision
-  making in sequential games. A great portion of game theory literature
-  has explored such topics, including the revolutionary work of John
-  Forbes Nash Jr.
+  making within the context of sequential games. However, it is vital to
+  note that this study will not do so using expansive game trees or
+  comparison of payoffs. Namely this is done due to computational
+  limitations. A detailed explanation as to the inability of fully
+  detailing normal form games and payoff functions in the context of
+  Pokémon battling is found in Appendix A.
   
-  Theoretics aside, there are also notes on the computation side of
-  analyzing Pokémon. In this regard, my initial computations and analysis
-  focus on the distributions of turn length based on win type, i.e.~the
-  length of games played when one player forfeited or had all of their
-  Pokémon faint. After distributional computations I categorize moves by
-  their type, specifically whether a specific move is damaging,
-  non-damaging, or a mix. After categorizing each move individually, I
-  then categorize sets of four moves, again using categorizations of
-  damaging, non-damaging, or a mix. Using this categorization I gauge the
-  effectiveness of specific move sets based on their ability to faint
-  Pokémon and by their likelihood to increase a players probability of
-  winning.
+  Game theoretics aside, there are also important computational notes to
+  detail. In this regard, initial computations and analysis focus on the
+  distributions of turn length, i.e.~the length of games played when one
+  player forfeited or had all of their Pokémon faint and the corresponding
+  distribution of game lengths. After these distributional computations, I
+  categorize moves by their type, specifically whether a specific move is
+  damaging or what is referred to as a ``setup'' move. After this
+  categorization I gauge the effectiveness of using specific moves on the
+  experimental probability that using such move corresponded to a winning
+  outcome.
   
-  Overall I hope explore how information gathered turn-by-turn feeds into
-  the decision-making process of Pokémon battling. By incorporating
-  tenants of behavioral economics and game theory, I hope to rigorously
-  analyze and detail phenomena that occur in Pokémon battling. However,
-  even more specifically I want to verify the theoretical findings of
-  Pokémon battling in a game theoretic framework, specifically the
-  existence of one or more mixed Nash equilibrium.
+  Overall I explore the decision-making process involved in Pokémon
+  battling. By incorporating tenants of behavioral economics and game
+  theory, I hope to highlight not only the experimental probabilities of
+  winning associated with specific move sets, but also analyze how and why
+  such events occur. More specifically I will continue the recent trend of
+  `Big Data' analysis to explore macro trends in player's decision making
+  processes by using \emph{all} of data contained within four months of
+  Pokémon Showdown battlelogs spanning 2015. In doing so I hope to answer
+  two main questions: What factors influence the liklihood of winning a
+  Pokémon battle, and are these findings generalizable across battle
+  formats?
   
   \section{Literature Review}\label{literature-review}
   
-  A few points on Pokémon battling are worth noting as they relate Nash's
-  literature on game theory mentioned previously. First, each Pokémon
-  battle lasts a finite number of turns. Furthermore, each player has
-  finitely many choices to make at any given turn. Thus there exists
-  finitely many pure strategies for players to choose from each game. Thus
-  via application of Nash's Existence Theorem, Pokémon battling has at
-  least one Nash equilibrium (Nash 1950).
+  Scant rigorous or academic research has been conducted within the scope
+  of Pokémon-related topics. The most frequent publications have focused
+  either on Pokémon as a cultural phenomena or have been official strategy
+  guides for the various Pokémon games published by Nintendo affiliates.
+  Importantly, these strategy guides do not detail Pokémon battling
+  strategies, although they do detail the numerous Pokémon species, items,
+  and moves available in each game. It comes as no surprise then that the
+  Pokémon strategy guides do not formally detail Pokémon battling
+  strategies or use of game theoretic terminology. That isn't to say that
+  there aren't publications focusing on Pokémon battling strategies.
   
-  The question then is to determine what the Nash equilibrium, possibly
-  equilibria, is in Pokémon battling. To address this question, it will be
-  necessary to consider other theorems and propositions of Nash that
-  relate to non-cooperative games. Namely, the goal of analyzing Pokémon
-  battling is to determine solutions, strong solutions, and sub-solutions;
-  however, it is possible that solutions as defined by Nash do not exist.
-  This follows from Nash's note that non-cooperative games do not always
-  have a solution; however there do exist sub-solutions (Nash 1951). Thus,
-  a central question will be in determining whether Pokémon battling has a
-  solution, and if so, if it is unique. Furthermore, it will be important
-  to determine what sub-solutions exist, along with how parameterization
-  potentially influences such solutions and sub-solutions.
+  Academic papers that focus Pokémon battling have developed and analyzed
+  algorithms to simulate Pokémon battling and engage in Pokémon battling
+  against human players in the program Pokémon Showdown. The first paper
+  of this kind gives a rudimentary background on Pokémon battling and
+  focuses explicitly on 1v1 battle simulations (Gildardo 2013). However,
+  in a detailed analysis of one particular one-on-one scenario the author
+  is singularly-minded, insomuch as literally focusing only on one-on-one
+  Pokémon battles. Furthermore, Gildardo's subsection detailing Pokémon
+  battling does not consider other potential variants on Pokémon abilities
+  or item pairings. In this regard, Gildardo's article does not go into
+  great detail on the many variants of Pokémon battling, most notably
+  through the exclusion of teams of Pokémon.
   
-  That being said, scant rigorous or academic research has actually been
-  conducted within the scope of Pokémon-related topics. The most frequent
-  publications focus either on Pokémon as a cultural phenomena or on
-  strategy guides for Pokémon games. Importantly, these strategy guides
-  have not specifically Pokémon battling strategies, though some have some
-  focus on gameplay. However, no Pokémon strategy guides have analyzed
-  Pokémon battling by using game theoretic terminology; though that isn't
-  to say that there aren't academic publications focusing on Pokémon
-  battling.
+  This point notwithstanding, since Gildardo's publication there has been
+  one other notable publication that focuses on Pokémon battling. This
+  publication focuses on the creation and analysis of algorithms within
+  the context of Pokémon battling; the article additionally goes into
+  greater detail on battling strategies while incorporating comparative
+  analysis of the different algorithms used to play against human
+  opponents (Ho et al. 2016). Though the paper focused on what is
+  currently a previous iteration of Pokémon Showdown, the iteration of
+  Pokémon Showdown is fundamentally the same as that of the data used in
+  this study. Nonetheless, the paper did have its own shortcomings as
+  well. Namely, the algorithms used would never select a move whose type
+  would be not very effective against the opponents fielded Pokémon. This
+  point will be detailed later, but needless to say such a decision is not
+  always the preferred one.
   
-  Typically academic papers focusing on Pokémon battling have focused on
-  the use of algorithms to simulate battling strategies and play against
-  human players in Pokémon Showdown. One paper gives a rudimentary
-  background on Pokémon battling and focuses explicitly on 1v1 battles
-  (Gildardo 2013). Since this publication there has been more literature
-  however. This literature includes greater nuance, notably by expanding
-  the focus of its analysis to teams of six (Ho et al. 2016). Though the
-  paper focused on what is currently a previous iteration of Pokémon
-  Showdown, the iteration of Pokémon Showdown is fundamentally the same as
-  that of the data used here.
-  
-  Furthermore, relevant documentation of this past iteration of Pokémon
-  Showdown is available at its website \url{http://pokemonshowdown.com/}.
-  Notably, the website for Pokémon Showdown provides a hub for information
-  on Pokémon battling basics and specific battle format descriptions.
-  Replays and ladder ranking are available publically, along with links to
-  usage statistics and a damage calculator.
+  Furthermore, on the subject of different versions of Pokémon Showdown,
+  relevant documentation of the past iterations of Pokémon Showdown are
+  available at the program's website: \url{http://pokemonshowdown.com/}.
+  The website for Pokémon Showdown provides a hub for information ranging
+  from Pokémon battling basics to specific battle format descriptions.
+  Similar to all information mentioned thus far, replays and ladder
+  ranking are available publically. Furthermore the site provides Pokémon
+  usage statistics and a damage calculator for aspiring Pokémon battlers.
   
   As noted previously, game theory vernacular has not entered into
   discussions on Pokémon battling strategies, at least in any formal
@@ -424,18 +396,18 @@ starts here.
   non-cooperative game. These three topics actively influence the
   decision-making process associated with Pokémon battling.
   
-  As noted, a central factor involved in the decision making process as it
-  relates to game theory is the role of information, specifically how
-  players incorporate information revealed each turn into their
-  strategies. As information is revealed each turn, including the four
-  moves an opposing Pokémon has, its ability, held item, along with what
-  other Pokémon are on the opposing team, it is vital for players to
-  determine if the information they just received is relevant.
-  Furthermore, players need to decide if the information provides any
-  insight into their opponent's strategy. Overall, this speaks to Pokémon
-  not being a perfect information game. As such, it is not possible to
-  apply Zermelo's theorem, though its negation provides insight as to the
-  possible existence of a winning strategy (Schwalbe et al. 2001).
+  A central factor involved in the decision making process as it relates
+  to game theory is the role of information, specifically how players
+  incorporate information revealed each turn into their strategies. As
+  information is revealed each turn, including the four moves an opposing
+  Pokémon has, its ability, held item, along with what other Pokémon are
+  on the opposing team, it is vital for players to determine if the
+  information they just received is relevant. Furthermore, players need to
+  decide if the information provides any insight into their opponent's
+  strategy. Overall, this speaks to Pokémon not being a perfect
+  information game. As such, it is not possible to apply Zermelo's
+  theorem, though its negation provides insight as to the possible
+  existence of a winning strategy (Schwalbe et al. 2001).
   
   An especially interesting addition to the analysis of incomplete
   information in Pokémon battling is the topic and implications of
@@ -447,19 +419,22 @@ starts here.
   point may provide insight into specific strategies, and is a point of
   future analysis.
   
-  This being said, concepts of game theory are not the only relevant ideas
-  for analyzing Pokémon battling. In this vein, exploring whether a player
-  will switch Pokémon will necessarily invoke ideas from game theory and
-  behavioral economics. One specific concept engrained in behavioral
-  economics that relates to Pokémon battling is the idea of ``keeping
-  doors open''. In Chapter 6 of Ariel's work Predictably Irrational,
-  results indicates that players prefer to keep options available even if
-  doing so incurs costs and/or reduces their payoff. In the context of
-  Pokémon battling, players may decide to preemptively switch Pokémon in
-  the hopes of having that Pokémon later in the battle. However, whether
-  this adversely influences the player is yet another subject of inquiry.
+  This being said, concepts from game theory are not the only relevant
+  ideas for analyzing Pokémon battling. In the context of exploring the
+  frequency of players switching Pokémon will necessarily invoke concepts
+  from from behavioral economics as well as game theory. Relevant to the
+  field of behavioral economics, the concept of ``keeping doors open''
+  applies as well as post-op payoff analysis. The concept of ``keeping
+  doors'' open is explored in Chapter 6 of Ariely's work Predictably
+  Irrational, giving a semblence of what the expected results may be. In
+  the context of Pokémon battling, players may decide to preemptively
+  switch Pokémon in the hopes of having that Pokémon later in the battle.
+  Via application of Ariely's experimental results players may prefer to
+  keep options -availability of certain Pokémon- open, even if doing so
+  incurs costs and/or reduces their chances of winning. Whether this
+  adversely influences the players' outcomes is another point of inquiry.
   
-  A an ending point of interest, taking into account opposing players'
+  As an ending point of interest, taking into account opposing players'
   strategies as deduced from revealed information rubs against issues
   related level-K thinking. To elaborate further, knowing that a player is
   likely to repeat the same decision made the previous turn, players may
@@ -475,80 +450,38 @@ starts here.
   2011). Notably this will be a point to consider and incorporate into the
   analysis of Pokémon battling in a game theoretic framework.
   
-  \section{References}\label{references}
+  \chapter{Methodology}\label{methodology}
   
-  \begin{itemize}
-  \tightlist
-  \item
-    Ariely, D. (2009). Predictably irrational: The hidden forces that
-    shape our decisions. New York, NY: Harper. Chapter 8: Keeping Doors
-    Open (pp.~139-154).
-  \item
-    Schwalbe, U., \& Walker, P. (2001). Zermelo and the Early History of
-    Game Theory. Games and Economic Behavior, 34(1), 123-137.
-    \url{doi:10.1006/game.2000.0794}
-  \item
-    Smogon University (n.d.). Retrieved October 31, 2016, from
-    \url{http://www.smogon.com/}
-  \item
-    Pokémon Showdown! battle simulator (n.d.). Retrieved October 31, 2016,
-    from \url{http://pokemonshowdown.com/}
-  \item
-    Pokémon Showdown Github Master Repository (2016).
-    Zarel/Pokemon-Showdown. Retrieved October 31, 2016, from
-    \url{https://github.com/Zarel/Pokemon-Showdown/tree/master/data}
-  \item
-    Wunder, M., Kaisers, M., Yaros, J., Littman, M., (May, 2011) Using
-    Iterated Reasoning to Predict Opponent Strategies. Proc. of 10th Int.
-    Conf. on Autonomous Agents and Multiagent Systems (AAMAS 2011), Tumer,
-    Yolum, Sonenberg and Stone (eds.), 593-600.
-  \item
-    Ho, H., Ramesh, V. (2016) Percymon: A Pokemon Showdown Artifical
-    Intelligence. Retrieved October 31, 2016, from:
-    \url{http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf}
-  \item
-    Sanchez-Ante, Gildardo (Dec., 2013) Sistemas Inteligentes: Reportes
-    Finales Ago-Dic 2013. Retrieved October 31, 2016, from:
-    \url{https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf\#page=140}
-  \item
-    Pokémon Company International (Nov. 21, 2014) Pokémon Omega Ruby \&
-    Pokémon Alpha Sapphire: The Official Hoenn Region Strategy Guide.
-  \item
-    Nash, J. F., Jr. (1950, January 15). Equilibrium Points in n-Person
-    Games. Proceedings of the National Academy of Sciences of the United
-    States of America, 36(1), 48-49. Retrieved November 29, 2016, from
-    \url{http://www.sscnet.ucla.edu/polisci/faculty/chwe/austen/nash1950.pdf}
-  \item
-    Nash, J. F., Jr. (1951, September). Non-Cooperative Games. The Annals
-    of Mathematics, Second Series, 54(2), 286-295. Retrieved November 29,
-    2016, from
-    \url{http://lcm.csa.iisc.ernet.in/gametheory/Classics/NCG.pdf}
-  \end{itemize}
+  The data used is a compilation of battle logs taken from the Pokémon
+  Showdown servers. Each battle log is stored as a .json file. The data
+  spans across four months of the year 2015. The four months are March,
+  June, September, and December. There are no lapses in the monthly
+  compilations of the data, i.e.~none of the daily data entries are empty.
+  Overall, there were no dramatic overhauls done to Pokémon battling
+  formats or the overall system for the data used in this study. However,
+  some minor adjustments were made and such adjustments are publically
+  documented.
   
-  \section{Methodology}\label{methodology}
+  Only ranked games are included in the dataset. Ranked battles are
+  battles that count towards a players global ranking in Pokémon Showdown.
+  For each battle, players stand to gain or lose ranking points depending
+  on whether they win or lose the battle.
   
-  The data used is a compilation of battle logs from the Pokémon Showdown
-  servers. Each battle log is stored as a separate .json file. The data
-  spans across the year 2015, composed of four different months of data.
-  The four months are March, June, September, and December. There are no
-  lapses in data, i.e.~each day of each month has numerous battle logs to
-  account for. No dramatic overhaul was done to the Pokémon battling
-  format at this time, though some minor adjustments were made.
-  Furthermore only ranked games are included in the dataset, indicating
-  that each player stands to gain or lose from the battle.
-  
-  Specific usage statistics are found in a subsidiary website, found at
-  \url{http://sweepercalc.com/stats/}. The usage statistics track the
-  frequency of use for specific Pokémon, items, abilities, and a host of
-  other relevant variables for Pokémon battling.
+  Specific Pokémon usage statistics are found in a subsidiary website. The
+  usage statistics track the frequency of use for specific Pokémon, items,
+  abilities, and a host of other relevant variables for Pokémon battling.
+  On top of deriving experimental probabilities based on specific moves,
+  probabilities will be derived that are specie-specific. Along with this,
+  regressions include the combination of both specie and moves, at least
+  for moves that can be learned by more than one Pokémon.
   
   A number of links redirect users to the host site of this game: Smogon
-  University. The host site can be found at \url{http://www.smogon.com/}.
-  This website offers a wide variety of resources, similar to those found
-  at the Pokémon Showdown website. Most importantly the Smogon forums are
-  a prominent site for discussion of Pokémon battling strategies.
+  University. This website offers a wide variety of resources, similar to
+  those found at the Pokémon Showdown website. Most importantly the Smogon
+  forums are a prominent site for discussion of Pokémon battling
+  strategies.
   
-  \subsection{Pokémon Battling Basics}\label{pokemon-battling-basics}
+  \section{Pokémon Battling Basics}\label{pokemon-battling-basics}
   
   The Pokémon battle starts with Pokémon being sent out. For the purposes
   of the data used, one Pokémon is sent out for each opponent, totalling
@@ -563,7 +496,14 @@ starts here.
   fainted will be prompted to select another Pokémon from the bench. The
   first player to lose all of their Pokémon loses the battle.
   
-  \subsubsection{Battle Formats}\label{battle-formats}
+  However, before the nitty gritty details are explained it is important
+  to make a concession. The entirety of the Pokémon battling system -even
+  that used in the data- is not included in this analysis. The number of
+  cases that deviate from the rules detailed below are either not included
+  in the competitive format, or are generally inconsequential to the
+  scenarios and strategies considered in this study.
+  
+  \subsection{Battle Formats}\label{battle-formats}
   
   The data used for this study include two different Pokémon battling
   formats. The two formats are known as Over Used and Random Battles,
@@ -572,509 +512,310 @@ starts here.
   While both battle formats are subsets of what are known as single
   battles, each has their own unique spin on the Pokémon battling format.
   
-  Random Battles are the most frequently played format. Neither player
-  gets to decide on their initial Pokémon nor do they have any input on
-  the composition of the team. The format uses an algorithm to determine
-  team compositions. However it is important to note that there are
-  restrictions to the Randbats format that center around team composition
-  and move composition for specific Pokémon.
+  Random battles are the most frequently played format. In this format,
+  neither player decides their initial team compositions. This means
+  players cannot decide the species composing their team nor the move sets
+  of each specie on their team. Instead, the Randbats format uses an
+  algorithm to determine team compositions. It is important to note that
+  there are restrictions to the Randbats format that center around team
+  composition and move composition for specific Pokémon. This restricts
+  teams to have six distinct Pokémon per team, while still allowing the
+  same Pokémon and move sets to be found on opposing teams but not within
+  one player's team.
   
-  The Over Used battle format includes team composition. By including team
+  By contrast the OU format includes team composition. By including team
   composition, players are able to decide what Pokémon to include on their
   team, the moves of each Pokémon, and other factors such as held items
-  and abilities. Further restrictions to the OU format include banning
-  specific Pokémon. The restricted Pokémon are included in the ``Uber''
-  tier along with the Pokémon Mega-Rayquaza. Additionally certain
-  ``hidden'' abilities are locked for Pokémon.
+  and abilities. However, there are still some restrictions placed on
+  players. Specific species of Pokémon are barred from use, notably
+  Pokémon classified as ``Ubers'' that include a large portion of
+  legendary and mega-Pokémon. Additionally certain ``hidden'' abilities
+  are restricted, limiting the possible Pokémon abilities a specific
+  species may use for a given format.
+  
+  \subsection{Pokémon Types}\label{pokemon-types}
+  
+  Typeage is a unique characteristic to Pokémon battling. Currently there
+  are 18 distinct types. These include normal, fire, water, electric,
+  grass, ice, fighting, poison, ground, flying, psychic, bug, rock, ghost,
+  dragon, dark, steel, and fairy. Both moves and Pokémon are given a type
+  attribute, though moves are only one type. And While a move may only be
+  one of the 18 types, a Pokémon can be at most two different types at
+  once.
+  
+  However, some of these combinations are not found in Pokémon. From the
+  initially possible 171 Pokémon type combinations, 18 choose 2 plus 18
+  monotypes, there are actually only 133 types that a players may
+  encounter or chose from (as 38 type combinations had not yet been used
+  during 2015). It is also worth noting that some Pokémon are able to
+  change type during a battle, but for the purposes of analysis these
+  Pokémon will be considered after-the-fact.
+  
+  The typeage of each Pokémon influence not only the potential weaknesses
+  of each Pokémon, but also the amount of damage that type-specific moves
+  are able to do. Each Pokémon has at least one and at most two types. If
+  a Pokémon uses a damaging move whose type corresponds to type of the
+  Pokémon that used it, that Pokémon gets a same type attack bonus,
+  abbreviated as a ``stab'' bonus. This causes the move to do 50\% more
+  damage, potentially 100\% if the Pokémon also has the ability
+  Adaptability.
   
   \subsection{Pokémon Attributes}\label{pokemon-attributes}
   
   Generally, there are a number of factors that are specific to each
   Pokémon. Some of these factors are considered static, meaning that they
-  do not change over the course of the battle. These types of factors are
-  noted as ``Fixed'' Attributes. However there are some factors that are
-  generally regarded as Fixed Attributes but are affected by certain
-  moves, at least when the Pokémon is sent out. These types of factors are
-  a distinct subcategory of ``Variable Attributes'', and will be outlined
-  further. Additionally there are attributes that are inherently
-  influenced throughout the course of the battle. These are noted as
-  ``Variable Attributes''. The terminology is largely taken from the Ho et
-  al. paper for ease of translation.
+  do not and cannot change over the course of the battle. These types of
+  factors are defined as ``Fixed'' attributes. However some factors -such
+  as the stats of a Pokémon- that are fixed at the beginning of the battle
+  \emph{can} change over the course of a battle. There are also a number
+  of factors that are able to generally change over the course of a
+  battle. Such factors, by constrast, are defined as ``Variable''
+  attributes. The terminology is largely taken from Ho et al. for ease of
+  translation and applicability. The attributes are detailed in the order
+  given.
   
-  \subsubsection{Pokémon Types}\label{pokemon-types}
+  \subsection{Pokémon Fixed Attributes}\label{pokemon-fixed-attributes}
   
-  The type(s) of each Pokémon influence not only the potential weaknesses
-  of each Pokémon, but also influence the amount of damage certain
-  type-specific moves are able to do. Each Pokémon has at least one and at
-  most two types. If a Pokémon uses a damaging move whose type corresponds
-  to type of the Pokémon that used it, that Pokémon gets a same type
-  attack bonus, abbreviated as a ``stab'' bonus. This causes the move to
-  do 50\% more damage, potentially 100\% if the Pokémon also has the
-  ability Adaptability.
+  Fixed attributes include the typeage of a Pokémon, the four moves each
+  specie Pokémon has, the item the Pokémon holds, the Pokémon's ability,
+  the level of the Pokémon, and the Pokémon's baseline stats. However,
+  there are exceptions to the rules for each of these attributes except
+  for the level of the Pokémon. Every fixed attribute and its respective
+  exception(s) will be considered in order.
   
-  \subsubsection{Pokémon Fixed Attributes}\label{pokemon-fixed-attributes}
+  First and foremost is the typeage of a Pokémon, detailed previously.
+  However, one possible method for a Pokémon to change its type is
+  specific to a Pokémon's ability. Both Protean and Color Change are
+  abilities that are able to change a friendly Pokémon's typeage. The
+  former ability changes the Pokémon Kecleon's type to that of the move
+  that affected it, whereas the latter ability turns its type into the
+  typeage of the move that just was just used by the Pokémon Greninja.
+  These two abilities are specific to Kecleon and Greninja specifically.
+  Furthermore, there are moves that able to make the opponents Pokémon
+  into a water, grass, or ghost Pokémon -on top of their previous typeage-
+  if they use the moves soak, forest's curse, and treat-or-treat
+  respectively.
   
-  Fixed attributes include the type(s) of the Pokémon, the four moves the
-  Pokémon has learned, the one item the Pokémon holds, the Pokémon's one
-  selected ability, the level of the Pokémon, and the Pokémon's baseline
-  stats. The latter factor is divided into six categories. These
-  categories include (baseline) Health, Attack, Special Attack, Defense,
-  Special Defense, and Speed. There is further nuance with the inclusion
-  of Pokémon natures and Individual Values, or IVs. These factors
-  influence the base stats of each Pokémon. However due to the sheer
-  number of trivial combinations of IV spreads and nature choices, these
-  two factors will not be a pivotal aspect of framework used.
+  Each Pokémon's set moves are also fixed during a battle. The exception
+  to this occurs when a Pokémon runs out of power points -denoted as PP-
+  for all of its four moves, at which point it is only able to use the
+  move struggle. Every move has a set limit to the number of times it can
+  be used, though the number of times a move can be used varies across the
+  set of moves. The struggle is real.
   
-  \subsubsection{Pokémon Variable
+  Pokémon are able to hold one item at the beginning of the match. Pokémon
+  may also lose their held item either by being hit by the move Knock-off,
+  which knocks the opponent's Pokémon's item off, or by using their held
+  item. Held items are able to be consumed for a one-time effect. This
+  scenario often includes the consumption of berries, which offer a
+  variety of different effects to the Pokémon holding it. For example, if
+  a Pokémon is given a status condition -a condition detailed in the
+  following section- from an opposing Pokémon while holding a Lum berry,
+  the berry will be consumed and the Pokémon's status condition will be
+  cured. This example highlights an important characteristic of some
+  held-items: Some items may only be used once and are discarded after
+  their initial use.
+  
+  Similar to items, a Pokémon can only have one ability at a time.
+  However, by contrast to a Pokémon's held item a Pokémon always has an
+  ability. Nonetheless, Pokémon may have their ability swapped with
+  another Pokémon's. This scenario only occurs a Pokémon makes physical
+  contact with Yamask or Cofagrigus, at which point its ability is swapped
+  with Mummy. Mummy will only change a physically-attacking Pokémon's
+  ability; it has no other effect.
+  
+  The level of a Pokémon varies between one and one-hundred. The higher
+  the level, the better the baseline stats for a given Pokémon,
+  specifically in comparison to lower levels of that given Pokémon.
+  Baseline stats are divided into six categories. These categories include
+  (baseline) health, attack, special attack, defense, special defense, and
+  speed. There is further nuance with the inclusion of Pokémon natures and
+  Individual Values, or IVs. These factors influence the base stats of
+  each Pokémon. However due to the sheer number of trivial combinations of
+  IV spreads and nature choices, these two factors will not be a pivotal
+  aspect to the framework and analysis of Pokémon battling. Nonetheless,
+  the votatility of these baseline stats will be considered as a variable
+  attribute.
+  
+  \subsection{Pokémon Variable
   Attributes}\label{pokemon-variable-attributes}
   
-  Variable Attributes include the current health of the Pokémon, the
-  status of the Pokémon, the volatile status of the Pokémon, boost data of
-  the Pokémon, and whether the Pokémon in question is currently active.
-  
-  \subsection{Game Theory Methodology}\label{game-theory-methodology}
-  
-  Let the index of Player 1 and 2's Pokémon be denoted by i and j
-  respectively. Let the set of Player 1's Pokémon be given as follows:
-  \[A=\{A_1,A_2,A_3,A_4,A_5,A_6\}\] Similarly let the set of player 2's
-  Pokémon be given by: \[B=\{B_1,B_2,B_3,B_4,B_5,B_6\}\] Furthermore let N
-  denote the number of turns a given Pokémon battle lasts. Let the
-  cumulative total of damage done to Player 1's ith Pokémon be denoted:
-  \(\sum_{t=0}^{N} d_{A_i,t}\). It follows that the damage done to Player
-  1's ith Pokémon on turn t is given by: \(d_{A_i,t}\) Similarly tet the
-  cumulative total of damage done to Player 2's jth Pokémon is given by:
-  \(\sum_{t=0}^{N} d_{B_j,t}\); additionally, the damage done to Player
-  2's jth Pokémon on turn t is given by: \(d_{B_j,t}\)
-  
-  Let the payoff function of Player 1 and Player 2 be respectively denoted
-  by \(P_1 and P_2\). Note that neither player is able to revive a fainted
-  Pokémon during a battle. Thus, the amount of damage done to an
-  opponent's Pokémon directly corresponds to the payoff they receive
-  during a given turn. Furthermore, players are able to utilize moves that
-  heal their Pokémon during the turn. Thus, the payoff function must
-  include not only the current health of the opposing Pokémon, but also
-  the amount of damage done to the opponent's Pokémon and the amount of
-  health the opponent's Pokémon heals during the turn. Additionally, it is
-  important to incorporate the current health of the opponent's Pokémon at
-  the beginning of the turn. This is to account for potential healing and
-  damage that may result at the end of each turn.
-  
-  Let the current health of Player 2's jth Pokémon on turn t be given
-  by:\(H_{B_{j,t}}\). Furthermore, let the amount of damage done to Player
-  2's jth Pokémon on turn t be given by: \(d_{B_{j,t}}\). Finally let
-  \(h_{B{j,t}}\) denote the amount of health regained by Player 2's jth
-  Pokémon on turn t. We may write the payoff function at turn t as a
-  function of three variables. However, it is important to note that while
-  damage is independent of current health and healing done on turn t, the
-  amount of healing done to an opponent's Pokémon is contrained by it's
-  health at the beginning of turn t.
-  
-  Thus we may write \(P_1\) as a function of \(H_{B_{j,t}}\),
-  \(d_{B_{j,t}}\), \(h_{B{j,t}}\). Next, let an opponent's fainted Pokémon
-  corresponds to a payoff of 1. As each player has six Pokémon,
-  max(\(P_1\))=6. This payoff corresponds to Player 1 fainting all of
-  Player 2's Pokémon.
-  
-  Now we need to create an equation to model the payoff of Player 1 at
-  turn t. To do so, we need to construct a piecewise function that
-  corresponds to the values given previously. To begin with, we note that
-  if Player 1's damage to the opposing Pokémon is greater than that
-  opposing Pokémon's health at the beginning of the turn, that Pokémon
-  faints. Intuitively, this means that the payoff from fainting an
-  opponent's Pokémon is the same for Player 1 regardless of whether they
-  exceeded the amount of damage needed to faint the opponents Pokémon.
-  With this in mind, let \(n_1\) denote the number of Pokémon Player 1 has
-  knocked out. We may then write the payoff function for Player 1 after
-  turn t as follows: \[P(H,h,d)_{1,t} = \left\{
-          \begin{array}{ll}
-              n_1 +1  &\quad if (\sum_{t=0}^{N} d_{B_i,t} - h_{B{j,t}}) > H_{B_{j,t}}\\
-              (n_1 + \sum_{t=0}^{N} (d_{A_i,t} - h_{B{j,t}}))/H_{B_{j,t}}& \quad otherwise
-          \end{array}
-      \right.
-  \]
-  
-  We now have an equation to model the payoff function of Player 1 at any
-  turn of a Pokémon battle. Let \(n_2\) denote the number of Pokémon
-  Player 2 has knocked out. Thus, we may similarly construct a piecewise
-  function for Player 2's payoff function at turn t as:
-  \[P(H,h,d)_{2,t} = \left\{
-          \begin{array}{ll}
-              n_2 + 1  &\quad if (\sum_{t=0}^{N} d_{A_i,t} - h_{A{j,t}}) > H_{B_{j,t}}\\
-              (n_2 + \sum_{t=0}^{N} (d_{A_i,t} - h_{A{j,t}}))/H_{A_{j,t}}& \quad otherwise
-          \end{array}
-      \right.
-  \]
-  
-  We may now assemble the ordered pairs corresponding to each combination
-  of Player 1 and Player 2's possible decisions for any given turn.
-  However, before doing so, it is important to note that the three
-  functions corresponding to Pokémon health, damage, and healing are left
-  for further detailing. Before going on to the normal form version of
-  Pokémon battling, these functions will be given further detail.
-  
-  \subsubsection{Creating the Damage
-  Function}\label{creating-the-damage-function}
-  
-  \subsubsection{Normal Form Version of Pokémon
-  Battling}\label{normal-form-version-of-pokemon-battling}
-  
-  \section{End thesis Chapter 1}\label{end-thesis-chapter-1}
-  
-  \chapter{MARKDOWN TEMPLATE}\label{markdown-template}
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{summary}\NormalTok{(cars)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{verbatim}
-       speed           dist       
-   Min.   : 4.0   Min.   :  2.00  
-   1st Qu.:12.0   1st Qu.: 26.00  
-   Median :15.0   Median : 36.00  
-   Mean   :15.4   Mean   : 42.98  
-   3rd Qu.:19.0   3rd Qu.: 56.00  
-   Max.   :25.0   Max.   :120.00  
-  \end{verbatim}
-  
-  \section{Inline code}\label{inline-code}
-  
-  If you'd like to put the results of your analysis directly into your
-  discussion, add inline code like this:
-  
-  \begin{quote}
-  The \texttt{cos} of \(2 \pi\) is 1.
-  \end{quote}
-  
-  Another example would be the direct calculation of the standard
-  deviation:
-  
-  \begin{quote}
-  The standard deviation of \texttt{speed} in \texttt{cars} is 5.2876444.
-  \end{quote}
-  
-  One last neat feature is the use of the \texttt{ifelse} conditional
-  statement which can be used to output text depending on the result of an
-  \textbf{R} calculation:
-  
-  \begin{quote}
-  The standard deviation is less than 6.
-  \end{quote}
-  
-  Note the use of \texttt{\textgreater{}} here, which signifies a
-  quotation environment that will be indented.
-  
-  As you see with \texttt{\$2\ \textbackslash{}pi\$} above, mathematics
-  can be added by surrounding the mathematical text with dollar signs.
-  More examples of this are in \protect\hyperlink{math-sci}{Mathematics
-  and Science} if you uncomment the code in
-  \protect\hyperlink{math}{Math}.
-  
-  \section{Including plots}\label{including-plots}
-  
-  You can also embed plots. For example, here is a way to use the base
-  \textbf{R} graphics package to produce a plot using the built-in
-  \texttt{pressure} dataset:
-  
-  \begin{center}\includegraphics{thesis_files/figure-latex/pressure-1} \end{center}
-  
-  Note that the \texttt{echo=FALSE} parameter was added to the code chunk
-  to prevent printing of the \textbf{R} code that generated the plot.
-  There are plenty of other ways to add chunk options. More information is
-  available at \url{http://yihui.name/knitr/options/}.
-  
-  Another useful chunk option is the setting of \texttt{cache=TRUE} as you
-  see here. If document rendering becomes time consuming due to long
-  computations or plots that are expensive to generate you can use knitr
-  caching to improve performance. Later in this file, you'll see a way to
-  reference plots created in \textbf{R} or external figures.
-  
-  \hypertarget{loading-and-exploring-data}{\section{Loading and exploring
-  data}\label{loading-and-exploring-data}}
-  
-  Included in this template is a file called \texttt{flights.csv}. This
-  file includes a subset of the larger dataset of information about all
-  flights that departed from Seattle and Portland in 2014. More
-  information about this dataset and its \textbf{R} package is available
-  at \url{http://github.com/ismayc/pnwflights14}. This subset includes
-  only Portland flights and only rows that were complete with no missing
-  values. Merges were also done with the \texttt{airports} and
-  \texttt{airlines} data sets in the \texttt{pnwflights14} package to get
-  more descriptive airport and airline names.
-  
-  We can load in this data set using the following command:
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  The data is now stored in the data frame called \texttt{flights} in
-  \textbf{R}. To get a better feel for the variables included in this
-  dataset we can use a variety of functions. Here we can see the
-  dimensions (rows by columns) and also the names of the columns.
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{dim}\NormalTok{(flights)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{verbatim}
-  [1] 52808    16
-  \end{verbatim}
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{names}\NormalTok{(flights)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{verbatim}
-   [1] "month"        "day"          "dep_time"     "dep_delay"   
-   [5] "arr_time"     "arr_delay"    "carrier"      "tailnum"     
-   [9] "flight"       "dest"         "air_time"     "distance"    
-  [13] "hour"         "minute"       "carrier_name" "dest_name"   
-  \end{verbatim}
-  
-  Another good idea is to take a look at the dataset in table form. With
-  this dataset having more than 50,000 rows, we won't explicitly show the
-  results of the command here. I recommend you enter the command into the
-  Console \textbf{\emph{after}} you have run the \textbf{R} chunks above
-  to load the data into \textbf{R}.
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{View}\NormalTok{(flights)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  While not required, it is highly recommended you use the \texttt{dplyr}
-  package to manipulate and summarize your data set as needed. It uses a
-  syntax that is easy to understand using chaining operations. Below I've
-  created a few examples of using \texttt{dplyr} to get information about
-  the Portland flights in 2014. You will also see the use of the
-  \texttt{ggplot2} package, which produces beautiful, high-quality
-  academic visuals.
-  
-  We begin by checking to ensure that needed packages are installed and
-  then we load them into our current working environment:
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \CommentTok{# List of packages required for this analysis}
-  \NormalTok{pkg <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"bookdown"}\NormalTok{, }\StringTok{"devtools"}\NormalTok{)}
-  \CommentTok{# Check if packages are not installed and assign the}
-  \CommentTok{# names of the packages not installed to the variable new.pkg}
-  \NormalTok{new.pkg <-}\StringTok{ }\NormalTok{pkg[!(pkg %in%}\StringTok{ }\KeywordTok{installed.packages}\NormalTok{())]}
-  \CommentTok{# If there are any packages in the list that aren't installed,}
-  \CommentTok{# install them}
-  \NormalTok{if (}\KeywordTok{length}\NormalTok{(new.pkg))}
-    \KeywordTok{install.packages}\NormalTok{(new.pkg, }\DataTypeTok{repos =} \StringTok{"http://cran.rstudio.com"}\NormalTok{)}
-  \CommentTok{# Load packages (thesisdown will load all of the packages as well)}
-  \KeywordTok{library}\NormalTok{(thesisdown)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \clearpage
-  
-  The example we show here does the following:
-  
-  \begin{itemize}
-  \item
-    Selects only the \texttt{carrier\_name} and \texttt{arr\_delay} from
-    the \texttt{flights} dataset and then assigns this subset to a new
-    variable called \texttt{flights2}.
-  \item
-    Using \texttt{flights2}, we determine the largest arrival delay for
-    each of the carriers.
-  \end{itemize}
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{flights2 <-}\StringTok{ }\NormalTok{flights %>%}\StringTok{ }
-  \StringTok{  }\KeywordTok{select}\NormalTok{(carrier_name, arr_delay)}
-  \NormalTok{max_delays <-}\StringTok{ }\NormalTok{flights2 %>%}\StringTok{ }
-  \StringTok{  }\KeywordTok{group_by}\NormalTok{(carrier_name) %>%}
-  \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{max_arr_delay =} \KeywordTok{max}\NormalTok{(arr_delay, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  A useful function in the \texttt{knitr} package for making nice tables
-  in \emph{R Markdown} is called \texttt{kable}. It is much easier to use
-  than manually entering values into a table by copying and pasting values
-  into Excel or LaTeX. This again goes to show how nice reproducible
-  documents can be! (Note the use of \texttt{results="asis"}, which will
-  produce the table instead of the code to create the table.) The
-  \texttt{caption.short} argument is used to include a shorter title to
-  appear in the List of Tables.
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{kable}\NormalTok{(max_delays, }
-        \DataTypeTok{col.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"Airline"}\NormalTok{, }\StringTok{"Max Arrival Delay"}\NormalTok{),}
-        \DataTypeTok{caption =} \StringTok{"Maximum Delays by Airline"}\NormalTok{,}
-        \DataTypeTok{caption.short =} \StringTok{"Max Delays by Airline"}\NormalTok{,}
-        \DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{,}
-        \DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{longtable}[t]{lr}
-  \caption[Max Delays by Airline]{\label{tab:maxdelays}Maximum Delays by Airline}\\
-  \toprule
-  Airline & Max Arrival Delay\\
-  \midrule
-  Alaska Airlines Inc. & 338\\
-  American Airlines Inc. & 1539\\
-  Delta Air Lines Inc. & 651\\
-  Frontier Airlines Inc. & 575\\
-  Hawaiian Airlines Inc. & 407\\
-  \addlinespace
-  JetBlue Airways & 273\\
-  SkyWest Airlines Inc. & 421\\
-  Southwest Airlines Co. & 694\\
-  United Air Lines Inc. & 472\\
-  US Airways Inc. & 347\\
-  Virgin America & 366\\
-  \bottomrule
-  \end{longtable}
-  
-  The last two options make the table a little easier-to-read.
-  
-  We can further look into the properties of the largest value here for
-  American Airlines Inc. To do so, we can isolate the row corresponding to
-  the arrival delay of 1539 minutes for American in our original
-  \texttt{flights} dataset.
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{flights %>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(arr_delay ==}\StringTok{ }\DecValTok{1539}\NormalTok{, }
-                    \NormalTok{carrier_name ==}\StringTok{ "American Airlines Inc."}\NormalTok{) %>%}
-  \StringTok{  }\KeywordTok{select}\NormalTok{(-}\KeywordTok{c}\NormalTok{(month, day, carrier, dest_name, hour, }
-              \NormalTok{minute, carrier_name, arr_delay))}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{verbatim}
-    dep_time dep_delay arr_time tailnum flight dest air_time distance
-  1     1403      1553     1934  N595AA   1568  DFW      182     1616
-  \end{verbatim}
-  
-  We see that the flight occurred on March 3rd and departed a little after
-  2 PM on its way to Dallas/Fort Worth. Lastly, we show how we can
-  visualize the arrival delay of all departing flights from Portland on
-  March 3rd against time of departure.
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{flights %>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(month ==}\StringTok{ }\DecValTok{3}\NormalTok{, day ==}\StringTok{ }\DecValTok{3}\NormalTok{) %>%}
-  \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{dep_time, }\DataTypeTok{y =} \NormalTok{arr_delay)) +}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{center}\includegraphics{thesis_files/figure-latex/march3plot-1} \end{center}
-  
-  \section{Additional resources}\label{additional-resources}
-  
-  \begin{itemize}
-  \item
-    \emph{Markdown} Cheatsheet -
-    \url{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}
-  \item
-    \emph{R Markdown} Reference Guide -
-    \url{https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf}
-  \item
-    Introduction to \texttt{dplyr} -
-    \url{https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html}
-  \item
-    \texttt{ggplot2} Documentation -
-    \url{http://docs.ggplot2.org/current/}
-  \end{itemize}
-  
-  \hypertarget{math-sci}{\chapter{Mathematics and
-  Science}\label{math-sci}}
-  
-  \hypertarget{math}{\section{Math}\label{math}}
-  
-  \TeX~is the best way to typeset mathematics. Donald Knuth designed
-  \TeX~when he got frustrated at how long it was taking the typesetters to
-  finish his book, which contained a lot of mathematics. One nice feature
-  of \emph{R Markdown} is its ability to read LaTeX code directly.
-  
-  If you are doing a thesis that will involve lots of math, you will want
-  to read the following section which has been commented out. If you're
-  not going to use math, skip over or delete this next commented section.
-  
-  \section{Chemistry 101: Symbols}\label{chemistry-101-symbols}
-  
-  Chemical formulas will look best if they are not italicized. Get around
-  math mode's automatic italicizing in LaTeX by using the argument
-  \texttt{\$\textbackslash{}mathrm\{formula\ here\}\$}, with your formula
-  inside the curly brackets. (Notice the use of the backticks here which
-  enclose text that acts as code.)
-  
-  So, \(\mathrm{Fe_2^{2+}Cr_2O_4}\) is written
-  \texttt{\$\textbackslash{}mathrm\{Fe\_2\^{}\{2+\}Cr\_2O\_4\}\$}.
-  
-  \noindent Exponent or Superscript: \(\mathrm{O^-}\)
-  
-  \noindent Subscript: \(\mathrm{CH_4}\)
-  
-  To stack numbers or letters as in \(\mathrm{Fe_2^{2+}}\), the subscript
-  is defined first, and then the superscript is defined.
-  
-  \noindent Bullet: CuCl \(\bullet\) \(\mathrm{7H_{2}O}\)
-  
-  \noindent Delta: \(\Delta\)
-  
-  \noindent Reaction Arrows: \(\longrightarrow\) or
-  \(\xrightarrow{solution}\)
-  
-  \noindent Resonance Arrows: \(\leftrightarrow\)
-  
-  \noindent Reversible Reaction Arrows: \(\rightleftharpoons\)
-  
-  \subsection{Typesetting reactions}\label{typesetting-reactions}
-  
-  You may wish to put your reaction in an equation environment, which
-  means that LaTeX will place the reaction where it fits and will number
-  the equations for you.
-  
-  \begin{equation}
-    \mathrm{C_6H_{12}O_6  + 6O_2} \longrightarrow \mathrm{6CO_2 + 6H_2O}
-    \label{eq:reaction}
-  \end{equation}
-  
-  We can reference this combustion of glucose reaction via Equation
-  \ref{eq:reaction}.
-  
-  \subsection{Other examples of
-  reactions}\label{other-examples-of-reactions}
-  
-  \(\mathrm{NH_4Cl_{(s)}}\) \(\rightleftharpoons\)
-  \(\mathrm{NH_{3(g)}+HCl_{(g)}}\)
-  
-  \noindent \(\mathrm{MeCH_2Br + Mg}\) \(\xrightarrow[below]{above}\)
-  \(\mathrm{MeCH_2\bullet Mg \bullet Br}\)
-  
-  \section{Physics}\label{physics}
-  
-  Many of the symbols you will need can be found on the math page
-  \url{http://web.reed.edu/cis/help/latex/math.html} and the Comprehensive
-  LaTeX Symbol Guide
-  (\url{http://mirror.utexas.edu/ctan/info/symbols/comprehensive/symbols-letter.pdf}).
-  
-  \section{Biology}\label{biology}
-  
-  You will probably find the resources at
-  \url{http://www.lecb.ncifcrf.gov/~toms/latex.html} helpful, particularly
-  the links to bsts for various journals. You may also be interested in
-  TeXShade for nucleotide typesetting
-  (\url{http://homepages.uni-tuebingen.de/beitz/txe.html}). Be sure to
-  read the proceeding chapter on graphics and tables.
+  Variable Attributes include boosts or reductions to a Pokémon's baseline
+  stats, the status condition of the Pokémon, the volatile status of the
+  Pokémon, the current health of the Pokémon, and whether the Pokémon is
+  currently active.
+  
+  The former-most attribute directly influences how effective an active
+  Pokémon is able to be in battle. Pokémon are able to learn and use moves
+  that can boost their own status or ones that reduce their opponents.
+  However, these moves are only able to influence a Pokémon's attack,
+  special attack, defense, special defense, or speed. For example, the
+  move Swords Dance raises its users attack status so long as the Pokémon
+  remains active. The move may be used multiple times, but is only
+  effective until it boosts or lowers its target's baseline stat by 3 or
+  1/3 respectively.
+  
+  Status conditions are composed of a variety of statuses. Pokémon that
+  suffer a status condition are either burned, frozen, paralyzed,
+  poisoned, badly poisoned, or have fallen asleep. A Pokémon can only
+  suffer from one status condition at a time, although a Pokémon can
+  suffer from multiple status conditions if it overcomes the first
+  condition. Each of these statuses is distinct, though there are
+  similarities between being poisoned or badly poisoned. A Pokémon that is
+  just poisoned will take damage equal to 1/8th of its maximum HP at the
+  end of each turn. By comparison a Pokémon that is badly poisoned takes
+  n/16th of its maximum HP at the end of the nth turn the Pokémon has been
+  badly poisoned. A Pokémon that is poison-type or steel-type is unable to
+  be poisoned in any form, and if a Pokémon has the ability Poison Heal it
+  is healed 1/8th of its maximum HP at the end of each turn.
+  
+  Is a Pokémon is burned it takes 1/8th of its maximum HP in damage at the
+  end of the turn. This has recently been changed to 1/16th of its maximum
+  HP per turn, but this is just a passing point of note. Regardless of the
+  amount of damage done to the burned Pokémon, the burned Pokémon's
+  physical attacks do half damage. The exception to this rule is if the
+  affected Pokémon has the ability Guts. A fire-type Pokémon cannot be
+  burned.
+  
+  In a similar vein to being burned, a paralyzed Pokémon has its speed
+  reduced to 1/4th of its baseline speed. Furthermore, a Pokémon that is
+  paralyzed has a 1/4 chance of not being able to move during its move.
+  This event is referred to as being ``fully paralyzed''. Furthermore,
+  electric-type Pokémon are unable to be paralyzed, and if a Pokémon has
+  the ability Lightning Rod it's special attack is boosted by 1.5 its base
+  level. Additionally, ground-type Pokémon cannot be paralyzed, just as
+  they are not affected by electric-type moves.
+  
+  A Pokémon that has fallen asleep is unable to use its moves except for
+  the moves Snore and Sleep Talk. A Pokémon falls asleep for one to five
+  turns. However, if a Pokémon purposely puts itself to sleep using the
+  move rest, it is asleep for exactly two turns. If a Pokémon has either
+  of the abilities Vital Spirit or Insomnia it cannot be put to sleep.
+  
+  Lastly, there is the status condition of being frozen. Similar to
+  previous typed statuses, ice type Pokémon are immune to becoming frozen,
+  as are Pokémon with the ability Magma Armor. There is no set number of
+  turns that a Pokémon can be frozen, but if a frozen Pokémon is hit by
+  fire-type moves or the move scald is thaws out and is no longer frozen.
+  
+  Volative statuses are similar to status conditions, except that the
+  volatile status will be negated by switching out the affected Pokémon,
+  if applicable. Similar to status conditions, a Pokémon can only be
+  affected by one volatile status at a time. Another important point to
+  consider is that a Pokémon can suffer from both a volatile status
+  \emph{and} a status condition. That being said, the most common form of
+  volatile status is confusion. A Pokémon is confused for one to four
+  turns, during which time the confused Pokémon has a 50\% chance to hurt
+  itself instead of executing its move for the turn. A Pokémon may also be
+  encored, meaning that it has to use the same move it just moved for 3
+  turns. Additionally a Pokémon may flinch if hit before executing its
+  move for the turn.
+  
+  Only currently active Pokémon are able to execute moves. Likewise, only
+  active Pokémon may be damaged. Beyond this there is not anything else to
+  detail in regards to the current health and activity of a Pokémon that
+  is exclusive to variable attributes.
+  
+  \subsection{Environmental Variables}\label{environmental-variables}
+  
+  There are one class category to detail that is relevant to the analysis
+  of Pokémon battling This category is the role of the environment in
+  battling and is a central focus of the analysis of Pokémon battling.
+  Though related to the different types of moves and abilities a Pokémon
+  has, including both fixed and variable attributes, the environment is
+  not specific to any one move, ability, or specie of Pokémon and as such
+  must be highlighted separately from the previous attributions.
+  
+  The most prominent environmental variables to consider are what are
+  referred to as ``set-up'' moves. These moves include Stealth Rock,
+  Spikes, Toxic Spikes, Sticky Web, Light Screen, and Reflect. The latter
+  two are different from the rest of the set-up moves in that they only
+  last five turns, eight is the user was holding Light Clay when the move
+  was used. When these moves are employed, the active Pokémon's special
+  defense and defense are raised by one stage -or is increased by 1.5-
+  respectively between Light Screen and Reflect.
+  
+  The former four set-up moves are a focal point of analysis and are in a
+  category of moves known as entry hazard moves. These moves are of
+  particular note because they can last for the entirety of a given
+  battle. Once these moves are used, only certain moves or switches are
+  able to eliminate them. Generally, using the move rapid spin or defog
+  will eliminate the entry hazards, along with causing other effects.
+  However, if a Pokémon uses defog both their and their opponents entry
+  hazards will be eliminated, whereas rapid spin only eliminates entry
+  hazards affecting the users team.
+  
+  Both Stealth Rock and Sticky Web can only be active once during a battle
+  -unless previous uses of either are eliminated by methods previously
+  noted. However, each have dramatically different effects. Specific to
+  the latter, Pokémon that enter the field after Sticky Web is employed
+  have their speed lowered by one stage -or 2/3rd their baseline level.
+  This only applied to grounded Pokémon however, or non-flying type
+  Pokémon. By contrast, Stealth Rock will damage any Pokémon that enters
+  the field after it is used. The amount of damage done to the Pokémon
+  depends on the type effectiveness of rock-type moves, as Stealth Rock is
+  a rock-type move. In ascending order, Stealth Rock will do 3.125\%,
+  6.25\%, 12.5\%, 25\%, and 50\% of the affected Pokémon's maximum health
+  for type effectivenesses of 0.25x, 0.5x, 1x, 2x, and 4x respectively.
+  
+  Similar to Sticky Web, spikes only affect non-flying type Pokémon.
+  However, spikes will inflict damage to Pokémon that switch in instead of
+  afflicting them with a volatile or status condition. The amount of
+  damage is dependent upon the number of layers of spikes active on the
+  field. Spikes may be applied a maximum of three times. One layer of
+  spikes will damage the opposing Pokémon by 1/8th of its maximum HP,
+  while two layers will deal 1/6th, and three layers will do 1/4th of the
+  opposing Pokémon's maximum health.
+  
+  Lastly is toxic spikes that, just like spikes and sticky web, only
+  affect grounded Pokémon. However, toxic spikes are able to be applied
+  two times. The first layer of toxic spikes will poison opposing Pokémon
+  that switch in, while two layers of toxic spikes will badly poison
+  Pokémon that switch in (that is if the Pokémon that switches in is able
+  to be poisoned). Just like most other entry hazards, toxic spikes only
+  affects grounded Pokémon.
+  
+  \section{Model Specification}\label{model-specification}
+  
+  As Pokémon battles have only two outcomes, we may estimate the
+  probability of winning using a standard probit model. Let the y-value
+  vary between 0 and 1, where 0 denotes a lose and 1 denotes a win for a
+  Pokémon battle. Let us consider estimating whether using entry hazard
+  moves results in a higher chance of winning a Pokémon battle.
+  
+  We begin by defining the variables. Let x be the number of uses of
+  spikes, y be the number of uses of toxic spikes, z be the number of uses
+  of sticky web, and w be the use of stealth rock. However, as variables x
+  through z are able to be used more than once, there is the possibility
+  that repeated use of these moves leads to diminshing returns. Hence for
+  these variables we include a squared term for variables x through z.
+  Letting p be the probability of winning a Pokémon game, and letting
+  \(\epsilon\) denote the error term, we have:
+  \[p = \alpha + \beta_1 x + \beta_2 x^2 \gamma_1 y + \gamma_2 y^2 \delta_1 z + \delta_2 z^2 \eta w + \epsilon \]
+  
+  One of the first tests to conduct is comparing the theoretical values of
+  \(\alpha\) with its experimental value. Theoretically, players should
+  have equal probability to win or lose a battle when no information is
+  added about their decisions, so \(\mathbf{E}(\alpha)=0.5\).
+  
+  Furthermore, this model does not include interactions between entry
+  hazards, which is important both for experimental validity and as a
+  method to cross-validate the experimental results.
+  
+  There are also moves that are exceptionally powerful compared to other
+  damaging moves. These moves take a variety of forms, either by causing
+  the user to `charge up' for one round in advance, lose their next turn
+  to recharge, or by having comparatively low accuracy. Such moves may be
+  considered risky for a number of reasons. To see if using such moves
+  adversely affect player outcomes, a similar probit model will be used
+  and subsequently tested.
+  
+  In addition to this, the variety of different volatile and status
+  condition moves will be included in a separate probit model. Then, after
+  statistical significance is tested, a separate probit model will be used
+  and tested that includes the high damage moves, status moves, and entry
+  hazard moves with a number of different interactions included to test
+  for robustness.
   
   \chapter{Tables, Graphics, References, and Labels}\label{ref-labels}
   
@@ -1166,11 +907,10 @@ starts here.
   \end{longtable}
   
   We can also create a link to the table by doing the following: Table
-  \ref{tab:inher}. If you go back to
-  \protect\hyperlink{loading-and-exploring-data}{Loading and exploring
-  data} and look at the \texttt{kable} table, we can create a reference to
-  this max delays table too: Table \ref{tab:maxdelays}. The addition of
-  the \texttt{\textbackslash{}label\{tab:inher\}} option to the end of the
+  \ref{tab:inher}. If you go back to {[}Loading and exploring data{]} and
+  look at the \texttt{kable} table, we can create a reference to this max
+  delays table too: Table \ref{tab:maxdelays}. The addition of the
+  \texttt{\textbackslash{}label\{tab:inher\}} option to the end of the
   table caption allows us to then a make a reference to Table
   \texttt{\textbackslash{}@ref(tab:label)}. Note that this reference could
   appear anywhere throughout the document after the table has appeared.
@@ -1289,7 +1029,7 @@ starts here.
   
   \section{Footnotes and Endnotes}\label{footnotes-and-endnotes}
   
-  You might want to footnote something.\footnote{footnote text} The
+  You might want to footnote something. \footnote{footnote text} The
   footnote will be in a smaller font and placed appropriately. Endnotes
   work in much the same way. More information can be found about both on
   the CUS site or feel free to reach out to
@@ -1313,18 +1053,17 @@ starts here.
   cite references in your thesis (after creating your bibliography
   database), place the reference name inside square brackets and precede
   it by the ``at'' symbol. For example, here's a reference to a book about
-  worrying: (Molina \& Borkovec, 1994). This \texttt{Molina1994} entry
-  appears in a file called \texttt{thesis.bib} in the \texttt{bib} folder.
-  This bibliography database file was created by a program called BibTeX.
-  You can call this file something else if you like (look at the YAML
-  header in the main .Rmd file) and, by default, is to placed in the
-  \texttt{bib} folder.
+  worrying: {[}@Molina1994{]}. This \texttt{Molina1994} entry appears in a
+  file called \texttt{thesis.bib} in the \texttt{bib} folder. This
+  bibliography database file was created by a program called BibTeX. You
+  can call this file something else if you like (look at the YAML header
+  in the main .Rmd file) and, by default, is to placed in the \texttt{bib}
+  folder.
   
   For more information about BibTeX and bibliographies, see our CUS site
-  (\url{http://web.reed.edu/cis/help/latex/index.html})\footnote{Reed~College
-    (2007)}. There are three pages on this topic: \emph{bibtex} (which
-  talks about using BibTeX, at
-  \url{http://web.reed.edu/cis/help/latex/bibtex.html}),
+  (\url{http://web.reed.edu/cis/help/latex/index.html})\footnote{@reedweb2007}.
+  There are three pages on this topic: \emph{bibtex} (which talks about
+  using BibTeX, at \url{http://web.reed.edu/cis/help/latex/bibtex.html}),
   \emph{bibtexstyles} (about how to find and use the bibliography style
   that best suits your needs, at
   \url{http://web.reed.edu/cis/help/latex/bibtexstyles.html}) and
@@ -1363,7 +1102,7 @@ starts here.
     To force capitalization in an article title or where all lowercase is
     generally used, bracket the capital letter in curly braces.
   \item
-    You can add a Reed Thesis citation\footnote{Noble (2002)} option. The
+    You can add a Reed Thesis citation\footnote{@noble2002} option. The
     best way to do this is to use the phdthesis type of citation, and use
     the optional ``type'' field to enter ``Reed thesis'' or
     ``Undergraduate thesis.''
@@ -1398,11 +1137,8 @@ starts here.
   
   \appendix
   
-  \chapter{The First Appendix}\label{the-first-appendix}
-  
-  This first appendix includes all of the R chunks of code that were
-  hidden throughout the document (using the \texttt{include\ =\ FALSE}
-  chunk tag) to help with readibility and/or setup.
+  \chapter{The Limitations of Modeling Pokémon Using Game
+  Theory}\label{the-limitations-of-modeling-pokemon-using-game-theory}
   
   \textbf{In the main Rmd file}
   
@@ -1444,44 +1180,55 @@ starts here.
   \end{Highlighting}
   \end{Shaded}
   
-  \chapter{The Second Appendix, for
-  Fun}\label{the-second-appendix-for-fun}
-  
   \backmatter
   
-  \chapter{References}\label{references-1}
+  \chapter{References}\label{references}
   
-  \noindent
+  \begin{itemize}
+  \tightlist
+  \item
+    Ariely, D. (2009). Predictably irrational: The hidden forces that
+    shape our decisions. New York, NY: Harper. Chapter 8: Keeping Doors
+    Open (pp.~139-154).
+  \item
+    Ho, H., Ramesh, V. (2016) Percymon: A Pokemon Showdown Artifical
+    Intelligence. Retrieved October 31, 2016, from:
+    \url{http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf}
+  \item
+    Pokémon Company International (Nov. 21, 2014) Pokémon Omega Ruby \&
+    Pokémon Alpha Sapphire: The Official Hoenn Region Strategy Guide.
+  \item
+    Pokémon Showdown! battle simulator (n.d.). Retrieved October 31, 2016,
+    from \url{http://pokemonshowdown.com/}
+  \item
+    Pokémon Showdown Github Master Repository (2016).
+    Zarel/Pokemon-Showdown. Retrieved October 31, 2016, from
+    \url{https://github.com/Zarel/Pokemon-Showdown/tree/master/data}
+  \item
+    Sanchez-Ante, Gildardo (Dec., 2013) Sistemas Inteligentes: Reportes
+    Finales Ago-Dic 2013. Retrieved October 31, 2016, from:
+    \url{https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf\#page=140}
+  \item
+    Schwalbe, U., \& Walker, P. (2001). Zermelo and the Early History of
+    Game Theory. Games and Economic Behavior, 34(1), 123-137.
+    \url{doi:10.1006/game.2000.0794}
+  \item
+    Smogon University (n.d.). Retrieved October 31, 2016, from
+    \url{http://www.smogon.com/}
+  \item
+    Usage Stats (n.d.). Retrived October 31, 2016, from
+    \url{http://sweepercalc.com/stats/}
+  \item
+    Wunder, M., Kaisers, M., Yaros, J., Littman, M., (May, 2011) Using
+    Iterated Reasoning to Predict Opponent Strategies. Proc. of 10th Int.
+    Conf. on Autonomous Agents and Multiagent Systems (AAMAS 2011), Tumer,
+    Yolum, Sonenberg and Stone (eds.), 593-600. --\textgreater{} \noindent
+  \end{itemize}
   
   \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
   \setlength{\parskip}{8pt}
   
-  \hypertarget{refs}{}
-  \hypertarget{ref-angel2000}{}
-  Angel, E. (2000). \emph{Interactive computer graphics : A top-down
-  approach with openGL}. Boston, MA: Addison Wesley Longman.
-  
-  \hypertarget{ref-angel2001}{}
-  Angel, E. (2001a). \emph{Batch-file computer graphics : A bottom-up
-  approach with quickTime}. Boston, MA: Wesley Addison Longman.
-  
-  \hypertarget{ref-angel2002a}{}
-  Angel, E. (2001b). \emph{Test second book by angel}. Boston, MA: Wesley
-  Addison Longman.
-  
-  \hypertarget{ref-Molina1994}{}
-  Molina, S. T., \& Borkovec, T. D. (1994). The Penn State worry
-  questionnaire: Psychometric properties and associated characteristics.
-  In G. C. L. Davey \& F. Tallis (Eds.), \emph{Worrying: Perspectives on
-  theory, assessment and treatment} (pp. 265--283). New York: Wiley.
-  
-  \hypertarget{ref-noble2002}{}
-  Noble, S. G. (2002). \emph{Turning images into simple line-art}
-  (Undergraduate thesis). Reed College.
-  
-  \hypertarget{ref-reedweb2007}{}
-  Reed~College. (2007, March). LaTeX your document. Retrieved from
-  \url{http://web.reed.edu/cis/help/LaTeX/index.html}
+  \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 
   % Index?
