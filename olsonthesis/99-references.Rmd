@@ -21,7 +21,6 @@ delete "References" and replace it.
 * Sanchez-Ante, Gildardo (Dec., 2013) Sistemas Inteligentes: Reportes Finales Ago-Dic 2013. Retrieved October 31, 2016, from: https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf#page=140
 * Schwalbe, U., & Walker, P. (2001). Zermelo and the Early History of Game Theory. Games and Economic Behavior, 34(1), 123-137. doi:10.1006/game.2000.0794
 * Smogon University (n.d.). Retrieved October 31, 2016, from http://www.smogon.com/
-* Usage Stats (n.d.). Retrived October 31, 2016, from http://sweepercalc.com/stats/
 * Wunder, M., Kaisers, M., Yaros, J., Littman, M., (May, 2011) Using Iterated Reasoning to Predict Opponent Strategies. Proc. of 10th Int. Conf. on Autonomous Agents and Multiagent Systems (AAMAS 2011), Tumer, Yolum, Sonenberg and Stone (eds.), 593-600. 
 -->
 \noindent
