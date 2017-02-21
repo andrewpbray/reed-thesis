@@ -1,4 +1,3 @@
-# preliminary code
 filenames <- list.files()
 library(jsonlite)
 pages <- list()
@@ -17,13 +16,13 @@ stickyreturn <- function(battlelog) {
     stickyuse <- NA
   }
   if(any(grep("(Sticky Web[|]p1a) && (Sticky Web[|]p2a)", battlelog)) == TRUE) {
-    stickyuse <- "both"
-    } 
+    stickyuse <- 3
+  } 
   if(any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE) {
-    stickyuse <- "p1"
-    } 
+    stickyuse <- 1
+  } 
   if(any(grep("[|]Sticky Web[|]p2a", battlelog)) == TRUE) {
-    stickyuse <- "p2"
+    stickyuse <- 2
   } 
   stickyuse
 }
@@ -39,9 +38,9 @@ playerout <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     playout <- NA} 
   if((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) {
-    playout <- "p1"}
+    playout <- 1}
   else {
-    playout <- "p2"}
+    playout <- 2}
   playout
 }
 
@@ -53,54 +52,38 @@ for(i in 1:length(pages)) {winlose[i] <- playerout(pages[[i]])}
 # 1. the move was not used or 2. both players used the move 
 # then the code checks if the winning player used the move and returns a 1 if they did
 # otherwise the function outputs a 0 if the player who used the move lost and their opponent did not use the move
-stickystat <- function(playerout, stickyreturn, battlelog) {
-  if((winlose=="p1") && (stickyverdict=="p1")) {
-    stickywin <-1
+stickywinlose <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    stickystat <- NA
   }
-  if((winlose=="p2") && (stickyverdict)=="p2") {
-    stickywin <-1
+  if(((any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE)) & (any(grep("[|]Sticky Web[|]p2a", battlelog)) == TRUE)){
+    stickystat <- NA
   }
-  if((winlose=="p1") && (stickyverdict=="p2")) {
-    stickywin <-0
+  if(any(grep("(Sticky Web[|]p1a) | (Sticky Web[|]p2a)", battlelog)) == FALSE) {
+    stickystat <- NA
+    }
+  if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) & (any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE)){
+    stickystat <- 1
+    }
+  if(((battlelog$p2rating$elo > battlelog$p2rating$oldelo) == TRUE) & (any(grep("[|]Sticky Web[|]p2a", battlelog)) == TRUE)){
+    stickystat <- 1
   }
-  if((winlose=="p2") && (stickyverdict=="p1")) {
-    stickywin <-0
+  if(((battlelog$p2rating$elo > battlelog$p2rating$oldelo) == TRUE) & (any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE)){
+    stickystat <- 0
   }
-  if(is.na(stickyverdict)) {
-    stickywin <- NA
+  if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) & (any(grep("[|]Sticky Web[|]p2a", battlelog)) == TRUE)){
+    stickystat <- 0
   }
-  if(is.na(winlose)) {
-    stickywin <- NA
-  }
-  stickywin 
+  stickystat
 }
 
+winstick <- rep(NA, length(pages)) 
+for(i in 1:length(pages)) { winstick[i] <- stickywinlose(pages[[i]])}
 
-# current attempt
-stickystats <- rep(NA, length(pages))
-for(j in 1:length(pages)) {stickystats[j] <- stiicky[j]}
-  
-  
-stiicky <- function(battlelog)  {if((winlose[i]=="p1") && (stickyverdict[i]=="p1")) {
-  stiicky <-1
-}
-if((winlose[i]=="p2") && (stickyverdict[i])=="p2") {
-  stiicky <-1
-}
-if((winlose[i]=="p1") && (stickyverdict[i]=="p2")) {
-  stiicky <-0
-}
-if((winlose[i]=="p2") && (stickyverdict[i]=="p1")) {
-  stiicky <-0
-}
-else {
-  stiicky <- NA
-}
-}
-# unused atm
-## which stickystat to use? 
+# both return same outcome
 stickystat(stickyverdict[[i]], winlose[[i]])  
 stickystat(pages[[i]]) 
+
 ## stickyout, function of stickystat
 stickyout <- rep(NA, length(pages))
 for(i in 1:length(pages)) {stickyout[i] <- stickystat(playerout(pages[i]), winlose(pages[i]))} 
