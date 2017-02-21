@@ -105,3 +105,31 @@ swcounter <- function(battlelog) {
 # code for switching
 bigswin <- rep(NA, length(pages)) 
 for(i in 1:length(pages)) { bigswin[i] <- swcounter(pages[[i]])}
+
+
+# simple
+swcounter <- function(battlelog) {
+  if(battlelog$turns == "0") {
+    swcount <- NA 
+  }
+  if((battlelog$endType) == "draw") {
+    playout <- NA}
+  if((as.numeric(grep("switch[|]p1a", battlelog)) > (as.numeric(grep("switch[|]p2a", battlelog)))) & ((battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE){
+    swcount <- 1 
+  } 
+  if((as.numeric(grep("switch[|]p2a", battlelog)) > (as.numeric(grep("switch[|]p1a", battlelog)))) & ((battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE){
+    swcount <- 0 
+  }
+  if((as.numeric(grep("switch[|]p1a", battlelog)) > (as.numeric(grep("switch[|]p2a", battlelog)))) & ((battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE){
+    swcount <- 1 
+  } 
+  if((as.numeric(grep("switch[|]p2a", battlelog)) > (as.numeric(grep("switch[|]p1a", battlelog)))) & ((battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE){
+    swcount <- 0 
+  }
+  swcount
+}
+
+
+swcounter(pages[[i]]$log) 
+switchwin <- rep(NA, length(pages))
+for(i in 1:length(pages)) { switchwin[i] <- cswcounter(pages[[i]]$log)}
