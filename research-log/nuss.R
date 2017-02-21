@@ -80,11 +80,42 @@ stickywinlose <- function(battlelog) {
 winstick <- rep(NA, length(pages)) 
 for(i in 1:length(pages)) { winstick[i] <- stickywinlose(pages[[i]])}
 
-# both return same outcome
-stickystat(stickyverdict[[i]], winlose[[i]])  
-stickystat(pages[[i]]) 
+# simple model
+swcounter <- function(battlelog) {
+  if(battlelog$turns = 0) {
+    swcount <- NA 
+  }
+  if((battlelog$endType) == "draw") {
+    swcount <- NA
+  }
+  if((as.numeric(length(grep("switch[|]p1a", battlelog$log)))) > (as.numeric(length(grep("switch[|]p2a", battlelog$log)))) == TRUE){
+    swcount <- 1 
+  } 
+  swcount
+}
 
-## stickyout, function of stickystat
-stickyout <- rep(NA, length(pages))
-for(i in 1:length(pages)) {stickyout[i] <- stickystat(playerout(pages[i]), winlose(pages[i]))} 
-# whenever I use this code it just returns an "unexpected '}' in "}" error 
+# code for switching
+switchcounter <- function(battlelog){
+  if(turn_lengths=0) {
+    swcount <- NA 
+  }
+  if((battlelog$endType) == "draw") {
+    swcount <- NA
+  }
+  if(((length(grep("(switch[|]p2a)", battlelog))) > (length(grep("(switch[|]p1a)", battlelog))) & (battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE) {
+    swcount <- 1 
+  } 
+  if(((length(grep("(switch[|]p1a)", battlelog))) > (length(grep("(switch[|]p2a)", battlelog))) & (battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE) {
+    swcount <- 1 
+  }
+  if(((length(grep("(switch[|]p1a)", battlelog))) > (length(grep("(switch[|]p2a)", battlelog))) & (battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE) {
+    swcount <- 0 
+  }
+  if(((length(grep("(switch[|]p2a)", battlelog))) > (length(grep("(switch[|]p1a)", battlelog))) & (battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE) {
+    swcount <- 0 
+  }
+  swcount
+}
+
+bigswin <- rep(NA, length(pages)) 
+for(i in 1:length(pages)) { bigswin[i] <- switchcounter(pages[[i]])}
