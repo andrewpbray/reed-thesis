@@ -89,19 +89,19 @@ swcounter <- function(battlelog) {
   if(battlelog$endType == "draw") {
     swcount <- NA
     }
-  if((grep("switch[|]p2a", battlelog)) == (grep("switch[|]p1a", battlelog))) {
+  if((grep("switch[|]p2a", battlelog$log)) == (grep("switch[|]p1a", battlelog$lo))) {
     swcount <- 0 
     }
-  if(((grep("switch[|]p1a", battlelog)) > (grep("switch[|]p2a", battlelog))) & (battlelog$p1rating$elo > battlelog$p1rating$oldelo)){
+  if(((grep("switch[|]p1a", battlelog$log)) > (grep("switch[|]p2a", battlelog$lo))) & (battlelog$p1rating$lacre > battlelog$p1rating$oldacre)){
     swcount <- 1 
     } 
-  if(((grep("switch[|]p2a", battlelog)) > (grep("switch[|]p1a", battlelog))) & (battlelog$p2rating$elo > battlelog$p2rating$oldelo)){
+  if(((grep("switch[|]p2a", battlelog$log)) > (grep("switch[|]p1a", battlelog$lo))) & (battlelog$p2rating$lacre > battlelog$p2rating$oldacre)){
     swcount <- 1 
     }
-  if(((grep("switch[|]p1a", battlelog)) > (grep("switch[|]p2a", battlelog))) & (battlelog$p2rating$elo > battlelog$p2rating$oldelo)){
+  if(((grep("switch[|]p1a", battlelog$lo)) > (grep("switch[|]p2a", battlelog$lo))) & (battlelog$p2rating$lacre > battlelog$p2rating$oldacre)){
     swcount <- 0 
     } 
-  if(((grep("switch[|]p2a", battlelog)) > (grep("switch[|]p1a", battlelog))) & (battlelog$p1rating$elo > battlelog$p1rating$oldelo)){
+  if(((grep("switch[|]p2a", battlelog$lo)) > (grep("switch[|]p1a", battlelog$lo))) & (battlelog$p1rating$lacre > battlelog$p1rating$oldacre)){
     swcount <- 0 
     }
   swcount
@@ -109,6 +109,28 @@ swcounter <- function(battlelog) {
 
 switchwin <- rep(NA, length(pages))
 for(i in 1:length(pages)) { switchwin[i] <- swcounter(pages[[i]])}
+# random uses lacre/oldacre
+
+swcounter <- function(battlelog) {
+  if(battlelog$turns == 0) {
+    swcount <- NA 
+    return(swcount)
+  }
+  if(battlelog$endType == "draw") {
+    swcount <- NA
+  }
+  if((grep("switch[|]p2a", battlelog$log)) == length(grep("switch[|]p1a", battlelog$log))) {
+    swcount <- 0 
+  }
+  else {
+    swcount <- NA 
+  }
+  swcount
+}
+
+switchwin <- rep(NA, length(pages))
+for(i in 1:length(pages)) { switchwin[i] <- swcounter(pages[[i]])}
+# ou uses elo/oldelo
 # weighted switches
 
 waitswitchr <- function(battlelog) {
@@ -118,20 +140,20 @@ waitswitchr <- function(battlelog) {
   if(battlelog$endType == "draw") {
     wswitch <- NA
   }
-  if((as.numeric(grep("switch[|]p1a", battlelog)) > (as.numeric(grep("switch[|]p2a", battlelog)))) & ((battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE) {
-    wswitch <- (as.numeric(grep("switch[|]p2a", battlelog))/(as.numeric(battlelog$turns)))
+  if((as.numeric(grep("switch[|]p1a", battlelog$log)) > (as.numeric(grep("switch[|]p2a", battlelog)))) & ((battlelog$p2rating$lacre > battlelog$p2rating$oldacre)) == TRUE) {
+    wswitch <- (as.numeric(grep("switch[|]p2a", battlelog)))/(as.numeric(battlelog$turns))
   } 
-  if((as.numeric(grep("switch[|]p2a", battlelog)) > (as.numeric(grep("switch[|]p1a", battlelog)))) & ((battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE) {
-    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog))/(as.numeric(battlelog$turns)))
+  if((as.numeric(grep("switch[|]p2a", battlelog)) > (as.numeric(grep("switch[|]p1a", battlelog)))) & ((battlelog$p1rating$lacre > battlelog$p1rating$oldacre)) == TRUE) {
+    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns))
   } 
-  if((as.numeric(grep("switch[|]p1a", battlelog)) > (as.numeric(grep("switch[|]p2a", battlelog)))) & ((battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE) {
-    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog))/(as.numeric(battlelog$turns)))
+  if((as.numeric(grep("switch[|]p1a", battlelog)) > (as.numeric(grep("switch[|]p2a", battlelog)))) & ((battlelog$p1rating$lacre > battlelog$p1rating$oldacre)) == TRUE) {
+    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns))
   } 
-  if((as.numeric(grep("switch[|]p2a", battlelog)) > (as.numeric(grep("switch[|]p1a", battlelog)))) & ((battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE) {
-    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog))/(as.numeric(battlelog$turns)))
+  if((as.numeric(grep("switch[|]p2a", battlelog)) > (as.numeric(grep("switch[|]p1a", battlelog)))) & ((battlelog$p2rating$lacre > battlelog$p2rating$oldacre)) == TRUE) {
+    wswitch <- (as.numeric(grep("switch[|]p2a", battlelog)))/(as.numeric(battlelog$turns))
   } 
   if((as.numeric(grep("switch[|]p2a", battlelog))) == (as.numeric(grep("switch[|]p1a", battlelog)))) {
-    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog))/(as.numeric(battlelog$turns))) 
+    wswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns)) 
   }
   wswitch
 }
@@ -139,3 +161,55 @@ waitswitchr <- function(battlelog) {
 waitswitchr(pages[[i]]) 
 weightswin <- rep(NA, length(pages))
 for(i in 1:length(pages)) { weightswin[i] <- waitswitchr(pages[[i]])}
+# ou
+lwaitswitchr <- function(battlelog) {
+  if(battlelog$turns == 0) {
+    lwswitch <- NA 
+    return(lwswitch)
+  }
+  if(battlelog$endType == "draw") {
+    lwswitch <- NA
+  }
+  if(((battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE) {
+    lwswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns))
+  } 
+  if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE) {
+    lwswitch <- (as.numeric(grep("switch[|]p2a", battlelog)))/(as.numeric(battlelog$turns))
+  } 
+  if(((grep("switch[|]p2a", battlelog))) == (grep("switch[|]p1a", battlelog))) {
+    lwswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns)) 
+  }
+  lwswitch
+}
+
+lwaitswitchr(pages[[i]]) 
+lweightswin <- rep(NA, length(pages))
+for(i in 1:length(pages)) { lweightswin[i] <- lwaitswitchr(pages[[i]])}
+
+# nü
+# for winner
+winwaitswitchr <- function(battlelog){
+  if(as.numeric(battlelog$turns) == 0) {
+    winwswitch <- NA 
+    return(winwswitch)
+  }
+  if(battlelog$endType == "draw") {
+    winwswitch <- NA
+  }
+  if(((battlelog$p2rating$elo > battlelog$p2rating$oldelo)) == TRUE) {
+    winwswitch <- (as.numeric(grep("switch[|]p2a", battlelog)))/(as.numeric(battlelog$turns))
+  } 
+  if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo)) == TRUE) {
+    winwswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns))
+  } 
+  if(((grep("switch[|]p2a", battlelog))) == (grep("switch[|]p1a", battlelog))) {
+    winwswitch <- (as.numeric(grep("switch[|]p1a", battlelog)))/(as.numeric(battlelog$turns)) 
+  }
+  winwswitch
+}
+
+winwaitswitchr(pages[[i]]) 
+winweightswin <- rep(NA, length(pages))
+for(i in 1:length(pages)) { winweightswin[i] <- winwaitswitchr(pages[[i]])}
+#
+paste(pages[[10]]$log, collapse = "")

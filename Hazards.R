@@ -11,11 +11,13 @@ stickywinlose <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     stickystat <- NA
   }
-  if(((any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE)) & (any(grep("[|]Sticky Web[|]p2a", battlelog)) == TRUE)){
+  if(((any(grep("[|]Sticky Web[|]p1a", battlelog))) == FALSE) & (any(grep("[|]Sticky Web[|]p2a", battlelog)) == FALSE)) {
     stickystat <- NA
+    return(stickystat)
   }
-  if(any(grep("(Sticky Web[|]p1a) | (Sticky Web[|]p2a)", battlelog)) == FALSE) {
+  if(((any(grep("[|]Sticky Web[|]p1a", battlelog))) == TRUE) & ((any(grep("[|]Sticky Web[|]p2a", battlelog))) == TRUE)) {
     stickystat <- NA
+    return(stickystat)
   }
   if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) & (any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE)){
     stickystat <- 1
@@ -68,11 +70,13 @@ spikesst <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     spikes <- NA
   }
-  if(((any(grep("[|]Spikes[|]p1a", battlelog)) == TRUE)) & (any(grep("[|]Spikes[|]p2a", battlelog)) == TRUE)){
+  if(((any(grep("[|]Spikes[|]p1a", battlelog))) == FALSE) & (any(grep("[|]Spikes[|]p2a", battlelog)) == FALSE)) {
     spikes <- NA
+    return(spikes)
   }
-  if(any(grep("(Spikes[|]p1a) | (Spikes[|]p2a)", battlelog)) == FALSE) {
+  if(((any(grep("[|]Spikes[|]p1a", battlelog))) == TRUE) & ((any(grep("[|]Spikes[|]p2a", battlelog))) == TRUE)) {
     spikes <- NA
+    return(spikes)
   }
   if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) & (any(grep("[|]Spikes[|]p1a", battlelog)) == TRUE)){
     spikes <- 1
@@ -96,11 +100,13 @@ toxspikesst <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     toxspikes <- NA
   }
-  if(((any(grep("[|]Toxic Spikes[|]p1a", battlelog)) == TRUE)) & (any(grep("[|]Toxic Spikes[|]p2a", battlelog)) == TRUE)){
+  if(((any(grep("[|]Toxic Spikes[|]p1a", battlelog))) == FALSE) & (any(grep("[|]Toxic Spikes[|]p2a", battlelog)) == FALSE)) {
     toxspikes <- NA
+    return(toxspikes)
   }
-  if(any(grep("(Toxic Spikes[|]p1a) | (Toxic Spikes[|]p2a)", battlelog)) == FALSE) {
+  if(((any(grep("[|]Toxic Spikes[|]p1a", battlelog))) == TRUE) & ((any(grep("[|]Toxic Spikes[|]p2a", battlelog))) == TRUE)) {
     toxspikes <- NA
+    return(toxspikes)
   }
   if(((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) & (any(grep("[|]Toxic Spikes[|]p1a", battlelog)) == TRUE)){
     toxspikes <- 1
