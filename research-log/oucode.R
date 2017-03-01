@@ -1,5 +1,6 @@
 filenames <- list.files()
 library(jsonlite)
+library(ggplot2)
 pages <- list()
 for(i in seq_along(filenames)) {
   mydata <- fromJSON(filenames[i], simplifyDataFrame = TRUE)
@@ -66,6 +67,15 @@ toxspikesct <- function(battlelog) {
 
 cttoxspikewin <- rep(NA, length(pages)) 
 for(i in 1:length(pages)) { cttoxspikewin[i] <-toxspikesct(pages[[i]])}
+
+d1length <- data.frame(turn_lengths)
+ggplot(d1length, aes(x = turn_lengths)) + geom_histogram()
+
+# working code for the dataset of toxic spikes win and count; need to include condition for both players use
+d2toxs = data.frame(toxspikewin, cttoxspikewin)
+
+ggplot(d2toxs, aes(x = cttoxspikewin)) + geom_histogram()
+
 # Spikes
 spikesst <- function(battlelog) {
   if((battlelog$endType) == "draw") {
@@ -204,6 +214,32 @@ stickywebs <- function(battlelog) {
 
 stickywebswin <- rep(NA, length(pages)) 
 for(i in 1:length(pages)) { stickywebswin[i] <-stickywebs(pages[[i]])}
+# Nü count for including both cases as not NA 
+# needs to include win outcome
+
+nucount <- function(battlelog){
+  if((battlelog$endType) == "draw") {
+    stickyuse <- NA
+  }
+  if(((any(grep("[|]Sticky Web[|]p1a", battlelog))) == FALSE) && (any(grep("[|]Sticky Web[|]p2a", battlelog)) == FALSE)) {
+    stickyuse <- NA
+    return(stickyuse)
+  }
+  if(any(grep("(Sticky Web[|]p1a) && (Sticky Web[|]p2a)", battlelog)) == TRUE) {
+    stickyuse <- c(length(grep("[|]Sticky Web[|]p1a", battlelog)), length(grep("[|]Sticky Web[|]p2a", battlelog))) 
+    } 
+  if((any(grep("[|]Sticky Web[|]p1a", battlelog)) == TRUE) && (any(grep("[|]Sticky Web[|]p2a", battlelog)) == FALSE)) {
+    stickyuse <- c(length(grep("[|]Sticky Web[|]p1a", battlelog)), 0)
+    }
+  if((any(grep("[|]Sticky Web[|]p2a", battlelog)) == TRUE) && (any(grep("[|]Sticky Web[|]p1a", battlelog)) == FALSE)){
+    stickyuse <- c(0, length(grep("[|]Sticky Web[|]p2a", battlelog)))
+    }
+  stickyuse 
+}
+# issue with application again
+nuset <- rep(NA, length(pages))
+for(i in 1:length(pages)) {nuset[i] <- nucount(pages[[i]])}
+
 # Switch Counter
 waitswitchr <- function(battlelog) {
   if(battlelog$turns == 0) {

@@ -88,6 +88,9 @@ ggplot(d, aes(x = turn_lengths)) + geom_histogram()
 
 # New practice code 
 # This code works 
+matchavg <- rep(0, length(pages))  
+for(i in 1:length(pages)) { matchavg[i] <- ((as.numeric(pages[[i]]$p1rating$oldelo))+(as.numeric(pages[[i]]$p2rating$oldelo)))/2}
+    
 p1rank <- rep(0, length(pages))
 for(i in seq_along(pages)) {
  p1rank[i] <- pages[[i]]$p1rating$oldelo

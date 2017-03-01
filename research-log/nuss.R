@@ -30,6 +30,7 @@ stickyreturn <- function(battlelog) {
 stickyreturn(pages[[i]]$log) 
 stickyverdict <- rep(NA, length(pages))
 for(i in 1:length(pages)) { stickyverdict[i] <- stickyreturn(pages[[i]]$log)} 
+
 # code to check who won the battle 
 # code first checks if the battle was a draw
 # then the code checks if p1 won
