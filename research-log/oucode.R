@@ -11,6 +11,84 @@ turn_lengths <- rep(0, length(pages))
 for(i in seq_along(pages)) {
   turn_lengths[i] <- pages[[i]]$turns
 }
+# Pokémon Check 
+# includes p1 & p2 
+p1ninjaskr <- function(battlelog) {
+  if((any(grep("ninjask",battlelog$p1team$species))) == TRUE) {
+    p1jask <- 1 
+  }
+  else {
+    p1jask <- 0 
+  }
+  p1jask
+}
+
+p2ninjaskr <- function(battlelog) {
+  if((any(grep("ninjask",battlelog$p2team$species))) == TRUE) {
+    p2jask <- 1 
+  }
+  else {
+    p2jask <- 0 
+  }
+  p2jask
+}
+# Pokémon w/Move check 
+p1toxspikesdrap <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p1draptoxspikes <- NA
+  }
+  if((any(grep("Drapion[|]Toxic Spikes[|]p1a", battlelog$log))) == FALSE) {
+    p1draptoxspikes <- 0
+  }
+  if((any(grep("Drapion[|]Toxic Spikes[|]p1a", battlelog$log))) == TRUE) {
+    p1draptoxspikes <- length((grep("Drapion[|]Toxic Spikes[|]p1a", battlelog$log)))
+  }
+  p1draptoxspikes
+}
+
+p2toxspikesdrap <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p2draptoxspikes <- NA
+  }
+  if((any(grep("Drapion[|]Toxic Spikes[|]p2a", battlelog$log))) == FALSE) {
+    p2draptoxspikes <- 0
+  }
+  if((any(grep("Drapion[|]Toxic Spikes[|]p2a", battlelog$log))) == TRUE) {
+    p2draptoxspikes <- length((grep("Drapion[|]Toxic Spikes[|]p2a", battlelog$log)))
+  }
+  p2draptoxspikes
+}
+# Item Check 
+p1jaskorb <- function(battlelog){
+  if(((any(grep("ninjask", battlelog$p1team$species[1], -i))) == TRUE) & ((any(grep("lifeorb", battlelog$p1team$item[1], -i))) == TRUE)){
+  p1jaskitb <- 1 
+  return(p1jaskitb)
+  }
+  if(((any(grep("ninjask", battlelog$p1team$species[2], -i))) == TRUE) & ((any(grep("lifeorb", battlelog$p1team$item[2], -i))) == TRUE)){
+  p1jaskitb <- 1 
+  return(p1jaskitb)
+  }
+  if(((any(grep("ninjask", battlelog$p1team$species[3], -i))) == TRUE) & ((any(grep("lifeorb", battlelog$p1team$item[3], -i))) == TRUE)){
+  p1jaskitb <- 1 
+  return(p1jaskitb)
+  }
+  if(((any(grep("ninjask", battlelog$p1team$species[4], -i))) == TRUE) & ((any(grep("lifeorb", battlelog$p1team$item[4], -i))) == TRUE)){
+  p1jaskitb <- 1 
+  return(p1jaskitb)
+  }
+  if(((any(grep("ninjask", battlelog$p1team$species[5], -i))) == TRUE) & ((any(grep("lifeorb", battlelog$p1team$item[5], -i))) == TRUE)){
+  p1jaskitb <- 1 
+  return(p1jaskitb)
+  }
+  if(((any(grep("ninjask", battlelog$p1team$species[6], -i))) == TRUE) & ((any(grep("lifeorb", battlelog$p1team$item[6], -i))) == TRUE)){
+  p1jaskitb <- 1 
+  return(p1jaskitb)
+  }
+  else {
+  p1jaskitb <- 0
+  }
+  p1jaskitb
+}
 
 # Hazards; 
 # Toxic Spikes

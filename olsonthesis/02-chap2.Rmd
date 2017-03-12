@@ -81,7 +81,3 @@ We begin by defining the variables. Let x be the number of uses of spikes, y be 
 One of the first tests to conduct is comparing the theoretical values of $\alpha$ with its empirically-derived value. Theoretically, players should have equal probability to win or lose a battle when no information is added about their decisions, so $\mathbf{E}(\alpha)=0.5$. 
 
 Furthermore, this model does not include interactions between entry hazards, which is important both for empirical validity and as a method to verify external validity to other battle formats. 
-
-There are also moves that are exceptionally powerful compared to other damaging moves. These moves take a variety of forms, either by causing the user to 'charge up' for one round in advance, lose their next turn to recharge, or by having comparatively low accuracy. Such moves may be considered risky for a number of reasons. To see if using such moves adversely affect player outcomes, a similar probit model will be used and subsequently tested.
-
-In addition to this, the variety of different volatile and status condition moves will be included in a separate probit model. Then, after statistical significance is tested, a separate probit model will be used and tested that includes the high damage moves, status moves, and entry hazard moves with a number of different interactions included to test for robustness. 
