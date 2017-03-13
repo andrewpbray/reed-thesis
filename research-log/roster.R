@@ -8,7 +8,44 @@ for(i in seq_along(filenames)) {
 }
 
 n <- length(pages)
-megarost <- c()
+megarost <- c("Abomasnow",
+"Absol",
+"Aerodactyl",
+"Aggron",
+"Alakazam",
+"Altaria",
+"Ampharos",
+"Audino",
+"Banette",
+"Beedrill",
+"Blastoise",
+"Camerupt",
+"Charizard", 
+"Diancie",
+"Gallade",
+"Garchomp",
+"Gardevoir",
+"Glalie",
+"Gyarados",
+"Heracross",
+"Houndoom",
+"Latias",
+"Latios",
+"Lopunny",
+"Manectric",
+"Medicham",
+"Metagross",
+"Pidgeot",
+"Pinsir",
+"Sableye",
+"Sceptile",
+"Scizor",
+"Sharpedo",
+"Slowbro",
+"Steelix",
+"Swampert",
+"Tyranitar",
+"Venusaur",)
 nferost <- c("Chansey",
              "Clefairy",
              "Combusken",
@@ -470,6 +507,7 @@ roster <- c("Abomasnow",
 
 nroster <- toupper(roster)
 nferoster <- toupper(nferost)
+nmegarost <- toupper(megarost) 
 
 p1teamfunc <- function(battlelog) {
   if((battlelog$endType) == "draw") {
