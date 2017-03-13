@@ -8,6 +8,45 @@ for(i in seq_along(filenames)) {
 }
 
 n <- length(pages)
+megaitems <- c("Abomasite",
+"Absolite",
+"Aerodactylite",
+"Aggronite",
+"Alakazite",
+"Altarianite",
+"Ampharosite",
+"Audinite",
+"Banettite",
+"Beedrillite",
+"Blastoisinite",
+"Cameruptite",
+"Charizarditex",
+"Charizarditey",
+"Diancite",
+"Galladite",
+"Garchompite",
+"Gardevoirite",
+"Glalitite",
+"Gyaradosite",
+"Heracronite",
+"Houndoominite",
+"Latiasite",
+"Latiosite",
+"Lopunnite",
+"Manectite",
+"Medichamite",
+"Metagrossite",
+"Pidgeotite",
+"Pinsirite",
+"Sablenite",
+"Sceptilite",
+"Scizorite",
+"Sharpedonite",
+"Slowbronite",
+"Steelixite",
+"Swampertite",
+"Tyranitarite",
+"Venusaurite")
 megarost <- c("Abomasnow",
 "Absol",
 "Aerodactyl",
@@ -508,6 +547,7 @@ roster <- c("Abomasnow",
 nroster <- toupper(roster)
 nferoster <- toupper(nferost)
 nmegarost <- toupper(megarost) 
+nmegaitems <- toupper(megaitems) 
 
 p1teamfunc <- function(battlelog) {
   if((battlelog$endType) == "draw") {
@@ -596,7 +636,21 @@ f2itemoutcome <- function(battlelog) {
 }
 # Mega code
 p1mega <- function(battlelog){
-  
+  if((battlelog$endType) == "draw") {
+  p1megaitems<- c(rep(NA,39)) }
+  else { 
+  p1megaitems <- (nferoster %in% toupper(battlelog$p1team$items)) }  
+  p1megaitems
+}
+}
+
+p2mega <- function(battlelog){
+  if((battlelog$endType) == "draw") {
+  p2megaitems<- c(rep(NA,39)) }
+  else { 
+  p2megaitems <- (nferoster %in% toupper(battlelog$p2team$items)) }  
+  p2megaitems
+}
 }
 
 p1nferost <- function(battlelog) {
@@ -646,6 +700,15 @@ p2teamrost <- function(battlelog) {
   }
   p2roster
 }
+
+grab_mega <- function(battlelog) {
+  data.frame(
+    megapoke= rbind(p1mega(battlelog),p2mega(battlelog))
+    )
+}
+
+grab_mega(pages[[1]]) 
+
 
 grab_nfe <- function(battlelog) {
   data.frame(
