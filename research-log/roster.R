@@ -45,7 +45,7 @@ megarost <- c("Abomasnow",
 "Steelix",
 "Swampert",
 "Tyranitar",
-"Venusaur",)
+"Venusaur")
 nferost <- c("Chansey",
              "Clefairy",
              "Combusken",
