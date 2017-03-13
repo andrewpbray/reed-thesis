@@ -8,7 +8,7 @@ for(i in seq_along(filenames)) {
 }
 
 n <- length(pages)
-
+# count = 39 
 megaitems <- c("Abomasite",
 "Absolite",
 "Aerodactylite",
@@ -86,6 +86,7 @@ megarost <- c("Abomasnow",
 "Swampert",
 "Tyranitar",
 "Venusaur")
+# count = 42
 nferost <- c("Chansey",
              "Clefairy",
              "Combusken",
@@ -127,7 +128,7 @@ nferost <- c("Chansey",
              "Vullaby",
              "Wartortle",
              "Zweilous")
-
+# count= 415 
 roster <- c("Abomasnow", 
             "Absol", 
             "Accelgor",
@@ -543,11 +544,129 @@ roster <- c("Abomasnow",
             "Zoroark",
             "Zweilous",
             "Zygarde")
+# count = 93
+stealthrost <- ("Aerodactyl",     "Aggron" ,         "Archeops" ,      
+"Armaldo"  ,       "Aurorus" ,        "Azelf"  ,        
+"Barbaracle"  ,    "Bastiodon",      "Bibarel"  ,     
+"Bisharp"   ,      "Blissey",        "Bronzong" ,     
+"Camerupt"  ,      "Carbink" ,       "Carracosta",    
+"Celebi"    ,      "Chansey"  ,      "Claydol" ,      
+"Clefable"  ,      "Clefairy"  ,     "Cobalion",      
+"Corsola"   ,      "Cradily"    ,    "Crustle" ,      
+"Diancie"   ,      "Donphan"     ,   "Druddigon",     
+"Dugtrio"   ,      "Dunsparce" ,     "Empoleon"  ,    
+"Excadrill" ,      "Ferroseed" ,     "Ferrothorn" ,   
+"Forretress" ,     "Gabite"    ,     "Garchomp" ,     
+"Gigalith"  ,      "Gligar"  ,       "Gliscor"  ,     
+"Golem"    ,       "Golurk"   ,      "Heatran"  ,     
+"Hippowdon" ,      "Infernape",      "Jirachi"  ,     
+"Kabutops"  ,      "Kecleon" ,       "Krokorok" ,     
+"Krookodile" ,     "Lunatone",       "Magcargo" ,     
+"Mamoswine"  ,     "Marowak" ,       "Mawile"   ,     
+"Mesprit"    ,     "Metagross",      "Metang"   ,     
+"Mew"      ,       "Miltank"  ,      "Monferno" ,     
+"Nidoking" ,       "Nidoqueen",      "Omastar" ,      
+"Pawniard" ,       "Piloswine",      "Pinsir" ,       
+"Prinplup" ,       "Probopass",      "Rampardos" ,    
+"Regirock" ,       "Registeel",      "Relicanth" ,    
+"Rhydon"   ,       "Rhyperior",      "Sandslash" ,    
+"Seismitoad" ,     "Shuckle"  ,      "Skarmory" ,     
+"Solrock"  ,       "Steelix"  ,      "Stunfisk" ,     
+"Sudowoodo" ,      "Swampert" ,      "Terrakion",     
+"Torkoal"  ,       "Torterra" ,      "Tyranitar",     
+"Tyrantrum" ,      "Uxie"     ,      "Wigglytuff",    
+"Wormadam-Sandy",  "Wormadam-Trash" , "Wormadam" 
+) 
+# count= 22
+spikerost <- ("Accelgor" ,  "Cacturne",   "Chesnaught", "Cloyster" ,  "Crustle" ,  
+ "Delibird" ,  "Diggersby" , "Ferroseed" , "Ferrothorn" ,"Forretress",
+"Froslass" ,  "Garbodor" ,  "Glalie" ,    "Klefki" ,    "Maractus" , 
+"Omastar" ,   "Quilladin" , "Qwilfish" ,  "Roselia" ,   "Roserade",  
+"Scolipede" , "Skarmory"
+)
+# count= 15
+toxsprost <- ("Ariados",    "Beedrill",   "Cloyster" ,  "Cofagrigus" ,"Dragalge" , 
+ "Drapion"  ,  "Forretress" ,"Garbodor" ,  "Omastar"  ,  "Qwilfish"  ,
+"Roselia" ,   "Scolipede" , "Tentacruel" ,"Venomoth" ,  "Weezing"
+)
+# count= 4
+stickyrost <- ("Ariados",    "Galvantula", "Kricketune", "Shuckle" 
+)
+# count=15
+defogrost <- ("Archeops",  "Braviary",  "Chatot",    "Crobat",    "Drifblim" ,
+ "Golbat",    "Mandibuzz", "Noctowl",   "Pidgeot",   "Scizor"  , 
+"Scyther" ,  "Shiftry" ,  "Swanna" ,   "Swellow" ,  "Vullaby"
+)
+# count=20
+rapidrost <- ("Armaldo",    "Avalugg" ,   "Blastoise" , "Claydol"  ,  "Cloyster" , 
+ "Cryogonal" , "Delibird" ,  "Donphan"   , "Excadrill",  "Forretress",
+"Hitmonchan" ,"Hitmonlee" , "Hitmontop",  "Kabutops",   "Sandslash" ,
+"Spinda" ,    "Starmie" ,   "Tentacruel", "Torkoal" ,   "Wartortle"
+)
+# count= 42
+dtrost <- ("Aggron" ,    "Arbok" ,     "Archeops" ,  "Aurorus" ,   "Blastoise" ,
+ "Charizard",  "Dragalge" ,  "Dragonair",  "Dragonite",  "Druddigon", 
+"Eelektross", "Feraligatr", "Flygon"   ,  "Fraxure"  ,  "Garchomp" , 
+"Goodra",     "Gyarados" ,  "Haxorus" ,   "Heliolisk",  "Hydreigon" ,
+"Krookodile", "Kyurem" ,    "Lickilicky", "Meganium" ,  "Mew"    ,   
+"Milotic" ,   "Nidoking" ,  "Nidoqueen",  "Rampardos" , "Rhydon"  ,  
+"Rhyperior" , "Salamence",  "Samurott" ,  "Scrafty"  ,  "Serperior" ,
+"Seviper" ,   "Slowking" ,  "Steelix"  ,  "Tyranitar" , "Tyrantrum" ,
+"Zweilous" ,  "Zygarde"
+)
+# count =103
+roarrost <- ("Aerodactyl", "Aggron",     "Altaria",    "Arcanine" , 
+  "Archeops",   "Articuno",   "Aurorus" ,   "Avalugg" ,  
+  "Bastiodon",  "Beartic",    "Blastoise",  "Camerupt" , 
+ "Charizard",  "Chesnaught", "Cobalion",   "Darmanitan",
+ "Donphan",    "Dragonite",  "Drapion",    "Druddigon" ,
+ "Eelektross", "Emboar" ,    "Empoleon",   "Entei"     ,
+ "Exploud" ,   "Feraligatr", "Flareon",    "Floatzel"  ,
+ "Fraxure",    "Furfrou" ,   "Gabite",     "Garchomp"  ,
+ "Glaceon",    "Gogoat" ,    "Golem",      "Granbull"  ,
+ "Gyarados",   "Haxorus" ,   "Heatran",    "Hippowdon" ,
+ "Houndoom" ,  "Hydreigon",  "Infernape",  "Jolteon"   ,
+ "Kangaskhan", "Keldeo" ,    "Krokorok",   "Krookodile",
+ "Lapras" ,    "Latias" ,    "Latios",     "Leafeon"   ,
+ "Linoone",    "Lucario" ,   "Luxray",     "Mamoswine" ,
+ "Manectric",  "Mew" ,       "Mightyena",  "Moltres"   ,
+ "Nidoking",   "Nidoqueen",  "Ninetales",  "Pangoro"   ,
+ "Persian",    "Piloswine",  "Purugly" ,   "Pyroar"    ,
+ "Quilladin",  "Raikou",     "Rampardos",  "Raticate"  ,
+ "Rhydon" ,    "Rhyperior",  "Salamence",  "Sceptile"  ,
+ "Scrafty",    "Sharpedo",   "Skarmory",   "Skuntank"  ,
+ "Slaking",    "Stantler",   "Steelix",    "Stoutland" ,
+ "Suicune",    "Swampert",   "Terrakion",  "Torterra"  ,
+ "Tropius",    "Typhlosion", "Tyranitar",  "Tyrantrum" ,
+ "Ursaring",   "Vaporeon",   "Venusaur",   "Vigoroth"  ,
+ "Virizion",   "Wailord",    "Walrein",    "Zangoose"  ,
+"Zapdos",     "Zoroark",    "Zweilous" 
+)
+# count =30 
+whirlrost <- ("Aerodactyl", "Beautifly",  "Braviary",   "Butterfree" ,"Crobat"  ,  
+ "Drapion" ,   "Dustox" ,    "Fearow" ,    "Golbat" ,    "Grumpig"  , 
+"Hariyama" ,  "Hippowdon",  "Honchkrow",  "Mandibuzz",  "Masquerain",
+"Murkrow" ,   "Noctowl"  ,  "Noivern"  ,  "Pidgeot"  ,  "Rampardos" ,
+"Shiftry" ,   "Sigilyph" ,  "Skarmory" ,  "Snorlax" ,   "Staraptor" ,
+"Swellow" ,   "Tropius"  ,  "Volcarona" , "Vullaby" ,   "Yanmega"
+)
 
 nroster <- toupper(roster)
 nferoster <- toupper(nferost)
 nmegarost <- toupper(megarost) 
 nmegaitems <- toupper(megaitems) 
+nstealthrost <- toupper(stealthrost) 
+nspikerost <- toupper(spikerost) 
+ntoxsprost <- toupper(toxsprost) 
+
+
+
+
+
+
+
+
+
 
 p1teamfunc <- function(battlelog) {
   if((battlelog$endType) == "draw") {
