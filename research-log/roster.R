@@ -8,6 +8,7 @@ for(i in seq_along(filenames)) {
 }
 
 n <- length(pages)
+
 megaitems <- c("Abomasite",
 "Absolite",
 "Aerodactylite",
@@ -118,7 +119,6 @@ nferost <- c("Chansey",
              "Roselia",
              "Scyther",
              "Servine",
-             "Slowbro",
              "Sneasel",
              "Tangela",
              "Togetic",
@@ -603,11 +603,19 @@ p1teamrost <- function(battlelog) {
 p1eviolite <- matrix(nrow=1, ncol=42)
 
 # works for 1 Pokémon, need 42; 84 total for p1 and p2 
-nferfunc <- function(battlelog) {
+n1ferfunc <- function(battlelog) {
   if((battlelog$endType) == "draw") {
-  p1ev <- c(rep(NA,42)) }
+  p1ev <- c(rep(NA,41)) }
   else { 
   p1ev <- (nferoster %in% toupper(battlelog$p1team$species)) }  
+  p1ev
+}
+
+n2ferfunc <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p1ev <- c(rep(NA,41)) }
+  else { 
+    p1ev <- (nferoster %in% toupper(battlelog$p2team$species)) }  
   p1ev
 }
 
