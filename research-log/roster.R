@@ -8,6 +8,50 @@ for(i in seq_along(filenames)) {
 }
 
 n <- length(pages)
+megarost <- c()
+nferost <- c("Chansey",
+             "Clefairy",
+             "Combusken",
+             "Doublade",
+             "Dragonair",
+             "Duosion",
+             "Dusclops",
+             "Ferroseed",
+             "Fletchinder",
+             "Fraxure",
+             "Gabite",
+             "Gligar",
+             "Golbat",
+             "Gurdurr",
+             "Haunter",
+             "Kadabra",
+             "Klang",
+             "Krokorok",
+             "Machoke",
+             "Magneton",
+             "Metang",
+             "Misdreavus",
+             "Monferno",
+             "Murkrow",
+             "Pawniard",
+             "Piloswine",
+             "Porygon2",
+             "Prinplup",
+             "Quilladin",
+             "Rhydon",
+             "Roselia",
+             "Scyther",
+             "Servine",
+             "Slowbro",
+             "Sneasel",
+             "Tangela",
+             "Togetic",
+             "Vibrava",
+             "Vigoroth",
+             "Vullaby",
+             "Wartortle",
+             "Zweilous")
+
 roster <- c("Abomasnow", 
             "Absol", 
             "Accelgor",
@@ -425,6 +469,8 @@ roster <- c("Abomasnow",
             "Zygarde")
 
 nroster <- toupper(roster)
+nferoster <- toupper(nferost)
+
 p1teamfunc <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     teamfunc1 <- c(NA, NA, NA, NA, NA, NA)
@@ -476,6 +522,71 @@ p1teamrost <- function(battlelog) {
   p1roster
 }
 
+p1eviolite <- matrix(nrow=1, ncol=42)
+
+# works for 1 Pokémon, need 42; 84 total for p1 and p2 
+nferfunc <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+  p1ev <- c(rep(NA,42)) }
+  else { 
+  p1ev <- (nferoster %in% toupper(battlelog$p1team$species)) }  
+  p1ev
+}
+
+f1itemoutcome <- function(battlelog) {
+  if( sum((nferoster %in% toupper(battlelog$p1team$species)), na.rm=TRUE) < 1) {
+    p1itemoutcome <- NA
+    return(p1itemoutcome)}
+  if ((sum((nferoster %in% toupper(battlelog$p1team$species)), na.rm=TRUE) > 0) & ((any(grep("eviolite", battlelog$p1team$item, -i))) == TRUE)){
+    p1itemoutcome <- 1
+    return(p1itemoutcome)}
+  else {
+    p1itemoutcome <- 0}
+  p1itemoutcome
+}
+
+f2itemoutcome <- function(battlelog) {
+  if( sum((nferoster %in% toupper(battlelog$p2team$species)), na.rm=TRUE) < 1) {
+    p2itemoutcome <- NA
+    return(p2itemoutcome)}
+  if ((sum((nferoster %in% toupper(battlelog$p2team$species)), na.rm=TRUE) > 0) & ((any(grep("eviolite", battlelog$p1team$item, -i))) == TRUE)){
+    p2itemoutcome <- 1
+    return(p2itemoutcome)}
+  else {
+    p2itemoutcome <- 0}
+  p2itemoutcome
+}
+# Mega code
+p1mega <- function(battlelog){
+  
+}
+
+p1nferost <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    teamfunc1 <- c(NA, NA, NA, NA, NA, NA)
+    p1nfe <- nferoster %in% toupper(teamfunc1)
+    return(p1nfe)
+  }
+  if(length(battlelog$p1team$species) < 6) {
+    teamfunc1 <- c(NA, NA, NA, NA, NA, NA)
+    p1nfe <- nferoster %in% toupper(teamfunc1)
+    return(p1nfe)
+  }
+  if(length(battlelog$p2team$species) < 6) {
+    teamfunc1 <- c(NA, NA, NA, NA, NA, NA)
+    p1nfe <- nferoster %in% toupper(teamfunc1)
+    return(p1nfe)
+  }
+  else {
+    p1nfe <- nferoster %in% toupper(battlelog$p1team$species)
+  }
+  p1nfe
+}
+
+
+
+
+
 p2teamrost <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     teamfunc2 <- c(NA, NA, NA, NA, NA, NA)
@@ -497,6 +608,14 @@ p2teamrost <- function(battlelog) {
   }
   p2roster
 }
+
+grab_nfe <- function(battlelog) {
+  data.frame(
+    notfullyevolve= rbind(f1itemoutcome(battlelog), f2itemoutcome(battlelog))
+  )
+}
+grab_nfe(pages[[1]])
+
 grab_rost <- function(battlelog) {
   data.frame(
     roster=(rbind(p1teamrost(battlelog), p2teamrost(battlelog))))
