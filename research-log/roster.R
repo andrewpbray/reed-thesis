@@ -639,19 +639,19 @@ p1mega <- function(battlelog){
   if((battlelog$endType) == "draw") {
   p1megaitems<- c(rep(NA,39)) }
   else { 
-  p1megaitems <- (nferoster %in% toupper(battlelog$p1team$items)) }  
+  p1megaitems <- (nmegaitems %in% toupper(battlelog$p1team$item)) }  
   p1megaitems
 }
-}
+
 
 p2mega <- function(battlelog){
   if((battlelog$endType) == "draw") {
   p2megaitems<- c(rep(NA,39)) }
   else { 
-  p2megaitems <- (nferoster %in% toupper(battlelog$p2team$items)) }  
+  p2megaitems <- (nmegaitems %in% toupper(battlelog$p2team$item)) }  
   p2megaitems
 }
-}
+
 
 p1nferost <- function(battlelog) {
   if((battlelog$endType) == "draw") {
