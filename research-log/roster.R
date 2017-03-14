@@ -1269,9 +1269,9 @@ grab_nfe(pages[[1]])
 # need battle length, 
 simp1grab <- function(battlelog) {
   data.frame(
+     p1outcome=p1func(battlelog),
      player1=1,
      p1rank=p1rank(battlelog),
-     p1outcome=p1func(battlelog),
      length=turn_lengths(battlelog),
      p1switches=swcounter1(battlelog),
      p1stealthrockcount=strock1countr(battlelog),
@@ -1291,9 +1291,9 @@ for(i in 1:length(pages)) { for(j in 1:14) {sm1data[i,j] <- simp1grab(pages[[i]]
 
 simp2grab <- function(battlelog) {
   data.frame(
+    p2outcome=p2func(battlelog),
     player2=2,
     p2rank=p2rank(battlelog),
-    p2outcome=p2func(battlelog),
     length=turn_lengths(battlelog),
     p2switches=swcounter2(battlelog),
     p2stealthrockcount=strock2countr(battlelog),
