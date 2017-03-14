@@ -545,66 +545,71 @@ roster <- c("Abomasnow",
             "Zweilous",
             "Zygarde")
 # count = 93
-stealthrost <- ("Aerodactyl",     "Aggron" ,         "Archeops" ,      
-"Armaldo"  ,       "Aurorus" ,        "Azelf"  ,        
-"Barbaracle"  ,    "Bastiodon",      "Bibarel"  ,     
-"Bisharp"   ,      "Blissey",        "Bronzong" ,     
-"Camerupt"  ,      "Carbink" ,       "Carracosta",    
-"Celebi"    ,      "Chansey"  ,      "Claydol" ,      
-"Clefable"  ,      "Clefairy"  ,     "Cobalion",      
-"Corsola"   ,      "Cradily"    ,    "Crustle" ,      
-"Diancie"   ,      "Donphan"     ,   "Druddigon",     
-"Dugtrio"   ,      "Dunsparce" ,     "Empoleon"  ,    
-"Excadrill" ,      "Ferroseed" ,     "Ferrothorn" ,   
-"Forretress" ,     "Gabite"    ,     "Garchomp" ,     
-"Gigalith"  ,      "Gligar"  ,       "Gliscor"  ,     
-"Golem"    ,       "Golurk"   ,      "Heatran"  ,     
-"Hippowdon" ,      "Infernape",      "Jirachi"  ,     
-"Kabutops"  ,      "Kecleon" ,       "Krokorok" ,     
-"Krookodile" ,     "Lunatone",       "Magcargo" ,     
-"Mamoswine"  ,     "Marowak" ,       "Mawile"   ,     
-"Mesprit"    ,     "Metagross",      "Metang"   ,     
-"Mew"      ,       "Miltank"  ,      "Monferno" ,     
-"Nidoking" ,       "Nidoqueen",      "Omastar" ,      
-"Pawniard" ,       "Piloswine",      "Pinsir" ,       
-"Prinplup" ,       "Probopass",      "Rampardos" ,    
-"Regirock" ,       "Registeel",      "Relicanth" ,    
-"Rhydon"   ,       "Rhyperior",      "Sandslash" ,    
-"Seismitoad" ,     "Shuckle"  ,      "Skarmory" ,     
-"Solrock"  ,       "Steelix"  ,      "Stunfisk" ,     
-"Sudowoodo" ,      "Swampert" ,      "Terrakion",     
-"Torkoal"  ,       "Torterra" ,      "Tyranitar",     
-"Tyrantrum" ,      "Uxie"     ,      "Wigglytuff",    
+stealthrost <- c("Aerodactyl",
+                "Aggron",
+                "Archeops",      
+                "Armaldo",
+                "Aurorus",
+                "Azelf",        
+"Barbaracle",    "Bastiodon",      "Bibarel"  ,     
+"Bisharp",      "Blissey",        "Bronzong" ,     
+"Camerupt",      "Carbink" ,       "Carracosta",    
+"Celebi",      "Chansey"  ,      "Claydol" ,      
+"Clefable",      "Clefairy"  ,     "Cobalion",      
+"Corsola",      "Cradily"    ,    "Crustle" ,      
+"Diancie",      "Donphan"     ,   "Druddigon",     
+"Dugtrio",      "Dunsparce" ,     "Empoleon"  ,    
+"Excadrill",      "Ferroseed" ,     "Ferrothorn" ,   
+"Forretress",     "Gabite"    ,     "Garchomp" ,     
+"Gigalith",      "Gligar"  ,       "Gliscor"  ,     
+"Golem",       "Golurk"   ,      "Heatran"  ,     
+"Hippowdon",      "Infernape",      "Jirachi"  ,     
+"Kabutops",      "Kecleon" ,       "Krokorok" ,     
+"Krookodile",     "Lunatone",       "Magcargo" ,     
+"Mamoswine",     "Marowak" ,       "Mawile"   ,     
+"Mesprit",     "Metagross",      "Metang"   ,     
+"Mew",       "Miltank"  ,      "Monferno" ,     
+"Nidoking",       "Nidoqueen",      "Omastar" ,      
+"Pawniard",       "Piloswine",      "Pinsir" ,       
+"Prinplup",       "Probopass",      "Rampardos" ,    
+"Regirock",       "Registeel",      "Relicanth" ,    
+"Rhydon",       "Rhyperior",      "Sandslash" ,    
+"Seismitoad",     "Shuckle"  ,      "Skarmory" ,     
+"Solrock",       "Steelix"  ,      "Stunfisk" ,     
+"Sudowoodo",      "Swampert" ,      "Terrakion",     
+"Torkoal",       "Torterra" ,      "Tyranitar",     
+"Tyrantrum",      "Uxie"     ,      "Wigglytuff",    
 "Wormadam-Sandy",  "Wormadam-Trash" , "Wormadam" 
 ) 
 # count= 22
-spikerost <- ("Accelgor" ,  "Cacturne",   "Chesnaught", "Cloyster" ,  "Crustle" ,  
+spikerost <- c("Accelgor" ,  "Cacturne",   "Chesnaught", "Cloyster" ,  "Crustle" ,  
  "Delibird" ,  "Diggersby" , "Ferroseed" , "Ferrothorn" ,"Forretress",
 "Froslass" ,  "Garbodor" ,  "Glalie" ,    "Klefki" ,    "Maractus" , 
 "Omastar" ,   "Quilladin" , "Qwilfish" ,  "Roselia" ,   "Roserade",  
-"Scolipede" , "Skarmory"
+"Scolipede", "Skarmory"
 )
+
 # count= 15
-toxsprost <- ("Ariados",    "Beedrill",   "Cloyster" ,  "Cofagrigus" ,"Dragalge" , 
- "Drapion"  ,  "Forretress" ,"Garbodor" ,  "Omastar"  ,  "Qwilfish"  ,
+toxsprost <- c("Ariados",    "Beedrill",   "Cloyster" ,  "Cofagrigus" ,"Dragalge" , 
+ "Drapion",  "Forretress" ,"Garbodor" ,  "Omastar"  ,  "Qwilfish"  ,
 "Roselia" ,   "Scolipede" , "Tentacruel" ,"Venomoth" ,  "Weezing"
 )
 # count= 4
-stickyrost <- ("Ariados",    "Galvantula", "Kricketune", "Shuckle" 
+stickyrost <- c("Ariados",  "Galvantula", "Kricketune", "Shuckle" 
 )
 # count=15
-defogrost <- ("Archeops",  "Braviary",  "Chatot",    "Crobat",    "Drifblim" ,
+defogrost <- c("Archeops","Braviary",  "Chatot",    "Crobat",    "Drifblim" ,
  "Golbat",    "Mandibuzz", "Noctowl",   "Pidgeot",   "Scizor"  , 
 "Scyther" ,  "Shiftry" ,  "Swanna" ,   "Swellow" ,  "Vullaby"
 )
 # count=20
-rapidrost <- ("Armaldo",    "Avalugg" ,   "Blastoise" , "Claydol"  ,  "Cloyster" , 
+rapidrost <- c("Armaldo",   "Avalugg" ,   "Blastoise" , "Claydol"  ,  "Cloyster" , 
  "Cryogonal" , "Delibird" ,  "Donphan"   , "Excadrill",  "Forretress",
 "Hitmonchan" ,"Hitmonlee" , "Hitmontop",  "Kabutops",   "Sandslash" ,
 "Spinda" ,    "Starmie" ,   "Tentacruel", "Torkoal" ,   "Wartortle"
 )
 # count= 42
-dtrost <- ("Aggron" ,    "Arbok" ,     "Archeops" ,  "Aurorus" ,   "Blastoise" ,
+dtrost <- c("Aggron" ,  "Arbok" ,     "Archeops" ,  "Aurorus" ,   "Blastoise" ,
  "Charizard",  "Dragalge" ,  "Dragonair",  "Dragonite",  "Druddigon", 
 "Eelektross", "Feraligatr", "Flygon"   ,  "Fraxure"  ,  "Garchomp" , 
 "Goodra",     "Gyarados" ,  "Haxorus" ,   "Heliolisk",  "Hydreigon" ,
@@ -615,7 +620,7 @@ dtrost <- ("Aggron" ,    "Arbok" ,     "Archeops" ,  "Aurorus" ,   "Blastoise" ,
 "Zweilous" ,  "Zygarde"
 )
 # count =103
-roarrost <- ("Aerodactyl", "Aggron",     "Altaria",    "Arcanine" , 
+roarrost <- c("Aerodactyl","Aggron",     "Altaria",    "Arcanine" , 
   "Archeops",   "Articuno",   "Aurorus" ,   "Avalugg" ,  
   "Bastiodon",  "Beartic",    "Blastoise",  "Camerupt" , 
  "Charizard",  "Chesnaught", "Cobalion",   "Darmanitan",
@@ -643,12 +648,12 @@ roarrost <- ("Aerodactyl", "Aggron",     "Altaria",    "Arcanine" ,
 "Zapdos",     "Zoroark",    "Zweilous" 
 )
 # count =30 
-whirlrost <- ("Aerodactyl", "Beautifly",  "Braviary",   "Butterfree" ,"Crobat"  ,  
- "Drapion" ,   "Dustox" ,    "Fearow" ,    "Golbat" ,    "Grumpig"  , 
-"Hariyama" ,  "Hippowdon",  "Honchkrow",  "Mandibuzz",  "Masquerain",
-"Murkrow" ,   "Noctowl"  ,  "Noivern"  ,  "Pidgeot"  ,  "Rampardos" ,
-"Shiftry" ,   "Sigilyph" ,  "Skarmory" ,  "Snorlax" ,   "Staraptor" ,
-"Swellow" ,   "Tropius"  ,  "Volcarona" , "Vullaby" ,   "Yanmega"
+whirlrost <- c("Aerodactyl","Beautifly",  "Braviary",   "Butterfree", "Crobat"  ,  
+ "Drapion",   "Dustox",    "Fearow" ,    "Golbat" ,    "Grumpig"  , 
+"Hariyama",  "Hippowdon",  "Honchkrow",  "Mandibuzz",  "Masquerain",
+"Murkrow",   "Noctowl",  "Noivern"  ,  "Pidgeot"  ,  "Rampardos" ,
+"Shiftry",   "Sigilyph",  "Skarmory" ,  "Snorlax" ,   "Staraptor" ,
+"Swellow",   "Tropius",  "Volcarona" , "Vullaby" ,   "Yanmega"
 )
 
 nroster <- toupper(roster)
@@ -658,15 +663,252 @@ nmegaitems <- toupper(megaitems)
 nstealthrost <- toupper(stealthrost) 
 nspikerost <- toupper(spikerost) 
 ntoxsprost <- toupper(toxsprost) 
+nstickyrost <- toupper(stickyrost)
+ndefogrost <- toupper(defogrost)
+nrapidrost <- toupper(rapidrost)
+ndtrost <- toupper(dtrost)
+nroarrost <- toupper(roarrost)
+nwhirlrost <- toupper(whirlrost)
 
+# overall move counter per/player
+strock1countr <- function(battlelog){
+  if((any(grep("Stealth Rock[|]p2a", battlelog$log,-i))) == TRUE){
+    strock1count <- sum((any(grep("Stealth Rock[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(strock1count)}
+  else{
+    strock1count <- 0 
+  }
+  strock1count
+}
 
+strock2countr <- function(battlelog){
+  if((any(grep("Stealth Rock[|]p1a", battlelog$log,-i))) == TRUE){
+    strock2count <- sum((any(grep("Stealth Rock[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(strock2count)}
+  else{
+    strock2count <- 0 
+  }
+  strock2count
+}
 
+spikecountr1 <- function(battlelog){
+  if((any(grep("Spikes[|]p2a", battlelog$log,-i))) == TRUE){
+    spikecount1 <- sum((any(grep("Spikes[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(spikecount1)}
+  else{
+    spikecount1 <- 0 
+  }
+  spikecount1
+}
 
+spikecountr2 <- function(battlelog){
+  if((any(grep("Spikes[|]p1a", battlelog$log,-i))) == TRUE){
+    spikecount2 <- sum((any(grep("Spikes[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(spikecount2)}
+  else{
+    spikecount2 <- 0 
+  }
+  spikecount1
+}
 
+toxspikecountr1 <- function(battlelog){
+  if((any(grep("Toxic Spikes[|]p2a", battlelog$log,-i))) == TRUE){
+    toxspikecount1 <- sum((any(grep("Toxic Spikes[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(toxspikecount1)}
+  else{
+    toxspikecount1 <- 0 
+  }
+  toxspikecount1
+}
 
+toxspikecountr2 <- function(battlelog){
+  if((any(grep("Toxic Spikes[|]p1a", battlelog$log,-i))) == TRUE){
+    toxspikecount2 <- sum((any(grep("Toxic Spikes[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(toxspikecount2)}
+  else{
+    toxspikecount2 <- 0 
+  }
+  toxspikecount2
+}
 
+sticky1count <- function(battlelog){
+  if((any(grep("Sticky Web[|]p2a", battlelog$log,-i))) == TRUE){
+  st1count <- sum((any(grep("Sticky Web[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+  return(st1count)}
+  else{
+  st1count <- 0 
+  }
+  st1count
+}
 
+sticky2count <- function(battlelog){
+  if((any(grep("Sticky Web[|]p1a", battlelog$log,-i))) == TRUE){
+    st2count <- sum((any(grep("Sticky Web[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(st2count)}
+  else{
+    st2count <- 0 
+  }
+  st2count
+}
 
+defog1countr <- function(battlelog){
+  if((any(grep("Defog[|]p2a", battlelog$log,-i))) == TRUE){
+    defog1count <- sum((any(grep("Defog[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(defog1count)}
+  else{
+    defog1count <- 0 
+  }
+  defog1count
+}
+
+defog2countr <- function(battlelog){
+  if((any(grep("Defog[|]p1a", battlelog$log,-i))) == TRUE){
+    defog2count <- sum((any(grep("Defog[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(defog2count)}
+  else{
+    defog2count <- 0 
+  }
+  defog2count
+}
+
+rapidsp1countr <- function(battlelog){
+  if((any(grep("Rapid Spin[|]p2a", battlelog$log,-i))) == TRUE){
+    rapidsp1count <- sum((any(grep("Rapid Spin[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(rapidsp1count)}
+  else{
+    rapidsp1count <- 0 
+  }
+  rapidsp1count
+}
+
+rapidsp2countr <- function(battlelog){
+  if((any(grep("Rapid Spin[|]p1a", battlelog$log,-i))) == TRUE){
+    rapidsp2count <- sum((any(grep("Rapid Spin[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(rapidsp2count)}
+  else{
+    rapidsp2count <- 0 
+  }
+  rapidsp2count
+}
+
+dt1countr <- function(battlelog){
+  if((any(grep("Dragon Tail[|]p2a", battlelog$log,-i))) == TRUE){
+    dt1count <- sum((any(grep("Dragon Tail[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(dt1count)}
+  else{
+    dt1count <- 0 
+  }
+  dt1count
+}
+
+dt2countr <- function(battlelog){
+  if((any(grep("Dragon Tail[|]p1a", battlelog$log,-i))) == TRUE){
+    dt2count <- sum((any(grep("Dragon Tail[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(dt2count)}
+  else{
+    dt2count <- 0 
+  }
+  dt2count
+}
+
+roar1countr <- function(battlelog){
+  if((any(grep("Roarl[|]p2a", battlelog$log,-i))) == TRUE){
+    roar1count <- sum((any(grep("Roar[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(roar1count)}
+  else{
+    roar1count <- 0 
+  }
+  roar1count
+}
+
+roar2countr <- function(battlelog){
+  if((any(grep("Roarl[|]p1a", battlelog$log,-i))) == TRUE){
+    roar2count <- sum((any(grep("Roar[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(roar2count)}
+  else{
+    roar2count <- 0 
+  }
+  roar2count
+}
+
+whirl1countr <- function(battlelog){
+  if((any(grep("Whirlwind[|]p2a", battlelog$log,-i))) == TRUE){
+    whirl1count <- sum((any(grep("Whirlwind[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    return(whirl1count)}
+  else{
+    whirl1count <- 0 
+  }
+  whirl1count
+}
+
+whirl2countr <- function(battlelog){
+  if((any(grep("Whirlwind[|]p1a", battlelog$log,-i))) == TRUE){
+    whirl2count <- sum((any(grep("Whirlwind[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    return(whirl2count)}
+  else{
+    whirl2count <- 0 
+  }
+  whirl2count
+}
+
+# sticky function on roster
+nu1stickrost <- function(battlelog) {
+  stickyicky <- c(rep(NA,4))
+  if((any(grep("Ariados", battlelog$p1team$species, -i))) == FALSE){
+    stickyicky[1] <- NA}
+  if(((any(grep("Ariados", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Ariados[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[1] <- TRUE}
+  if(((any(grep("Ariados", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Ariados[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[1] <- FALSE}
+  if((any(grep("Galvantula", battlelog$p1team$species, -i))) == FALSE){
+    stickyicky[2] <- NA}
+  if(((any(grep("Galvantula", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Galvantula[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[2] <- TRUE}
+  if(((any(grep("Galvantula", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Galvantula[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[2] <- FALSE}
+  if((any(grep("Kricketune", battlelog$p1team$species, -i))) == FALSE){
+    stickyicky[3] <- NA}
+  if(((any(grep("Kricketune", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a:Kricketune[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[3] <- TRUE}
+  if(((any(grep("Kricketune", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a:Kricketune[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[3] <- FALSE}
+  if((any(grep("Shuckle", battlelog$p1team$species, -i))) == FALSE){
+    stickyicky[4] <- NA}
+  if(((any(grep("Shuckle", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Shuckle[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[4] <- TRUE}
+  if(((any(grep("Shuckle", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Shuckle[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[4] <- FALSE}
+  stickyicky
+}
+
+nu2stickrost <- function(battlelog) {
+  stickyicky <- c(rep(NA,4))
+  if((any(grep("Ariados", battlelog$p2team$species, -i))) == FALSE){
+    stickyicky[1] <- NA}
+  if(((any(grep("Ariados", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Ariados[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[1] <- TRUE}
+  if(((any(grep("Ariados", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Ariados[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[1] <- FALSE}
+  if((any(grep("Galvantula", battlelog$p2team$species, -i))) == FALSE){
+    stickyicky[2] <- NA}
+  if(((any(grep("Galvantula", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Galvantula[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[2] <- TRUE}
+  if(((any(grep("Galvantula", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Galvantula[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[2] <- FALSE}
+  if((any(grep("Kricketune", battlelog$p2team$species, -i))) == FALSE){
+    stickyicky[3] <- NA}
+  if(((any(grep("Kricketune", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a:Kricketune[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[3] <- TRUE}
+  if(((any(grep("Kricketune", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a:Kricketune[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[3] <- FALSE}
+  if((any(grep("Shuckle", battlelog$p2team$species, -i))) == FALSE){
+    stickyicky[4] <- NA}
+  if(((any(grep("Shuckle", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Shuckle[|]Sticky Web", battlelog$log,-i))) == TRUE)){
+    stickyicky[4] <- TRUE}
+  if(((any(grep("Shuckle", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Shuckle[|]Sticky Web", battlelog$log,-i))) == FALSE)){
+    stickyicky[4] <- FALSE}
+  stickyicky
+}
 
 p1teamfunc <- function(battlelog) {
   if((battlelog$endType) == "draw") {
@@ -761,6 +1003,7 @@ f2itemoutcome <- function(battlelog) {
     p2itemoutcome <- 0}
   p2itemoutcome
 }
+
 # Mega code
 p1mega <- function(battlelog){
   if((battlelog$endType) == "draw") {
