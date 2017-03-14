@@ -850,64 +850,159 @@ whirl2countr <- function(battlelog){
   }
   whirl2count
 }
+# Toxic Spikes function on roster 
+nu1toxrost <- function(battlelog) {
+   tox1mat <- c(rep(NA,15))
+  if((any(grep("Ariados", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[1] <- NA}
+  if(((any(grep("Ariados", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Ariados[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[1] <- TRUE}
+  if(((any(grep("Ariados", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Ariados[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[1] <- FALSE}
+  if((any(grep("Beedrill", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[2] <- NA}
+  if(((any(grep("Beedrill", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Beedrill[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[2] <- TRUE}
+  if(((any(grep("Beedrill", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Beedrill[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[2] <- FALSE}
+  if((any(grep("Cloyster", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[3] <- NA}
+  if(((any(grep("Cloyster", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Cloyster[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[3] <- TRUE}
+  if(((any(grep("Cloyster", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Cloyster[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[3] <- FALSE}
+  if((any(grep("Cofagrigus", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[4] <- NA}
+  if(((any(grep("Cofagrigus", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Cofagrigus[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[4] <- TRUE}
+  if(((any(grep("Cofagrigus", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Cofagrigus[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[4] <- FALSE}
+  if((any(grep("Dragalge", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[5] <- NA}
+  if(((any(grep("Dragalge", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Dragalge[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[5] <- TRUE}
+  if(((any(grep("Dragalge", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Dragalge[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[5] <- FALSE}
+  if((any(grep("Drapion", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[6] <- NA}
+  if(((any(grep("Drapion", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Drapion[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[6] <- TRUE}
+  if(((any(grep("Drapion", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Drapion[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[6] <- FALSE}
+  if((any(grep("Forretress", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[7] <- NA}
+  if(((any(grep("Forretress", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Forretress[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[7] <- TRUE}
+  if(((any(grep("Forretress", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Forretress[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[7] <- FALSE}
+  if((any(grep("Garbodor", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[8] <- NA}
+  if(((any(grep("Garbodor", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Garbodor[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[8] <- TRUE}
+  if(((any(grep("Garbodor", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Garbodor[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[8] <- FALSE}
+  if((any(grep("Omastar", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[9] <- NA}
+  if(((any(grep("Omastar", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Omastar[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[9] <- TRUE}
+  if(((any(grep("Omastar", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Omastar[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[9] <- FALSE}
+  if((any(grep("Qwilfish", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[10] <- NA}
+  if(((any(grep("Qwilfish", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Qwilfish[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[10] <- TRUE}
+  if(((any(grep("Qwilfish", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Qwilfish[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[10] <- FALSE}
+  if((any(grep("Roselia", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[11] <- NA}
+  if(((any(grep("Roselia", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Roselia[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[11] <- TRUE}
+  if(((any(grep("Roselia", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Roselia[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[11] <- FALSE}
+  if((any(grep("Scolipede", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[12] <- NA}
+  if(((any(grep("Scolipede", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Scolipede[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[12] <- TRUE}
+  if(((any(grep("Scolipede", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Scolipede[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[12] <- FALSE}
+  if((any(grep("Tentacruel", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[13] <- NA}
+  if(((any(grep("Tentacruel", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Tentacruel[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[13] <- TRUE}
+  if(((any(grep("Tentacruel", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Tentacruel[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[13] <- FALSE}
+  if((any(grep("Venomoth", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[14] <- NA}
+  if(((any(grep("Venomoth", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Venomoth[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[14] <- TRUE}
+  if(((any(grep("Venomoth", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Venomoth[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[14] <- FALSE}
+  if((any(grep("Weezing", battlelog$p1team$species, -i))) == FALSE){
+    tox1mat[15] <- NA}
+  if(((any(grep("Weezing", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Weezing[|]Toxic Spikes", battlelog$log,-i))) == TRUE)){
+    tox1mat[15] <- TRUE}
+  if(((any(grep("Weezing", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Weezing[|]Toxic Spikes", battlelog$log,-i))) == FALSE)){
+    tox1mat[15] <- FALSE}
+  tox1mat
+}
 
 # sticky function on roster
 nu1stickrost <- function(battlelog) {
-  stickyicky <- c(rep(NA,4))
+  sticky1icky <- c(rep(NA,4))
   if((any(grep("Ariados", battlelog$p1team$species, -i))) == FALSE){
-    stickyicky[1] <- NA}
+    sticky1icky[1] <- NA}
   if(((any(grep("Ariados", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Ariados[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[1] <- TRUE}
+    sticky1icky[1] <- TRUE}
   if(((any(grep("Ariados", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Ariados[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[1] <- FALSE}
+    sticky1icky[1] <- FALSE}
   if((any(grep("Galvantula", battlelog$p1team$species, -i))) == FALSE){
-    stickyicky[2] <- NA}
+    sticky1icky[2] <- NA}
   if(((any(grep("Galvantula", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Galvantula[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[2] <- TRUE}
+    sticky1icky[2] <- TRUE}
   if(((any(grep("Galvantula", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Galvantula[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[2] <- FALSE}
+    sticky1icky[2] <- FALSE}
   if((any(grep("Kricketune", battlelog$p1team$species, -i))) == FALSE){
-    stickyicky[3] <- NA}
+    sticky1icky[3] <- NA}
   if(((any(grep("Kricketune", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a:Kricketune[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[3] <- TRUE}
+    sticky1icky[3] <- TRUE}
   if(((any(grep("Kricketune", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a:Kricketune[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[3] <- FALSE}
+    sticky1icky[3] <- FALSE}
   if((any(grep("Shuckle", battlelog$p1team$species, -i))) == FALSE){
-    stickyicky[4] <- NA}
+    sticky1icky[4] <- NA}
   if(((any(grep("Shuckle", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Shuckle[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[4] <- TRUE}
+    sticky1icky[4] <- TRUE}
   if(((any(grep("Shuckle", battlelog$p1team$species, -i))) == TRUE) & ((any(grep("p1a: Shuckle[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[4] <- FALSE}
-  stickyicky
+    sticky1icky[4] <- FALSE}
+  sticky1icky
 }
 
 nu2stickrost <- function(battlelog) {
-  stickyicky <- c(rep(NA,4))
+  sticky2icky <- c(rep(NA,4))
   if((any(grep("Ariados", battlelog$p2team$species, -i))) == FALSE){
-    stickyicky[1] <- NA}
+    sticky2icky[1] <- NA}
   if(((any(grep("Ariados", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Ariados[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[1] <- TRUE}
+    sticky2icky[1] <- TRUE}
   if(((any(grep("Ariados", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Ariados[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[1] <- FALSE}
+    sticky2icky[1] <- FALSE}
   if((any(grep("Galvantula", battlelog$p2team$species, -i))) == FALSE){
-    stickyicky[2] <- NA}
+    sticky2icky[2] <- NA}
   if(((any(grep("Galvantula", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Galvantula[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[2] <- TRUE}
+    sticky2icky[2] <- TRUE}
   if(((any(grep("Galvantula", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Galvantula[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[2] <- FALSE}
+    sticky2icky[2] <- FALSE}
   if((any(grep("Kricketune", battlelog$p2team$species, -i))) == FALSE){
-    stickyicky[3] <- NA}
+    sticky2icky[3] <- NA}
   if(((any(grep("Kricketune", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a:Kricketune[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[3] <- TRUE}
+    sticky2icky[3] <- TRUE}
   if(((any(grep("Kricketune", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a:Kricketune[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[3] <- FALSE}
+    sticky2icky[3] <- FALSE}
   if((any(grep("Shuckle", battlelog$p2team$species, -i))) == FALSE){
-    stickyicky[4] <- NA}
+    sticky2icky[4] <- NA}
   if(((any(grep("Shuckle", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Shuckle[|]Sticky Web", battlelog$log,-i))) == TRUE)){
-    stickyicky[4] <- TRUE}
+    sticky2icky[4] <- TRUE}
   if(((any(grep("Shuckle", battlelog$p2team$species, -i))) == TRUE) & ((any(grep("p2a: Shuckle[|]Sticky Web", battlelog$log,-i))) == FALSE)){
-    stickyicky[4] <- FALSE}
-  stickyicky
+    sticky2icky[4] <- FALSE}
+  sticky2icky
 }
 
 p1teamfunc <- function(battlelog) {
