@@ -1056,6 +1056,32 @@ p1teamrost <- function(battlelog) {
   p1roster
 }
 
+p2teamrost <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    teamfunc2 <- c(NA, NA, NA, NA, NA, NA)
+    p2roster <- nroster %in% toupper(teamfunc2)
+    return(p2roster)
+  }
+  if(length(battlelog$p1team$species) < 6) {
+    teamfunc2 <- c(NA, NA, NA, NA, NA, NA)
+    p2roster <- nroster %in% toupper(teamfunc2)
+    return(p2roster)
+  }
+  if(length(battlelog$p2team$species) < 6) {
+    teamfunc2 <- c(NA, NA, NA, NA, NA, NA)
+    p2roster <- nroster %in% toupper(teamfunc2)
+    return(p2roster)
+  }
+  else {
+    p2roster <- nroster %in% toupper(battlelog$p2team$species)
+  p2roster}
+}
+
+# simple
+# p2teamrost <- function(battlelog) {p2roster <- nroster %in% toupper(battlelog$p2team$species)
+#  p2roster
+#}
+
 p1eviolite <- matrix(nrow=1, ncol=42)
 
 # works for 1 Pokémon, need 42; 84 total for p1 and p2 
@@ -1167,7 +1193,8 @@ p2teamrost <- function(battlelog) {
 }
 
 # rank functions
-p1rank <- function(battlelog) {
+# ou
+oup1rank <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     p1match <- NA
   }
@@ -1177,7 +1204,7 @@ p1rank <- function(battlelog) {
   p1match
 }
 
-p2rank <- function(battlelog) {
+oup2rank <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     p2match <- NA
   }
@@ -1187,6 +1214,26 @@ p2rank <- function(battlelog) {
   p2match
 }
 
+#random
+randp1rank <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p1match <- NA
+  }
+  else {
+    p1match <- (as.numeric(pages[[i]]$p1rating$lacre)) 
+  }
+  p1match
+}
+
+randp2rank <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p2match <- NA
+  }
+  else {
+    p2match <- (as.numeric(pages[[i]]$p2rating$lacre)) 
+  }
+  p2match
+}
 # switch counter
 swcounter1 <- function(battlelog) {
   if(battlelog$turns == 0) {
@@ -1266,12 +1313,12 @@ grab_nfe(pages[[1]])
 
 
 # simple grab
-# need battle length, 
-simp1grab <- function(battlelog) {
+# ou
+ousimp1grab <- function(battlelog) {
   data.frame(
      p1outcome=p1func(battlelog),
      player1=1,
-     p1rank=p1rank(battlelog),
+     oup1rank=p1rank(battlelog),
      length=turn_lengths(battlelog),
      p1switches=swcounter1(battlelog),
      p1stealthrockcount=strock1countr(battlelog),
@@ -1286,16 +1333,31 @@ simp1grab <- function(battlelog) {
   )
 }
 
-sm1data <- matrix(nrow=n, ncol=14)
-for(i in 1:length(pages)) { for(j in 1:14) {sm1data[i,j] <- simp1grab(pages[[i]])[,j] }}
-battleid <- (1:length(pages))
-smrdata1 <- cbind.data.frame(battleid,sm1data)
+randrost1 <- function(battlelog) {
+  data.frame(roster=p1teamrost(battlelog))
+}
+rosterselect1 <- matrix(nrow=415, ncol= length(pages))
+for(i in 1:length(pages)) {for(j in 1:415) {rosterselect1[j,i] <- randrost1(pages[[i]])[j,] }}
+trosterselect1 <- t(rosterselect1)
 
-simp2grab <- function(battlelog) {
+megarost1 <- function(battlelog) {
+  data.frame(megaroster=p1mega(battlelog))
+}
+megaselect1 <- matrix(nrow=39, ncol= length(pages))
+for( i in 1:length(pages)) {for(j in 1:39) {megaselect1[j,i] <- megarost1(pages[[i]])[j,] }}
+tmegaselect1 <- t(megaselect1)
+
+ousm1data <- matrix(nrow=n, ncol=14)
+for(i in 1:length(pages)) { for(j in 1:14) {ousm1data[i,j] <- ousimp1grab(pages[[i]])[,j] }}
+battleid <- (1:length(pages))
+ousmrdata1 <- cbind.data.frame(battleid,ousm1data, trosterselect1, tmegaselect1) 
+
+
+ousimp2grab <- function(battlelog) {
   data.frame(
     p2outcome=p2func(battlelog),
     player2=2,
-    p2rank=p2rank(battlelog),
+    oup2rank=p2rank(battlelog),
     length=turn_lengths(battlelog),
     p2switches=swcounter2(battlelog),
     p2stealthrockcount=strock2countr(battlelog),
@@ -1310,14 +1372,84 @@ simp2grab <- function(battlelog) {
   )
 }
 
-sm2data <- matrix(nrow=n, ncol=14)
-for(i in 1:length(pages)) { for(j in 1:14) {sm2data[i,j] <- simp2grab(pages[[i]])[,j] }}
-smrdata2 <- cbind.data.frame(battleid,sm2data)
+randrost2 <- function(battlelog) {
+  data.frame(roster=p2teamrost(battlelog))
+}
+rosterselect2 <- matrix(nrow=415, ncol= length(pages))
+for(i in 1:length(pages)) {for(j in 1:415) {rosterselect2[j,i] <- randrost2(pages[[i]])[j,] }}
+trosterselect2 <- t(rosterselect2)
 
-smdata <- rbind(smrdata1, smrdata2)
+megarost2 <- function(battlelog) {
+  data.frame(megaroster=p2mega(battlelog))
+}
+megaselect2 <- matrix(nrow=39, ncol= length(pages))
+for(i in 1:length(pages)) {for(j in 1:39) {megaselect2[j,i] <- megarost2(pages[[i]])[j,] }}
+tmegaselect2 <- t(megaselect2)
 
+ousm2data <- matrix(nrow=n, ncol=14)
+for(i in 1:length(pages)) { for(j in 1:14) {ousm2data[i,j] <- ousimp2grab(pages[[i]])[,j] }}
+battleid <- (1:length(pages))
+ousmrdata2 <- cbind.data.frame(battleid,ousm2data, trosterselect2, tmegaselect2)
 
+ousmdata <- rbind(ousmrdata1, ousmrdata2)
 
+# randbats
+randsimp1grab <- function(battlelog) {
+  data.frame(
+    p1outcome=p1func(battlelog),
+    player1=1,
+    randp1rank=p1rank(battlelog),
+    length=turn_lengths(battlelog),
+    p1switches=swcounter1(battlelog),
+    p1stealthrockcount=strock1countr(battlelog),
+    p1spikescount=spikecountr1(battlelog),
+    p1toxspikecount=toxspikecountr1(battlelog),
+    p1stickywebcount=sticky1count(battlelog),
+    p1defogcount=defog1countr(battlelog),
+    p1rapidspincount=rapidsp1countr(battlelog),
+    p1dragontailcount=dt1countr(battlelog),
+    p1roarcount=roar1countr(battlelog),
+    p1whilrwindcount=whirl1countr(battlelog),
+    roster=p1teamrost(battlelog),
+    megapoke= p1mega(battlelog)
+  )
+}
+
+randsm1data <- matrix(nrow=n, ncol=327)
+for(i in 1:length(pages)) { for(j in 1:327) {randsm1data[i,j] <- randsimp1grab(pages[[i]])[,j] }}
+battleid <- (1:length(pages))
+randsmrdata1 <- cbind.data.frame(battleid,randsm1data)
+
+randsimp2grab <- function(battlelog) {
+  data.frame(
+    p2outcome=p2func(battlelog),
+    player2=2,
+    randp2rank=p2rank(battlelog),
+    length=turn_lengths(battlelog),
+    p2switches=swcounter2(battlelog),
+    p2stealthrockcount=strock2countr(battlelog),
+    p2spikescount=spikecountr2(battlelog),
+    p2toxspikecount=toxspikecountr2(battlelog),
+    p2stickywebcount=sticky2count(battlelog),
+    p2defogcount=defog2countr(battlelog),
+    p2rapidspincount=rapidsp2countr(battlelog),
+    p2dragontailcount=dt2countr(battlelog),
+    p2roarcount=roar2countr(battlelog),
+    p2whilrwindcount=whirl2countr(battlelog),
+    roster=p2teamrost(battlelog),
+    megapoke= p2mega(battlelog)
+  )
+}
+
+randsm2data <- matrix(nrow=n, ncol=327)
+for(i in 1:length(pages)) { for(j in 1:327) {randsm2data[i,j] <- randsimp2grab(pages[[i]])[,j] }}
+ousmrdata2 <- cbind.data.frame(battleid,ousm2data)
+
+randsmdata <- rbind(randsmrdata1, randsmrdata2)
+
+# not roster count=14 columns
+# w/ roster count=429
+# w/ roster(39) + mega count(415)= 468  
 
 
 grab_rost <- function(battlelog) {
