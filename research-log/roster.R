@@ -1288,6 +1288,8 @@ simp1grab <- function(battlelog) {
 
 sm1data <- matrix(nrow=n, ncol=14)
 for(i in 1:length(pages)) { for(j in 1:14) {sm1data[i,j] <- simp1grab(pages[[i]])[,j] }}
+battleid <- (1:length(pages))
+smrdata1 <- cbind.data.frame(battleid,sm1data)
 
 simp2grab <- function(battlelog) {
   data.frame(
@@ -1310,8 +1312,9 @@ simp2grab <- function(battlelog) {
 
 sm2data <- matrix(nrow=n, ncol=14)
 for(i in 1:length(pages)) { for(j in 1:14) {sm2data[i,j] <- simp2grab(pages[[i]])[,j] }}
+smrdata2 <- cbind.data.frame(battleid,sm2data)
 
-smdata <- rbind(sm1data, sm2data)
+smdata <- rbind(smrdata1, smrdata2)
 
 
 
