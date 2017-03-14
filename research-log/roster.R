@@ -708,7 +708,7 @@ spikecountr2 <- function(battlelog){
   else{
     spikecount2 <- 0 
   }
-  spikecount1
+  spikecount2
 }
 
 toxspikecountr1 <- function(battlelog){
@@ -1166,6 +1166,88 @@ p2teamrost <- function(battlelog) {
   p2roster
 }
 
+# rank functions
+p1rank <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p1match <- NA
+  }
+  else {
+    p1match <- (as.numeric(pages[[i]]$p1rating$oldelo)) 
+  }
+  p1match
+}
+
+p2rank <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p2match <- NA
+  }
+  else {
+    p2match <- (as.numeric(pages[[i]]$p2rating$oldelo)) 
+  }
+  p2match
+}
+
+# switch counter
+swcounter1 <- function(battlelog) {
+  if(battlelog$turns == 0) {
+    swcount1 <- NA 
+    return(swcount1)
+  }
+  if(battlelog$endType == "draw") {
+    swcount1 <- NA
+  }
+  else{
+    swcount1 <- (length(grep("switch[|]p1a", battlelog$log)))  
+  }
+  swcount1
+}
+
+swcounter2 <- function(battlelog) {
+  if(battlelog$turns == 0) {
+    swcount2 <- NA 
+    return(swcount2)
+  }
+  if(battlelog$endType == "draw") {
+    swcount2 <- NA
+  }
+  else{
+    swcount2 <- (length(grep("switch[|]p2a", battlelog$log)))  
+  }
+  swcount2
+}
+# win function
+p1func <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p1out <- NA
+  }
+  if((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) {
+    p1out <- 1
+  }
+  else {
+    p1out <- 0
+  }
+  p1out
+}
+
+p2func <- function(battlelog) {
+  if((battlelog$endType) == "draw") {
+    p2out <- NA
+  }
+  if((battlelog$p2rating$elo > battlelog$p2rating$oldelo) == TRUE) {
+    p2out <- 1
+  }
+  else {
+    p2out <- 0
+  }
+  p2out
+}
+
+turn_lengths <- function(battlelog){
+  turn_length <- battlelog$turns
+  turn_length
+}
+
+# grabs
 grab_mega <- function(battlelog) {
   data.frame(
     megapoke= rbind(p1mega(battlelog),p2mega(battlelog))
@@ -1181,6 +1263,59 @@ grab_nfe <- function(battlelog) {
   )
 }
 grab_nfe(pages[[1]])
+
+
+# simple grab
+# need battle length, 
+simp1grab <- function(battlelog) {
+  data.frame(
+     player1=1,
+     p1rank=p1rank(battlelog),
+     p1outcome=p1func(battlelog),
+     length=turn_lengths(battlelog),
+     p1switches=swcounter1(battlelog),
+     p1stealthrockcount=strock1countr(battlelog),
+     p1spikescount=spikecountr1(battlelog),
+     p1toxspikecount=toxspikecountr1(battlelog),
+     p1stickywebcount=sticky1count(battlelog),
+     p1defogcount=defog1countr(battlelog),
+     p1rapidspincount=rapidsp1countr(battlelog),
+     p1dragontailcount=dt1countr(battlelog),
+     p1roarcount=roar1countr(battlelog),
+     p1whilrwindcount=whirl1countr(battlelog)
+  )
+}
+
+sm1data <- matrix(nrow=n, ncol=14)
+for(i in 1:length(pages)) { for(j in 1:14) {sm1data[i,j] <- simp1grab(pages[[i]])[,j] }}
+
+simp2grab <- function(battlelog) {
+  data.frame(
+    player2=2,
+    p2rank=p2rank(battlelog),
+    p2outcome=p2func(battlelog),
+    length=turn_lengths(battlelog),
+    p2switches=swcounter2(battlelog),
+    p2stealthrockcount=strock2countr(battlelog),
+    p2spikescount=spikecountr2(battlelog),
+    p2toxspikecount=toxspikecountr2(battlelog),
+    p2stickywebcount=sticky2count(battlelog),
+    p2defogcount=defog2countr(battlelog),
+    p2rapidspincount=rapidsp2countr(battlelog),
+    p2dragontailcount=dt2countr(battlelog),
+    p2roarcount=roar2countr(battlelog),
+    p2whilrwindcount=whirl2countr(battlelog)
+  )
+}
+
+sm2data <- matrix(nrow=n, ncol=14)
+for(i in 1:length(pages)) { for(j in 1:14) {sm2data[i,j] <- simp2grab(pages[[i]])[,j] }}
+
+smdata <- rbind(sm1data, sm2data)
+
+
+
+
 
 grab_rost <- function(battlelog) {
   data.frame(
