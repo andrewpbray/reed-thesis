@@ -1266,9 +1266,11 @@ swcounter2 <- function(battlelog) {
 p1func <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     p1out <- NA
+    return(p1out)
   }
-  if((battlelog$p1rating$elo > battlelog$p1rating$oldelo) == TRUE) {
+  if((battlelog$p1rating$elo > battlelog$p1rating$oldelo)==TRUE)  {
     p1out <- 1
+    return(p1out)
   }
   else {
     p1out <- 0
@@ -1279,9 +1281,11 @@ p1func <- function(battlelog) {
 p2func <- function(battlelog) {
   if((battlelog$endType) == "draw") {
     p2out <- NA
+    return(p2out)
   }
   if((battlelog$p2rating$elo > battlelog$p2rating$oldelo) == TRUE) {
     p2out <- 1
+    return(p2out)
   }
   else {
     p2out <- 0
@@ -1316,20 +1320,20 @@ grab_nfe(pages[[1]])
 # ou
 ousimp1grab <- function(battlelog) {
   data.frame(
-     p1outcome=p1func(battlelog),
+     outcome=p1func(battlelog),
      player1=1,
-     oup1rank=p1rank(battlelog),
+     rank=p1rank(battlelog),
      length=turn_lengths(battlelog),
-     p1switches=swcounter1(battlelog),
-     p1stealthrockcount=strock1countr(battlelog),
-     p1spikescount=spikecountr1(battlelog),
-     p1toxspikecount=toxspikecountr1(battlelog),
-     p1stickywebcount=sticky1count(battlelog),
-     p1defogcount=defog1countr(battlelog),
-     p1rapidspincount=rapidsp1countr(battlelog),
-     p1dragontailcount=dt1countr(battlelog),
-     p1roarcount=roar1countr(battlelog),
-     p1whilrwindcount=whirl1countr(battlelog)
+     switches=swcounter1(battlelog),
+     stealthrockcount=strock1countr(battlelog),
+     spikescount=spikecountr1(battlelog),
+     toxspikecount=toxspikecountr1(battlelog),
+     stickywebcount=sticky1count(battlelog),
+     defogcount=defog1countr(battlelog),
+     rapidspincount=rapidsp1countr(battlelog),
+     dragontailcount=dt1countr(battlelog),
+     roarcount=roar1countr(battlelog),
+     whilrwindcount=whirl1countr(battlelog)
   )
 }
 
@@ -1355,20 +1359,20 @@ ousmrdata1 <- cbind.data.frame(battleid,ousm1data, trosterselect1, tmegaselect1)
 
 ousimp2grab <- function(battlelog) {
   data.frame(
-    p2outcome=p2func(battlelog),
+    outcome=p2func(battlelog),
     player2=2,
-    oup2rank=p2rank(battlelog),
+    rank=p2rank(battlelog),
     length=turn_lengths(battlelog),
-    p2switches=swcounter2(battlelog),
-    p2stealthrockcount=strock2countr(battlelog),
-    p2spikescount=spikecountr2(battlelog),
-    p2toxspikecount=toxspikecountr2(battlelog),
-    p2stickywebcount=sticky2count(battlelog),
-    p2defogcount=defog2countr(battlelog),
-    p2rapidspincount=rapidsp2countr(battlelog),
-    p2dragontailcount=dt2countr(battlelog),
-    p2roarcount=roar2countr(battlelog),
-    p2whilrwindcount=whirl2countr(battlelog)
+    switches=swcounter2(battlelog),
+    stealthrockcount=strock2countr(battlelog),
+    spikescount=spikecountr2(battlelog),
+    toxspikecount=toxspikecountr2(battlelog),
+    stickywebcount=sticky2count(battlelog),
+    defogcount=defog2countr(battlelog),
+    rapidspincount=rapidsp2countr(battlelog),
+    dragontailcount=dt2countr(battlelog),
+    roarcount=roar2countr(battlelog),
+    whilrwindcount=whirl2countr(battlelog)
   )
 }
 
