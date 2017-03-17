@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 ```{r include_packages_2, include = FALSE}
 # This chunk ensures that the thesisdown package is
 # installed and loaded. This thesisdown package includes
@@ -16,121 +19,2980 @@ if(!require(thesisdown)){
   devtools::install_github("ismayc/thesisdown")
   }
 library(thesisdown)
-flights <- read.csv("data/flights.csv")
+load("data/d1.Rda")
 ```
 
 
-# Tables, Graphics, References, and Labels {#ref-labels}
-
-## Tables
-
-In addition to the tables that can be automatically generated from a data frame in **R** that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using _pandoc_. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in **R**, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns.
-
-----------------------------------------------------------------------------------
-  Factors                    Correlation between Parents & Child      Inherited
-------------------------- ----------------------------------------- --------------
-  Education                                -0.49                         Yes
-  
-  Socio-Economic Status                     0.28                        Slight   
-  
-  Income                                    0.08                          No
-  
-  Family Size                               0.18                        Slight
-  
-  Occupational Prestige                     0.21                        Slight
-------------------------- ----------------------------------------- --------------
-Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child 
-
-We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `\label{tab:inher}` option to the end of the table caption allows us to then a make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.  
-
-<!-- We will next explore ways to create this label-ref link using figures. -->
-
-\clearpage
-
-<!-- clearpage ends the page, and also dumps out all floats.
-  Floats are things like tables and figures. -->
-
-
-## Figures
-
-If your thesis has a lot of figures, _R Markdown_ might behave better for you than that other word processor.  One perk is that it will automatically number the figures accordingly in each chapter.    You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier.  If you label your figures, you can move the figures around and _R Markdown_ will automatically adjust the numbering for you.  No need for you to remember!  So that you don't have to get too far into LaTeX to do this, a couple **R** functions have been created for you to assist.  You'll see their use below.
-
-<!--
-One thing that may be annoying is the way _R Markdown_ handles "floats" like tables and figures (it's really \LaTeX's fault). \LaTeX\ will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies. There are some optional arguments specified in the options parameter of the `label` function.  If you need to shift your figure around, it might be good to look here on tweaking the options argument:  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions>
-
-If you need a graphic or tabular material to be part of the text, you can just put it inline. If you need it to appear in the list of figures or tables, it should be placed in a code chunk.
--->
-
-
-In the **R** chunk below, we will load in a picture stored as `reed.jpg` in our main directory.  We then give it the caption of "Reed logo", the label of "reedlogo", and specify that this is a figure.  Make note of the different **R** chunk options that are given in the R Markdown file (not shown in the knitted document).
-
-```{r reedlogo, fig.cap="Reed logo"}
-include_graphics(path = "figure/reed.jpg")
+```{r codes, include=FALSE}
+outcome <- d1[,2]
+player <- d1[,3]
+rank <- d1[,4]
+battle_length <- d1[,5]
+switches <- d1[,6]
+stealthrockcount <- d1[,7]
+spikescount <- d1[,8]
+toxspikecount <- d1[,9]
+stickywebcount <- d1[,10]
+defogcount <- d1[,11]
+rapidspincount <- d1[,12]
+dragontailcount <- d1[,13]
+roarcount <- d1[,14]
+whirlwindcount  <- d1[,15]
+sp2 <- spikescount^2 
+toxsp2 <- toxspikecount^2
+whirl2 <- whirlwindcount^2
+dt2 <- whirlwindcount^2
+roar2  <-whirlwindcount^2
+fog2 <- defogcount^2
+rapid2 <- rapidspincount^2
+Abomasnow <- d1[,16]
+Absol<- d1[,17]
+Accelgor<- d1[,18]
+Aerodactyl<- d1[,19]
+Aggron<- d1[,20]
+Alakazam<- d1[,21]
+Alomomola<- d1[,22]
+Altaria<- d1[,23]
+Ambipom<- d1[,24]
+Amoonguss<- d1[,25]
+Ampharos<- d1[,26]
+Arbok<- d1[,27]
+Arcanine<- d1[,28]
+Archeops<- d1[,29]
+Ariados<- d1[,30]
+Armaldo<- d1[,31]
+Aromatisse<- d1[,32]
+Articuno<- d1[,33]
+Audino<- d1[,34]
+Aurorus<- d1[,35]
+Avalugg<- d1[,36]
+Azelf<- d1[,37]
+Azumarill<- d1[,38]
+Banette<- d1[,39]
+Barbaracle<- d1[,40]
+Basculin<- d1[,41]
+Bastiodon<- d1[,42]
+Beartic<- d1[,43]
+Beautifly<- d1[,44]
+Beedrill<- d1[,45]
+Beheeyem<- d1[,46]
+Bellossom<- d1[,47]
+Bibarel<- d1[,48]
+Bisharp<- d1[,49]
+Blastoise<- d1[,50]
+Blissey<- d1[,51]
+Bouffalant<- d1[,52]
+Braviary<- d1[,53]
+Breloom<- d1[,54]
+Bronzong<- d1[,55]
+Butterfree<- d1[,56]
+Cacturne<- d1[,57]
+Camerupt<- d1[,58]
+Carbink<- d1[,59]
+Carnivine<- d1[,60]
+Carracosta<- d1[,61]
+Castform<- d1[,62]
+Celebi<- d1[,63]
+Chandelure<- d1[,64]
+Chansey<- d1[,65]  
+Charizard<- d1[,66]  
+Chatot<- d1[,67]  
+Cherrim<- d1[,68]  
+Chesnaught<- d1[,69]  
+Chimecho<- d1[,70]  
+Cinccino<- d1[,71]  
+Clawitzer<- d1[,72]  
+Claydol<- d1[,73]  
+Clefable<- d1[,74]  
+Clefairy<- d1[,75]  
+Cloyster<- d1[,76]  
+Cobalion<- d1[,77]  
+Cofagrigus<- d1[,78]  
+Combusken<- d1[,79]  
+Conkeldurr<- d1[,80]  
+Corsola<- d1[,81]  
+Cradily<- d1[,82]  
+Crawdaunt<- d1[,83]  
+Cresselia<- d1[,84]  
+Crobat<- d1[,85]  
+Crustle<- d1[,86]  
+Cryogonal<- d1[,87]  
+Darmanitan<- d1[,88]  
+Dedenne<- d1[,89]  
+Delcatty<- d1[,90]  
+Delibird<- d1[,91]  
+Delphox<- d1[,92]  
+Dewgong<- d1[,93]  
+Diancie<- d1[,94]  
+Diggersby<- d1[,95]  
+Ditto<- d1[,96]  
+Dodrio<- d1[,97]  
+Donphan<- d1[,98]  
+Doublade<- d1[,99]  
+Dragalge<- d1[,100]  
+Dragonair<- d1[,101]  
+Dragonite<- d1[,102]  
+Drapion<- d1[,103]  
+Drifblim<- d1[,104]  
+Druddigon<- d1[,105]  
+Dugtrio<- d1[,106]  
+Dunsparce<- d1[,107]  
+Duosion<- d1[,108]  
+Durant<- d1[,109]  
+Dusclops<- d1[,110]  
+Dusknoir<- d1[,111]  
+Dustox<- d1[,112]  
+Eelektross<- d1[,113]  
+Electivire<- d1[,114]  
+Electrode<- d1[,115]  
+Emboar<- d1[,116]  
+Emolga<- d1[,117]  
+Empoleon<- d1[,118]  
+Entei<- d1[,119]  
+Escavalier<- d1[,120]  
+Espeon<- d1[,121]  
+Excadrill<- d1[,122]  
+Exeggutor<- d1[,123]  
+Exploud<- d1[,124]  
+Farfetchd<- d1[,125]  
+Fearow<- d1[,126]  
+Feraligatr<- d1[,127]  
+Ferroseed<- d1[,128]  
+Ferrothorn<- d1[,129]  
+Flareon<- d1[,130]  
+Fletchinder<- d1[,131]  
+Floatzel<- d1[,132]  
+Florges<- d1[,133]  
+Flygon<- d1[,134]  
+Forretress<- d1[,135]  
+Fraxure<- d1[,136]  
+Froslass<- d1[,137]  
+Furfrou<- d1[,138]  
+Furret<- d1[,139]  
+Gabite<- d1[,140]  
+Gallade<- d1[,141]  
+Galvantula<- d1[,142]  
+Garbodor<- d1[,143]  
+Garchomp<- d1[,144]  
+Gardevoir<- d1[,145]  
+Gastrodon<- d1[,146]  
+Gengar<- d1[,147]  
+Gigalith<- d1[,148]  
+Girafarig<- d1[,149]  
+Glaceon<- d1[,150]  
+Glalie<- d1[,151]  
+Gligar<- d1[,152]  
+Gliscor<- d1[,153]  
+Gogoat<- d1[,154]  
+Golbat<- d1[,155]  
+Golduck<- d1[,156]  
+Golem<- d1[,157]  
+Golurk<- d1[,158]  
+Goodra<- d1[,159]  
+Gorebyss<- d1[,160]  
+Gothitelle<- d1[,161]  
+Gourgeist<- d1[,162]  
+Granbull<- d1[,163]  
+Grumpig<- d1[,164]  
+Gurdurr<- d1[,165]  
+Gyarados<- d1[,166]  
+Hariyama<- d1[,167]  
+Haunter<- d1[,168]  
+Hawlucha<- d1[,169]  
+Haxorus<- d1[,170]  
+Heatmor<- d1[,171]  
+Heatran<- d1[,172]  
+Heliolisk<- d1[,173]  
+Heracross<- d1[,174]  
+Hippowdon<- d1[,175]  
+Hitmonchan<- d1[,176]  
+Hitmonlee<- d1[,177]  
+Hitmontop<- d1[,178]  
+Honchkrow<- d1[,179]  
+Hoopa<- d1[,180]  
+HoopaU<- d1[,181]  
+Houndoom<- d1[,182]  
+Huntail<- d1[,183]  
+Hydreigon<- d1[,184]  
+Hypno<- d1[,185]  
+Illumise<- d1[,186]  
+Infernape<- d1[,187]  
+Jellicent<- d1[,188]  
+Jirachi<- d1[,189]  
+Jolteon<- d1[,190]  
+Jumpluff<- d1[,191]  
+Jynx<- d1[,192]  
+Kabutops<- d1[,193]  
+Kadabra<- d1[,194]  
+Kangaskhan<- d1[,195]  
+Kecleon<- d1[,196]  
+Keldeo<- d1[,197]  
+Kingdra<- d1[,198]  
+Kingler<- d1[,199]  
+Klang<- d1[,200]  
+Klefki<- d1[,201]  
+Klinklang<- d1[,202]  
+Kricketune<- d1[,203]  
+Krokorok<- d1[,204]  
+Krookodile<- d1[,205]  
+Kyurem<- d1[,206]  
+KyuremB<- d1[,207]  
+LandorusT<- d1[,208]  
+Lanturn<- d1[,209]  
+Lapras<- d1[,210]  
+Latias<- d1[,211]  
+Latios<- d1[,212]  
+Leafeon<- d1[,213]  
+Leavanny<- d1[,214]  
+Ledian<- d1[,215]  
+Lickilicky<- d1[,216]  
+Liepard<- d1[,217]  
+Lilligant<- d1[,218]  
+Linoone<- d1[,219]  
+Lopunny<- d1[,220]  
+Lucario<- d1[,221]  
+Ludicolo<- d1[,222]  
+Lumineon<- d1[,223]  
+Lunatone<- d1[,224]  
+Luvdisc<- d1[,225]  
+Luxray<- d1[,226]  
+Machamp<- d1[,227]  
+Machoke<- d1[,228]  
+Magcargo<- d1[,229]  
+Magmortar<- d1[,230]  
+Magneton<- d1[,231]  
+Magnezone<- d1[,232]  
+Malamar<- d1[,233]  
+Mamoswine<- d1[,234]  
+Manaphy<- d1[,235]  
+Mandibuzz<- d1[,236]  
+Manectric<- d1[,237]  
+Mantine<- d1[,238]  
+Maractus<- d1[,239]  
+Marowak<- d1[,240]  
+Masquerain<- d1[,241]  
+Mawile<- d1[,242]  
+Medicham<- d1[,243]  
+Meganium<- d1[,244]  
+Meloetta<- d1[,245]  
+Meowstic<- d1[,246]  
+Mesprit<- d1[,247]  
+Metagross<- d1[,248]  
+Metang<- d1[,249]  
+Mew<- d1[,250]  
+Mienshao<- d1[,251]  
+Mightyena<- d1[,252]  
+Milotic<- d1[,253]  
+Miltank<- d1[,254]  
+Minun<- d1[,255]  
+Misdreavus<- d1[,256]  
+Mismagius<- d1[,257]  
+Moltres<- d1[,258]  
+Monferno<- d1[,259]  
+Mothim<- d1[,260]  
+MrMime<- d1[,261]  
+Muk<- d1[,262]  
+Murkrow<- d1[,263]  
+Musharna<- d1[,264]  
+Nidoking<- d1[,265]  
+Nidoqueen<- d1[,266]  
+Ninetales<- d1[,267]  
+Ninjask<- d1[,268]  
+Noctowl<- d1[,269]  
+Noivern<- d1[,270]  
+Octillery<- d1[,271]  
+Omastar<- d1[,272]  
+Pachirisu<- d1[,273]  
+Pangoro<- d1[,274]  
+Parasect<- d1[,275]  
+Pawniard<- d1[,276]  
+Pelipper<- d1[,277]  
+Persian<- d1[,278]  
+Phione<- d1[,279]  
+Pidgeot<- d1[,280]  
+Piloswine<- d1[,281]  
+Pinsir<- d1[,282]  
+Plusle<- d1[,283]  
+Politoed<- d1[,284]  
+Poliwrath<- d1[,285]  
+PorygonZ<- d1[,286]  
+Porygon2<- d1[,287]  
+Primeape<- d1[,288]  
+Prinplup<- d1[,289]  
+Probopass<- d1[,290]  
+Purugly<- d1[,291]  
+Pyroar<- d1[,292]  
+Quagsire<- d1[,293]  
+Quilladin<- d1[,294]  
+Qwilfish<- d1[,295]  
+Raichu<- d1[,296]  
+Raikou<- d1[,297]  
+Rampardos<- d1[,298]  
+Rapidash<- d1[,299]  
+Raticate<- d1[,300]  
+Regice<- d1[,301]  
+Regigigas<- d1[,302]  
+Regirock<- d1[,303]  
+Registeel<- d1[,304]  
+Relicanth<- d1[,305]  
+Reuniclus<- d1[,306]  
+Rhydon<- d1[,307]  
+Rhyperior<- d1[,308]  
+Roselia<- d1[,309]  
+Roserade<- d1[,310]  
+Rotom<- d1[,311]  
+RotomC<- d1[,312]  
+RotomF<- d1[,313]  
+RotomH<- d1[,314]  
+RotomS<- d1[,315]  
+RotomW<- d1[,316]  
+Sableye<- d1[,317]  
+Salamence<- d1[,318]  
+Samurott<- d1[,319]  
+Sandslash<- d1[,320]  
+Sawk<- d1[,321]  
+Sawsbuck<- d1[,322]  
+Sceptile<- d1[,323]  
+Scizor<- d1[,324]  
+Scolipede<- d1[,325]  
+Scrafty<- d1[,326]  
+Scyther<- d1[,327]  
+Seaking<- d1[,328]  
+Seismitoad<- d1[,329]  
+Serperior<- d1[,330]  
+Servine<- d1[,331]  
+Seviper<- d1[,332]  
+Sharpedo<- d1[,333]  
+Shaymin<- d1[,334]  
+Shedinja<- d1[,335]  
+Shiftry<- d1[,336]  
+Shuckle<- d1[,337]  
+Sigilyph<- d1[,338]  
+Simipour<- d1[,339]  
+Simisage<- d1[,340]  
+Simisear<- d1[,341]  
+Skarmory<- d1[,342]  
+Skuntank<- d1[,343]  
+Slaking<- d1[,344]  
+Slowbro<- d1[,345]  
+Slowking<- d1[,346]  
+Slurpuff<- d1[,347]  
+Smeargle<- d1[,348]  
+Sneasel<- d1[,349]  
+Snorlax<- d1[,350]  
+Solrock<- d1[,351]  
+Spinda<- d1[,352]  
+Spiritomb<- d1[,353]  
+Stantler<- d1[,354]  
+Staraptor<- d1[,355]  
+Starmie<- d1[,356]  
+Steelix<- d1[,357]  
+Stoutland<- d1[,358]  
+Stunfisk<- d1[,359]  
+Sudowoodo<- d1[,360]  
+Suicune<- d1[,361]  
+Sunflora<- d1[,362]  
+Swalot<- d1[,363]  
+Swampert<- d1[,364]  
+Swanna<- d1[,365]  
+Swellow<- d1[,366]  
+Swoobat<- d1[,367]  
+Sylveon<- d1[,368]  
+Talonflame<- d1[,369]  
+Tangela<- d1[,370]  
+Tangrowth<- d1[,371]  
+Tauros<- d1[,372]  
+Tentacruel<- d1[,373]  
+Terrakion<- d1[,374]  
+Throh<- d1[,375]  
+Thundurus<- d1[,376]  
+ThundurusT<- d1[,377]  
+Togekiss<- d1[,378]  
+Togetic<- d1[,379]  
+Torkoal<- d1[,380]  
+Tornadus<- d1[,381]  
+TornadusT<- d1[,382]  
+Torterra<- d1[,383]  
+Toxicroak<- d1[,384]  
+Trevenant<- d1[,385]  
+Tropius<- d1[,386]  
+Typhlosion<- d1[,387]  
+Tyranitar<- d1[,388]  
+Tyrantrum<- d1[,389]  
+Umbreon<- d1[,390]  
+Unfezant<- d1[,391]  
+Unown<- d1[,392]  
+Ursaring<- d1[,393]  
+Uxie<- d1[,394]  
+Vanilluxe<- d1[,395]  
+Vaporeon<- d1[,396]  
+Venomoth<- d1[,397]  
+Venusaur<- d1[,398]  
+Vespiquen<- d1[,399]  
+Vibrava<- d1[,400]  
+Victini<- d1[,401]  
+Victreebel<- d1[,402]  
+Vigoroth<- d1[,403]  
+Vileplume<- d1[,404]  
+Virizion<- d1[,405]  
+Vivillon<- d1[,406]  
+Volbeat<- d1[,407]  
+Volcarona<- d1[,408]  
+Vullaby<- d1[,409]  
+Wailord<- d1[,410]  
+Walrein<- d1[,411]  
+Wartortle<- d1[,412]  
+Watchog<- d1[,413]  
+Weavile<- d1[,414]  
+Weezing<- d1[,415]  
+Whimsicott<- d1[,416]  
+Whiscash<- d1[,417]  
+Wigglytuff<- d1[,418]  
+Wobbuffet<- d1[,419]  
+Wormadam<- d1[,420]  
+WormadamSandy<- d1[,421]  
+WormadamTrash<- d1[,422]  
+Xatu<- d1[,423]  
+Yanmega<- d1[,424]  
+Zangoose <- d1[,425]    
+Zapdos<- d1[,426]
+Zebstrika<- d1[,427]
+Zoroark<- d1[,428]
+Zweilous<- d1[,429]
+Zygarde<- d1[,430]
+Abomasite <- d1[,431]
+Absolite <- d1[,431]
+Aerodactylite <- d1[,432]
+Aggronite <- d1[,433]
+Alakazite <- d1[,434]
+Altarianite <- d1[,435]
+Ampharosite <- d1[,436]
+Audinite <- d1[,437]
+Banettite <- d1[,438]
+Beedrillite <- d1[,439]
+Blastoisinite <- d1[,441]
+Cameruptite <- d1[,442]
+Charizarditex <- d1[,443]
+Charizarditey <- d1[,444]
+Diancite <- d1[,445]
+Galladite <- d1[,446] 
+Garchompite <- d1[,447]
+Gardevoirite <- d1[,448]
+Glalitite <- d1[,449]
+Gyaradosite <- d1[,450]
+Heracronite <- d1[,451]
+Houndoominite <- d1[,452]
+Latiasite <- d1[,453]
+Latiosite <- d1[,454]
+Lopunnite <- d1[,455]
+Manectite <- d1[,456]
+Medichamite <- d1[,457]
+Metagrossite <- d1[,458]
+Pidgeotite <- d1[,459]
+Pinsirite <- d1[,460]
+Sablenite <- d1[,461]
+Sceptilite <- d1[,462]
+Scizorite <- d1[,463]
+Sharpedonite <- d1[,464]
+Slowbronite <- d1[,465]
+Steelixite <- d1[,466]
+Swampertite <- d1[,467]
+Tyranitarite <- d1[,468]
+Venusaurite <- d1[,469]
+stAerodactyl         <- stealthrockcount*Aerodactyl
+  stAggron           <- stealthrockcount*Aggron
+  stArcheops          <- stealthrockcount*Archeops       
+  stArmaldo           <- stealthrockcount*Armaldo
+  stAurorus           <- stealthrockcount*Aurorus
+  stAzelf              <- stealthrockcount*Azelf     
+  stBarbaracle          <- stealthrockcount*Barbaracle          
+  stBastiodon            <- stealthrockcount*Bastiodon          
+  stBibarel               <- stealthrockcount*Bibarel      
+  stBisharp                <- stealthrockcount*Bisharp      
+  stBlissey                 <- stealthrockcount*Blissey      
+  stBronzong                 <- stealthrockcount*Bronzong   
+  stCamerupt                  <- stealthrockcount*Camerupt    
+  stCarbink                    <- stealthrockcount*Carbink        
+  stCarracosta               <- stealthrockcount*Carracosta
+  stCelebi                    <- stealthrockcount*Celebi  
+  stChansey                    <- stealthrockcount*Chansey       
+  stClaydol                     <- stealthrockcount*Claydol
+  stClefable                     <- stealthrockcount*Clefable 
+  stClefairy                      <- stealthrockcount*Clefairy     
+  stCobalion                 <- stealthrockcount*Cobalion
+  stCorsola                   <- stealthrockcount*Corsola  
+  stCradily                    <- stealthrockcount*Cradily        
+  stCrustle                   <- stealthrockcount*Crustle
+  stDiancie                <- stealthrockcount*Diancie  
+  stDonphan                 <- stealthrockcount*Donphan           
+  stDruddigon                <- stealthrockcount*Druddigon
+  stDugtrio                   <- stealthrockcount*Dugtrio   
+  stDunsparce                  <- stealthrockcount*Dunsparce        
+  stEmpoleon                   <- stealthrockcount*Empoleon
+  stExcadrill                   <- stealthrockcount*Excadrill   
+  stFerroseed                    <- stealthrockcount*Ferroseed      
+  stFerrothorn                <- stealthrockcount*Ferrothorn
+  stForretress                 <- stealthrockcount*Forretress    
+  stGabite                      <- stealthrockcount*Gabite      
+  stGarchomp                  <- stealthrockcount*Garchomp
+  stGigalith                   <- stealthrockcount*Gigalith   
+  stGligar                      <- stealthrockcount*Gligar       
+  stGliscor                   <- stealthrockcount*Gliscor
+  stGolem                      <- stealthrockcount*Golem 
+  stGolurk                      <- stealthrockcount*Golurk       
+  stHeatran                    <- stealthrockcount*Heatran
+  stHippowdon                   <- stealthrockcount*Hippowdon   
+  stInfernape                    <- stealthrockcount*Infernape  
+  stJirachi                   <- stealthrockcount*Jirachi
+  stKabutops                   <- stealthrockcount*Kabutops   
+  stKecleon                     <- stealthrockcount*Kecleon       
+  stKrokorok                  <- stealthrockcount*Krokorok
+  stKrookodile                 <- stealthrockcount*Krookodile    
+  stLunatone                    <- stealthrockcount*Lunatone   
+  stMagcargo                <- stealthrockcount*Magcargo
+  stMamoswine                <- stealthrockcount*Mamoswine     
+  stMarowak                   <- stealthrockcount*Marowak         
+  stMawile                    <- stealthrockcount*Mawile
+  stMesprit                    <- stealthrockcount*Mesprit 
+  stMetagross                   <- stealthrockcount*Metagross   
+  stMetang                <- stealthrockcount*Metang
+  stMew                    <- stealthrockcount*Mew   
+  stMiltank                 <- stealthrockcount*Miltank          
+  stMonferno             <- stealthrockcount*Monferno
+  stNidoking              <- stealthrockcount*Nidoking         
+  stNidoqueen              <- stealthrockcount*Nidoqueen    
+  stOmastar                 <- stealthrockcount*Omastar   
+  stPawniard                 <- stealthrockcount*Pawniard      
+  stPiloswine                 <- stealthrockcount*Piloswine     
+  stPinsir                     <- stealthrockcount*Pinsir 
+  stPrinplup                    <- stealthrockcount*Prinplup   
+  stProbopass                    <- stealthrockcount*Probopass  
+  stRampardos                 <- stealthrockcount*Rampardos
+  stRegirock                   <- stealthrockcount*Regirock    
+  stRegisteel                   <- stealthrockcount*Registeel   
+  stRelicanth                  <- stealthrockcount*Relicanth
+  stRhydon                      <- stealthrockcount*Rhydon 
+  stRhyperior                    <- stealthrockcount*Rhyperior  
+  stSandslash                   <- stealthrockcount*Sandslash
+  stSeismitoad                    <- stealthrockcount*Seismitoad 
+  stShuckle                        <- stealthrockcount*Shuckle   
+  stSkarmory                 <- stealthrockcount*Skarmory
+  stSolrock                   <- stealthrockcount*Solrock    
+  stSteelix                    <- stealthrockcount*Steelix       
+  stStunfisk                    <- stealthrockcount*Stunfisk 
+  stSudowoodo                    <- stealthrockcount*Sudowoodo  
+  stSwampert                      <- stealthrockcount*Swampert     
+  stTerrakion                <- stealthrockcount*Terrakion
+  stTorkoal                   <- stealthrockcount*Torkoal    
+  stTorterra                   <- stealthrockcount*Torterra        
+  stTyranitar                <- stealthrockcount*Tyranitar
+  stTyrantrum                 <- stealthrockcount*Tyrantrum     
+  stUxie                       <- stealthrockcount*Uxie        
+  stWigglytuff               <- stealthrockcount*Wigglytuff
+  stWormadamSandy            <- stealthrockcount*WormadamSandy         
+  stWormadamTrash             <- stealthrockcount*WormadamTrash         
+  stWormadam     <- stealthrockcount*Wormadam
+options(max.print=1000000)
+probit1 <- glm(outcome ~ stealthrockcount + spikescount + toxspikecount + stickywebcount + defogcount + rapidspincount + dragontailcount + roarcount + whirlwindcount, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),])
+probit2 <- glm(outcome ~ stealthrockcount + spikescount +sp2 + toxspikecount + toxsp2+ stickywebcount + defogcount + fog2+ rapidspincount + rapid2+ dragontailcount +dt2 + roarcount + roar2+whirlwindcount + whirl2, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),])
+probit3 <- glm(outcome ~ 
+Abomasnow+  
+Absol+ 
+Accelgor+ 
+Aerodactyl+ 
+Aggron+ 
+Alakazam+ 
+Alomomola+ 
+Altaria+ 
+Ambipom+ 
+Amoonguss+ 
+Ampharos+ 
+Arbok+ 
+Arcanine+ 
+Archeops+ 
+Ariados+ 
+Armaldo+ 
+Aromatisse+ 
+Articuno+ 
+Audino+ 
+Aurorus+ 
+Avalugg+ 
+Azelf+ 
+Azumarill+ 
+Banette+ 
+Barbaracle+ 
+Basculin+ 
+Bastiodon+ 
+Beartic+ 
+Beautifly+ 
+Beedrill+ 
+Beheeyem+ 
+Bellossom+ 
+Bibarel+ 
+Bisharp+ 
+Blastoise+ 
+Blissey+ 
+Bouffalant+ 
+Braviary+ 
+Breloom+ 
+Bronzong+ 
+Butterfree+ 
+Cacturne+ 
+Camerupt+ 
+Carbink+ 
+Carnivine+ 
+Carracosta+ 
+Castform+ 
+Celebi+ 
+Chandelure+ 
+Chansey +  
+Charizard +  
+Chatot +  
+Cherrim +  
+Chesnaught +  
+Chimecho +  
+Cinccino +  
+Clawitzer +  
+Claydol +  
+Clefable +  
+Clefairy +  
+Cloyster +  
+Cobalion +  
+Cofagrigus +  
+Combusken +  
+Conkeldurr +  
+Corsola +  
+Cradily +  
+Crawdaunt +  
+Cresselia +  
+Crobat +  
+Crustle +  
+Cryogonal +  
+Darmanitan +  
+Dedenne +  
+Delcatty +  
+Delibird +  
+Delphox +  
+Dewgong +  
+Diancie +  
+Diggersby +  
+Ditto +  
+Dodrio +  
+Donphan +  
+Doublade +  
+Dragalge +  
+Dragonair +  
+Dragonite +  
+Drapion +  
+Drifblim +  
+Druddigon +  
+Dugtrio +  
+Dunsparce +  
+Duosion +  
+Durant +  
+Dusclops +  
+Dusknoir +  
+Dustox +  
+Eelektross +  
+Electivire +  
+Electrode +  
+Emboar +  
+Emolga +  
+Empoleon +  
+Entei +  
+Escavalier +  
+Espeon +  
+Excadrill +  
+Exeggutor +  
+Exploud +  
+Farfetchd +  
+Fearow +  
+Feraligatr +  
+Ferroseed +  
+Ferrothorn +  
+Flareon +  
+Fletchinder +  
+Floatzel +  
+Florges +  
+Flygon +  
+Forretress +  
+Fraxure +  
+Froslass +  
+Furfrou +  
+Furret +  
+Gabite +  
+Gallade +  
+Galvantula +  
+Garbodor +  
+Garchomp +  
+Gardevoir +  
+Gastrodon +  
+Gengar +  
+Gigalith +  
+Girafarig +  
+Glaceon +  
+Glalie +  
+Gligar +  
+Gliscor +  
+Gogoat +  
+Golbat +  
+Golduck +  
+Golem +  
+Golurk +  
+Goodra +  
+Gorebyss +  
+Gothitelle +  
+Gourgeist +  
+Granbull +  
+Grumpig +  
+Gurdurr +  
+Gyarados +  
+Hariyama +  
+Haunter +  
+Hawlucha +  
+Haxorus +  
+Heatmor +  
+Heatran +  
+Heliolisk +  
+Heracross +  
+Hippowdon +  
+Hitmonchan +  
+Hitmonlee +  
+Hitmontop +  
+Honchkrow +  
+Hoopa +  
+HoopaU +  
+Houndoom +  
+Huntail +  
+Hydreigon +  
+Hypno +  
+Illumise +  
+Infernape +  
+Jellicent +  
+Jirachi +  
+Jolteon +  
+Jumpluff +  
+Jynx +  
+Kabutops +  
+Kadabra +  
+Kangaskhan +  
+Kecleon +  
+Keldeo +  
+Kingdra +  
+Kingler +  
+Klang +  
+Klefki +  
+Klinklang +  
+Kricketune +  
+Krokorok +  
+Krookodile +  
+Kyurem +  
+KyuremB +  
+LandorusT +  
+Lanturn +  
+Lapras +  
+Latias +  
+Latios +  
+Leafeon +  
+Leavanny +  
+Ledian +  
+Lickilicky +  
+Liepard +  
+Lilligant +  
+Linoone +  
+Lopunny +  
+Lucario +  
+Ludicolo +  
+Lumineon +  
+Lunatone +  
+Luvdisc +  
+Luxray +  
+Machamp +  
+Machoke +  
+Magcargo +  
+Magmortar +  
+Magneton +  
+Magnezone +  
+Malamar +  
+Mamoswine +  
+Manaphy +  
+Mandibuzz +  
+Manectric +  
+Mantine +  
+Maractus +  
+Marowak +  
+Masquerain +  
+Mawile +  
+Medicham +  
+Meganium +  
+Meloetta +  
+Meowstic +  
+Mesprit +  
+Metagross +  
+Metang +  
+Mew +  
+Mienshao +  
+Mightyena +  
+Milotic +  
+Miltank +  
+Minun +  
+Misdreavus +  
+Mismagius +  
+Moltres +  
+Monferno +  
+Mothim +  
+MrMime +  
+Muk +  
+Murkrow +  
+Musharna +  
+Nidoking +  
+Nidoqueen +  
+Ninetales +  
+Ninjask +  
+Noctowl +  
+Noivern +  
+Octillery +  
+Omastar +  
+Pachirisu +  
+Pangoro +  
+Parasect +  
+Pawniard +  
+Pelipper +  
+Persian +  
+Phione +  
+Pidgeot +  
+Piloswine +  
+Pinsir +  
+Plusle +  
+Politoed +  
+Poliwrath +  
+PorygonZ +  
+Porygon2 +  
+Primeape +  
+Prinplup +  
+Probopass +  
+Purugly +  
+Pyroar +  
+Quagsire +  
+Quilladin +  
+Qwilfish +  
+Raichu +  
+Raikou +  
+Rampardos +  
+Rapidash +  
+Raticate +  
+Regice +  
+Regigigas +  
+Regirock +  
+Registeel +  
+Relicanth +  
+Reuniclus +  
+Rhydon +  
+Rhyperior +  
+Roselia +  
+Roserade +  
+Rotom +  
+RotomC +  
+RotomF +  
+RotomH +  
+RotomS +  
+RotomW +  
+Sableye +  
+Salamence +  
+Samurott +  
+Sandslash +  
+Sawk +  
+Sawsbuck +  
+Sceptile +  
+Scizor +  
+Scolipede +  
+Scrafty +  
+Scyther +  
+Seaking +  
+Seismitoad +  
+Serperior +  
+Servine +  
+Seviper +  
+Sharpedo +  
+Shaymin +  
+Shedinja +  
+Shiftry +  
+Shuckle +  
+Sigilyph +  
+Simipour +  
+Simisage +  
+Simisear +  
+Skarmory +  
+Skuntank +  
+Slaking +  
+Slowbro +  
+Slowking +  
+Slurpuff +  
+Smeargle +  
+Sneasel +  
+Snorlax +  
+Solrock +  
+Spinda +  
+Spiritomb +  
+Stantler +  
+Staraptor +  
+Starmie +  
+Steelix +  
+Stoutland +  
+Stunfisk +  
+Sudowoodo +  
+Suicune +  
+Sunflora +  
+Swalot +  
+Swampert +  
+Swanna +  
+Swellow +  
+Swoobat +  
+Sylveon +  
+Talonflame +  
+Tangela +  
+Tangrowth +  
+Tauros +  
+Tentacruel +  
+Terrakion +  
+Throh +  
+Thundurus +  
+ThundurusT +  
+Togekiss +  
+Togetic +  
+Torkoal +  
+Tornadus +  
+TornadusT +  
+Torterra +  
+Toxicroak +  
+Trevenant +  
+Tropius +  
+Typhlosion +  
+Tyranitar +  
+Tyrantrum +  
+Umbreon +  
+Unfezant +  
+Unown +  
+Ursaring +  
+Uxie +  
+Vanilluxe +  
+Vaporeon +  
+Venomoth +  
+Venusaur +  
+Vespiquen +  
+Vibrava +  
+Victini +  
+Victreebel +  
+Vigoroth +  
+Vileplume +  
+Virizion +  
+Vivillon +  
+Volbeat +  
+Volcarona +  
+Vullaby +  
+Wailord +  
+Walrein +  
+Wartortle +  
+Watchog +  
+Weavile +  
+Weezing +  
+Whimsicott +  
+Whiscash +  
+Wigglytuff +  
+Wobbuffet +  
+Wormadam +  
+WormadamSandy +  
+WormadamTrash +  
+Xatu +  
+Yanmega +  
+Zangoose+      
+Zapdos +
+Zebstrika+ 
+Zoroark+ 
+Zweilous+ 
+Zygarde, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),] )
+probit4 <- glm(outcome ~
+                    + Absolite
+                  +Aerodactylite
+                  +Aggronite
+                  +Alakazite
+                  +Altarianite
+                  +Ampharosite
+                  +Audinite
+                  +Banettite
+                  +Beedrillite
+                  +Blastoisinite
+                  +Cameruptite
+                  +Charizarditex
+                  +Charizarditey
+                  +Diancite
+                  +Galladite
+                  +Garchompite
+                  +Gardevoirite
+                  +Glalitite
+                  +Gyaradosite
+                  +Heracronite
+                  +Houndoominite
+                  +Latiasite
+                  +Latiosite
+                  +Lopunnite
+                  +Manectite
+                  +Medichamite
+                  +Metagrossite
+                  +Pidgeotite
+                  +Pinsirite
+                  +Sablenite
+                  +Sceptilite
+                  +Scizorite
+                  +Sharpedonite
+                  +Slowbronite
+                  +Steelixite
+                  +Swampertite
+                  +Tyranitarite
+                  +Venusaurite, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),] )
+probit5 <- glm(outcome ~Abomasnow+  
+                        Absol+ 
+                        Accelgor+ 
+                        Aerodactyl+ 
+                        Aggron+ 
+                        Alakazam+ 
+                        Alomomola+ 
+                        Altaria+ 
+                        Ambipom+ 
+                        Amoonguss+ 
+                        Ampharos+ 
+                        Arbok+ 
+                        Arcanine+ 
+                        Archeops+ 
+                        Ariados+ 
+                        Armaldo+ 
+                        Aromatisse+ 
+                        Articuno+ 
+                        Audino+ 
+                        Aurorus+ 
+                        Avalugg+ 
+                        Azelf+ 
+                        Azumarill+ 
+                        Banette+ 
+                        Barbaracle+ 
+                        Basculin+ 
+                        Bastiodon+ 
+                        Beartic+ 
+                        Beautifly+ 
+                        Beedrill+ 
+                        Beheeyem+ 
+                        Bellossom+ 
+                        Bibarel+ 
+                        Bisharp+ 
+                        Blastoise+ 
+                        Blissey+ 
+                        Bouffalant+ 
+                        Braviary+ 
+                        Breloom+ 
+                        Bronzong+ 
+                        Butterfree+ 
+                        Cacturne+ 
+                        Camerupt+ 
+                        Carbink+ 
+                        Carnivine+ 
+                        Carracosta+ 
+                        Castform+ 
+                        Celebi+ 
+                        Chandelure+ 
+                        Chansey +  
+                        Charizard +  
+                        Chatot +  
+                        Cherrim +  
+                        Chesnaught +  
+                        Chimecho +  
+                        Cinccino +  
+                        Clawitzer +  
+                        Claydol +  
+                        Clefable +  
+                        Clefairy +  
+                        Cloyster +  
+                        Cobalion +  
+                        Cofagrigus +  
+                        Combusken +  
+                        Conkeldurr +  
+                        Corsola +  
+                        Cradily +  
+                        Crawdaunt +  
+                        Cresselia +  
+                        Crobat +  
+                        Crustle +  
+                        Cryogonal +  
+                        Darmanitan +  
+                        Dedenne +  
+                        Delcatty +  
+                        Delibird +  
+                        Delphox +  
+                        Dewgong +  
+                        Diancie +  
+                        Diggersby +  
+                        Ditto +  
+                        Dodrio +  
+                        Donphan +  
+                        Doublade +  
+                        Dragalge +  
+                        Dragonair +  
+                        Dragonite +  
+                        Drapion +  
+                        Drifblim +  
+                        Druddigon +  
+                        Dugtrio +  
+                        Dunsparce +  
+                        Duosion +  
+                        Durant +  
+                        Dusclops +  
+                        Dusknoir +  
+                        Dustox +  
+                        Eelektross +  
+                        Electivire +  
+                        Electrode +  
+                        Emboar +  
+                        Emolga +  
+                        Empoleon +  
+                        Entei +  
+                        Escavalier +  
+                        Espeon +  
+                        Excadrill +  
+                        Exeggutor +  
+                        Exploud +  
+                        Farfetchd +  
+                        Fearow +  
+                        Feraligatr +  
+                        Ferroseed +  
+                        Ferrothorn +  
+                        Flareon +  
+                        Fletchinder +  
+                        Floatzel +  
+                        Florges +  
+                        Flygon +  
+                        Forretress +  
+                        Fraxure +  
+                        Froslass +  
+                        Furfrou +  
+                        Furret +  
+                        Gabite +  
+                        Gallade +  
+                        Galvantula +  
+                        Garbodor +  
+                        Garchomp +  
+                        Gardevoir +  
+                        Gastrodon +  
+                        Gengar +  
+                        Gigalith +  
+                        Girafarig +  
+                        Glaceon +  
+                        Glalie +  
+                        Gligar +  
+                        Gliscor +  
+                        Gogoat +  
+                        Golbat +  
+                        Golduck +  
+                        Golem +  
+                        Golurk +  
+                        Goodra +  
+                        Gorebyss +  
+                        Gothitelle +  
+                        Gourgeist +  
+                        Granbull +  
+                        Grumpig +  
+                        Gurdurr +  
+                        Gyarados +  
+                        Hariyama +  
+                        Haunter +  
+                        Hawlucha +  
+                        Haxorus +  
+                        Heatmor +  
+                        Heatran +  
+                        Heliolisk +  
+                        Heracross +  
+                        Hippowdon +  
+                        Hitmonchan +  
+                        Hitmonlee +  
+                        Hitmontop +  
+                        Honchkrow +  
+                        Hoopa +  
+                        HoopaU +  
+                        Houndoom +  
+                        Huntail +  
+                        Hydreigon +  
+                        Hypno +  
+                        Illumise +  
+                        Infernape +  
+                        Jellicent +  
+                        Jirachi +  
+                        Jolteon +  
+                        Jumpluff +  
+                        Jynx +  
+                        Kabutops +  
+                        Kadabra +  
+                        Kangaskhan +  
+                        Kecleon +  
+                        Keldeo +  
+                        Kingdra +  
+                        Kingler +  
+                        Klang +  
+                        Klefki +  
+                        Klinklang +  
+                        Kricketune +  
+                        Krokorok +  
+                        Krookodile +  
+                        Kyurem +  
+                        KyuremB +  
+                        LandorusT +  
+                        Lanturn +  
+                        Lapras +  
+                        Latias +  
+                        Latios +  
+                        Leafeon +  
+                        Leavanny +  
+                        Ledian +  
+                        Lickilicky +  
+                        Liepard +  
+                        Lilligant +  
+                        Linoone +  
+                        Lopunny +  
+                        Lucario +  
+                        Ludicolo +  
+                        Lumineon +  
+                        Lunatone +  
+                        Luvdisc +  
+                        Luxray +  
+                        Machamp +  
+                        Machoke +  
+                        Magcargo +  
+                        Magmortar +  
+                        Magneton +  
+                        Magnezone +  
+                        Malamar +  
+                        Mamoswine +  
+                        Manaphy +  
+                        Mandibuzz +  
+                        Manectric +  
+                        Mantine +  
+                        Maractus +  
+                        Marowak +  
+                        Masquerain +  
+                        Mawile +  
+                        Medicham +  
+                        Meganium +  
+                        Meloetta +  
+                        Meowstic +  
+                        Mesprit +  
+                        Metagross +  
+                        Metang +  
+                        Mew +  
+                        Mienshao +  
+                        Mightyena +  
+                        Milotic +  
+                        Miltank +  
+                        Minun +  
+                        Misdreavus +  
+                        Mismagius +  
+                        Moltres +  
+                        Monferno +  
+                        Mothim +  
+                        MrMime +  
+                        Muk +  
+                        Murkrow +  
+                        Musharna +  
+                        Nidoking +  
+                        Nidoqueen +  
+                        Ninetales +  
+                        Ninjask +  
+                        Noctowl +  
+                        Noivern +  
+                        Octillery +  
+                        Omastar +  
+                        Pachirisu +  
+                        Pangoro +  
+                        Parasect +  
+                        Pawniard +  
+                        Pelipper +  
+                        Persian +  
+                        Phione +  
+                        Pidgeot +  
+                        Piloswine +  
+                        Pinsir +  
+                        Plusle +  
+                        Politoed +  
+                        Poliwrath +  
+                        PorygonZ +  
+                        Porygon2 +  
+                        Primeape +  
+                        Prinplup +  
+                        Probopass +  
+                        Purugly +  
+                        Pyroar +  
+                        Quagsire +  
+                        Quilladin +  
+                        Qwilfish +  
+                        Raichu +  
+                        Raikou +  
+                        Rampardos +  
+                        Rapidash +  
+                        Raticate +  
+                        Regice +  
+                        Regigigas +  
+                        Regirock +  
+                        Registeel +  
+                        Relicanth +  
+                        Reuniclus +  
+                        Rhydon +  
+                        Rhyperior +  
+                        Roselia +  
+                        Roserade +  
+                        Rotom +  
+                        RotomC +  
+                        RotomF +  
+                        RotomH +  
+                        RotomS +  
+                        RotomW +  
+                        Sableye +  
+                        Salamence +  
+                        Samurott +  
+                        Sandslash +  
+                        Sawk +  
+                        Sawsbuck +  
+                        Sceptile +  
+                        Scizor +  
+                        Scolipede +  
+                        Scrafty +  
+                        Scyther +  
+                        Seaking +  
+                        Seismitoad +  
+                        Serperior +  
+                        Servine +  
+                        Seviper +  
+                        Sharpedo +  
+                        Shaymin +  
+                        Shedinja +  
+                        Shiftry +  
+                        Shuckle +  
+                        Sigilyph +  
+                        Simipour +  
+                        Simisage +  
+                        Simisear +  
+                        Skarmory +  
+                        Skuntank +  
+                        Slaking +  
+                        Slowbro +  
+                        Slowking +  
+                        Slurpuff +  
+                        Smeargle +  
+                        Sneasel +  
+                        Snorlax +  
+                        Solrock +  
+                        Spinda +  
+                        Spiritomb +  
+                        Stantler +  
+                        Staraptor +  
+                        Starmie +  
+                        Steelix +  
+                        Stoutland +  
+                        Stunfisk +  
+                        Sudowoodo +  
+                        Suicune +  
+                        Sunflora +  
+                        Swalot +  
+                        Swampert +  
+                        Swanna +  
+                        Swellow +  
+                        Swoobat +  
+                        Sylveon +  
+                        Talonflame +  
+                        Tangela +  
+                        Tangrowth +  
+                        Tauros +  
+                        Tentacruel +  
+                        Terrakion +  
+                        Throh +  
+                        Thundurus +  
+                        ThundurusT +  
+                        Togekiss +  
+                        Togetic +  
+                        Torkoal +  
+                        Tornadus +  
+                        TornadusT +  
+                        Torterra +  
+                        Toxicroak +  
+                        Trevenant +  
+                        Tropius +  
+                        Typhlosion +  
+                        Tyranitar +  
+                        Tyrantrum +  
+                        Umbreon +  
+                        Unfezant +  
+                        Unown +  
+                        Ursaring +  
+                        Uxie +  
+                        Vanilluxe +  
+                        Vaporeon +  
+                        Venomoth +  
+                        Venusaur +  
+                        Vespiquen +  
+                        Vibrava +  
+                        Victini +  
+                        Victreebel +  
+                        Vigoroth +  
+                        Vileplume +  
+                        Virizion +  
+                        Vivillon +  
+                        Volbeat +  
+                        Volcarona +  
+                        Vullaby +  
+                        Wailord +  
+                        Walrein +  
+                        Wartortle +  
+                        Watchog +  
+                        Weavile +  
+                        Weezing +  
+                        Whimsicott +  
+                        Whiscash +  
+                        Wigglytuff +  
+                        Wobbuffet +  
+                        Wormadam +  
+                        WormadamSandy +  
+                        WormadamTrash +  
+                        Xatu +  
+                        Yanmega +  
+                        Zangoose+      
+                        Zapdos +
+                        Zebstrika+ 
+                        Zoroark+ 
+                        Zweilous+ 
+                        Zygarde + 
+                        Abomasite + 
+                    + Absolite
+                  +Aerodactylite
+                  +Aggronite
+                  +Alakazite
+                  +Altarianite
+                  +Ampharosite
+                  +Audinite
+                  +Banettite
+                  +Beedrillite
+                  +Blastoisinite
+                  +Cameruptite
+                  +Charizarditex
+                  +Charizarditey
+                  +Diancite
+                  +Galladite
+                  +Garchompite
+                  +Gardevoirite
+                  +Glalitite
+                  +Gyaradosite
+                  +Heracronite
+                  +Houndoominite
+                  +Latiasite
+                  +Latiosite
+                  +Lopunnite
+                  +Manectite
+                  +Medichamite
+                  +Metagrossite
+                  +Pidgeotite
+                  +Pinsirite
+                  +Sablenite
+                  +Sceptilite
+                  +Scizorite
+                  +Sharpedonite
+                  +Slowbronite
+                  +Steelixite
+                  +Swampertite
+                  +Tyranitarite
+                  +Venusaurite, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),] )
+probit6 <- glm(outcome ~stealthrockcount + spikescount +sp2 + toxspikecount + toxsp2+ stickywebcount + defogcount + fog2+ rapidspincount + rapid2+ dragontailcount +dt2 + roarcount + roar2+whirlwindcount + whirl2Abomasnow+  
+                        Absol+ 
+                        Accelgor+ 
+                        Aerodactyl+ 
+                        Aggron+ 
+                        Alakazam+ 
+                        Alomomola+ 
+                        Altaria+ 
+                        Ambipom+ 
+                        Amoonguss+ 
+                        Ampharos+ 
+                        Arbok+ 
+                        Arcanine+ 
+                        Archeops+ 
+                        Ariados+ 
+                        Armaldo+ 
+                        Aromatisse+ 
+                        Articuno+ 
+                        Audino+ 
+                        Aurorus+ 
+                        Avalugg+ 
+                        Azelf+ 
+                        Azumarill+ 
+                        Banette+ 
+                        Barbaracle+ 
+                        Basculin+ 
+                        Bastiodon+ 
+                        Beartic+ 
+                        Beautifly+ 
+                        Beedrill+ 
+                        Beheeyem+ 
+                        Bellossom+ 
+                        Bibarel+ 
+                        Bisharp+ 
+                        Blastoise+ 
+                        Blissey+ 
+                        Bouffalant+ 
+                        Braviary+ 
+                        Breloom+ 
+                        Bronzong+ 
+                        Butterfree+ 
+                        Cacturne+ 
+                        Camerupt+ 
+                        Carbink+ 
+                        Carnivine+ 
+                        Carracosta+ 
+                        Castform+ 
+                        Celebi+ 
+                        Chandelure+ 
+                        Chansey +  
+                        Charizard +  
+                        Chatot +  
+                        Cherrim +  
+                        Chesnaught +  
+                        Chimecho +  
+                        Cinccino +  
+                        Clawitzer +  
+                        Claydol +  
+                        Clefable +  
+                        Clefairy +  
+                        Cloyster +  
+                        Cobalion +  
+                        Cofagrigus +  
+                        Combusken +  
+                        Conkeldurr +  
+                        Corsola +  
+                        Cradily +  
+                        Crawdaunt +  
+                        Cresselia +  
+                        Crobat +  
+                        Crustle +  
+                        Cryogonal +  
+                        Darmanitan +  
+                        Dedenne +  
+                        Delcatty +  
+                        Delibird +  
+                        Delphox +  
+                        Dewgong +  
+                        Diancie +  
+                        Diggersby +  
+                        Ditto +  
+                        Dodrio +  
+                        Donphan +  
+                        Doublade +  
+                        Dragalge +  
+                        Dragonair +  
+                        Dragonite +  
+                        Drapion +  
+                        Drifblim +  
+                        Druddigon +  
+                        Dugtrio +  
+                        Dunsparce +  
+                        Duosion +  
+                        Durant +  
+                        Dusclops +  
+                        Dusknoir +  
+                        Dustox +  
+                        Eelektross +  
+                        Electivire +  
+                        Electrode +  
+                        Emboar +  
+                        Emolga +  
+                        Empoleon +  
+                        Entei +  
+                        Escavalier +  
+                        Espeon +  
+                        Excadrill +  
+                        Exeggutor +  
+                        Exploud +  
+                        Farfetchd +  
+                        Fearow +  
+                        Feraligatr +  
+                        Ferroseed +  
+                        Ferrothorn +  
+                        Flareon +  
+                        Fletchinder +  
+                        Floatzel +  
+                        Florges +  
+                        Flygon +  
+                        Forretress +  
+                        Fraxure +  
+                        Froslass +  
+                        Furfrou +  
+                        Furret +  
+                        Gabite +  
+                        Gallade +  
+                        Galvantula +  
+                        Garbodor +  
+                        Garchomp +  
+                        Gardevoir +  
+                        Gastrodon +  
+                        Gengar +  
+                        Gigalith +  
+                        Girafarig +  
+                        Glaceon +  
+                        Glalie +  
+                        Gligar +  
+                        Gliscor +  
+                        Gogoat +  
+                        Golbat +  
+                        Golduck +  
+                        Golem +  
+                        Golurk +  
+                        Goodra +  
+                        Gorebyss +  
+                        Gothitelle +  
+                        Gourgeist +  
+                        Granbull +  
+                        Grumpig +  
+                        Gurdurr +  
+                        Gyarados +  
+                        Hariyama +  
+                        Haunter +  
+                        Hawlucha +  
+                        Haxorus +  
+                        Heatmor +  
+                        Heatran +  
+                        Heliolisk +  
+                        Heracross +  
+                        Hippowdon +  
+                        Hitmonchan +  
+                        Hitmonlee +  
+                        Hitmontop +  
+                        Honchkrow +  
+                        Hoopa +  
+                        HoopaU +  
+                        Houndoom +  
+                        Huntail +  
+                        Hydreigon +  
+                        Hypno +  
+                        Illumise +  
+                        Infernape +  
+                        Jellicent +  
+                        Jirachi +  
+                        Jolteon +  
+                        Jumpluff +  
+                        Jynx +  
+                        Kabutops +  
+                        Kadabra +  
+                        Kangaskhan +  
+                        Kecleon +  
+                        Keldeo +  
+                        Kingdra +  
+                        Kingler +  
+                        Klang +  
+                        Klefki +  
+                        Klinklang +  
+                        Kricketune +  
+                        Krokorok +  
+                        Krookodile +  
+                        Kyurem +  
+                        KyuremB +  
+                        LandorusT +  
+                        Lanturn +  
+                        Lapras +  
+                        Latias +  
+                        Latios +  
+                        Leafeon +  
+                        Leavanny +  
+                        Ledian +  
+                        Lickilicky +  
+                        Liepard +  
+                        Lilligant +  
+                        Linoone +  
+                        Lopunny +  
+                        Lucario +  
+                        Ludicolo +  
+                        Lumineon +  
+                        Lunatone +  
+                        Luvdisc +  
+                        Luxray +  
+                        Machamp +  
+                        Machoke +  
+                        Magcargo +  
+                        Magmortar +  
+                        Magneton +  
+                        Magnezone +  
+                        Malamar +  
+                        Mamoswine +  
+                        Manaphy +  
+                        Mandibuzz +  
+                        Manectric +  
+                        Mantine +  
+                        Maractus +  
+                        Marowak +  
+                        Masquerain +  
+                        Mawile +  
+                        Medicham +  
+                        Meganium +  
+                        Meloetta +  
+                        Meowstic +  
+                        Mesprit +  
+                        Metagross +  
+                        Metang +  
+                        Mew +  
+                        Mienshao +  
+                        Mightyena +  
+                        Milotic +  
+                        Miltank +  
+                        Minun +  
+                        Misdreavus +  
+                        Mismagius +  
+                        Moltres +  
+                        Monferno +  
+                        Mothim +  
+                        MrMime +  
+                        Muk +  
+                        Murkrow +  
+                        Musharna +  
+                        Nidoking +  
+                        Nidoqueen +  
+                        Ninetales +  
+                        Ninjask +  
+                        Noctowl +  
+                        Noivern +  
+                        Octillery +  
+                        Omastar +  
+                        Pachirisu +  
+                        Pangoro +  
+                        Parasect +  
+                        Pawniard +  
+                        Pelipper +  
+                        Persian +  
+                        Phione +  
+                        Pidgeot +  
+                        Piloswine +  
+                        Pinsir +  
+                        Plusle +  
+                        Politoed +  
+                        Poliwrath +  
+                        PorygonZ +  
+                        Porygon2 +  
+                        Primeape +  
+                        Prinplup +  
+                        Probopass +  
+                        Purugly +  
+                        Pyroar +  
+                        Quagsire +  
+                        Quilladin +  
+                        Qwilfish +  
+                        Raichu +  
+                        Raikou +  
+                        Rampardos +  
+                        Rapidash +  
+                        Raticate +  
+                        Regice +  
+                        Regigigas +  
+                        Regirock +  
+                        Registeel +  
+                        Relicanth +  
+                        Reuniclus +  
+                        Rhydon +  
+                        Rhyperior +  
+                        Roselia +  
+                        Roserade +  
+                        Rotom +  
+                        RotomC +  
+                        RotomF +  
+                        RotomH +  
+                        RotomS +  
+                        RotomW +  
+                        Sableye +  
+                        Salamence +  
+                        Samurott +  
+                        Sandslash +  
+                        Sawk +  
+                        Sawsbuck +  
+                        Sceptile +  
+                        Scizor +  
+                        Scolipede +  
+                        Scrafty +  
+                        Scyther +  
+                        Seaking +  
+                        Seismitoad +  
+                        Serperior +  
+                        Servine +  
+                        Seviper +  
+                        Sharpedo +  
+                        Shaymin +  
+                        Shedinja +  
+                        Shiftry +  
+                        Shuckle +  
+                        Sigilyph +  
+                        Simipour +  
+                        Simisage +  
+                        Simisear +  
+                        Skarmory +  
+                        Skuntank +  
+                        Slaking +  
+                        Slowbro +  
+                        Slowking +  
+                        Slurpuff +  
+                        Smeargle +  
+                        Sneasel +  
+                        Snorlax +  
+                        Solrock +  
+                        Spinda +  
+                        Spiritomb +  
+                        Stantler +  
+                        Staraptor +  
+                        Starmie +  
+                        Steelix +  
+                        Stoutland +  
+                        Stunfisk +  
+                        Sudowoodo +  
+                        Suicune +  
+                        Sunflora +  
+                        Swalot +  
+                        Swampert +  
+                        Swanna +  
+                        Swellow +  
+                        Swoobat +  
+                        Sylveon +  
+                        Talonflame +  
+                        Tangela +  
+                        Tangrowth +  
+                        Tauros +  
+                        Tentacruel +  
+                        Terrakion +  
+                        Throh +  
+                        Thundurus +  
+                        ThundurusT +  
+                        Togekiss +  
+                        Togetic +  
+                        Torkoal +  
+                        Tornadus +  
+                        TornadusT +  
+                        Torterra +  
+                        Toxicroak +  
+                        Trevenant +  
+                        Tropius +  
+                        Typhlosion +  
+                        Tyranitar +  
+                        Tyrantrum +  
+                        Umbreon +  
+                        Unfezant +  
+                        Unown +  
+                        Ursaring +  
+                        Uxie +  
+                        Vanilluxe +  
+                        Vaporeon +  
+                        Venomoth +  
+                        Venusaur +  
+                        Vespiquen +  
+                        Vibrava +  
+                        Victini +  
+                        Victreebel +  
+                        Vigoroth +  
+                        Vileplume +  
+                        Virizion +  
+                        Vivillon +  
+                        Volbeat +  
+                        Volcarona +  
+                        Vullaby +  
+                        Wailord +  
+                        Walrein +  
+                        Wartortle +  
+                        Watchog +  
+                        Weavile +  
+                        Weezing +  
+                        Whimsicott +  
+                        Whiscash +  
+                        Wigglytuff +  
+                        Wobbuffet +  
+                        Wormadam +  
+                        WormadamSandy +  
+                        WormadamTrash +  
+                        Xatu +  
+                        Yanmega +  
+                        Zangoose+      
+                        Zapdos +
+                        Zebstrika+ 
+                        Zoroark+ 
+                        Zweilous+ 
+                        Zygarde + 
+                        Abomasite + 
+                    + Absolite
+                  +Aerodactylite
+                  +Aggronite
+                  +Alakazite
+                  +Altarianite
+                  +Ampharosite
+                  +Audinite
+                  +Banettite
+                  +Beedrillite
+                  +Blastoisinite
+                  +Cameruptite
+                  +Charizarditex
+                  +Charizarditey
+                  +Diancite
+                  +Galladite
+                  +Garchompite
+                  +Gardevoirite
+                  +Glalitite
+                  +Gyaradosite
+                  +Heracronite
+                  +Houndoominite
+                  +Latiasite
+                  +Latiosite
+                  +Lopunnite
+                  +Manectite
+                  +Medichamite
+                  +Metagrossite
+                  +Pidgeotite
+                  +Pinsirite
+                  +Sablenite
+                  +Sceptilite
+                  +Scizorite
+                  +Sharpedonite
+                  +Slowbronite
+                  +Steelixite
+                  +Swampertite
+                  +Tyranitarite
+                  +Venusaurite, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),] )
+probit7 <- glm(outcome ~ stAerodactyl +
+                           stAggron +
+                           stArcheops+       
+                           stArmaldo +
+                           stAurorus +
+                           stAzelf    +     
+                           stBarbaracle+          
+                           stBastiodon  +          
+                           stBibarel     +      
+                           stBisharp      +      
+                           stBlissey       +       
+                           stBronzong       +   
+                           stCamerupt        +    
+                           stCarbink          +        
+                           stCarracosta     +
+                           stCelebi          +  
+                           stChansey          +       
+                           stClaydol           +
+                           stClefable           + 
+                           stClefairy            +     
+                           stCobalion       +
+                           stCorsola         +  
+                           stCradily          +        
+                           stCrustle         +
+                           stDiancie      +  
+                           stDonphan       +           
+                           stDruddigon      +
+                           stDugtrio         +   
+                           stDunsparce        +        
+                           stEmpoleon         +
+                           stExcadrill         +   
+                           stFerroseed          +      
+                           stFerrothorn      +
+                           stForretress       +    
+                           stGabite            +      
+                           stGarchomp        +
+                           stGigalith         +   
+                           stGligar            +       
+                           stGliscor         +
+                           stGolem            + 
+                           stGolurk            +       
+                           stHeatran          +
+                           stHippowdon         +   
+                           stInfernape          +  
+                           stJirachi         +
+                           stKabutops         +   
+                           stKecleon           +       
+                           stKrokorok        +
+                           stKrookodile       +    
+                           stLunatone          +   
+                           stMagcargo      +
+                           stMamoswine      +     
+                           stMarowak         +         
+                           stMawile          +
+                           stMesprit          + 
+                           stMetagross         +   
+                           stMetang      +
+                           stMew          +   
+                           stMiltank       +          
+                           stMonferno   +
+                           stNidoking    +         
+                           stNidoqueen    +    
+                           stOmastar       +   
+                           stPawniard       +      
+                           stPiloswine       +     
+                           stPinsir           + 
+                           stPrinplup          +   
+                           stProbopass          +  
+                           stRampardos       +
+                           stRegirock         +    
+                           stRegisteel         +   
+                           stRelicanth        +
+                           stRhydon            + 
+                           stRhyperior          +  
+                           stSandslash         +
+                           stSeismitoad          + 
+                           stShuckle              +   
+                           stSkarmory       +
+                           stSolrock         +    
+                           stSteelix          +       
+                           stStunfisk          + 
+                           stSudowoodo          +  
+                           stSwampert            +     
+                           stTerrakion      +
+                           stTorkoal         +    
+                           stTorterra         +        
+                           stTyranitar      +
+                           stTyrantrum       +     
+                           stUxie             +        
+                           stWigglytuff     +
+                           stWormadamSandy  +         
+                           stWormadamTrash   +         
+                           stWormadam + spikescount +sp2 + toxspikecount + toxsp2+ stickywebcount + defogcount + fog2+ rapidspincount + rapid2+ dragontailcount +dt2 + roarcount + roar2+whirlwindcount + whirl2Abomasnow+  
+                        Absol+ 
+                        Accelgor+ 
+                        Aerodactyl+ 
+                        Aggron+ 
+                        Alakazam+ 
+                        Alomomola+ 
+                        Altaria+ 
+                        Ambipom+ 
+                        Amoonguss+ 
+                        Ampharos+ 
+                        Arbok+ 
+                        Arcanine+ 
+                        Archeops+ 
+                        Ariados+ 
+                        Armaldo+ 
+                        Aromatisse+ 
+                        Articuno+ 
+                        Audino+ 
+                        Aurorus+ 
+                        Avalugg+ 
+                        Azelf+ 
+                        Azumarill+ 
+                        Banette+ 
+                        Barbaracle+ 
+                        Basculin+ 
+                        Bastiodon+ 
+                        Beartic+ 
+                        Beautifly+ 
+                        Beedrill+ 
+                        Beheeyem+ 
+                        Bellossom+ 
+                        Bibarel+ 
+                        Bisharp+ 
+                        Blastoise+ 
+                        Blissey+ 
+                        Bouffalant+ 
+                        Braviary+ 
+                        Breloom+ 
+                        Bronzong+ 
+                        Butterfree+ 
+                        Cacturne+ 
+                        Camerupt+ 
+                        Carbink+ 
+                        Carnivine+ 
+                        Carracosta+ 
+                        Castform+ 
+                        Celebi+ 
+                        Chandelure+ 
+                        Chansey +  
+                        Charizard +  
+                        Chatot +  
+                        Cherrim +  
+                        Chesnaught +  
+                        Chimecho +  
+                        Cinccino +  
+                        Clawitzer +  
+                        Claydol +  
+                        Clefable +  
+                        Clefairy +  
+                        Cloyster +  
+                        Cobalion +  
+                        Cofagrigus +  
+                        Combusken +  
+                        Conkeldurr +  
+                        Corsola +  
+                        Cradily +  
+                        Crawdaunt +  
+                        Cresselia +  
+                        Crobat +  
+                        Crustle +  
+                        Cryogonal +  
+                        Darmanitan +  
+                        Dedenne +  
+                        Delcatty +  
+                        Delibird +  
+                        Delphox +  
+                        Dewgong +  
+                        Diancie +  
+                        Diggersby +  
+                        Ditto +  
+                        Dodrio +  
+                        Donphan +  
+                        Doublade +  
+                        Dragalge +  
+                        Dragonair +  
+                        Dragonite +  
+                        Drapion +  
+                        Drifblim +  
+                        Druddigon +  
+                        Dugtrio +  
+                        Dunsparce +  
+                        Duosion +  
+                        Durant +  
+                        Dusclops +  
+                        Dusknoir +  
+                        Dustox +  
+                        Eelektross +  
+                        Electivire +  
+                        Electrode +  
+                        Emboar +  
+                        Emolga +  
+                        Empoleon +  
+                        Entei +  
+                        Escavalier +  
+                        Espeon +  
+                        Excadrill +  
+                        Exeggutor +  
+                        Exploud +  
+                        Farfetchd +  
+                        Fearow +  
+                        Feraligatr +  
+                        Ferroseed +  
+                        Ferrothorn +  
+                        Flareon +  
+                        Fletchinder +  
+                        Floatzel +  
+                        Florges +  
+                        Flygon +  
+                        Forretress +  
+                        Fraxure +  
+                        Froslass +  
+                        Furfrou +  
+                        Furret +  
+                        Gabite +  
+                        Gallade +  
+                        Galvantula +  
+                        Garbodor +  
+                        Garchomp +  
+                        Gardevoir +  
+                        Gastrodon +  
+                        Gengar +  
+                        Gigalith +  
+                        Girafarig +  
+                        Glaceon +  
+                        Glalie +  
+                        Gligar +  
+                        Gliscor +  
+                        Gogoat +  
+                        Golbat +  
+                        Golduck +  
+                        Golem +  
+                        Golurk +  
+                        Goodra +  
+                        Gorebyss +  
+                        Gothitelle +  
+                        Gourgeist +  
+                        Granbull +  
+                        Grumpig +  
+                        Gurdurr +  
+                        Gyarados +  
+                        Hariyama +  
+                        Haunter +  
+                        Hawlucha +  
+                        Haxorus +  
+                        Heatmor +  
+                        Heatran +  
+                        Heliolisk +  
+                        Heracross +  
+                        Hippowdon +  
+                        Hitmonchan +  
+                        Hitmonlee +  
+                        Hitmontop +  
+                        Honchkrow +  
+                        Hoopa +  
+                        HoopaU +  
+                        Houndoom +  
+                        Huntail +  
+                        Hydreigon +  
+                        Hypno +  
+                        Illumise +  
+                        Infernape +  
+                        Jellicent +  
+                        Jirachi +  
+                        Jolteon +  
+                        Jumpluff +  
+                        Jynx +  
+                        Kabutops +  
+                        Kadabra +  
+                        Kangaskhan +  
+                        Kecleon +  
+                        Keldeo +  
+                        Kingdra +  
+                        Kingler +  
+                        Klang +  
+                        Klefki +  
+                        Klinklang +  
+                        Kricketune +  
+                        Krokorok +  
+                        Krookodile +  
+                        Kyurem +  
+                        KyuremB +  
+                        LandorusT +  
+                        Lanturn +  
+                        Lapras +  
+                        Latias +  
+                        Latios +  
+                        Leafeon +  
+                        Leavanny +  
+                        Ledian +  
+                        Lickilicky +  
+                        Liepard +  
+                        Lilligant +  
+                        Linoone +  
+                        Lopunny +  
+                        Lucario +  
+                        Ludicolo +  
+                        Lumineon +  
+                        Lunatone +  
+                        Luvdisc +  
+                        Luxray +  
+                        Machamp +  
+                        Machoke +  
+                        Magcargo +  
+                        Magmortar +  
+                        Magneton +  
+                        Magnezone +  
+                        Malamar +  
+                        Mamoswine +  
+                        Manaphy +  
+                        Mandibuzz +  
+                        Manectric +  
+                        Mantine +  
+                        Maractus +  
+                        Marowak +  
+                        Masquerain +  
+                        Mawile +  
+                        Medicham +  
+                        Meganium +  
+                        Meloetta +  
+                        Meowstic +  
+                        Mesprit +  
+                        Metagross +  
+                        Metang +  
+                        Mew +  
+                        Mienshao +  
+                        Mightyena +  
+                        Milotic +  
+                        Miltank +  
+                        Minun +  
+                        Misdreavus +  
+                        Mismagius +  
+                        Moltres +  
+                        Monferno +  
+                        Mothim +  
+                        MrMime +  
+                        Muk +  
+                        Murkrow +  
+                        Musharna +  
+                        Nidoking +  
+                        Nidoqueen +  
+                        Ninetales +  
+                        Ninjask +  
+                        Noctowl +  
+                        Noivern +  
+                        Octillery +  
+                        Omastar +  
+                        Pachirisu +  
+                        Pangoro +  
+                        Parasect +  
+                        Pawniard +  
+                        Pelipper +  
+                        Persian +  
+                        Phione +  
+                        Pidgeot +  
+                        Piloswine +  
+                        Pinsir +  
+                        Plusle +  
+                        Politoed +  
+                        Poliwrath +  
+                        PorygonZ +  
+                        Porygon2 +  
+                        Primeape +  
+                        Prinplup +  
+                        Probopass +  
+                        Purugly +  
+                        Pyroar +  
+                        Quagsire +  
+                        Quilladin +  
+                        Qwilfish +  
+                        Raichu +  
+                        Raikou +  
+                        Rampardos +  
+                        Rapidash +  
+                        Raticate +  
+                        Regice +  
+                        Regigigas +  
+                        Regirock +  
+                        Registeel +  
+                        Relicanth +  
+                        Reuniclus +  
+                        Rhydon +  
+                        Rhyperior +  
+                        Roselia +  
+                        Roserade +  
+                        Rotom +  
+                        RotomC +  
+                        RotomF +  
+                        RotomH +  
+                        RotomS +  
+                        RotomW +  
+                        Sableye +  
+                        Salamence +  
+                        Samurott +  
+                        Sandslash +  
+                        Sawk +  
+                        Sawsbuck +  
+                        Sceptile +  
+                        Scizor +  
+                        Scolipede +  
+                        Scrafty +  
+                        Scyther +  
+                        Seaking +  
+                        Seismitoad +  
+                        Serperior +  
+                        Servine +  
+                        Seviper +  
+                        Sharpedo +  
+                        Shaymin +  
+                        Shedinja +  
+                        Shiftry +  
+                        Shuckle +  
+                        Sigilyph +  
+                        Simipour +  
+                        Simisage +  
+                        Simisear +  
+                        Skarmory +  
+                        Skuntank +  
+                        Slaking +  
+                        Slowbro +  
+                        Slowking +  
+                        Slurpuff +  
+                        Smeargle +  
+                        Sneasel +  
+                        Snorlax +  
+                        Solrock +  
+                        Spinda +  
+                        Spiritomb +  
+                        Stantler +  
+                        Staraptor +  
+                        Starmie +  
+                        Steelix +  
+                        Stoutland +  
+                        Stunfisk +  
+                        Sudowoodo +  
+                        Suicune +  
+                        Sunflora +  
+                        Swalot +  
+                        Swampert +  
+                        Swanna +  
+                        Swellow +  
+                        Swoobat +  
+                        Sylveon +  
+                        Talonflame +  
+                        Tangela +  
+                        Tangrowth +  
+                        Tauros +  
+                        Tentacruel +  
+                        Terrakion +  
+                        Throh +  
+                        Thundurus +  
+                        ThundurusT +  
+                        Togekiss +  
+                        Togetic +  
+                        Torkoal +  
+                        Tornadus +  
+                        TornadusT +  
+                        Torterra +  
+                        Toxicroak +  
+                        Trevenant +  
+                        Tropius +  
+                        Typhlosion +  
+                        Tyranitar +  
+                        Tyrantrum +  
+                        Umbreon +  
+                        Unfezant +  
+                        Unown +  
+                        Ursaring +  
+                        Uxie +  
+                        Vanilluxe +  
+                        Vaporeon +  
+                        Venomoth +  
+                        Venusaur +  
+                        Vespiquen +  
+                        Vibrava +  
+                        Victini +  
+                        Victreebel +  
+                        Vigoroth +  
+                        Vileplume +  
+                        Virizion +  
+                        Vivillon +  
+                        Volbeat +  
+                        Volcarona +  
+                        Vullaby +  
+                        Wailord +  
+                        Walrein +  
+                        Wartortle +  
+                        Watchog +  
+                        Weavile +  
+                        Weezing +  
+                        Whimsicott +  
+                        Whiscash +  
+                        Wigglytuff +  
+                        Wobbuffet +  
+                        Wormadam +  
+                        WormadamSandy +  
+                        WormadamTrash +  
+                        Xatu +  
+                        Yanmega +  
+                        Zangoose+      
+                        Zapdos +
+                        Zebstrika+ 
+                        Zoroark+ 
+                        Zweilous+ 
+                        Zygarde + 
+                        Abomasite + 
+                    + Absolite
+                  +Aerodactylite
+                  +Aggronite
+                  +Alakazite
+                  +Altarianite
+                  +Ampharosite
+                  +Audinite
+                  +Banettite
+                  +Beedrillite
+                  +Blastoisinite
+                  +Cameruptite
+                  +Charizarditex
+                  +Charizarditey
+                  +Diancite
+                  +Galladite
+                  +Garchompite
+                  +Gardevoirite
+                  +Glalitite
+                  +Gyaradosite
+                  +Heracronite
+                  +Houndoominite
+                  +Latiasite
+                  +Latiosite
+                  +Lopunnite
+                  +Manectite
+                  +Medichamite
+                  +Metagrossite
+                  +Pidgeotite
+                  +Pinsirite
+                  +Sablenite
+                  +Sceptilite
+                  +Scizorite
+                  +Sharpedonite
+                  +Slowbronite
+                  +Steelixite
+                  +Swampertite
+                  +Tyranitarite
+                  +Venusaurite, family=binomial(link="probit"), data=d1[which(d1$battle_length>0),] )
 ```
 
-Here is a reference to the Reed logo: Figure \@ref(fig:reedlogo).  Note the use of the `fig:` code here.  By naming the **R** chunk that contains the figure, we can then reference that figure later as done in the first sentence here.  We can also specify the caption for the figure via the R chunk option `fig.cap`.
 
-\clearpage 
-
-<!-- starts a new page and stops trying to place floats such as tables and figures -->
-
-Below we will investigate how to save the output of an **R** plot and label it in a way similar to that done above.  Recall the `flights` dataset from Chapter \@ref(rmd-basics).  (Note that we've shown a different way to reference a section or chapter here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014.  Note also the use of the `scale` parameter which is discussed on the next page.
-
-```{r delaysboxplot, warnings=FALSE, messages=FALSE, fig.cap="Mean Delays by Airline", fig.width=6}
-flights %>% group_by(carrier) %>%
-  summarize(mean_dep_delay = mean(dep_delay)) %>%
-  ggplot(aes(x = carrier, y = mean_dep_delay)) +
-  geom_bar(position = "identity", stat = "identity", fill = "red")
+```{r}
+library(stargazer)
 ```
 
-Here is a reference to this image: Figure \@ref(fig:delaysboxplot).
+# Preliminary Statistics 
 
-A table linking these carrier codes to airline names is available at <https://github.com/ismayc/pnwflights14/blob/master/data/airlines.csv>.
+```{r, results='asis'}
+stargazer( Abomasnow,  
+                        Absol,
+                        Accelgor, 
+                        Aerodactyl, 
+                        Aggron, 
+                        Alakazam, 
+                        Alomomola, 
+                        Altaria, 
+                        Ambipom, 
+                        Amoonguss, 
+                        Ampharos, 
+                        Arbok, 
+                        Arcanine, 
+                        Archeops, 
+                        Ariados, 
+                        Armaldo, 
+                        Aromatisse, 
+                        Articuno, 
+                        Audino, 
+                        Aurorus, 
+                        Avalugg, 
+                        Azelf, 
+                        Azumarill, 
+                        Banette, 
+                        Barbaracle, 
+                        Basculin, 
+                        Bastiodon, 
+                        Beartic, 
+                        Beautifly, 
+                        Beedrill, 
+                        Beheeyem, 
+                        Bellossom, 
+                        Bibarel, 
+                        Bisharp, 
+                        Blastoise, 
+                        Blissey, 
+                        Bouffalant, 
+                        Braviary, 
+                        Breloom, 
+                        Bronzong, 
+                        Butterfree, 
+                        Cacturne, 
+                        Camerupt, 
+                        Carbink, 
+                        Carnivine, 
+                        Carracosta, 
+                        Castform, 
+                        Celebi, 
+                        Chandelure, 
+                        Chansey ,  
+                        Charizard ,  
+                        Chatot ,  
+                        Cherrim ,  
+                        Chesnaught ,  
+                        Chimecho ,  
+                        Cinccino ,  
+                        Clawitzer ,  
+                        Claydol ,  
+                        Clefable ,  
+                        Clefairy ,  
+                        Cloyster ,  
+                        Cobalion ,  
+                        Cofagrigus ,  
+                        Combusken ,  
+                        Conkeldurr ,  
+                        Corsola ,  
+                        Cradily ,  
+                        Crawdaunt ,  
+                        Cresselia ,  
+                        Crobat ,  
+                        Crustle ,  
+                        Cryogonal ,  
+                        Darmanitan ,  
+                        Dedenne ,  
+                        Delcatty ,  
+                        Delibird ,  
+                        Delphox ,  
+                        Dewgong ,  
+                        Diancie ,  
+                        Diggersby ,  
+                        Ditto ,  
+                        Dodrio ,  
+                        Donphan ,  
+                        Doublade ,  
+                        Dragalge ,  
+                        Dragonair ,  
+                        Dragonite ,  
+                        Drapion ,  
+                        Drifblim ,  
+                        Druddigon ,  
+                        Dugtrio ,  
+                        Dunsparce ,  
+                        Duosion ,  
+                        Durant ,  
+                        Dusclops ,  
+                        Dusknoir ,  
+                        Dustox ,  
+                        Eelektross ,  
+                        Electivire ,  
+                        Electrode ,  
+                        Emboar ,  
+                        Emolga ,  
+                        Empoleon ,  
+                        Entei ,  
+                        Escavalier ,  
+                        Espeon ,  
+                        Excadrill ,  
+                        Exeggutor ,  
+                        Exploud ,  
+                        Farfetchd ,  
+                        Fearow ,  
+                        Feraligatr ,  
+                        Ferroseed ,  
+                        Ferrothorn ,  
+                        Flareon ,  
+                        Fletchinder ,  
+                        Floatzel ,  
+                        Florges ,  
+                        Flygon ,  
+                        Forretress ,  
+                        Fraxure ,  
+                        Froslass ,  
+                        Furfrou ,  
+                        Furret ,  
+                        Gabite ,  
+                        Gallade ,  
+                        Galvantula ,  
+                        Garbodor ,  
+                        Garchomp ,  
+                        Gardevoir ,  
+                        Gastrodon ,  
+                        Gengar ,  
+                        Gigalith ,  
+                        Girafarig ,  
+                        Glaceon ,  
+                        Glalie ,  
+                        Gligar ,  
+                        Gliscor ,  
+                        Gogoat ,  
+                        Golbat ,  
+                        Golduck ,  
+                        Golem ,  
+                        Golurk ,  
+                        Goodra ,  
+                        Gorebyss ,  
+                        Gothitelle ,  
+                        Gourgeist ,  
+                        Granbull ,  
+                        Grumpig ,  
+                        Gurdurr ,  
+                        Gyarados ,  
+                        Hariyama ,  
+                        Haunter ,  
+                        Hawlucha ,  
+                        Haxorus ,  
+                        Heatmor ,  
+                        Heatran ,  
+                        Heliolisk ,  
+                        Heracross ,  
+                        Hippowdon ,  
+                        Hitmonchan ,  
+                        Hitmonlee ,  
+                        Hitmontop ,  
+                        Honchkrow ,  
+                        Hoopa ,  
+                        HoopaU ,  
+                        Houndoom ,  
+                        Huntail ,  
+                        Hydreigon ,  
+                        Hypno ,  
+                        Illumise ,  
+                        Infernape ,  
+                        Jellicent ,  
+                        Jirachi ,  
+                        Jolteon ,  
+                        Jumpluff ,  
+                        Jynx ,  
+                        Kabutops ,  
+                        Kadabra ,  
+                        Kangaskhan ,  
+                        Kecleon ,  
+                        Keldeo ,  
+                        Kingdra ,  
+                        Kingler ,  
+                        Klang ,  
+                        Klefki ,  
+                        Klinklang ,  
+                        Kricketune ,  
+                        Krokorok ,  
+                        Krookodile ,  
+                        Kyurem ,  
+                        KyuremB ,  
+                        LandorusT ,  
+                        Lanturn ,  
+                        Lapras ,  
+                        Latias ,  
+                        Latios ,  
+                        Leafeon ,  
+                        Leavanny ,  
+                        Ledian ,  
+                        Lickilicky ,  
+                        Liepard ,  
+                        Lilligant ,  
+                        Linoone ,  
+                        Lopunny ,  
+                        Lucario ,  
+                        Ludicolo ,  
+                        Lumineon ,  
+                        Lunatone ,  
+                        Luvdisc ,  
+                        Luxray ,  
+                        Machamp ,  
+                        Machoke ,  
+                        Magcargo ,  
+                        Magmortar ,  
+                        Magneton ,  
+                        Magnezone ,  
+                        Malamar ,  
+                        Mamoswine ,  
+                        Manaphy ,  
+                        Mandibuzz ,  
+                        Manectric ,  
+                        Mantine ,  
+                        Maractus ,  
+                        Marowak ,  
+                        Masquerain ,  
+                        Mawile ,  
+                        Medicham ,  
+                        Meganium ,  
+                        Meloetta ,  
+                        Meowstic ,  
+                        Mesprit ,  
+                        Metagross ,  
+                        Metang ,  
+                        Mew ,  
+                        Mienshao ,  
+                        Mightyena ,  
+                        Milotic ,  
+                        Miltank ,  
+                        Minun ,  
+                        Misdreavus ,  
+                        Mismagius ,  
+                        Moltres ,  
+                        Monferno ,  
+                        Mothim ,  
+                        MrMime ,  
+                        Muk ,  
+                        Murkrow ,  
+                        Musharna ,  
+                        Nidoking ,  
+                        Nidoqueen ,  
+                        Ninetales ,  
+                        Ninjask ,  
+                        Noctowl ,  
+                        Noivern ,  
+                        Octillery ,  
+                        Omastar ,  
+                        Pachirisu ,  
+                        Pangoro ,  
+                        Parasect ,  
+                        Pawniard ,  
+                        Pelipper ,  
+                        Persian ,  
+                        Phione ,  
+                        Pidgeot ,  
+                        Piloswine ,  
+                        Pinsir ,  
+                        Plusle ,  
+                        Politoed ,  
+                        Poliwrath ,  
+                        PorygonZ ,  
+                        Porygon2 ,  
+                        Primeape ,  
+                        Prinplup ,  
+                        Probopass ,  
+                        Purugly ,  
+                        Pyroar ,  
+                        Quagsire ,  
+                        Quilladin ,  
+                        Qwilfish ,  
+                        Raichu ,  
+                        Raikou ,  
+                        Rampardos ,  
+                        Rapidash ,  
+                        Raticate ,  
+                        Regice ,  
+                        Regigigas ,  
+                        Regirock ,  
+                        Registeel ,  
+                        Relicanth ,  
+                        Reuniclus ,  
+                        Rhydon ,  
+                        Rhyperior ,  
+                        Roselia ,  
+                        Roserade ,  
+                        Rotom ,  
+                        RotomC ,  
+                        RotomF ,  
+                        RotomH ,  
+                        RotomS ,  
+                        RotomW ,  
+                        Sableye ,  
+                        Salamence ,  
+                        Samurott ,  
+                        Sandslash ,  
+                        Sawk ,  
+                        Sawsbuck ,  
+                        Sceptile ,  
+                        Scizor ,  
+                        Scolipede ,  
+                        Scrafty ,  
+                        Scyther ,  
+                        Seaking ,  
+                        Seismitoad ,  
+                        Serperior ,  
+                        Servine ,  
+                        Seviper ,  
+                        Sharpedo ,  
+                        Shaymin ,  
+                        Shedinja ,  
+                        Shiftry ,  
+                        Shuckle ,  
+                        Sigilyph ,  
+                        Simipour ,  
+                        Simisage ,  
+                        Simisear ,  
+                        Skarmory ,  
+                        Skuntank ,  
+                        Slaking ,  
+                        Slowbro ,  
+                        Slowking ,  
+                        Slurpuff ,  
+                        Smeargle ,  
+                        Sneasel ,  
+                        Snorlax ,  
+                        Solrock ,  
+                        Spinda ,  
+                        Spiritomb ,  
+                        Stantler ,  
+                        Staraptor ,  
+                        Starmie ,  
+                        Steelix ,  
+                        Stoutland ,  
+                        Stunfisk ,  
+                        Sudowoodo ,  
+                        Suicune ,  
+                        Sunflora ,  
+                        Swalot ,  
+                        Swampert ,  
+                        Swanna ,  
+                        Swellow ,  
+                        Swoobat ,  
+                        Sylveon ,  
+                        Talonflame ,  
+                        Tangela ,  
+                        Tangrowth ,  
+                        Tauros ,  
+                        Tentacruel ,  
+                        Terrakion ,  
+                        Throh ,  
+                        Thundurus ,  
+                        ThundurusT ,  
+                        Togekiss ,  
+                        Togetic ,  
+                        Torkoal ,  
+                        Tornadus ,  
+                        TornadusT ,  
+                        Torterra ,  
+                        Toxicroak ,  
+                        Trevenant ,  
+                        Tropius ,  
+                        Typhlosion ,  
+                        Tyranitar ,  
+                        Tyrantrum ,  
+                        Umbreon ,  
+                        Unfezant ,  
+                        Unown ,  
+                        Ursaring ,  
+                        Uxie ,  
+                        Vanilluxe ,  
+                        Vaporeon ,  
+                        Venomoth ,  
+                        Venusaur ,  
+                        Vespiquen ,  
+                        Vibrava ,  
+                        Victini ,  
+                        Victreebel ,  
+                        Vigoroth ,  
+                        Vileplume ,  
+                        Virizion ,  
+                        Vivillon ,  
+                        Volbeat ,  
+                        Volcarona ,  
+                        Vullaby ,  
+                        Wailord ,  
+                        Walrein ,  
+                        Wartortle ,  
+                        Watchog ,  
+                        Weavile ,  
+                        Weezing ,  
+                        Whimsicott ,  
+                        Whiscash ,  
+                        Wigglytuff ,  
+                        Wobbuffet ,  
+                        Wormadam ,  
+                        WormadamSandy ,  
+                        WormadamTrash ,  
+                        Xatu ,  
+                        Yanmega ,  
+                        Zangoose,      
+                        Zapdos ,
+                        Zebstrika, 
+                        Zoroark, 
+                        Zweilous, 
+                        Zygarde , 
+                        Abomasite , 
+                     Absolite
+                  ,Aerodactylite
+                  ,Aggronite
+                  ,Alakazite
+                  ,Altarianite
+                  ,Ampharosite
+                  ,Audinite
+                  ,Banettite
+                  ,Beedrillite
+                  ,Blastoisinite
+                  ,Cameruptite
+                  ,Charizarditex
+                  ,Charizarditey
+                  ,Diancite
+                  ,Galladite
+                  ,Garchompite
+                  ,Gardevoirite
+                  ,Glalitite
+                  ,Gyaradosite
+                  ,Heracronite
+                  ,Houndoominite
+                  ,Latiasite
+                  ,Latiosite
+                  ,Lopunnite
+                  ,Manectite
+                  ,Medichamite
+                  ,Metagrossite
+                  ,Pidgeotite
+                  ,Pinsirite
+                  ,Sablenite
+                  ,Sceptilite
+                  ,Scizorite
+                  ,Sharpedonite
+                  ,Slowbronite
+                  ,Steelixite
+                  ,Swampertite
+                  ,Tyranitarite
+                  ,Venusaurite, title="Pokémon and Mega Summary")
+```
+                  
+```{r, results='asis'}
+stargazer(d1 ,title="Summary Statistics")
+```
+The average game length is sixteen turns. However, there are a number of games in the dataset that are of zero length. To eliminate potential bias from these games, all models will be specified to only include games that lasted more than one turn. A few other facts stand out from the preliminary statistics. Specifically in regards to ranking, most observations are within the range of 1000 to 1215 elo. However, the maximum rank observed in the data is 1815. To test whether the statistics differ in higher tiers of ranking, the final model will include all battles lasting at least one turn and all ranks and one for games whose ranking is greater than the third quantile of 1215 elo. 
 
-\clearpage
-
-Next, we will explore the use of the `out.extra` chunk option, which can be used to shrink or expand an image loaded from a file by specifying `"scale= "`. Here we use the mathematical graph stored in the "subdivision.pdf" file.
-
-```{r subd, results="asis", echo=FALSE, fig.cap="Subdiv. graph", out.extra="scale=0.75"}
-include_graphics("figure/subdivision.pdf")
+```{r, results='asis'}
+stargazer(rank, title="Ranking")
 ```
 
-Here is a reference to this image: Figure \@ref(fig:subd).  Note that `echo=FALSE` is specified so that the **R** code is hidden in the document.
-
-**More Figure Stuff**
-
-Lastly, we will explore how to rotate and enlarge figures using the `out.extra` chunk option.  (Currently this only works in the PDF version of the book.)
-
-```{r subd2, results="asis", echo=FALSE, out.extra="angle=180, scale=1.1", fig.cap="A Larger Figure, Flipped Upside Down"}
-include_graphics("figure/subdivision.pdf")
+```{r, results='asis'}
+stargazer(probit1,probit2, title="Simple Model")
 ```
 
-As another example, here is a reference: Figure \@ref(fig:subd2).  
+```{r, results='asis'}
+stargazer(probit3,probit4,probit5,probit6, title="Mega Pokémon and Pokémon Models")
+```
 
-## Footnotes and Endnotes
+```{r, results='asis'}
+stargazer(probit1,probit2,probit3,probit4,probit5,probit6, title="All Models")
+```
 
-You might want to footnote something. ^[footnote text] The footnote will be in a smaller font and placed appropriately. Endnotes work in much the same way. More information can be found about both on the CUS site or feel free to reach out to <data@reed.edu>.
+```{r, results='asis'}
+stargazer(probit6,probit7, title="Full Model and Stealth Rock Interactions")
+```
 
-## Bibliographies
-
-Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension).  In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero.  The Reed librarians have created Zotero documentation at <http://libguides.reed.edu/citation/zotero>.  In addition, a tutorial is available from Middlebury College at <http://sites.middlebury.edu/zoteromiddlebury/>.
-
-_R Markdown_ uses _pandoc_ (<http://pandoc.org/>) to build its bibliographies.  One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying:  [@Molina1994].  This `Molina1994` entry appears in a file called `thesis.bib` in the `bib` folder.  This bibliography database file was created by a program called BibTeX.  You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder.  
-
-For more information about BibTeX and bibliographies, see our CUS site (<http://web.reed.edu/cis/help/latex/index.html>)^[@reedweb2007]. There are three pages on this topic:  _bibtex_ (which talks about using BibTeX, at <http://web.reed.edu/cis/help/latex/bibtex.html>), _bibtexstyles_ (about how to find and use the bibliography style that best suits your needs, at <http://web.reed.edu/cis/help/latex/bibtexstyles.html>) and _bibman_ (which covers how to make and maintain a bibliography by hand, without BibTeX, at <http://web.reed.edu/cis/help/latex/bibman.html>). The last page will not be useful unless you have only a few sources.
-
-If you look at the YAML header at the top of the main .Rmd file you can see that we can specify the style of the bibliography by referencing the appropriate csl file.  You can download a variety of different style files at <https://www.zotero.org/styles>.  Make sure to download the file into the csl folder.
-
-**Tips for Bibliographies**
-
-- Like with thesis formatting, the sooner you start compiling your bibliography for something as large as thesis, the better. Typing in source after source is mind-numbing enough; do you really want to do it for hours on end in late April? Think of it as procrastination.
-- The cite key (a citation's label) needs to be unique from the other entries.
-- When you have more than one author or editor, you need to separate each author's name by the word "and" e.g. `Author = {Noble, Sam and Youngberg, Jessica},`.
-- Bibliographies made using BibTeX (whether manually or using a manager) accept LaTeX markup, so you can italicize and add symbols as necessary.
-- To force capitalization in an article title or where all lowercase is generally used, bracket the capital letter in curly braces.
-- You can add a Reed Thesis citation^[@noble2002] option. The best way to do this is to use the phdthesis type of citation, and use the optional "type" field to enter "Reed thesis" or "Undergraduate thesis." 
-
-## Anything else?
-
-If you'd like to see examples of other things in this template, please contact the Data @ Reed team (email <data@reed.edu>) with your suggestions. We love to see people using _R Markdown_ for their theses, and are happy to help.
 
