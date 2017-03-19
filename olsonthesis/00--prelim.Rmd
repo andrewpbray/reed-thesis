@@ -5,15 +5,12 @@ output: pdf_document
 
 ## Acknowledgements {-}
 
-I want to thank a few people.
+I wanted to thank everyone working for Pokémon Showdown for the opportunity to work with a rich dataset that continues to pose challenges well beyond the realm of Pokémon battling. 
 
 ## Preface {-}
 
-This is an example of a thesis setup to use the reed thesis document class
-(for LaTeX) and the R bookdown package, in general.
-
 ## Dedication {-}
 
-You can have a dedication here if you wish. 
+This work is dedicated to all past, current and future members of The Rocking Chair.
 
 `r if(!knitr:::is_latex_output()) '## Abstract {-}'`

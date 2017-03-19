@@ -1,7 +1,11 @@
+---
+output: pdf_document
+---
 
-# Conclusion {.unnumbered}
+# Conclusion 
+<!-- {.unnumbered}
   \setcounter{chapter}{4}
-	\setcounter{section}{0}
+	\setcounter{section}{0} -->
 
 If we don't want Conclusion to have a chapter number next to it, we can add the `{.unnumbered}` attribute.  This has an unintended consequence of the sections being labeled as 3.6 for example though instead of 4.1.  The \LaTeX\ commands immediately following the Conclusion declaration get things back on track.
 
@@ -14,8 +18,39 @@ If you feel it necessary to include an appendix, it goes here.
 -->
 
 \appendix
-# The Limitations of Modeling Pokémon Using Game Theory 
 
+# Appendix A: Summary Statistics 
+
+![](t11.png)
+![](t12.png)
+![](t13.png)
+![](t14.png)
+![](t15.png)
+![](t16.png)
+![](t17.png)
+![](t18.png)
+![](t19.png)
+![](t20.png)
+
+
+# Appendix B: Model Summary
+![](m1.png)
+![](m2.png)
+![](m3.png)
+![](m4.png)
+![](m5.png)
+![](m6.png)
+![](m7.png)
+![](m8.png)
+![](m9.png)
+![](m10.png)
+![](m11.png)
+![](m12.png)
+![](m13.png)
+![](m14.png)
+![](m15.png)
+![](m16.png)
+![](m17.png)
 
 
 **In the main Rmd file**
