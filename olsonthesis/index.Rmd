@@ -22,12 +22,12 @@ abstract: >
 # like below, use a command like that for the abstract above.  Note that a tab is 
 # needed on the line after the >.
 acknowledgements: >
-  I want to thank a few people.
+  I wanted to thank everyone working for Pokémon Showdown for the opportunity to work with a rich dataset that continues to pose challenges well beyond the realm of Pokémon battling. 
 dedication: >
-  You can have a dedication here if you wish. 
+  This work is dedicated to all past, current and future members of The Rocking Chair.
 preface: >
-  This is an example of a thesis setup to use the reed thesis document class
-  (for LaTeX) and the R bookdown package, in general.
+  Overall, the this study highlights the gains to model quality when including parameters of team composition rather than battle decisions. Specifically in regards to Pokémon battling, the effectiveness of utilizing entry hazards is considered. Some evidence is provided that supports the statistical significance of using entry hazards, but the variability between entry hazards is highlighted in greater detail.The study lends support to the use of entry hazards as an effective Pokémon battling strategy, while at the same time highlighting the limitations of using the results prescriptively in a Pokémon battle.  
+
 # bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
 csl: csl/apa.csl

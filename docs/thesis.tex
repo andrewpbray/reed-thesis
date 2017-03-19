@@ -116,21 +116,34 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \Acknowledgements{
-I want to thank a few people.
+I wanted to thank everyone working for Pokémon Showdown for the
+opportunity to work with a rich dataset that continues to pose
+challenges well beyond the realm of Pokémon battling.
 }
 
 \Dedication{
-You can have a dedication here if you wish.
+This work is dedicated to all past, current and future members of The
+Rocking Chair.
 }
 
 \Preface{
-This is an example of a thesis setup to use the reed thesis document
-class (for LaTeX) and the R bookdown package, in general.
+Overall, the this study highlights the gains to model quality when
+including parameters of team composition rather than battle decisions.
+Specifically in regards to Pokémon battling, the effectiveness of
+utilizing entry hazards is considered. Some evidence is provided that
+supports the statistical significance of using entry hazards, but the
+variability between entry hazards is highlighted in greater detail.The
+study lends support to the use of entry hazards as an effective Pokémon
+battling strategy, while at the same time highlighting the limitations
+of using the results prescriptively in a Pokémon battle.
 }
 
 \Abstract{
-The preface pretty much says it all. \par  Second paragraph of abstract
-starts here.
+\par  
+
+The study lends support to the use of entry hazards as an effective
+Pokémon battling strategy, while at the same time highlighting the
+limitations of using the results prescriptively in a Pokémon battle.
 }
 
 % End of CII addition
@@ -148,12 +161,21 @@ starts here.
   \pagestyle{empty} % this removes page numbers from the frontmatter
 
       \begin{acknowledgements}
-      I want to thank a few people.
+      I wanted to thank everyone working for Pokémon Showdown for the
+      opportunity to work with a rich dataset that continues to pose
+      challenges well beyond the realm of Pokémon battling.
     \end{acknowledgements}
   
       \begin{preface}
-      This is an example of a thesis setup to use the reed thesis document
-      class (for LaTeX) and the R bookdown package, in general.
+      Overall, the this study highlights the gains to model quality when
+      including parameters of team composition rather than battle decisions.
+      Specifically in regards to Pokémon battling, the effectiveness of
+      utilizing entry hazards is considered. Some evidence is provided that
+      supports the statistical significance of using entry hazards, but the
+      variability between entry hazards is highlighted in greater detail.The
+      study lends support to the use of entry hazards as an effective Pokémon
+      battling strategy, while at the same time highlighting the limitations
+      of using the results prescriptively in a Pokémon battle.
     \end{preface}
   
       \hypersetup{linkcolor=black}
@@ -165,18 +187,23 @@ starts here.
       \listoffigures
   
       \begin{abstract}
-      The preface pretty much says it all. \par  Second paragraph of abstract
-      starts here.
+      \par  
+      
+      The study lends support to the use of entry hazards as an effective
+      Pokémon battling strategy, while at the same time highlighting the
+      limitations of using the results prescriptively in a Pokémon battle.
     \end{abstract}
   
       \begin{dedication}
-      You can have a dedication here if you wish.
+      This work is dedicated to all past, current and future members of The
+      Rocking Chair.
     \end{dedication}
   
   \mainmatter % here the regular arabic numbering starts
   \pagestyle{fancyplain} % turns page numbering back on
 
-  \chapter{Pokémon Battling?}\label{pokemon-battling}
+  \chapter{Pokémon, Game Theory, and Behavioral Economics: A Brief
+  Overview}\label{pokemon-game-theory-and-behavioral-economics-a-brief-overview}
   
   \section{Introduction}\label{introduction}
   
@@ -303,9 +330,7 @@ starts here.
   making within the context of sequential games. However, it is vital to
   note that this study will not do so using expansive game trees or
   comparison of payoffs. Namely this is done due to computational
-  limitations. A detailed explanation as to the inability of fully
-  detailing normal form games and payoff functions in the context of
-  Pokémon battling is found in Appendix A.
+  limitations.
   
   Game theoretics aside, there are also important computational notes to
   detail. In this regard, initial computations and analysis focus on the
@@ -324,11 +349,11 @@ starts here.
   winning associated with specific move sets, but also analyze how and why
   such events occur. More specifically I will continue the recent trend of
   `Big Data' analysis to explore macro trends in player's decision making
-  processes by using \emph{all} of data contained within four months of
-  Pokémon Showdown battlelogs spanning 2015. In doing so I hope to answer
-  two main questions: What factors influence the liklihood of winning a
-  Pokémon battle, and are these findings generalizable across the two
-  battle formats being considered?
+  processes In doing so I hope to answer two main questions: What factors
+  influence the liklihood of winning a Pokémon battle, and are these
+  findings generalizable across specifications? In the context of Pokémon
+  battling, is a player marginally better of by deciding to use one type
+  of entry hazard over another?
   
   \section{Literature Review}\label{literature-review}
   
@@ -350,19 +375,19 @@ starts here.
   focuses explicitly on 1v1 battle simulations (Gildardo 2013). However,
   in a detailed analysis of one particular one-on-one scenario the author
   is singularly-minded, insomuch as literally focusing only on one-on-one
-  Pokémon battles. Furthermore, Gildardo's subsection detailing Pokémon
-  battling does not consider other potential variants on Pokémon abilities
-  or item pairings. In this regard, Gildardo's article does not go into
-  great detail on the many variants of Pokémon battling, most notably
-  through the exclusion of teams of Pokémon.
+  Pokémon battles. Furthermore, Gildardo (2013) does not consider other
+  potential variants on Pokémon abilities or item pairings. In this
+  regard, Gildardo's article does not go into great detail on the many
+  variants of Pokémon battling, as highlighted by the exclusion of teams
+  of Pokémon.
   
-  This point notwithstanding, since Gildardo's publication there has been
-  one other notable publication that focuses on Pokémon battling. This
+  This point notwithstanding, since Gildardo (2013) there has been one
+  other notable publication that focuses on Pokémon battling. This
   publication focuses on the creation and analysis of algorithms within
   the context of Pokémon battling; the article additionally goes into
   greater detail on battling strategies while incorporating comparative
   analysis of the different algorithms used to play against human
-  opponents (Ho et al. 2016). Though the paper focused on what is
+  opponents (Ho et al. 2016). Though Ho et al. 2016 focused on what is
   currently a previous iteration of Pokémon Showdown, the iteration of
   Pokémon Showdown is fundamentally the same as that of the data used in
   this study. Nonetheless, the paper did have its own shortcomings as
@@ -429,52 +454,26 @@ starts here.
   costs and/or reduces their chances of winning. Whether this adversely
   influences the players' outcomes is another point of inquiry.
   
-  As an ending point of interest, taking into account opposing players'
-  strategies as deduced from revealed information rubs against issues
-  related level-K thinking. To elaborate further, knowing that a player is
-  likely to repeat the same decision made the previous turn, players may
-  be able optimize their decision by presuposing what decision their
-  opponent is going to make. However, if the opposing player decides to
-  incorporate that very assumption into their own decision, they may
-  arrive at a vastly different outcome than would be expected. Furthermore
-  this outcome may even be suboptimal for both players. That being said,
-  the inclusion of level-k thinking is closely aligned to recent
-  behavioral game theory literature. A central finding of this literature
-  has emphasized the role of iterated reasoning, which essentializes
-  player adaptation to other players' decision making (Wunder et al.
-  2011). Notably this will be a point to consider and incorporate into the
-  analysis of Pokémon battling in a game theoretic framework.
-  
   \chapter{Methodology}\label{methodology}
   
   The data used is a compilation of battle logs taken from the Pokémon
   Showdown servers. Each battle log is stored as a .json file. The data
-  spans across four months of the year 2015. The four months are March,
-  June, September, and December. There are no lapses in the monthly
-  compilations of the data, i.e.~none of the daily data entries are empty.
-  Overall, there were no dramatic overhauls done to Pokémon battling
-  formats or the overall system for the data used in this study. However,
-  some minor adjustments were made and such adjustments are publically
-  documented.
+  spans the entirety of December 25th, 2015. No battle logs are
+  incomplete, i.e.~none of the daily data entries are empty, though some
+  are excluded for reasons covered later. Overall, there were no dramatic
+  overhauls done to Pokémon battling formats or the overall system for the
+  data used in this study. However, some adjustments have been made since
+  the time covered in this study and will be highlighted in the analysis
+  portion of the study.
   
-  Only ranked games are included in the dataset. Ranked battles are
-  battles that count towards a players global ranking in Pokémon Showdown.
-  For each battle, players stand to gain or lose ranking points depending
-  on whether they win or lose the battle.
-  
-  Specific Pokémon usage statistics are found in a subsidiary website. The
-  usage statistics track the frequency of use for specific Pokémon, items,
-  abilities, and a host of other relevant variables for Pokémon battling.
-  On top of deriving experimental probabilities based on specific moves,
-  probabilities will be derived that are specie-specific. Along with this,
-  regressions include the combination of both specie and moves, at least
-  for moves that can be learned by more than one Pokémon.
-  
-  A number of links redirect users to the host site of this game: Smogon
-  University. This website offers a wide variety of resources, similar to
-  those found at the Pokémon Showdown website. Most importantly the Smogon
-  forums are a prominent site for discussion of Pokémon battling
-  strategies.
+  Furthermore only ranked games are included in the dataset. Ranked
+  battles are battles that count towards a players global ranking in
+  Pokémon Showdown. For each battle, players stand to gain or lose ranking
+  points depending on whether they win or lose the battle. A number of
+  links redirect users to the host site of this game: Smogon University.
+  This website offers a wide variety of resources, similar to those found
+  at the Pokémon Showdown website. Most importantly the Smogon forums are
+  a prominent site for discussion of Pokémon battling strategies.
   
   \section{Pokémon Battling Basics}\label{pokemon-battling-basics}
   
@@ -492,41 +491,30 @@ starts here.
   first player to lose all of their Pokémon loses the battle.
   
   However, before the nitty gritty details are explained it is important
-  to make a concession. The entirety of the Pokémon battling system -even
-  that used in the data- is not included in this analysis. The number of
+  to make a concession. The entirety of the Pokémon battling system- even
+  that used in the data -is not included in this analysis. The number of
   cases that deviate from the rules detailed below are either not included
   in the competitive format, or are generally inconsequential to the
   scenarios and strategies considered in this study.
   
   \subsection{Battle Formats}\label{battle-formats}
   
-  The data used for this study include two different Pokémon battling
-  formats. The two formats are known as Over Used and Random Battles,
+  The data used for this study includes only one battling format. The two
+  most frequently used formats are known as Over Used and Random Battles,
   abbreviated as OU and Randbats respectively. Both formats have teams of
   six Pokémon and only allow one Pokémon to be out at any given time.
   While both battle formats are subsets of what are known as single
-  battles, each has their own unique spin on the Pokémon battling format.
+  battles, only OU will be highlighted in greater detail.
   
-  Random battles are the most frequently played format. In this format,
-  neither player decides their initial team compositions. This means
-  players cannot decide the species composing their team nor the move sets
-  of each specie on their team. Instead, the Randbats format uses an
-  algorithm to determine team compositions. It is important to note that
-  there are restrictions to the Randbats format that center around team
-  composition and move composition for specific Pokémon. This restricts
-  teams to have six distinct Pokémon per team, while still allowing the
-  same Pokémon and move sets to be found on opposing teams but not within
-  one player's team.
-  
-  By contrast the OU format includes team composition. By including team
-  composition, players are able to decide what Pokémon to include on their
-  team, the moves of each Pokémon, and other factors such as held items
-  and abilities. However, there are still some restrictions placed on
-  players. Specific species of Pokémon are barred from use, notably
-  Pokémon classified as ``Ubers'' that include a large portion of
-  legendary and mega-Pokémon. Additionally certain ``hidden'' abilities
-  are restricted, limiting the possible Pokémon abilities a specific
-  species may use for a given format.
+  The OU format includes team composition. By including team composition,
+  players are able to decide what Pokémon to include on their team, the
+  moves of each Pokémon, and other factors such as held items and
+  abilities. However, there are still some restrictions placed on players.
+  Specific species of Pokémon are barred from use, notably Pokémon
+  classified as ``Ubers'' that include a large portion of legendary and
+  mega-Pokémon. Additionally certain ``hidden'' abilities are restricted,
+  limiting the possible Pokémon abilities a specific species may use for a
+  given format.
   
   \subsection{Pokémon Types}\label{pokemon-types}
   
@@ -610,6 +598,13 @@ starts here.
   cured. This example highlights an important characteristic of some
   held-items: Some items may only be used once and are discarded after
   their initial use.
+  
+  One of the most important items that a Pokémon can hold is an item that
+  allows the Pokémon to Mega-Evolve, increasing its stats, changing its
+  ability, and even changing the typeage of the Pokémon. This special case
+  of item holding is a focus of this study. Additionally, only one
+  Mega-Pokémon is allowed on a team at once, making variables that account
+  for the different Mega-Pokémon independent by nature.
   
   Similar to items, a Pokémon can only have one ability at a time.
   However, by contrast to a Pokémon's held item a Pokémon always has an
@@ -773,365 +768,244 @@ starts here.
   \section{Model Specification}\label{model-specification}
   
   As Pokémon battles have only two outcomes, we may estimate the
-  probability of winning using a standard probit model. Let the y-value
-  vary between 0 and 1, where 0 denotes a lose and 1 denotes a win for a
-  Pokémon battle. Let us consider estimating whether using entry hazard
-  moves results in a higher chance of winning a Pokémon battle.
+  probability of winning using a standard probit model. Let Y denote the
+  outcome of any battle for a given player. Y takes the value of 0 if the
+  player loses the battle and 1 if the player wins. To address the
+  question of whether any entry hazards positively impact a player's
+  liklihood of winning, we develop a number of different binomial probit
+  models. Beginning with whether a specific move was used by a player in a
+  battle, let the ith move be denoted \(M_i\). For models with entry
+  hazards only, we have \(i=1,..4\). But over all models tested
+  \(i=1,...,9\) to include moves that are able to supplement or supplant
+  entry hazards. Similarly, we denote the jth Pokémon as \(P_j\), where
+  \(j=1,...,415\). Furthermore, there are 39 different Mega-Pokémon that
+  are usable in the OU format, so we denote the usage of the kth
+  Mega-Pokémon as \(Mp_k\). In later model specifications, specific moves
+  will be interacted with Pokémon selections. As an example, the
+  specification of the model for the move stealth rock would include the
+  full roster of moves and Pokémon, or
+  \(\sum_{i=1}^{9} M_i + \sum_{j=1}^{415} P_j\) along with an interaction
+  of each Pokémon that can potentially learn that move with the count of
+  stealth rocks for that battle. The lth Pokémon that can learn Stealth
+  Rock is denoted \(stP_l\). Similar notation is used for other
+  move-specific Pokémon subsets.
   
-  We begin by defining the variables. Let x be the number of uses of
-  spikes, y be the number of uses of toxic spikes, z be the number of uses
-  of sticky web, and w be the use of stealth rock. However, as variables x
-  through z are able to be used more than once, there is the possibility
-  that repeated use of these moves leads to diminshing returns. Hence for
-  these variables we include a squared term for variables x through z.
-  Letting p be the probability of winning a Pokémon game, and letting
-  \(\epsilon\) denote the error term, we have:
-  \[p = \alpha + \beta_1 x + \beta_2 x^2 \gamma_1 y + \gamma_2 y^2 \delta_1 z + \delta_2 z^2 \eta w + \epsilon \]
+  Letting \(\epsilon\) denote the error term, we begin with the simplified
+  model. This model only includes whether a specific move was used. We
+  have: \[(1): Y = \alpha + \sum_{i=1}^{9} M_i + \epsilon \] However, the
+  repeated use of a move can lead to additional benefits. It is possible
+  that the repeated use of a move has a lower marginal impact on a
+  player's win liklihood. To test this hypothesis, we expand the initial
+  model to include squared terms for each move. Thus we have:
+  \[(2): Y = \alpha + \sum_{i=1}^{9} M_i + \sum_{i=1}^{9} M_i^2 + \epsilon \]
   
-  One of the first tests to conduct is comparing the theoretical values of
-  \(\alpha\) with its experimental value. Theoretically, players should
-  have equal probability to win or lose a battle when no information is
-  added about their decisions, so \(\mathbf{E}(\alpha)=0.5\).
+  These models have not yet included the vast variety of species composing
+  teams. However, before examining the interactions between a team's
+  composition of Pokémon and specific moves, there needs to be a formal
+  model of just the marginal impact of a single Pokémon on a team.
+  Respective to the indexing outlined previously, we have:
+  \[(3): Y = \alpha + \sum_{j=1}^{415} P_j + \epsilon \] Thirty eight
+  different Pokémon can turn into Mega-Pokémon however. To test whether a
+  Pokémon negatively or positively impacts the marginal probability of
+  winning, the next model specification includes Mega-Pokémon within the
+  roster of competitive Pokémon.
+  \[(4): Y = \alpha + \sum_{j=1}^{415} P_j + \sum_{k=1}^{39} Mp_k + \epsilon \]
+  The next specification is the combination of models (1) and (4). Then,
+  the last specification includes the interaction of having a specific
+  Pokémon with the use of the move stealth rock. Respectively, the models
+  are given by:
+  \[(5): Y = \alpha + \sum_{i=1}^{9} M_i + \sum_{j=1}^{415} P_j + \sum_{k=1}^{39} Mp_k + \epsilon \]
+  \[(6): Y = \alpha + \sum_{i=1}^{9} M_i + \sum_{j=1}^{415} P_j + \sum_{l=1}^{93} (M_1)*(stP_l)+ \sum_{k=1}^{39} Mp_k + \epsilon (6)\]
   
-  Furthermore, this model does not include interactions between entry
-  hazards, which is important both for experimental validity and as a
-  method to cross-validate the experimental results.
+  After these six model specifications, the combination of all six models
+  will be given to cross-check results and check for potential robustness
+  for move and Pokémon combinations. The inclusion of interactions may be
+  particularly key in identifying outlying results.
   
-  There are also moves that are exceptionally powerful compared to other
-  damaging moves. These moves take a variety of forms, either by causing
-  the user to `charge up' for one round in advance, lose their next turn
-  to recharge, or by having comparatively low accuracy. Such moves may be
-  considered risky for a number of reasons. To see if using such moves
-  adversely affect player outcomes, a similar probit model will be used
-  and subsequently tested.
+  \chapter{Data}\label{data}
   
-  In addition to this, the variety of different volatile and status
-  condition moves will be included in a separate probit model. Then, after
-  statistical significance is tested, a separate probit model will be used
-  and tested that includes the high damage moves, status moves, and entry
-  hazard moves with a number of different interactions included to test
-  for robustness.
+  Due to the vast number of parameters included in the numerous models
+  outlined previously, summary statistics and an output of five of the six
+  models is contained in the Appendix section. Comments on each are
+  provided with some brief context of their interpretation.
   
-  \chapter{Tables, Graphics, References, and Labels}\label{ref-labels}
+  Going in the order of the Appendices, the summary of the variables used
+  in the analysis are a good starting point. The average game length is
+  sixteen turns. However, the average is biased from games that lasted
+  zero turns. As these games did not provide any meaningful information,
+  they are excluded from all regressions used. Furthermore, in regards to
+  ranking, most observations are within the range of 1000 to 1280 elo, as
+  the mean rank is 1154 with a standard deviation of nearly 130 elo
+  points. Given that the highest rank observed in the data is 1815, there
+  is a noticeable divide between the highest ranking games and those
+  within the range of standard deviations to the mean rank.
   
-  \section{Tables}\label{tables}
+  Nonetheless, the real meat of the summary statistics is with the large
+  range of different Pokémon species and Mega-Pokémon that players used.
+  In this regard, nearly half of the most frequently used Pokémon, that of
+  Alakazam, Banette, and Garchomp, have a Mega-evolution. Though
+  specifically in regards to the Mega-evolution usage statistics, the four
+  most frequently used Mega-Pokémon are Mega-Venusaur, Mega-Scizor, and
+  both Mega-evolutions of Charizard, though Alakazam, Banette, and
+  Garchomp are not the most infrequently used Mega-evolutions.
   
-  In addition to the tables that can be automatically generated from a
-  data frame in \textbf{R} that you saw in {[}R Markdown Basics{]} using
-  the \texttt{kable} function, you can also create tables using
-  \emph{pandoc}. (More information is available at
-  \url{http://pandoc.org/README.html\#tables}.) This might be useful if
-  you don't have values specifically stored in \textbf{R}, but you'd like
-  to display them in table form. Below is an example. Pay careful
-  attention to the alignment in the table and hyphens to create the rows
-  and columns.
+  It is important to bear in mind that Mega-Pokémon are not always
+  utilized however, given by the fact that the cumulative sum of the mean
+  of all Mega-Pokémon variables does not add up to one. Given this
+  discrepancy, it would be fruitful to test whether utilizing a
+  Mega-Pokémon marginally impacts whether a player wins a battle. Within
+  this group of three Garchomp is the outlier, as both Mega-Alakazam and
+  Mega-Banette were banned from the OU format following the year of the
+  data used. Besides this standout feature of the summary statistics, the
+  remaining frequently used Pokémon are considered staples of the OU
+  format: Clefable, Talonflame, and Heatran. Of the total six most
+  frequently used Pokémon, half have the ability to use the move Stealth
+  Rock. This is important to bear in mind when considering the preliminary
+  models.
   
-  \begin{longtable}[c]{@{}ccc@{}}
-  \caption{\label{tab:inher} Correlation of Inheritance Factors for Parents
-  and Child}\tabularnewline
-  \toprule
-  \begin{minipage}[b]{0.29\columnwidth}\centering\strut
-  Factors
-  \strut\end{minipage} &
-  \begin{minipage}[b]{0.47\columnwidth}\centering\strut
-  Correlation between Parents \& Child
-  \strut\end{minipage} &
-  \begin{minipage}[b]{0.16\columnwidth}\centering\strut
-  Inherited
-  \strut\end{minipage}\tabularnewline
-  \midrule
-  \endfirsthead
-  \toprule
-  \begin{minipage}[b]{0.29\columnwidth}\centering\strut
-  Factors
-  \strut\end{minipage} &
-  \begin{minipage}[b]{0.47\columnwidth}\centering\strut
-  Correlation between Parents \& Child
-  \strut\end{minipage} &
-  \begin{minipage}[b]{0.16\columnwidth}\centering\strut
-  Inherited
-  \strut\end{minipage}\tabularnewline
-  \midrule
-  \endhead
-  \begin{minipage}[t]{0.29\columnwidth}\centering\strut
-  Education
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.47\columnwidth}\centering\strut
-  -0.49
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.16\columnwidth}\centering\strut
-  Yes
-  \strut\end{minipage}\tabularnewline
-  \begin{minipage}[t]{0.29\columnwidth}\centering\strut
-  Socio-Economic Status
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.47\columnwidth}\centering\strut
-  0.28
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.16\columnwidth}\centering\strut
-  Slight
-  \strut\end{minipage}\tabularnewline
-  \begin{minipage}[t]{0.29\columnwidth}\centering\strut
-  Income
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.47\columnwidth}\centering\strut
-  0.08
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.16\columnwidth}\centering\strut
-  No
-  \strut\end{minipage}\tabularnewline
-  \begin{minipage}[t]{0.29\columnwidth}\centering\strut
-  Family Size
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.47\columnwidth}\centering\strut
-  0.18
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.16\columnwidth}\centering\strut
-  Slight
-  \strut\end{minipage}\tabularnewline
-  \begin{minipage}[t]{0.29\columnwidth}\centering\strut
-  Occupational Prestige
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.47\columnwidth}\centering\strut
-  0.21
-  \strut\end{minipage} &
-  \begin{minipage}[t]{0.16\columnwidth}\centering\strut
-  Slight
-  \strut\end{minipage}\tabularnewline
-  \bottomrule
-  \end{longtable}
+  \begin{center}\includegraphics[width=400px]{table12} \end{center}
   
-  We can also create a link to the table by doing the following: Table
-  \ref{tab:inher}. If you go back to {[}Loading and exploring data{]} and
-  look at the \texttt{kable} table, we can create a reference to this max
-  delays table too: Table \ref{tab:maxdelays}. The addition of the
-  \texttt{\textbackslash{}label\{tab:inher\}} option to the end of the
-  table caption allows us to then a make a reference to Table
-  \texttt{\textbackslash{}@ref(tab:label)}. Note that this reference could
-  appear anywhere throughout the document after the table has appeared.
+  Included above is the results of the first two model specifications.
+  Sadly, the two models are alike in their log liklihood values and in
+  their Akaike information criterion (AIC) values. Simply put, adding
+  squared terms for the nine specified moves did not add anything
+  meaningful to the initial model. This may be just a byproduct of the
+  data however, as the only move variable with values greater than one was
+  for the move Dragon Tail. Nonetheless, it is important to note that
+  nearly all of the entry hazard moves are statistically significant.
+  Though, this being said, only Stealth Rock and Spikes contribute
+  positively to the marginal likliehood of winning a battle. This
+  contributes to some semblence of generalizability though, as both
+  Stealth Rock and Spikes are the only entry hazards that directly damage
+  opposing Pokémon when they enter the battlefield.
   
-  \clearpage
+  The statistical significance of the entry hazards is also verified in
+  further model specifications. While the use of Toxic Spikes becomes less
+  statistically significant with the inclusion of both single Pokémon
+  choice and Mega-Pokémon choice, the sign of the variable remains
+  negative. Furthermore, while later specifications continue to report
+  Spikes as a statistically significant move choice, the magnitude of
+  using the move appears to diminish when including other factors such as
+  Pokémon choice.
   
-  \section{Figures}\label{figures}
+  Overall, the use of Pokémon roster and Mega-Pokémon roster appear to be
+  more meaningful variables than the use of simple move counts, as is
+  evidence from comparison of log liklihood and AIC values. This
+  improvement in model quality is also found in comparison to all previous
+  models with the final model (6). While residual deviance is not reported
+  for each model, the AIC lends credence to the comparative view of model
+  (6) as the model of best fit for those specified. Though, this being
+  said, the final model is particularly difficult to digest due to the
+  number of parameters specified.
   
-  If your thesis has a lot of figures, \emph{R Markdown} might behave
-  better for you than that other word processor. One perk is that it will
-  automatically number the figures accordingly in each chapter. You'll
-  also be able to create a label for each figure, add a caption, and then
-  reference the figure in a way similar to what we saw with tables
-  earlier. If you label your figures, you can move the figures around and
-  \emph{R Markdown} will automatically adjust the numbering for you. No
-  need for you to remember! So that you don't have to get too far into
-  LaTeX to do this, a couple \textbf{R} functions have been created for
-  you to assist. You'll see their use below.
+  The final model is adds meaningful insight to the simple move counting
+  variables. Interacting the move count variable for Stealth Rock and all
+  Pokémon that can potentially learn (and use) Stealth Rock, the model
+  indicates that there is a nonuniform effect on win outcome depending on
+  which Pokémon used it. This view may be appear counterintuitive, but it
+  does offer a useful illustration to the complexity of Pokémon. Take for
+  example two hypothetical instances where Stealth Rock is used by two
+  different Pokémon on the same enemy Pokémon. While each may successfully
+  execute the move on that turn, the opposing Pokémon gets to execute a
+  move as well. If, in this instance, the move is the same, then damage is
+  calculated according to the type matchup of the opposing move with the
+  Pokémon; this may knock out one Pokémon while leave another with enough
+  health to execute one more move.
   
-  In the \textbf{R} chunk below, we will load in a picture stored as
-  \texttt{reed.jpg} in our main directory. We then give it the caption of
-  ``Reed logo'', the label of ``reedlogo'', and specify that this is a
-  figure. Make note of the different \textbf{R} chunk options that are
-  given in the R Markdown file (not shown in the knitted document).
+  \chapter{Conclusion}\label{conclusion}
   
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \KeywordTok{include_graphics}\NormalTok{(}\DataTypeTok{path =} \StringTok{"figure/reed.jpg"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
+  Overall, the models improved in quality when more parameters were added.
+  Additionally, including the interaction between using a specified move,
+  Stealth Rock, and the inclusion of a specific Pokémon provided a more
+  meaningful estimation of a player's liklihood to win a Pokémon battle.
+  Overall, only one of the four entry hazards was not statistically
+  significant across any model specifications. There is some evidence to
+  support variability between different entry hazards, and the use of the
+  moves Stealth Rock and Spikes contributed a positive marginal effect on
+  a player's game outcome.
   
-  \begin{figure}
+  Nonetheless, there are a number of other points to bear in mind. For
+  starters, interactions were only considered between a move and a
+  Pokémon, not one move and another move. This means that only the
+  marginal effect of using Stealth Rock or Spikes was considered, not the
+  joint use of Stealth Rock and Spikes. Furthermore, while ranking was
+  briefly touched upon, no comparisons were made between different groups
+  on the basis of rank. It would be meaningful to see if the usefulness of
+  entry hazards was extended to groups that are considered high ranking,
+  though this would significantly reduce the number of observations drawn
+  upon.
   
-  {\centering \includegraphics{figure/reed} 
+  In regards to the missed opportunities associated with different
+  interactions, there is one other elephant in the room: the Pokémon
+  variables. While the models indicate whether one Pokémon has more wins
+  or loses associated with its use, this is only a marginal effect being
+  captured. Just as moves may interact or compound with the use of another
+  move, so too can Pokémon. While including all combinations of six
+  Pokémon would exhaust the degrees of freedom for the sample used,
+  reducing the model to all combinations found in the sample would lend
+  the data for more prescriptive use.
   
-  }
-  
-  \caption[Reed logo]{Reed logo}\label{fig:reedlogo}
-  \end{figure}
-  
-  Here is a reference to the Reed logo: Figure \ref{fig:reedlogo}. Note
-  the use of the \texttt{fig:} code here. By naming the \textbf{R} chunk
-  that contains the figure, we can then reference that figure later as
-  done in the first sentence here. We can also specify the caption for the
-  figure via the R chunk option \texttt{fig.cap}.
-  
-  \clearpage 
-  
-  Below we will investigate how to save the output of an \textbf{R} plot
-  and label it in a way similar to that done above. Recall the
-  \texttt{flights} dataset from Chapter \ref{rmd-basics}. (Note that we've
-  shown a different way to reference a section or chapter here.) We will
-  next explore a bar graph with the mean flight departure delays by
-  airline from Portland for 2014. Note also the use of the \texttt{scale}
-  parameter which is discussed on the next page.
-  
-  \begin{Shaded}
-  \begin{Highlighting}[]
-  \NormalTok{flights %>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(carrier) %>%}
-  \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{mean_dep_delay =} \KeywordTok{mean}\NormalTok{(dep_delay)) %>%}
-  \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{carrier, }\DataTypeTok{y =} \NormalTok{mean_dep_delay)) +}
-  \StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{position =} \StringTok{"identity"}\NormalTok{, }\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{, }\DataTypeTok{fill =} \StringTok{"red"}\NormalTok{)}
-  \end{Highlighting}
-  \end{Shaded}
-  
-  \begin{figure}
-  
-  {\centering \includegraphics{thesis_files/figure-latex/delaysboxplot-1} 
-  
-  }
-  
-  \caption[Mean Delays by Airline]{Mean Delays by Airline}\label{fig:delaysboxplot}
-  \end{figure}
-  
-  Here is a reference to this image: Figure \ref{fig:delaysboxplot}.
-  
-  A table linking these carrier codes to airline names is available at
-  \url{https://github.com/ismayc/pnwflights14/blob/master/data/airlines.csv}.
-  
-  \clearpage
-  
-  Next, we will explore the use of the \texttt{out.extra} chunk option,
-  which can be used to shrink or expand an image loaded from a file by
-  specifying \texttt{"scale=\ "}. Here we use the mathematical graph
-  stored in the ``subdivision.pdf'' file.
-  
-  \begin{figure}
-  
-  {\centering \includegraphics[scale=0.75]{figure/subdivision} 
-  
-  }
-  
-  \caption[Subdiv]{Subdiv. graph}\label{fig:subd}
-  \end{figure}
-  
-  Here is a reference to this image: Figure \ref{fig:subd}. Note that
-  \texttt{echo=FALSE} is specified so that the \textbf{R} code is hidden
-  in the document.
-  
-  \textbf{More Figure Stuff}
-  
-  Lastly, we will explore how to rotate and enlarge figures using the
-  \texttt{out.extra} chunk option. (Currently this only works in the PDF
-  version of the book.)
-  
-  \begin{figure}
-  
-  {\centering \includegraphics[angle=180, scale=1.1]{figure/subdivision} 
-  
-  }
-  
-  \caption[A Larger Figure, Flipped Upside Down]{A Larger Figure, Flipped Upside Down}\label{fig:subd2}
-  \end{figure}
-  
-  As another example, here is a reference: Figure \ref{fig:subd2}.
-  
-  \section{Footnotes and Endnotes}\label{footnotes-and-endnotes}
-  
-  You might want to footnote something. \footnote{footnote text} The
-  footnote will be in a smaller font and placed appropriately. Endnotes
-  work in much the same way. More information can be found about both on
-  the CUS site or feel free to reach out to
-  \href{mailto:data@reed.edu}{\nolinkurl{data@reed.edu}}.
-  
-  \section{Bibliographies}\label{bibliographies}
-  
-  Of course you will need to cite things, and you will probably accumulate
-  an armful of sources. There are a variety of tools available for
-  creating a bibliography database (stored with the .bib extension). In
-  addition to BibTeX suggested below, you may want to consider using the
-  free and easy-to-use tool called Zotero. The Reed librarians have
-  created Zotero documentation at
-  \url{http://libguides.reed.edu/citation/zotero}. In addition, a tutorial
-  is available from Middlebury College at
-  \url{http://sites.middlebury.edu/zoteromiddlebury/}.
-  
-  \emph{R Markdown} uses \emph{pandoc} (\url{http://pandoc.org/}) to build
-  its bibliographies. One nice caveat of this is that you won't have to do
-  a second compile to load in references as standard LaTeX requires. To
-  cite references in your thesis (after creating your bibliography
-  database), place the reference name inside square brackets and precede
-  it by the ``at'' symbol. For example, here's a reference to a book about
-  worrying: {[}@Molina1994{]}. This \texttt{Molina1994} entry appears in a
-  file called \texttt{thesis.bib} in the \texttt{bib} folder. This
-  bibliography database file was created by a program called BibTeX. You
-  can call this file something else if you like (look at the YAML header
-  in the main .Rmd file) and, by default, is to placed in the \texttt{bib}
-  folder.
-  
-  For more information about BibTeX and bibliographies, see our CUS site
-  (\url{http://web.reed.edu/cis/help/latex/index.html})\footnote{@reedweb2007}.
-  There are three pages on this topic: \emph{bibtex} (which talks about
-  using BibTeX, at \url{http://web.reed.edu/cis/help/latex/bibtex.html}),
-  \emph{bibtexstyles} (about how to find and use the bibliography style
-  that best suits your needs, at
-  \url{http://web.reed.edu/cis/help/latex/bibtexstyles.html}) and
-  \emph{bibman} (which covers how to make and maintain a bibliography by
-  hand, without BibTeX, at
-  \url{http://web.reed.edu/cis/help/latex/bibman.html}). The last page
-  will not be useful unless you have only a few sources.
-  
-  If you look at the YAML header at the top of the main .Rmd file you can
-  see that we can specify the style of the bibliography by referencing the
-  appropriate csl file. You can download a variety of different style
-  files at \url{https://www.zotero.org/styles}. Make sure to download the
-  file into the csl folder.
-  
-  \textbf{Tips for Bibliographies}
-  
-  \begin{itemize}
-  \tightlist
-  \item
-    Like with thesis formatting, the sooner you start compiling your
-    bibliography for something as large as thesis, the better. Typing in
-    source after source is mind-numbing enough; do you really want to do
-    it for hours on end in late April? Think of it as procrastination.
-  \item
-    The cite key (a citation's label) needs to be unique from the other
-    entries.
-  \item
-    When you have more than one author or editor, you need to separate
-    each author's name by the word ``and'' e.g.
-    \texttt{Author\ =\ \{Noble,\ Sam\ and\ Youngberg,\ Jessica\},}.
-  \item
-    Bibliographies made using BibTeX (whether manually or using a manager)
-    accept LaTeX markup, so you can italicize and add symbols as
-    necessary.
-  \item
-    To force capitalization in an article title or where all lowercase is
-    generally used, bracket the capital letter in curly braces.
-  \item
-    You can add a Reed Thesis citation\footnote{@noble2002} option. The
-    best way to do this is to use the phdthesis type of citation, and use
-    the optional ``type'' field to enter ``Reed thesis'' or
-    ``Undergraduate thesis.''
-  \end{itemize}
-  
-  \section{Anything else?}\label{anything-else}
-  
-  If you'd like to see examples of other things in this template, please
-  contact the Data @ Reed team (email
-  \href{mailto:data@reed.edu}{\nolinkurl{data@reed.edu}}) with your
-  suggestions. We love to see people using \emph{R Markdown} for their
-  theses, and are happy to help.
-  
-  \chapter*{Conclusion}\label{conclusion}
-  \addcontentsline{toc}{chapter}{Conclusion}
-  
-  \setcounter{chapter}{4} \setcounter{section}{0}
-  
-  If we don't want Conclusion to have a chapter number next to it, we can
-  add the \texttt{\{.unnumbered\}} attribute. This has an unintended
-  consequence of the sections being labeled as 3.6 for example though
-  instead of 4.1. The \LaTeX~commands immediately following the Conclusion
-  declaration get things back on track.
-  
-  \textbf{More info}
-  
-  And here's some other random info: the first paragraph after a chapter
-  title or section head \emph{shouldn't be} indented, because indents are
-  to tell the reader that you're starting a new paragraph. Since that's
-  obvious after a chapter or section title, proper typesetting doesn't add
-  an indent there.
+  Additionally, only one Pokémon battling format is considered during the
+  study. Just as it would be intriging to see differences across rank,
+  differences across battle format would lend greater external validity to
+  the results found.
   
   \appendix
-  \# The Limitations of Modeling Pokémon Using Game Theory
+  
+  \chapter{Appendix A: Summary
+  Statistics}\label{appendix-a-summary-statistics}
+  
+  \begin{center}\includegraphics[width=400px]{t11} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t12} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t13} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t14} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t15} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t16} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t17} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t18} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t19} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{t20} \end{center}
+  
+  \chapter{Appendix B: Model Summary}\label{appendix-b-model-summary}
+  
+  \begin{center}\includegraphics[width=400px]{m1} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m2} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m3} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m4} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m5} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m6} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m7} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m8} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m9} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m10} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m11} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m12} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m13} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m14} \end{center}
+  
+  \begin{center}\includegraphics[width=400px]{m15} \end{center}
   
   \textbf{In the main Rmd file}
   
@@ -1169,7 +1043,7 @@ starts here.
     \NormalTok{devtools::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"ismayc/thesisdown"}\NormalTok{)}
     \NormalTok{\}}
   \KeywordTok{library}\NormalTok{(thesisdown)}
-  \NormalTok{flights <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/flights.csv"}\NormalTok{)}
+  \KeywordTok{load}\NormalTok{(}\StringTok{"data/d1.Rda"}\NormalTok{)}
   \end{Highlighting}
   \end{Shaded}
   
@@ -1208,9 +1082,6 @@ starts here.
   \item
     Smogon University (n.d.). Retrieved October 31, 2016, from
     \url{http://www.smogon.com/}
-  \item
-    Usage Stats (n.d.). Retrived October 31, 2016, from
-    \url{http://sweepercalc.com/stats/}
   \item
     Wunder, M., Kaisers, M., Yaros, J., Littman, M., (May, 2011) Using
     Iterated Reasoning to Predict Opponent Strategies. Proc. of 10th Int.

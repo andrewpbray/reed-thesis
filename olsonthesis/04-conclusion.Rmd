@@ -5,13 +5,15 @@ output: pdf_document
 # Conclusion 
 <!-- {.unnumbered}
   \setcounter{chapter}{4}
-	\setcounter{section}{0} -->
+	\setcounter{section}{0} --> 
 
-If we don't want Conclusion to have a chapter number next to it, we can add the `{.unnumbered}` attribute.  This has an unintended consequence of the sections being labeled as 3.6 for example though instead of 4.1.  The \LaTeX\ commands immediately following the Conclusion declaration get things back on track.
+Overall, the models improved in quality when more parameters were added. Additionally, including the interaction between using a specified move, Stealth Rock, and the inclusion of a specific Pokémon provided a more meaningful estimation of a player's liklihood to win a Pokémon battle. Overall, only one of the four entry hazards was not statistically significant across any model specifications. There is some evidence to support variability between different entry hazards, and the use of the moves Stealth Rock and Spikes contributed a positive marginal effect on a player's game outcome. 
 
-**More info**
+Nonetheless, there are a number of other points to bear in mind. For starters, interactions were only considered between a move and a Pokémon, not one move and another move. This means that only the marginal effect of using Stealth Rock or Spikes was considered, not the joint use of Stealth Rock and Spikes. Furthermore, while ranking was briefly touched upon, no comparisons were made between different groups on the basis of rank. It would be meaningful to see if the usefulness of entry hazards was extended to groups that are considered high ranking, though this would significantly reduce the number of observations drawn upon. 
 
-And here's some other random info: the first paragraph after a chapter title or section head _shouldn't be_ indented, because indents are to tell the reader that you're starting a new paragraph. Since that's obvious after a chapter or section title, proper typesetting doesn't add an indent there.
+In regards to the missed opportunities associated with different interactions, there is one other elephant in the room: the Pokémon variables. While the models indicate whether one Pokémon has more wins or loses associated with its use, this is only a marginal effect being captured. Just as moves may interact or compound with the use of another move, so too can Pokémon. While including all combinations of six Pokémon would exhaust the degrees of freedom for the sample used, reducing the model to all combinations found in the sample would lend the data for more prescriptive use. 
+
+Additionally, only one Pokémon battling format is considered during the study. Just as it would be intriging to see differences across rank, differences across battle format would lend greater external validity to the results found. 
 
 <!--
 If you feel it necessary to include an appendix, it goes here.
@@ -21,36 +23,109 @@ If you feel it necessary to include an appendix, it goes here.
 
 # Appendix A: Summary Statistics 
 
-![](t11.png)
-![](t12.png)
-![](t13.png)
-![](t14.png)
-![](t15.png)
-![](t16.png)
-![](t17.png)
-![](t18.png)
-![](t19.png)
-![](t20.png)
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t11.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t12.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t13.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t14.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t15.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t16.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t17.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t18.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t19.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("t20.png")
+```
 
 
 # Appendix B: Model Summary
-![](m1.png)
-![](m2.png)
-![](m3.png)
-![](m4.png)
-![](m5.png)
-![](m6.png)
-![](m7.png)
-![](m8.png)
-![](m9.png)
-![](m10.png)
-![](m11.png)
-![](m12.png)
-![](m13.png)
-![](m14.png)
-![](m15.png)
-![](m16.png)
-![](m17.png)
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m1.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m2.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m3.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m4.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m5.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m6.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m7.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m8.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m9.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m10.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m11.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m12.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m13.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m14.png")
+```
+
+```{r, out.width = "400px", echo=FALSE}
+knitr::include_graphics("m15.png")
+```
+
 
 
 **In the main Rmd file**

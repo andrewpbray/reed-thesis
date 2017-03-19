@@ -9,8 +9,11 @@ I wanted to thank everyone working for Pokémon Showdown for the opportunity to 
 
 ## Preface {-}
 
+Overall, the this study highlights the gains to model quality when including parameters of team composition rather than battle decisions. Specifically in regards to Pokémon battling, the effectiveness of utilizing entry hazards is considered. Some evidence is provided that supports the statistical significance of using entry hazards, but the variability between entry hazards is highlighted in greater detail.  
+
 ## Dedication {-}
 
 This work is dedicated to all past, current and future members of The Rocking Chair.
 
-`r if(!knitr:::is_latex_output()) '## Abstract {-}'`
+<!--`r if(!knitr:::is_latex_output()) '## Abstract {-}'` --> 
+

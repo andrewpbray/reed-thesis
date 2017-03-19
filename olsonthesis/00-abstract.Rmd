@@ -1,3 +1,3 @@
-The preface pretty much says it all.  \par
+\par
 
-Second paragraph of abstract starts here.
+The study lends support to the use of entry hazards as an effective Pokémon battling strategy, while at the same time highlighting the limitations of using the results prescriptively in a Pokémon battle.  
