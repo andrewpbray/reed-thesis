@@ -1,0 +1,6 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+We define the variables $M_S$ ,$M_{TS}$ ,$M_{SW}$, $M_{DT}$, $M_R$, $M_{CT}$, and $M_W$
