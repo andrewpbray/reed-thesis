@@ -1,0 +1,19 @@
+---
+output: pdf_document
+---
+# Preliminary Content {-}
+
+## Acknowledgements {-}
+
+I wanted to thank everyone working for Pokémon Showdown for the opportunity to work with a rich dataset that continues to pose challenges well beyond the realm of Pokémon battling. 
+
+<!-- ## Preface {-}
+
+This study attempts to answer a simple question specific to Pokémon battling: is it effective to utilize entry hazards as a battling strategy? In the process of testing this hypothesis, a number of additional parameters such as Pokémon and Mega-Pokémon choices are added to test the robustness of results. Overall, there is evidence that some entry hazards positively impact the marginal probability of a player winning a game, and that entry hazards are able to enhanced by a moves that are considered complementary. However, the study fails to find generalizable evidence of these points beyond one move, Stealth Rock, and the interaction of Stealth Rock with Dragon Tail respectively. Furthermore, this study notes the limitations of the results being taken prescriptively to a player's choice of Pokémon and Mega-Pokémon. --> 
+
+## Dedication {-}
+
+This work is dedicated to all past, current and future members of The Rocking Chair.
+
+<!--`r if(!knitr:::is_latex_output()) '## Abstract {-}'` --> 
+

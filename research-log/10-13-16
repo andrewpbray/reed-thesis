@@ -1,0 +1,67 @@
+# https://cran.r-project.org/web/packages/tidyjson/vignettes/introduction-to-tidyjson.html
+# https://cran.r-project.org/web/packages/tidyjson/tidyjson.pdf
+# https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html
+
+library(jsonlite)
+data1 <- fromJSON("battle-randombattle-214637002.log.json", simplifyDataFrame = TRUE)
+
+
+filenames <- list.files()
+
+# this loops through all files in the directory, opening each and saving it as 
+# an element of a list.
+pages <- list()
+for(i in seq_along(filenames)) {
+  mydata <- fromJSON(filenames[i], simplifyDataFrame = TRUE)
+  pages[[i]] <- mydata
+}
+
+turn_lengths <- rep(0, length(pages))
+for(i in seq_along(pages)) {
+  turn_lengths[i] <- pages[[i]]$turns
+}
+
+library(ggplot2)
+d <- data.frame(turn_lengths)
+ggplot(d, aes(x = turn_lengths)) + geom_histogram()
+
+# New practice code 
+# This code works 
+p1rank <- rep(0, length(pages))
+for(i in seq_along(pages)) {
+ p1rank[i] <- pages[[i]]$p1rating$r
+}
+p2rank <- rep(0, length(pages))
+for(i in seq_along(pages)) {
+p2rank[i] <- pages[[i]]$p2rating$r
+}
+# Note: plrating$r vs. p1rating$rpr 
+# Difference code
+rankdif <- abs((as.numeric(p1rank) - as.numeric(p2rank)))
+# Difference b/w player rankings 
+abs(as.numeric($p1rating$r) - as.numeric($p2rating$r))
+# Rank spread
+rankspr <- abs((as.numeric(p1rank) + as.numeric(p2rank)))/2 
+# Graph 
+plot(rankdif, rankspr)
+plot(rankspr, rankdif)
+## End game sorting
+endType <- rep("", length(pages))
+for(i in seq_along(pages)) {
+  endType[i] <- pages[[i]]$endType
+}
+## unique ids 
+filenames <- list.files()
+userids <- matrix(vector(mode = "character", length = length(filenames)*2), ncol = 2)
+for(i in 1:length(filenames)) {
+  mydata <- fromJSON(filenames[i], simplifyDataFrame = TRUE)
+  userids[i, ] <- c(mydata$p1rating$userid, mydata$p2rating$userid)
+}
+
+userid <- unique(as.character(userids))
+
+set.seed(502)
+uid <- sample(100000:999999)[1:length(userid)]
+
+lookup <- data.frame("userid" = userid,
+                     "uid" = uid)

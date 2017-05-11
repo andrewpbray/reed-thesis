@@ -1,0 +1,27 @@
+---
+title: "Template"
+output: pdf_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(stargazer)
+library(readr)
+```
+
+$(6): f^{-1}(P(Y=1)) = \alpha + \mathop{\sum_{n \in T}}\sum_{i \in S_1} \beta_i(E \times I_i)+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \nu_i(L \times I_i)+ \sum_{i \in S_2} \delta_i(M_i)$
+
+Similar to model (2), we include the squared term for count variables. However, this only includes moves complementary to the use of entry hazards. Including the squared terms for complementary moves yields the following model specification: 
+
+$(7): f^{-1}(P(Y=1)) = \alpha + \mathop{\sum_{n \in T}}\sum_{i \in S_1} \beta_i(E \times I_i)+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \nu_i(L \times I_i) + \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2$
+
+$(8): f^{-1}(P(Y=1)) = \alpha + \mathop{\sum_{n \in T}}\sum_{i \in S_1} \beta_i(E \times I_i)+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \nu_i(L \times I_i)+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2 + \sum_{j \in S_2}\theta_j(E \times I_{SR} \times M_j)  + \sum_{j \in S_2}\mu_j(L \times I_{SR} \times M_j) + \sum_{j \in S_2} \lambda_j(E \times I_{SR} \times (M_j)^2) + \sum_{j \in S_2} \epsilon_j(L \times I_{SR} \times (M_j)^2) + \sum_{j \in S_1/SR} \chi_j(E \times I_{SR} \times E \times I_j) + \sum_{j \in S_1/SR} \xi_j(E \times I_{SR} \times L \times I_j) + \sum_{j \in S_1/SR} \psi_j(L \times I_{SR} \times E \times I_j) + \sum_{j \in S_1/SR} \omega_j(L \times I_{SR} \times L \times I_j)$
+
+Following this, we follow a similar construction of models (4) and (5) for models (9) and (10) respectively. Thus, the final two models are given as follows: 
+
+$(9): f^{-1}(P(Y=1)) = \alpha+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \beta_i(E \times I_i)+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \nu_i(L \times I_i)+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2 + \sum_{j \in S_2}\theta_j(E \times I_{SR} \times M_j)  + \sum_{j \in S_2}\mu_j(L \times I_{SR} \times M_j) + \sum_{j \in S_2} \lambda_j(E \times I_{SR} \times (M_j)^2) + \sum_{j \in S_2} \epsilon_j(L \times I_{SR} \times (M_j)^2) + \sum_{j \in S_1/SR} \chi_j(E \times I_{SR} \times E \times I_j) + \sum_{j \in S_1/SR} \xi_j(E \times I_{SR} \times L \times I_j) + \sum_{j \in S_1/SR} \psi_j(L \times I_{SR} \times E \times I_j) + \sum_{j \in S_1/SR} \omega_j(L \times I_{SR} \times L \times I_j) + \sum_{l \in P} \gamma_l(PU_l)$
+
+Following this model, we include the full roster of mega-Pokémon. This gives the final model, given as follows: 
+
+$(10): f^{-1}(P(Y=1)) = \alpha+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \beta_i(E \times I_i)+ \mathop{\sum_{n \in T}}\sum_{i \in S_1} \nu_i(L \times I_i)+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2 + \sum_{j \in S_2}\theta_j(E \times I_{SR} \times M_j)  + \sum_{j \in S_2}\mu_j(L \times I_{SR} \times M_j) + \sum_{j \in S_2} \lambda_j(E \times I_{SR} \times (M_j)^2) + \sum_{j \in S_2} \epsilon_j(L \times I_{SR} \times (M_j)^2) + \sum_{j \in S_1/SR} \chi_j(E \times I_{SR} \times E \times I_j) + \sum_{j \in S_1/SR} \xi_j(E \times I_{SR} \times L \times I_j) + \sum_{j \in S_1/SR} \psi_j(L \times I_{SR} \times E \times I_j) + \sum_{j \in S_1/SR} \omega_j(L \times I_{SR} \times L \times I_j) + \sum_{l \in P} \gamma_l(PU_l) + \sum_{k \in G} \tau_k(GU_k)$

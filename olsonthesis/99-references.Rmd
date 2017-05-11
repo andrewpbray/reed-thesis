@@ -1,0 +1,48 @@
+---
+output: pdf_document
+---
+<!--
+The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+-->
+
+\backmatter
+
+<!-- 
+If you'd like to change the name of the bibliography to something else,
+delete "References" and replace it.
+-->
+
+# References
+
+Ariely, D. (2009). Predictably irrational: The hidden forces that shape our decisions. New York, NY: Harper. Chapter 8: Keeping Doors Open (pp. 139-154).
+ 
+Ho, H., Ramesh, V. (2016) Percymon: A Pokemon Showdown Artifical Intelligence, available at: http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf
+ 
+Pokémon Company International (Nov. 21, 2014) Pokémon Omega Ruby & Pokémon Alpha Sapphire: The Official Hoenn Region Strategy Guide.
+ 
+Pokémon Showdown! Battle Simulator, available at: http://pokemonshowdown.com/
+ 
+Pokémon Showdown Github Master Repository (2016). Zarel/Pokemon-Showdown, available at: https://github.com/Zarel/Pokemon-Showdown/tree/master/data
+ 
+Sanchez-Ante, Gildardo (Dec., 2013) Sistemas Inteligentes: Reportes Finales Ago-Dic 2013, available at: https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf#page=140
+ 
+Schwalbe, U., & Walker, P. (2001). Zermelo and the Early History of Game Theory, available at: http://www.math.harvard.edu/~elkies/FS23j.03/zermelo.pdf
+ 
+Smogon University, available at: http://www.smogon.com/
+
+\noindent
+
+<!--
+To create a hanging indent and spacing between entries.  These three lines may need to be removed for styles that don't require the hanging indent.
+-->
+
+\setlength{\parindent}{-0.20in}
+\setlength{\leftskip}{0.20in}
+\setlength{\parskip}{8pt}
+
+
+<!--
+This is just for testing with more citations for the bibliography at the end.  Add other entries into the list here if you'd like them to appear in the bibliography even if they weren't explicitly cited in the document.
+-->
+
+---

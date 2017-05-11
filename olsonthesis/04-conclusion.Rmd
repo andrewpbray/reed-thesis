@@ -1,0 +1,103 @@
+---
+output: pdf_document
+---
+
+# Conclusion 
+<!-- {.unnumbered}
+  \setcounter{chapter}{4}
+	\setcounter{section}{0} --> 
+```{r packageload, include=FALSE}
+library(stargazer)
+```
+Overall, the model quality improved when more parameters were added, including both Pokémon, mega-Pokémon, and time indicators. Including interactions between Stealth Rock and other move variables provides some method of empirically testing player strategies. Generally, the inclusion of interactions between Stealth Rock and other entry hazards indicate that Stealth Rock positively impacts the liklihood of winning a battle, and these results are robust to a number of model specifications and interactions with complementary moves. 
+
+Overall, nearly all of the four entry hazards were statistically significant across model specifications, indicating variability in utilizing different patient moves. Furthermore, all entry hazards positively impact a player's liklihood of winning a battle, at least in the final model specification. Both Stealth Rock and Spikes positively impact a player's probability of winning a battle while retaining statistical significance. Surprisingly, the interaction between these two variables and complementary moves varied across model specifications. Because of this, there are a number of interactions and other underlying factors that could be responsible for the signage of specific move interactions. Nonetheless there is general evidence that different entry hazards contribute differently to a player's win outcome, and the use of damaging complementary moves in particular positively impact the liklihood of winning a Pokémon battle more than just the singular use of one entry hazard. This result provides some indication that different types of moves can act in synergy. Some specific move combinations should be taken with a grain of salt however, notably those including interactions with Circle Throw, as the the coefficent of using both Stealth Rock and Circle Throw was greater in magnitude than the coefficient of just Stealth Rock and was not statistically significant across any specifications.  
+
+That being said, there are a number of different ways to expand upon this study. These include expanding the Pokémon roster, expanding the number of moves and types of move sets included in models, expanding the number of interactions between move variables, and expanding the set of Pokémon battling formats. Each will be detailed in the order given. 
+
+The most obvious extension to this study is the inclusion of more Pokémon. With the recent release of Pokémon Sun and Moon, both new species of Pokémon and variants of previously existing Pokémon expanded the number of possible Pokémon to choose from. This includes new Pokémon within the OU format. With 81 new Pokémon to choose from, there is a clear opportunity to see if the same results found in this study continue to dominant the Pokémon battling scene. Similarly, Pokémon Sun and Moon added 80 new moves. Though no new entry hazards were added in the latest iteration, there are a host of other moves to consider. Some of these new moves even affect the battle environment. Clearly some combination of the 80 new moves and moves not detailed in this study could cover a great deal of ground simply not included in the current study. Additionally, the types of moves considered in this study is limited. With well over 700 different moves before the release of Sun and Moon, this point can apply even to the data used in this study, especially as it pertaining to status condition moves or moves with different accuracies.  
+
+Furthermore, the only format consider in this study is the OU format. It would be interesting to see if the use of entry hazards has the same effect in the Randbats format, or even other battle formats where team composition is dictated by players. If the roster of Pokémon was further restricted, as is found in lower tier battle formats such as UU, Pokémon-specific variables could provide some prescriptive information in choosing the composition of one's team. Additionally, if the results of this study were verified in other formats, the strategies highlighted in this study would be robust to battle formats, thus improving this study's external validity.  
+
+It is important to bear in mind that the observations used only span a few days. By expanding this to weeks, or even a months worth of data, the results may lead to entirely different conclusions. The same goes for what year the data comes from. At the very least however, this study has proved that patient strategy sets significantly impact the likelihood of winning a game. Furthermore, patient strategy sets are further enhanced by utilizing complementary moves, though results are mixed depending on what moves are specifically considered. 
+
+Nonetheless, the general results are robust to a series of specifications, including Pokémon choice, mega-Pokémon choice, and interactions between different moves. Additionally, the inclusion of each of these components improved the quality of models, but only up to a point. Given the inclusion of mega-Pokémon and full Pokémon roster each improved model quality by the same amount, perhaps some further probing is necessary to tease out team composition variables.  
+
+Out of all the formal and informal hypotheses explored in this study, one remains consistently true: Pokémon remains a complex game that cannot be diluted into simple prescriptions of using one Pokémon over another. The world of Pokémon is expansive and consistently changing, but is always open to inquiry for those willing to explore and dig through the data. 
+
+<!--
+If you feel it necessary to include an appendix, it goes here.
+-->
+
+<!--\appendix-->
+# Appendices 
+## Appendix A: Summary Statistics of Pokémon and Mega-Pokémon
+```{r summarystat1, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r1.Rda")
+stargazer(r1,single.row = TRUE, title="Pokémon Summary Table 1-40", nobs= FALSE, min.max = FALSE, header=FALSE)
+```
+
+```{r summarystat2, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r2.Rda")
+stargazer(r2,single.row = TRUE, title="Pokémon Summary Table 41-80",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat3, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r3.Rda")
+stargazer(r3,single.row = TRUE, title="Pokémon Summary Table 81-120",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+```{r summarystat4, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r4.Rda")
+stargazer(r4,single.row = TRUE, title="Pokémon Summary Table 121-160",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat5, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r5.Rda")
+stargazer(r5,single.row = TRUE, title="Pokémon Summary Table 161-200",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat6, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r6.Rda")
+stargazer(r6,single.row = TRUE, title="Pokémon Summary Table 201-240",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat7, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r7.Rda")
+stargazer(r7,single.row = TRUE, title="Pokémon Summary Table 241-280",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat8, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r8.Rda")
+stargazer(r8,single.row = TRUE, title="Pokémon Summary Table 281-320",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat9, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r9.Rda")
+stargazer(r9,single.row = TRUE, title="Pokémon Summary Table 321-360",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat10, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r10.Rda")
+stargazer(r10,single.row = TRUE, title="Pokémon Summary Table 361-400",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat11, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/r11.Rda")
+stargazer(r11,single.row = TRUE, title="Pokémon Summary Table 401-415",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+```{r summarystat12, results='asis', out.width = "\\textwidth", echo=FALSE}
+load("data/m1.Rda")
+stargazer(m1,single.row = TRUE, title="Summary Table Mega-Pokémon",nobs= FALSE, min.max = FALSE,header=FALSE)
+```
+
+<!--**In the main Rmd file**-->
+
+```{r ref.label='include_packages', results='hide', echo = FALSE}
+```
+
+<!--**In Chapter \@ref(ref-labels):**-->
+
+```{r ref.label='include_packages_2', results='hide', echo = FALSE}
+```
+

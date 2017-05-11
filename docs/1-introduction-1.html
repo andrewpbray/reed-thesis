@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Game Theoretic Approach to Pokémon Battling</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="A Game Theoretic Approach to Pokémon Battling">
+  <meta name="generator" content="bookdown 0.1 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Game Theoretic Approach to Pokémon Battling" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Game Theoretic Approach to Pokémon Battling" />
+  
+  
+  
+
+<meta name="author" content="Samuel D. Olson">
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="2-markdown-template.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"></a></li>
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-introduction-1.html"><a href="1-introduction-1.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.0.1" data-path="1-introduction-1.html"><a href="1-introduction-1.html#a-brief-overview"><i class="fa fa-check"></i><b>1.0.1</b> A Brief Overview</a></li>
+<li class="chapter" data-level="1.1" data-path="1-introduction-1.html"><a href="1-introduction-1.html#literature-review"><i class="fa fa-check"></i><b>1.1</b> Literature Review</a></li>
+<li class="chapter" data-level="1.2" data-path="1-introduction-1.html"><a href="1-introduction-1.html#references"><i class="fa fa-check"></i><b>1.2</b> References</a></li>
+<li class="chapter" data-level="1.3" data-path="1-introduction-1.html"><a href="1-introduction-1.html#methodology"><i class="fa fa-check"></i><b>1.3</b> Methodology</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-introduction-1.html"><a href="1-introduction-1.html#pokemon-battling-basics"><i class="fa fa-check"></i><b>1.3.1</b> Pokémon Battling Basics</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-introduction-1.html"><a href="1-introduction-1.html#pokemon-attributes"><i class="fa fa-check"></i><b>1.3.2</b> Pokémon Attributes</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-introduction-1.html"><a href="1-introduction-1.html#game-theory-methodology"><i class="fa fa-check"></i><b>1.3.3</b> Game Theory Methodology</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-introduction-1.html"><a href="1-introduction-1.html#end-thesis-chapter-1"><i class="fa fa-check"></i><b>1.4</b> End thesis Chapter 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-markdown-template.html"><a href="2-markdown-template.html"><i class="fa fa-check"></i><b>2</b> MARKDOWN TEMPLATE</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-markdown-template.html"><a href="2-markdown-template.html#inline-code"><i class="fa fa-check"></i><b>2.1</b> Inline code</a></li>
+<li class="chapter" data-level="2.2" data-path="2-markdown-template.html"><a href="2-markdown-template.html#including-plots"><i class="fa fa-check"></i><b>2.2</b> Including plots</a></li>
+<li class="chapter" data-level="2.3" data-path="2-markdown-template.html"><a href="2-markdown-template.html#loading-and-exploring-data"><i class="fa fa-check"></i><b>2.3</b> Loading and exploring data</a></li>
+<li class="chapter" data-level="2.4" data-path="2-markdown-template.html"><a href="2-markdown-template.html#additional-resources"><i class="fa fa-check"></i><b>2.4</b> Additional resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-math-sci.html"><a href="3-math-sci.html"><i class="fa fa-check"></i><b>3</b> Mathematics and Science</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-math-sci.html"><a href="3-math-sci.html#math"><i class="fa fa-check"></i><b>3.1</b> Math</a></li>
+<li class="chapter" data-level="3.2" data-path="3-math-sci.html"><a href="3-math-sci.html#chemistry-101-symbols"><i class="fa fa-check"></i><b>3.2</b> Chemistry 101: Symbols</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-math-sci.html"><a href="3-math-sci.html#typesetting-reactions"><i class="fa fa-check"></i><b>3.2.1</b> Typesetting reactions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-math-sci.html"><a href="3-math-sci.html#other-examples-of-reactions"><i class="fa fa-check"></i><b>3.2.2</b> Other examples of reactions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-math-sci.html"><a href="3-math-sci.html#physics"><i class="fa fa-check"></i><b>3.3</b> Physics</a></li>
+<li class="chapter" data-level="3.4" data-path="3-math-sci.html"><a href="3-math-sci.html#biology"><i class="fa fa-check"></i><b>3.4</b> Biology</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-ref-labels.html"><a href="4-ref-labels.html"><i class="fa fa-check"></i><b>4</b> Tables, Graphics, References, and Labels</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-ref-labels.html"><a href="4-ref-labels.html#tables"><i class="fa fa-check"></i><b>4.1</b> Tables</a></li>
+<li class="chapter" data-level="4.2" data-path="4-ref-labels.html"><a href="4-ref-labels.html#figures"><i class="fa fa-check"></i><b>4.2</b> Figures</a></li>
+<li class="chapter" data-level="4.3" data-path="4-ref-labels.html"><a href="4-ref-labels.html#footnotes-and-endnotes"><i class="fa fa-check"></i><b>4.3</b> Footnotes and Endnotes</a></li>
+<li class="chapter" data-level="4.4" data-path="4-ref-labels.html"><a href="4-ref-labels.html#bibliographies"><i class="fa fa-check"></i><b>4.4</b> Bibliographies</a></li>
+<li class="chapter" data-level="4.5" data-path="4-ref-labels.html"><a href="4-ref-labels.html#anything-else"><i class="fa fa-check"></i><b>4.5</b> Anything else?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i>Conclusion</a></li>
+<li class="chapter" data-level="5" data-path="5-the-first-appendix.html"><a href="5-the-first-appendix.html"><i class="fa fa-check"></i><b>5</b> The First Appendix</a></li>
+<li class="chapter" data-level="6" data-path="6-the-second-appendix-for-fun.html"><a href="6-the-second-appendix-for-fun.html"><i class="fa fa-check"></i><b>6</b> The Second Appendix, for Fun</a></li>
+<li class="chapter" data-level="7" data-path="7-references-1.html"><a href="7-references-1.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Game Theoretic Approach to Pokémon Battling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-1" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>The world of Pokémon began in 1995 with the pair of games Pokémon Red and Green. For Westerners, the latter would become known as Pokémon Blue. These two games introduced the turn-based battling system that became the foundation of the Pokémon games. Numerous other games have attempted to copy the Pokémon battling format, but none have been able to equal its widespread appeal and dedicated player base. With each successive iteration, new items, types, and of course Pokémon are added to the Pokémon lexicon. The world of Pokémon has continued to grow and evolve into one of the largest video games franchises to date. The most recent iterations of Pokémon games, Pokémon Sun and Moon, have continued the tradition of adding layers onto an already complex system of battling.</p>
+<p>Since 2011 the program Pokémon Showdown has offered a ‘stripped’ version of Pokémon games. This ‘stripped’ version allows players to exclusively battle one another, replicating the most recent iteration of the Pokémon games in the process. This has allowed players to hone and test their Pokémon battling skills through the years. With well-over 20,000 daily registered users and counting, this program has become the go-to program to test and practice Pokémon battling strategies in the ultimate pursuit of becoming the very best that no one ever was.</p>
+<p>To begin formal analysis of Pokémon battling however, the battling system must be rigorously detailed for laymen and game theorists alike.</p>
+<div id="a-brief-overview" class="section level3">
+<h3><span class="header-section-number">1.0.1</span> A Brief Overview</h3>
+<p>First, there needs to be a formal model. At its core, Pokémon battling takes place exclusively between two players. Each of the two players has a team composed of six different Pokémon. Depending on the battle format, the team of six Pokémon is either dictated by the player or randomly assigned. Regardless of format, each turn each player simultaneously makes a decision. The decisions are then executed, with priority given first to priority moves and then, if neither player decided on a priority move, by a comparative assessment of each Pokémon’s speed. Once a player’s Pokémon loses all of its health, an event referred to as fainting, the player must switch into another Pokémon. If a player has no other Pokémon to switch into, the battle ends. As would be expected, the player whose Pokémon have all fainted loses the battle, and the other player wins.</p>
+<p>There are a number of parameters and variables to consider beyond those already detailed. To begin with, each Pokémon has at most four moves to choose from for any turn of a battle. Additionally, whenever a player has at least two Pokémon that have not fainted, they have the choice to switch into another Pokémon. Doing so counts as the player’s action for the turn. Thus, players almost always have five different choices to make each turn. However, if switches are considered distinct choices, the number of potential decisions is at most nine for a given turn. Hence, for the purposes of analysis, the supremum of decisions for any given turn is nine.</p>
+<p>There are a number of other parameters to consider, though these parameters are case-specific, i.e. dependent upon Pokémon, held item, Pokémon ability, etc. Such parameters will be further detailed in the methodology section, along with further specifications on specific moves and Pokémon types.</p>
+<p>That being said, Pokémon must be formally denoted as a specific type of game in game theoretic terms. With this in mind, it bears noting that there are only two outcomes to any battle: One player wins and the other loses. Because of this, Pokémon is by definition a zero-sum game. However, it is important to note that there are distinct ways that a player may win or lose a game. Notably, the same set of decisions made by one player over multiple battles may not lead to the same outcome in each battle. That is to say, uniqueness of strategies is derived from the decisions of both players for any given battle.</p>
+<p>A point glossed over previously is the existence of different end games. Though the game ends when all of the Pokémon on one team have fainted, any player has the choice to forfeit the game any time before this occurs. Thus, the two ways to win or lose a battle are either by forfeiture or by having all of their Pokémon faint; the latter outcome is referred to as a “normal” game. Additionally, there is the potential for a game to result in a draw. However, draws result in a neutral payoff as neither player raises or lowers their ranking after a draw.</p>
+<p>Within the scope of game theoretic terms, it is vital to note that each player is able to see all past decisions made over the course of a battle, and that battles span over multiple turns. Speaking to the former point, players are able to recall not only their past decisions but also those of their opponent, including how much damage was done by a specific move during a previous turn. As this information is available at any time during the battle, Pokémon battling is a perfect recall game. Furthermore as each game is composed of a sequence of turns, Pokémon battling is also a sequential game.</p>
+<p>The points noted on information allude to a unique trait of Pokémon battling that further details the type of game Pokémon battling is: An incomplete information game. Though the extent of incompleteness is format specific, each player is given limited information about the opposing players team at the beginning of the battle. After each turn, players are able learn not only the different moves each opposing Pokémon has, but also their abilities, held items, and sometimes what other Pokémon compose the opposing team. Generally speaking, there is almost always new information revealed each turn. The extent to which player strategies are revealed from information is an ongoing topic of discussion, both here and in current game theory literature. Naturally, the analysis of such a topic relies upon at least one apriori assumption, namely that player strategies are revealed by their past decisions. However, whether player strategies are rational and consistent is another matter entirely; nonetheless, at the very least it is important to note that incorporating such information into players own decision-making complicates analysis and is a central topic in analyzing Pokémon battling.</p>
+<p>Taken together, Pokémon battling is a special case of a sequential, zero-sum two-player game with incomplete information and perfect recall. As Pokémon battling lends itself to a discussion of imperfect information, it is all the more vital to consider the role of decision making in sequential games. A great portion of game theory literature has explored such topics, including the revolutionary work of John Forbes Nash Jr.</p>
+<p>Theoretics aside, there are also notes on the computation side of analyzing Pokémon. In this regard, my initial computations and analysis focus on the distributions of turn length based on win type, i.e. the length of games played when one player forfeited or had all of their Pokémon faint. After distributional computations I categorize moves by their type, specifically whether a specific move is damaging, non-damaging, or a mix. After categorizing each move individually, I then categorize sets of four moves, again using categorizations of damaging, non-damaging, or a mix. Using this categorization I gauge the effectiveness of specific move sets based on their ability to faint Pokémon and by their likelihood to increase a players probability of winning.</p>
+<p>Overall I hope explore how information gathered turn-by-turn feeds into the decision-making process of Pokémon battling. By incorporating tenants of behavioral economics and game theory, I hope to rigorously analyze and detail phenomena that occur in Pokémon battling. However, even more specifically I want to verify the theoretical findings of Pokémon battling in a game theoretic framework, specifically the existence of one or more mixed Nash equilibrium.</p>
+</div>
+<div id="literature-review" class="section level2">
+<h2><span class="header-section-number">1.1</span> Literature Review</h2>
+<p>A few points on Pokémon battling are worth noting as they relate Nash’s literature on game theory mentioned previously. First, each Pokémon battle lasts a finite number of turns. Furthermore, each player has finitely many choices to make at any given turn. Thus there exists finitely many pure strategies for players to choose from each game. Thus via application of Nash’s Existence Theorem, Pokémon battling has at least one Nash equilibrium (Nash 1950).</p>
+<p>The question then is to determine what the Nash equilibrium, possibly equilibria, is in Pokémon battling. To address this question, it will be necessary to consider other theorems and propositions of Nash that relate to non-cooperative games. Namely, the goal of analyzing Pokémon battling is to determine solutions, strong solutions, and sub-solutions; however, it is possible that solutions as defined by Nash do not exist. This follows from Nash’s note that non-cooperative games do not always have a solution; however there do exist sub-solutions (Nash 1951). Thus, a central question will be in determining whether Pokémon battling has a solution, and if so, if it is unique. Furthermore, it will be important to determine what sub-solutions exist, along with how parameterization potentially influences such solutions and sub-solutions.</p>
+<p>That being said, scant rigorous or academic research has actually been conducted within the scope of Pokémon-related topics. The most frequent publications focus either on Pokémon as a cultural phenomena or on strategy guides for Pokémon games. Importantly, these strategy guides have not specifically Pokémon battling strategies, though some have some focus on gameplay. However, no Pokémon strategy guides have analyzed Pokémon battling by using game theoretic terminology; though that isn’t to say that there aren’t academic publications focusing on Pokémon battling.</p>
+<p>Typically academic papers focusing on Pokémon battling have focused on the use of algorithms to simulate battling strategies and play against human players in Pokémon Showdown. One paper gives a rudimentary background on Pokémon battling and focuses explicitly on 1v1 battles (Gildardo 2013). Since this publication there has been more literature however. This literature includes greater nuance, notably by expanding the focus of its analysis to teams of six (Ho et al. 2016). Though the paper focused on what is currently a previous iteration of Pokémon Showdown, the iteration of Pokémon Showdown is fundamentally the same as that of the data used here.</p>
+<p>Furthermore, relevant documentation of this past iteration of Pokémon Showdown is available at its website <a href="http://pokemonshowdown.com/" class="uri">http://pokemonshowdown.com/</a>. Notably, the website for Pokémon Showdown provides a hub for information on Pokémon battling basics and specific battle format descriptions. Replays and ladder ranking are available publically, along with links to usage statistics and a damage calculator.</p>
+<p>As noted previously, game theory vernacular has not entered into discussions on Pokémon battling strategies, at least in any formal setting. Applying such concepts to the context of Pokémon battling offers a formal foundation to discuss strategies and test hypotheses. In this regard, there are three main areas of game theory that intersect in the analysis of Pokémon battling. These three areas of interest include the interpretation of Pokémon battling as a zero sum game, the role of incomplete information, and the implications of Pokémon battling as a non-cooperative game. These three topics actively influence the decision-making process associated with Pokémon battling.</p>
+<p>As noted, a central factor involved in the decision making process as it relates to game theory is the role of information, specifically how players incorporate information revealed each turn into their strategies. As information is revealed each turn, including the four moves an opposing Pokémon has, its ability, held item, along with what other Pokémon are on the opposing team, it is vital for players to determine if the information they just received is relevant. Furthermore, players need to decide if the information provides any insight into their opponent’s strategy. Overall, this speaks to Pokémon not being a perfect information game. As such, it is not possible to apply Zermelo’s theorem, though its negation provides insight as to the possible existence of a winning strategy (Schwalbe et al. 2001).</p>
+<p>An especially interesting addition to the analysis of incomplete information in Pokémon battling is the topic and implications of asymmetrical information. In this regard, the concepts of sunk costs and signaling may enter into the equation. Especially for the Random battle format, each player is given minimal information at the onset of the game. And while each turn, players both gain information, they may receive new information at different rates. The implications of this point may provide insight into specific strategies, and is a point of future analysis.</p>
+<p>This being said, concepts of game theory are not the only relevant ideas for analyzing Pokémon battling. In this vein, exploring whether a player will switch Pokémon will necessarily invoke ideas from game theory and behavioral economics. One specific concept engrained in behavioral economics that relates to Pokémon battling is the idea of “keeping doors open”. In Chapter 6 of Ariel’s work Predictably Irrational, results indicates that players prefer to keep options available even if doing so incurs costs and/or reduces their payoff. In the context of Pokémon battling, players may decide to preemptively switch Pokémon in the hopes of having that Pokémon later in the battle. However, whether this adversely influences the player is yet another subject of inquiry.</p>
+<p>A an ending point of interest, taking into account opposing players’ strategies as deduced from revealed information rubs against issues related level-K thinking. To elaborate further, knowing that a player is likely to repeat the same decision made the previous turn, players may be able optimize their decision by presuposing what decision their opponent is going to make. However, if the opposing player decides to incorporate that very assumption into their own decision, they may arrive at a vastly different outcome than would be expected. Furthermore this outcome may even be suboptimal for both players. That being said, the inclusion of level-k thinking is closely aligned to recent behavioral game theory literature. A central finding of this literature has emphasized the role of iterated reasoning, which essentializes player adaptation to other players’ decision making (Wunder et al. 2011). Notably this will be a point to consider and incorporate into the analysis of Pokémon battling in a game theoretic framework.</p>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">1.2</span> References</h2>
+<ul>
+<li>Ariely, D. (2009). Predictably irrational: The hidden forces that shape our decisions. New York, NY: Harper. Chapter 8: Keeping Doors Open (pp. 139-154).</li>
+<li>Schwalbe, U., &amp; Walker, P. (2001). Zermelo and the Early History of Game Theory. Games and Economic Behavior, 34(1), 123-137. <a href="doi:10.1006/game.2000.0794" class="uri">doi:10.1006/game.2000.0794</a></li>
+<li>Smogon University (n.d.). Retrieved October 31, 2016, from <a href="http://www.smogon.com/" class="uri">http://www.smogon.com/</a></li>
+<li>Pokémon Showdown! battle simulator (n.d.). Retrieved October 31, 2016, from <a href="http://pokemonshowdown.com/" class="uri">http://pokemonshowdown.com/</a></li>
+<li>Pokémon Showdown Github Master Repository (2016). Zarel/Pokemon-Showdown. Retrieved October 31, 2016, from <a href="https://github.com/Zarel/Pokemon-Showdown/tree/master/data" class="uri">https://github.com/Zarel/Pokemon-Showdown/tree/master/data</a></li>
+<li>Wunder, M., Kaisers, M., Yaros, J., Littman, M., (May, 2011) Using Iterated Reasoning to Predict Opponent Strategies. Proc. of 10th Int. Conf. on Autonomous Agents and Multiagent Systems (AAMAS 2011), Tumer, Yolum, Sonenberg and Stone (eds.), 593-600.</li>
+<li>Ho, H., Ramesh, V. (2016) Percymon: A Pokemon Showdown Artifical Intelligence. Retrieved October 31, 2016, from: <a href="http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf" class="uri">http://robots.stanford.edu/cs221/2016/restricted/projects/vramesh2/final.pdf</a></li>
+<li>Sanchez-Ante, Gildardo (Dec., 2013) Sistemas Inteligentes: Reportes Finales Ago-Dic 2013. Retrieved October 31, 2016, from: <a href="https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf#page=140" class="uri">https://www.researchgate.net/profile/Gildardo_Sanchez-Ante/publication/259343975_Sistemas_Inteligentes_Reportes_Finales_Ago-Dic_2013/links/0c96052b1d0b582e95000000.pdf#page=140</a></li>
+<li>Pokémon Company International (Nov. 21, 2014) Pokémon Omega Ruby &amp; Pokémon Alpha Sapphire: The Official Hoenn Region Strategy Guide.</li>
+<li>Nash, J. F., Jr. (1950, January 15). Equilibrium Points in n-Person Games. Proceedings of the National Academy of Sciences of the United States of America, 36(1), 48-49. Retrieved November 29, 2016, from <a href="http://www.sscnet.ucla.edu/polisci/faculty/chwe/austen/nash1950.pdf" class="uri">http://www.sscnet.ucla.edu/polisci/faculty/chwe/austen/nash1950.pdf</a></li>
+<li>Nash, J. F., Jr. (1951, September). Non-Cooperative Games. The Annals of Mathematics, Second Series, 54(2), 286-295. Retrieved November 29, 2016, from <a href="http://lcm.csa.iisc.ernet.in/gametheory/Classics/NCG.pdf" class="uri">http://lcm.csa.iisc.ernet.in/gametheory/Classics/NCG.pdf</a></li>
+</ul>
+</div>
+<div id="methodology" class="section level2">
+<h2><span class="header-section-number">1.3</span> Methodology</h2>
+<p>The data used is a compilation of battle logs from the Pokémon Showdown servers. Each battle log is stored as a separate .json file. The data spans across the year 2015, composed of four different months of data. The four months are March, June, September, and December. There are no lapses in data, i.e. each day of each month has numerous battle logs to account for. No dramatic overhaul was done to the Pokémon battling format at this time, though some minor adjustments were made. Furthermore only ranked games are included in the dataset, indicating that each player stands to gain or lose from the battle.</p>
+<p>Specific usage statistics are found in a subsidiary website, found at <a href="http://sweepercalc.com/stats/" class="uri">http://sweepercalc.com/stats/</a>. The usage statistics track the frequency of use for specific Pokémon, items, abilities, and a host of other relevant variables for Pokémon battling.</p>
+<p>A number of links redirect users to the host site of this game: Smogon University. The host site can be found at <a href="http://www.smogon.com/" class="uri">http://www.smogon.com/</a>. This website offers a wide variety of resources, similar to those found at the Pokémon Showdown website. Most importantly the Smogon forums are a prominent site for discussion of Pokémon battling strategies.</p>
+<div id="pokemon-battling-basics" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Pokémon Battling Basics</h3>
+<p>The Pokémon battle starts with Pokémon being sent out. For the purposes of the data used, one Pokémon is sent out for each opponent, totalling two Pokémon being out at any given time. Following this, each Pokémon has 4 moves to choose from, along with the option to switch to a different Pokémon (when applicable). After both players make a decision, the moves are weighted for priority and speed to determine the order of play. If both players decide not to switch one Pokémon will attack the other, after which the next Pokémon will do the same if it has not fainted. After each move has been executed the turn ends and the process is repeated. When one of the Pokémon faints, the player whose Pokémon fainted will be prompted to select another Pokémon from the bench. The first player to lose all of their Pokémon loses the battle.</p>
+<div id="battle-formats" class="section level4">
+<h4><span class="header-section-number">1.3.1.1</span> Battle Formats</h4>
+<p>The data used for this study include two different Pokémon battling formats. The two formats are known as Over Used and Random Battles, abbreviated as OU and Randbats respectively. Both formats have teams of six Pokémon and only allow one Pokémon to be out at any given time. While both battle formats are subsets of what are known as single battles, each has their own unique spin on the Pokémon battling format.</p>
+<p>Random Battles are the most frequently played format. Neither player gets to decide on their initial Pokémon nor do they have any input on the composition of the team. The format uses an algorithm to determine team compositions. However it is important to note that there are restrictions to the Randbats format that center around team composition and move composition for specific Pokémon.</p>
+<p>The Over Used battle format includes team composition. By including team composition, players are able to decide what Pokémon to include on their team, the moves of each Pokémon, and other factors such as held items and abilities. Further restrictions to the OU format include banning specific Pokémon. The restricted Pokémon are included in the “Uber” tier along with the Pokémon Mega-Rayquaza. Additionally certain “hidden” abilities are locked for Pokémon.</p>
+</div>
+</div>
+<div id="pokemon-attributes" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Pokémon Attributes</h3>
+<p>Generally, there are a number of factors that are specific to each Pokémon. Some of these factors are considered static, meaning that they do not change over the course of the battle. These types of factors are noted as “Fixed” Attributes. However there are some factors that are generally regarded as Fixed Attributes but are affected by certain moves, at least when the Pokémon is sent out. These types of factors are a distinct subcategory of “Variable Attributes”, and will be outlined further. Additionally there are attributes that are inherently influenced throughout the course of the battle. These are noted as “Variable Attributes”. The terminology is largely taken from the Ho et al. paper for ease of translation.</p>
+<div id="pokemon-types" class="section level4">
+<h4><span class="header-section-number">1.3.2.1</span> Pokémon Types</h4>
+<p>The type(s) of each Pokémon influence not only the potential weaknesses of each Pokémon, but also influence the amount of damage certain type-specific moves are able to do. Each Pokémon has at least one and at most two types. If a Pokémon uses a damaging move whose type corresponds to type of the Pokémon that used it, that Pokémon gets a same type attack bonus, abbreviated as a “stab” bonus. This causes the move to do 50% more damage, potentially 100% if the Pokémon also has the ability Adaptability.</p>
+</div>
+<div id="pokemon-fixed-attributes" class="section level4">
+<h4><span class="header-section-number">1.3.2.2</span> Pokémon Fixed Attributes</h4>
+<p>Fixed attributes include the type(s) of the Pokémon, the four moves the Pokémon has learned, the one item the Pokémon holds, the Pokémon’s one selected ability, the level of the Pokémon, and the Pokémon’s baseline stats. The latter factor is divided into six categories. These categories include (baseline) Health, Attack, Special Attack, Defense, Special Defense, and Speed. There is further nuance with the inclusion of Pokémon natures and Individual Values, or IVs. These factors influence the base stats of each Pokémon. However due to the sheer number of trivial combinations of IV spreads and nature choices, these two factors will not be a pivotal aspect of framework used.</p>
+</div>
+<div id="pokemon-variable-attributes" class="section level4">
+<h4><span class="header-section-number">1.3.2.3</span> Pokémon Variable Attributes</h4>
+<p>Variable Attributes include the current health of the Pokémon, the status of the Pokémon, the volatile status of the Pokémon, boost data of the Pokémon, and whether the Pokémon in question is currently active.</p>
+</div>
+</div>
+<div id="game-theory-methodology" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Game Theory Methodology</h3>
+<p>Let the index of Player 1 and 2’s Pokémon be denoted by i and j respectively. Let the set of Player 1’s Pokémon be given as follows: <span class="math display">\[A=\{A_1,A_2,A_3,A_4,A_5,A_6\}\]</span> Similarly let the set of player 2’s Pokémon be given by: <span class="math display">\[B=\{B_1,B_2,B_3,B_4,B_5,B_6\}\]</span> Furthermore let N denote the number of turns a given Pokémon battle lasts. Let the cumulative total of damage done to Player 1’s ith Pokémon be denoted: <span class="math inline">\(\sum_{t=0}^{N} d_{A_i,t}\)</span>. It follows that the damage done to Player 1’s ith Pokémon on turn t is given by: <span class="math inline">\(d_{A_i,t}\)</span> Similarly tet the cumulative total of damage done to Player 2’s jth Pokémon is given by: <span class="math inline">\(\sum_{t=0}^{N} d_{B_j,t}\)</span>; additionally, the damage done to Player 2’s jth Pokémon on turn t is given by: <span class="math inline">\(d_{B_j,t}\)</span></p>
+<p>Let the payoff function of Player 1 and Player 2 be respectively denoted by <span class="math inline">\(P_1 and P_2\)</span>. Note that neither player is able to revive a fainted Pokémon during a battle. Thus, the amount of damage done to an opponent’s Pokémon directly corresponds to the payoff they receive during a given turn. Furthermore, players are able to utilize moves that heal their Pokémon during the turn. Thus, the payoff function must include not only the current health of the opposing Pokémon, but also the amount of damage done to the opponent’s Pokémon and the amount of health the opponent’s Pokémon heals during the turn. Additionally, it is important to incorporate the current health of the opponent’s Pokémon at the beginning of the turn. This is to account for potential healing and damage that may result at the end of each turn.</p>
+<p>Let the current health of Player 2’s jth Pokémon on turn t be given by:<span class="math inline">\(H_{B_{j,t}}\)</span>. Furthermore, let the amount of damage done to Player 2’s jth Pokémon on turn t be given by: <span class="math inline">\(d_{B_{j,t}}\)</span>. Finally let <span class="math inline">\(h_{B{j,t}}\)</span> denote the amount of health regained by Player 2’s jth Pokémon on turn t. We may write the payoff function at turn t as a function of three variables. However, it is important to note that while damage is independent of current health and healing done on turn t, the amount of healing done to an opponent’s Pokémon is contrained by it’s health at the beginning of turn t.</p>
+<p>Thus we may write <span class="math inline">\(P_1\)</span> as a function of <span class="math inline">\(H_{B_{j,t}}\)</span>, <span class="math inline">\(d_{B_{j,t}}\)</span>, <span class="math inline">\(h_{B{j,t}}\)</span>. Next, let an opponent’s fainted Pokémon corresponds to a payoff of 1. As each player has six Pokémon, max(<span class="math inline">\(P_1\)</span>)=6. This payoff corresponds to Player 1 fainting all of Player 2’s Pokémon.</p>
+<p>Now we need to create an equation to model the payoff of Player 1 at turn t. To do so, we need to construct a piecewise function that corresponds to the values given previously. To begin with, we note that if Player 1’s damage to the opposing Pokémon is greater than that opposing Pokémon’s health at the beginning of the turn, that Pokémon faints. Intuitively, this means that the payoff from fainting an opponent’s Pokémon is the same for Player 1 regardless of whether they exceeded the amount of damage needed to faint the opponents Pokémon. With this in mind, let <span class="math inline">\(n_1\)</span> denote the number of Pokémon Player 1 has knocked out. We may then write the payoff function for Player 1 after turn t as follows: <span class="math display">\[P(H,h,d)_{1,t} = \left\{
+        \begin{array}{ll}
+            n_1 +1  &amp;\quad if (\sum_{t=0}^{N} d_{B_i,t} - h_{B{j,t}}) &gt; H_{B_{j,t}}\\
+            (n_1 + \sum_{t=0}^{N} (d_{A_i,t} - h_{B{j,t}}))/H_{B_{j,t}}&amp; \quad otherwise
+        \end{array}
+    \right.
+\]</span></p>
+<p>We now have an equation to model the payoff function of Player 1 at any turn of a Pokémon battle. Let <span class="math inline">\(n_2\)</span> denote the number of Pokémon Player 2 has knocked out. Thus, we may similarly construct a piecewise function for Player 2’s payoff function at turn t as: <span class="math display">\[P(H,h,d)_{2,t} = \left\{
+        \begin{array}{ll}
+            n_2 + 1  &amp;\quad if (\sum_{t=0}^{N} d_{A_i,t} - h_{A{j,t}}) &gt; H_{B_{j,t}}\\
+            (n_2 + \sum_{t=0}^{N} (d_{A_i,t} - h_{A{j,t}}))/H_{A_{j,t}}&amp; \quad otherwise
+        \end{array}
+    \right.
+\]</span></p>
+<p>We may now assemble the ordered pairs corresponding to each combination of Player 1 and Player 2’s possible decisions for any given turn. However, before doing so, it is important to note that the three functions corresponding to Pokémon health, damage, and healing are left for further detailing. Before going on to the normal form version of Pokémon battling, these functions will be given further detail.</p>
+<div id="creating-the-damage-function" class="section level4">
+<h4><span class="header-section-number">1.3.3.1</span> Creating the Damage Function</h4>
+</div>
+<div id="normal-form-version-of-pokemon-battling" class="section level4">
+<h4><span class="header-section-number">1.3.3.2</span> Normal Form Version of Pokémon Battling</h4>
+</div>
+</div>
+</div>
+<div id="end-thesis-chapter-1" class="section level2">
+<h2><span class="header-section-number">1.4</span> End thesis Chapter 1</h2>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-markdown-template.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": [["thesis.pdf", "PDF"], ["thesis.epub", "EPUB"], ["thesis.docx", "Word"]],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
