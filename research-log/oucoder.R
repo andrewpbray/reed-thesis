@@ -548,9 +548,9 @@ nferoster <- toupper(nferost)
 nmegaitems <- toupper(megaitems)
 
 # overall move counter per/player
-strock1countr <- function(battlelog){
+estrock1countr <- function(battlelog){
   if((any(grep("Stealth Rock[|]p2a", battlelog$log,-i))) == TRUE){
-    strock1count <- sum((any(grep("Stealth Rock[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    strock1count <- sum((any(grep("Stealth Rock[|]p2a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(strock1count)}
   else{
     strock1count <- 0 
@@ -558,9 +558,19 @@ strock1countr <- function(battlelog){
   strock1count
 }
 
-strock2countr <- function(battlelog){
+lstrock1countr <- function(battlelog){
+  if((any(grep("Stealth Rock[|]p2a", battlelog$log,-i))) == TRUE){
+    strock1count <- sum((any(grep("Stealth Rock[|]p2a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(strock1count)}
+  else{
+    strock1count <- 0 
+  }
+  strock1count
+}
+
+estrock2countr <- function(battlelog){
   if((any(grep("Stealth Rock[|]p1a", battlelog$log,-i))) == TRUE){
-    strock2count <- sum((any(grep("Stealth Rock[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    strock2count <- sum((any(grep("Stealth Rock[|]p1a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(strock2count)}
   else{
     strock2count <- 0 
@@ -568,9 +578,19 @@ strock2countr <- function(battlelog){
   strock2count
 }
 
-spikecountr1 <- function(battlelog){
+lstrock2countr <- function(battlelog){
+  if((any(grep("Stealth Rock[|]p1a", battlelog$log,-i))) == TRUE){
+    strock2count <- sum((any(grep("Stealth Rock[|]p1a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(strock2count)}
+  else{
+    strock2count <- 0 
+  }
+  strock2count
+}
+
+espikecountr1 <- function(battlelog){
   if((any(grep("Spikes[|]p2a", battlelog$log,-i))) == TRUE){
-    spikecount1 <- sum((any(grep("Spikes[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    spikecount1 <- sum((any(grep("Spikes[|]p2a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(spikecount1)}
   else{
     spikecount1 <- 0 
@@ -578,9 +598,19 @@ spikecountr1 <- function(battlelog){
   spikecount1
 }
 
-spikecountr2 <- function(battlelog){
+lspikecountr1 <- function(battlelog){
+  if((any(grep("Spikes[|]p2a", battlelog$log,-i))) == TRUE){
+    spikecount1 <- sum((any(grep("Spikes[|]p2a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(spikecount1)}
+  else{
+    spikecount1 <- 0 
+  }
+  spikecount1
+}
+
+espikecountr2 <- function(battlelog){
   if((any(grep("Spikes[|]p1a", battlelog$log,-i))) == TRUE){
-    spikecount2 <- sum((any(grep("Spikes[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    spikecount2 <- sum((any(grep("Spikes[|]p1a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(spikecount2)}
   else{
     spikecount2 <- 0 
@@ -588,9 +618,19 @@ spikecountr2 <- function(battlelog){
   spikecount2
 }
 
-toxspikecountr1 <- function(battlelog){
+lspikecountr2 <- function(battlelog){
+  if((any(grep("Spikes[|]p1a", battlelog$log,-i))) == TRUE){
+    spikecount2 <- sum((any(grep("Spikes[|]p1a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(spikecount2)}
+  else{
+    spikecount2 <- 0 
+  }
+  spikecount2
+}
+
+etoxspikecountr1 <- function(battlelog){
   if((any(grep("Toxic Spikes[|]p2a", battlelog$log,-i))) == TRUE){
-    toxspikecount1 <- sum((any(grep("Toxic Spikes[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    toxspikecount1 <- sum((any(grep("Toxic Spikes[|]p2a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(toxspikecount1)}
   else{
     toxspikecount1 <- 0 
@@ -598,9 +638,19 @@ toxspikecountr1 <- function(battlelog){
   toxspikecount1
 }
 
-toxspikecountr2 <- function(battlelog){
+ltoxspikecountr1 <- function(battlelog){
+  if((any(grep("Toxic Spikes[|]p2a", battlelog$log,-i))) == TRUE){
+    toxspikecount1 <- sum((any(grep("Toxic Spikes[|]p2a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(toxspikecount1)}
+  else{
+    toxspikecount1 <- 0 
+  }
+  toxspikecount1
+}
+
+etoxspikecountr2 <- function(battlelog){
   if((any(grep("Toxic Spikes[|]p1a", battlelog$log,-i))) == TRUE){
-    toxspikecount2 <- sum((any(grep("Toxic Spikes[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    toxspikecount2 <- sum((any(grep("Toxic Spikes[|]p1a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(toxspikecount2)}
   else{
     toxspikecount2 <- 0 
@@ -608,9 +658,19 @@ toxspikecountr2 <- function(battlelog){
   toxspikecount2
 }
 
-sticky1count <- function(battlelog){
+ltoxspikecountr2 <- function(battlelog){
+  if((any(grep("Toxic Spikes[|]p1a", battlelog$log,-i))) == TRUE){
+    toxspikecount2 <- sum((any(grep("Toxic Spikes[|]p1a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(toxspikecount2)}
+  else{
+    toxspikecount2 <- 0 
+  }
+  toxspikecount2
+}
+
+esticky1count <- function(battlelog){
   if((any(grep("Sticky Web[|]p2a", battlelog$log,-i))) == TRUE){
-    st1count <- sum((any(grep("Sticky Web[|]p2a", battlelog$log,-i))), na.rm=TRUE) 
+    st1count <- sum((any(grep("Sticky Web[|]p2a", battlelog$log[33:88],-i))), na.rm=TRUE) 
     return(st1count)}
   else{
     st1count <- 0 
@@ -618,9 +678,29 @@ sticky1count <- function(battlelog){
   st1count
 }
 
-sticky2count <- function(battlelog){
+lsticky1count <- function(battlelog){
+  if((any(grep("Sticky Web[|]p2a", battlelog$log,-i))) == TRUE){
+    st2count <- sum((any(grep("Sticky Web[|]p2a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
+    return(st2count)}
+  else{
+    st2count <- 0 
+  }
+  st2count
+}
+
+esticky2count <- function(battlelog){
   if((any(grep("Sticky Web[|]p1a", battlelog$log,-i))) == TRUE){
-    st2count <- sum((any(grep("Sticky Web[|]p1a", battlelog$log,-i))), na.rm=TRUE) 
+    st2count <- sum((any(grep("Sticky Web[|]p1a", battlelog$log[33:88],-i))), na.rm=TRUE) 
+    return(st2count)}
+  else{
+    st2count <- 0 
+  }
+  st2count
+}
+
+lsticky2count <- function(battlelog){
+  if((any(grep("Sticky Web[|]p1a", battlelog$log,-i))) == TRUE){
+    st2count <- sum((any(grep("Sticky Web[|]p1a", battlelog$log[89:5000],-i))), na.rm=TRUE) 
     return(st2count)}
   else{
     st2count <- 0 
@@ -886,10 +966,14 @@ ousimp1grab <- function(battlelog) {
     rank=oup1rank(battlelog),
     length=turn_lengths(battlelog),
     switches=swcounter1(battlelog),
-    stealthrockcount=strock1countr(battlelog),
-    spikescount=spikecountr1(battlelog),
-    toxspikecount=toxspikecountr1(battlelog),
-    stickywebcount=sticky1count(battlelog),
+    estealthrockcount=estrock1countr(battlelog),
+    lstealthrockcount=lstrock1countr(battlelog),
+    espikescount=espikecountr1(battlelog),
+    lspikescount=lspikecountr1(battlelog),
+    etoxspikecount=etoxspikecountr1(battlelog),
+    ltoxspikecount=ltoxspikecountr1(battlelog),
+    estickywebcount=esticky1count(battlelog),
+    lstickywebcount=lsticky1count(battlelog),
     defogcount=defog1countr(battlelog),
     rapidspincount=rapidsp1countr(battlelog),
     dragontailcount=dt1countr(battlelog),
@@ -898,10 +982,10 @@ ousimp1grab <- function(battlelog) {
   )
 }
 
-outcomes <- rep(NA, length(pages))
-for(i in 1:length(pages)) {outcomes[i] <- p1func(pages[[i]])}
-sum(is.na(outcomes)==TRUE)
-sum(is.na(outcomes)==FALSE)
+# outcomes <- rep(NA, length(pages))
+# for(i in 1:length(pages)) {outcomes[i] <- p1func(pages[[i]])}
+# sum(is.na(outcomes)==TRUE)
+# sum(is.na(outcomes)==FALSE)
 
 
 randrost1 <- function(battlelog) {
@@ -918,8 +1002,8 @@ megaselect1 <- matrix(nrow=39, ncol= length(pages))
 for( i in 1:length(pages)) {for(j in 1:39) {megaselect1[j,i] <- megarost1(pages[[i]])[j,] }}
 tmegaselect1 <- t(megaselect1)
 
-ousm1data <- matrix(nrow=n, ncol=14)
-for(i in 1:length(pages)) { for(j in 1:14) {ousm1data[i,j] <- ousimp1grab(pages[[i]])[,j] }}
+ousm1data <- matrix(nrow=n, ncol=18)
+for(i in 1:length(pages)) { for(j in 1:18) {ousm1data[i,j] <- ousimp1grab(pages[[i]])[,j] }}
 
 
 battleid <- (1:length(pages))
@@ -933,10 +1017,14 @@ ousimp2grab <- function(battlelog) {
     rank=oup2rank(battlelog),
     length=turn_lengths(battlelog),
     switches=swcounter2(battlelog),
-    stealthrockcount=strock2countr(battlelog),
-    spikescount=spikecountr2(battlelog),
-    toxspikecount=toxspikecountr2(battlelog),
-    stickywebcount=sticky2count(battlelog),
+    estealthrockcount=estrock2countr(battlelog),
+    lstealthrockcount=lstrock2countr(battlelog),
+    espikescount=espikecountr2(battlelog),
+    lspikescount=lspikecountr2(battlelog),
+    etoxspikecount=etoxspikecountr2(battlelog),
+    ltoxspikecount=ltoxspikecountr2(battlelog),
+    estickywebcount=esticky2count(battlelog),
+    lstickywebcount=lsticky2count(battlelog),
     defogcount=defog2countr(battlelog),
     rapidspincount=rapidsp2countr(battlelog),
     dragontailcount=dt2countr(battlelog),
@@ -959,11 +1047,11 @@ megaselect2 <- matrix(nrow=39, ncol= length(pages))
 for(i in 1:length(pages)) {for(j in 1:39) {megaselect2[j,i] <- megarost2(pages[[i]])[j,] }}
 tmegaselect2 <- t(megaselect2)
 
-ousm2data <- matrix(nrow=n, ncol=14)
-for(i in 1:length(pages)) { for(j in 1:14) {ousm2data[i,j] <- ousimp2grab(pages[[i]])[,j] }}
+ousm2data <- matrix(nrow=n, ncol=18)
+for(i in 1:length(pages)) { for(j in 1:18) {ousm2data[i,j] <- ousimp2grab(pages[[i]])[,j] }}
 battleid <- (1:length(pages))
 ousmrdata2 <- cbind.data.frame(battleid,ousm2data, trosterselect2, tmegaselect2)
 
-ousmdataframe <- rbind.data.frame(ousmrdata1, ousmrdata2)
-ousmdatabind <- rbind(ousmrdata1, ousmrdata2)
+d2 <- rbind.data.frame(ousmrdata1, ousmrdata2)
+save(d2,file="d2.Rda")
 
