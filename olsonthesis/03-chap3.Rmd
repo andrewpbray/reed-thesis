@@ -19,26 +19,340 @@ if(!require(thesisdown)){
   devtools::install_github("ismayc/thesisdown")
   }
 library(thesisdown)
-load("data/d1.Rda")
+library(stargazer)
+library(readr)
 ```
-# Data 
+# Empirical Results
+## Model Specification 
+As Pokémon battles included in the dataset have only two outcomes, we may estimate the probability of winning using a standard probit model. There are minor differences between using a logit and probit models, so the decision to use a probit model is simply a personal choice. Additionally, each battle effectively serves as two separate observations, or one observation for each player. As for the models, let Y denote the outcome of any battle for a given player, where Y takes the value of 0 if the player loses the battle and 1 if the player wins. To identify whether specific moves and Pokémon choices differentially impact the probability of winning a game, we define the dependent variable of the models used as $f^{-1}(P(Y=1))$, where $f^{-1}$ is the probit function. 
 
-Due to the vast number of parameters included in the numerous models outlined previously, summary statistics and an output of five of the six models is contained in the Appendix section. Comments on each are provided with some brief context of their interpretation. 
+Surprisingly, there were no draws in the dataset, perhaps alluding to a small likelihood for a draw to occur. Nonetheless, to address the question of whether any entry hazards positively impact a player's likelihood of winning, we develop a number of different probit models. 
 
-Going in the order of the Appendices, the summary of the variables used in the analysis are a good starting point. The average game length is sixteen turns. However, the average is biased from games that lasted zero turns. As these games did not provide any meaningful information, they are excluded from all regressions used. Furthermore, in regards to ranking, most observations are within the range of 1000 to 1280 elo, as the mean rank is 1154 with a standard deviation of nearly 130 elo points. Given that the highest rank observed in the data is 1815, there is a noticeable divide between the highest ranking games and those within the range of standard deviations to the mean rank.  
+We begin with whether a specific move was used by a player in a battle. Let the set of all entry hazards be denoted $S_1$ and let the set of all complementary moves be denoted $S_2$. We define the full set of moves as $S$ where $S$ is defined as follows:
+S ={Stealth Rock, Spikes, Toxic Spikes, Sticky Web, Dragon Tail, Roar, Circle Throw, Whirlwind}.  
+Furthermore, $S_1$=\{Stealth Rock, Spikes, Toxic Spikes, Sticky Web\}. By construction, $S_2 = S/S_1$, as by definition $S=S_1 \cup S_2$. This distinction is important for later model specifications. Additionally, for simplicity let the elements of the set $S$, $S_1$ and $S_2$ be defined by the acronym of each move, i.e. Stealth Rock is denoted SR. 
 
-Nonetheless, the real meat of the summary statistics is with the large range of different Pokémon species and Mega-Pokémon that players used. In this regard, nearly half of the most frequently used Pokémon, that of Alakazam, Banette, and Garchomp, have a Mega-evolution. Though specifically in regards to the Mega-evolution usage statistics, the four most frequently used Mega-Pokémon are Mega-Venusaur, Mega-Scizor, and both Mega-evolutions of Charizard, though Alakazam, Banette, and Garchomp are not the most infrequently used Mega-evolutions. 
+Then, define a count variable on the set S that takes the value of how many times a specified move is used in a battle. As an example, let $M_{SR}$ be the variable that counts the number of times Stealth Rock was used in a battle. The variable takes value 1 when Stealth Rock is used once in a battle and 0 if it was not used at all by a player in a battle. We define the variables $M_S$ , $M_{TS}$ , $M_{SW}$ , $M_{DT}$ , $M_R$ , $M_{CT}$ , and $M_W$ similarly. These variables will be interacted with one another in later models, but they also provide strategic value singularly. For this reasons they will be included in the preliminary model, which is given by: 
 
-It is important to bear in mind that Mega-Pokémon are not always utilized however, given by the fact that the cumulative sum of the mean of all Mega-Pokémon variables does not add up to one. Given this discrepancy, it would be fruitful to test whether utilizing a Mega-Pokémon marginally impacts whether a player wins a battle. Within this group of three Garchomp is the outlier, as both Mega-Alakazam and Mega-Banette were banned from the OU format following the year of the data used. Besides this standout feature of the summary statistics, the remaining frequently used Pokémon are considered staples of the OU format: Clefable, Talonflame, and Heatran. Of the total six most frequently used Pokémon, half have the ability to use the move Stealth Rock. This is important to bear in mind when considering the preliminary models. 
+$(1): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S} \beta_i(M_i)$
 
-```{r, out.width = "400px", echo=FALSE}
-knitr::include_graphics("table12.png")
+This study focuses particularly on the interactions and repeated use of the specified moves. Interactions in particular focus on Stealth Rock, because it directly damages Pokémon that switch in and because it can only be used once, making interaction terms easier to interpret than interactions with moves that can be used multiple times. Nonetheless, the squared term for Stealth Rock is included in the second model to test whether reapplying the move is an effective battling strategy. This includes cases were the battle environment is cleared. That being said, the model for including the squared term of moves is given as follows: 
+
+$(2): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S} \beta_i(M_i) + \sum_{i \in S} \iota_i(M_i)^2$
+
+We then include interactions between different moves and their squared terms. The corresponding model (3) is given by: 
+
+$(3): f^{-1}(P(Y=1))  = \alpha + \sum_{i \in S} \beta_i(M_i) + \sum_{i \in S} \iota_i(M_i)^2 + \sum_{j \in S/{SR}} \theta_j(M_{SR} \times M_j) + \sum_{j \in S/{SR}} \lambda_j(M_{SR} \times (M_j)^2)$
+
+These models have not yet included the vast variety of species composing teams. Before defining these models, we must first define the set of all competitive Pokémon and mega-Pokémon. To begin with the former, let the  set of all competitive Pokémon be denoted $P$, where $P=\{Abomasnow,...,Zygarde\}$. The full list of Pokémon and their frequency of use in the dataset is included in the Appendix. There are 415 elements in the set $P$ and 39 in the set $G$, where $G$ is the set of all Mega-Pokémon allowed in the OU format. Let $P_1$ be the first element in the set of Pokémon $P$. Let the numerical index apply for all 415 Pokémon. Similarly define $G_1$ as the first mega-Pokémon in the set $G$. Then we index the set of 39 mega-Pokémon numerically. 
+
+Following the indexing of the set of Pokémon and mega-Pokémon, we construct a number of variables that act as indicators for whether the Pokémon was used in a battle by a player. Hence, we define the variable for using the first Pokémon on the competitive roster as $PU_1$, which takes the value 1 if the first Pokémon on the competitive roster is used and 0 otherwise. This is applied iteratively across all 415 competitive Pokémon. Furthermore, let $GU_1$ denote the variable indicating if the first mega-Pokémon in the mega-Pokémon roster is used in a battle. This construction is applied to the set of 415 Pokémon and 39 mega-Pokémon.  
+
+Before examining the interactions between a team's composition of Pokémon and specific moves, there needs to be a formal model that accounts for the impact of a Pokémon choice on the likelihood of winning a battle. Respective to the variables outlined previously, we have: 
+
+$(4): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S} \beta_i(M_i) + \sum_{i \in S} \iota_i(M_i)^2 + \sum_{j \in S/{SR}} \theta_j(M_{SR} \times M_j) + \sum_{j \in S/{SR}} \lambda_j(M_{SR} \times (M_j)^2) + \sum_{l \in P} \gamma_l(PU_l)$
+
+Thirty nine different Pokémon can turn into mega-Pokémon however. To test whether a Pokémon negatively or positively impacts the probability of winning, the next model specification includes mega-Pokémon within the roster of competitive Pokémon. The model is given by: 
+
+$(5): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S} \beta_i(M_i) + \sum_{i \in S} \iota_i(M_i)^2 + \sum_{j \in S/{SR}} \theta_j(M_{SR} \times M_j) + \sum_{j \in S/{SR}} \lambda_j(M_{SR} \times (M_j)^2) + \sum_{l \in P} \gamma_l(PU_l) + \sum_{k \in G} \tau_k(GU_k)$
+
+After these five model specifications, the combination of models (1) through (3) are given in the following section, and later on the combination of models (3) through (5). These are included to compare the coefficients, or the impact on the z-score, from a specific move, Pokémon, and Mega-Pokémon. By doing so, the coefficients track whether a player won or lost more often when utilizing a move their opponent did not use. 
+
+After the first five models, the moves will be categorized by whether entry hazards were used 'early' or 'late' in a battle. The distinction between when early and late is distinguished by a specific line in the battle log, as each battle log is composed of a number of lines of code corresponding to the moves and outcomes of each turn. Though the cutoff point is determined arbitrarily, the cutoff effectively corresponds to whether a move was used before or after the 5th turn of a battle. With this in mind, we simply create two indicator variables that denote whether a specified entry hazard is used by or after the 5th turn of a battle. Similar to the use of acronyms used previously, let $E$ denote the early indicator variable. $E$ takes value 1 if the move is used before or during the 5th turn of a battle and 0 otherwise. Similarly let $L$ denote the indicator variable for whether a move is used after the 5th turn of a battle. $L$ takes value 1 if the move is used after the 5th turn and 0 otherwise. We then construct the interaction between the time and move indicator variables, denoted $(E \times I)_i$ for the indicator of using the ith move early in a battle. We similarly construct $L \times I)_i$ for the indicator variable for the ith move being used late in a battle. Compared to models (1) through (5), models (6) through (10) do not count the number of times a specified move was used in a battle, at least for entry hazards. Instead, models (6) through (10) use an indicator variable for whether an entry hazard was used. 
+
+Thus we define an indicator variable on the set S to takes the value 1 if a specified move is used in a battle and 0 otherwise. As an example, let $I_{SR}$ be the variable that indicates whether Stealth Rock was used in a battle. The variable takes value 1 when Stealth Rock is used and 0 if it was not used by a player in a battle. We define the variables $I_S$ , $I_{TS}$ , and $I_{SW}$ similarly, but we do not construct indicator variables for the complementary moves. Thus, for model (6), we have the simple model differentiating between whether an entry hazard was used before or after the 5th turn, given by: 
+
+$(6): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S_1} \beta_i(E \times I_)i+ \sum_{i \in S_1} \nu_i(L \times I)_i+ \sum_{i \in S_2} \delta_i(M_i)$
+
+Similar to model (2), we include the squared term for count variables. However, this only includes moves complementary to the use of entry hazards. Including the squared terms for complementary moves yields the following model specification: 
+
+$(7): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S_1} \beta_i(E \times I)_i+ \sum_{i \in S_1} \nu_i(L \times I)_i+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2$
+
+Following this, model (8) includes the interaction between the two different indicators for Stealth Rock and other move variables. The interactions include both the squared terms for the complementary moves and the interaction between different entry hazard indicator variables. Model (8) is thus given as follows: 
+
+$(8): f^{-1}(P(Y=1)) = \alpha + \sum_{i \in S_1} \beta_i(E \times I)_i+ \sum_{i \in S_1} \nu_i(L \times I)_i+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2 + \sum_{j \in S_2}\theta_j((E \times I)_{SR} \times M_j)  + \sum_{j \in S_2}\mu_j((L \times I)_{SR} \times M_j) + \sum_{j \in S_2} \lambda_j((E \times I)_{SR} \times (M_j)^2) + \sum_{j \in S_2} \epsilon_j((L \times I)_{SR} \times (M_j)^2) + \sum_{j \in S_1/SR} \chi_j((E \times I)_{SR} \times (E \times I)_j) + \sum_{j \in S_1/SR} \xi_j((E \times I)_{SR} \times (L \times I)_j) + \sum_{j \in S_1/SR} \psi_j((L \times I)_{SR} \times (E \times I)_j) + \sum_{j \in S_1/SR} \omega_j((L \times I)_{SR} \times (L \times I)_j)$
+
+Following this, we follow a similar construction of models (4) and (5) for models (9) and (10) respectively. Thus, the final two models are given as follows: 
+
+$(9): f^{-1}(P(Y=1)) = \alpha+ \sum_{i \in S_1} \beta_i(E \times I)_i+ \sum_{i \in S_1} \nu_i(L \times I)_i+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2 + \sum_{j \in S_2}\theta_j((E \times I)_{SR} \times M_j)  + \sum_{j \in S_2}\mu_j((L \times I)_{SR} \times M_j) + \sum_{j \in S_2} \lambda_j((E \times I)_{SR} \times (M_j)^2) + \sum_{j \in S_2} \epsilon_j((L \times I)_{SR} \times (M_j)^2) + \sum_{j \in S_1/SR} \chi_j((E \times I)_{SR} \times (E \times I)_j) + \sum_{j \in S_1/SR} \xi_j((E \times I)_{SR} \times (L \times I)_j) + \sum_{j \in S_1/SR} \psi_j((L \times I)_{SR} \times (E \times I)_j) + \sum_{j \in S_1/SR} \omega_j((L \times I)_{SR} \times (L \times I)_j) + \sum_{l \in P} \gamma_l(PU_l)$
+
+Following this model, we include the full roster of mega-Pokémon. This gives the final model, given as follows: 
+
+$(10): f^{-1}(P(Y=1)) = \alpha+ \sum_{i \in S_1} \beta_i(E \times I)_i+ \sum_{i \in S_1} \nu_i(L \times I)_i+ \sum_{i \in S_2} \delta_i(M_i) + \sum_{i \in S_2} \iota_i(M_i)^2 + \sum_{j \in S_2}\theta_j((E \times I)_{SR} \times M_j)  + \sum_{j \in S_2}\mu_j((L \times I)_{SR} \times M_j) + \sum_{j \in S_2} \lambda_j((E \times I)_{SR} \times (M_j)^2) + \sum_{j \in S_2} \epsilon_j((L \times I)_{SR} \times (M_j)^2) + \sum_{j \in S_1/SR} \chi_j((E \times I)_{SR} \times (E \times I)_j) + \sum_{j \in S_1/SR} \xi_j((E \times I)_{SR} \times (L \times I)_j) + \sum_{j \in S_1/SR} \psi_j((L \times I)_{SR} \times (E \times I)_j) + \sum_{j \in S_1/SR} \omega_j((L \times I)_{SR} \times (L \times I)_j) + \sum_{l \in P} \gamma_l(PU_l) + \sum_{k \in G} \tau_k(GU_k)$
+
+## Interpretation of Basic Statistics 
+The summary of the variables used in the models are a preliminary point of interest. While the count variables, game length, player rank, and a number of other variables are included in this section in Tables 3.1 and 3.2, both lack any details on team composition. For the sake of brevity, the full list of summary statistics for Pokémon and Mega-Pokémon is found in the Appendix. 
+
+That being said, the average game length is sixteen turns. However, the standard deviation is nearly 12 turns with a maximum value of 171 and a minimum value of 0. This statistic is influenced by a number of battles that last 0 turns. As games lasting zero turns do not provide any meaningful information about player's decisions, they are excluded from all regressions used henceforth. Furthermore, in regards to ranking, most observations are within the range of 1000 to 1280 elo, as the mean rank is 1154 with a standard deviation of 128.7 elo points. Elo points are a value indicating player rank, where new players start with rank 1000 and increase in rank as they win more battles. Bearing this in mind, given that the highest rank observed in the data is 1815, there is a noticeable divide between the highest ranking games and those within one standard deviation to the mean. This is an interesting feature of the data. However, since all regressions used in this study are composed of the entire set of battles of length greater than one, it there may be differences between high and low rank battles. Though this difference is not explored in great detail, it is nonetheless an interesting point to note when bearing in mind the following information. 
+
+```{r include_packages_3, include = FALSE}
+load("data/sumsheet.Rda")
+Outcome <- sumsheet[,1]
+Rank <- sumsheet[,2]
+Battle_Length <- sumsheet[,3] 
+nsumsheet <- cbind.data.frame(Outcome, Rank, Battle_Length)
 ```
 
-Included above is the results of the first two model specifications. Sadly, the two models are alike in their log liklihood values and in their Akaike information criterion (AIC) values. Simply put, adding squared terms for the nine specified moves did not add anything meaningful to the initial model. This may be just a byproduct of the data however, as the only move variable with values greater than one was for the move Dragon Tail. Nonetheless, it is important to note that nearly all of the entry hazard moves are statistically significant. Though, this being said, only Stealth Rock and Spikes contribute positively to the marginal likliehood of winning a battle. This contributes to some semblence of generalizability though, as both Stealth Rock and Spikes are the only entry hazards that directly damage opposing Pokémon when they enter the battlefield. 
+```{r summarystats1, results='asis', out.width = "\\textwidth", echo=FALSE}
+stargazer(nsumsheet, title="Non-Pokémon Summary Table", nobs=FALSE, header=FALSE)
+```
 
-The statistical significance of the entry hazards is also verified in further model specifications. While the use of Toxic Spikes becomes less statistically significant with the inclusion of both single Pokémon choice and Mega-Pokémon choice, the sign of the variable remains negative. Furthermore, while later specifications continue to report Spikes as a statistically significant move choice, the magnitude of using the move appears to diminish when including other factors such as Pokémon choice. 
+Table 3.2 reports the mean and standard deviation of each of the move variables, including the indicator variables for whether an entry hazard was used before or after the 5th turn of a battle. Specific to entry hazards, the data indicates that players utilize entry hazards within the first five turns more than they utilize entry hazards after the first five turns. 
+Furthermore, players often utilize the entry hazards Stealth Rock and Spikes more than Toxic Spikes and Sticky Web. In regards to the complementary moves, players utilize Dragon Tail the most and Circle Throw the least. This is interesting, as both moves typeage allows an opposing Pokémon to not be affected by these moves. Additionally, all complementary moves are used less frequently than Stealth Rock and Spikes, though all complementary moves except Circle Throw are utilized more frequently than either Sticky Web or Toxic Spikes. 
 
-Overall, the use of Pokémon roster and Mega-Pokémon roster appear to be more meaningful variables than the use of simple move counts, as is evidence from comparison of log liklihood and AIC values. This improvement in model quality is also found in comparison to all previous models with the final model (6). While residual deviance is not reported for each model, the AIC lends credence to the comparative view of model (6) as the model of best fit for those specified. Though, this being said, the final model is particularly difficult to digest due to the number of parameters specified. 
+Though the summary statistics of Pokémon usage are reported in the Appendix, some features are worth highlighting. In regards to Pokémon and Mega-Pokémon statistics, nearly half of the most frequently used Pokémon, that of Alakazam, Banette, and Garchomp, are able to mega-evolve. Within this group of three, Garchomp may be considered an outlier, as both Mega-Alakazam and Mega-Banette were banned from the OU format following the year the data was gathered. Besides this standout feature of the Pokémon and mega-Pokémon summary statistics, the remaining frequently used Pokémon are considered staples of the OU format: Clefable, Talonflame, and Heatran. Of the total six most frequently used Pokémon, half have the ability to use the move Stealth Rock. This is important to bear in mind when considering the preliminary models. Though specifically in regards to the Mega-evolution usage statistics, the four most frequently used mega-Pokémon are mega-Venusaur, mega-Scizor, and both mega-evolutions of Charizard. This is surprising, given that Alakazam, Banette, and Garchomp are frequently used but their mega-evolutions are not. This may be evidence to the fact that players prefer to use these Pokémon's regular form in lieu of their mega-evolutions. 
 
-The final model is adds meaningful insight to the simple move counting variables. Interacting the move count variable for Stealth Rock and all Pokémon that can potentially learn (and use) Stealth Rock, the model indicates that there is a nonuniform effect on win outcome depending on which Pokémon used it. This view may be appear counterintuitive, but it does offer a useful illustration to the complexity of Pokémon. Take for example two hypothetical instances where Stealth Rock is used by two different Pokémon on the same enemy Pokémon. While each may successfully execute the move on that turn, the opposing Pokémon gets to execute a move as well. If, in this instance, the move is the same, then damage is calculated according to the type matchup of the opposing move with the Pokémon; this may knock out one Pokémon while leave another with enough health to execute one more move. 
+Another interesting point shown in the summary statistics is that Mega-Pokémon are not always utilized by players. This is shown by the fact that the cumulative sum of the mean of all Mega-Pokémon variables does not add up to one. Given this discrepancy, it would be an interesting extension to this study to test whether utilizing any Mega-Pokémon positively impacts the likelihood of a player winning a battle. Nonetheless, a more general stand-out feature of the Pokémon summary statistics is that players did not utilize Pokémon that were banned in the following years any more than other Pokémon. 
+
+```{r include_packages_4, include = FALSE}
+load("data/movesheet.Rda")
+Circle_Throw <- movesheet[,1]
+Stealth_Rock <- movesheet[,2]
+Spikes <- movesheet[,3]
+Toxic_Spikes <- movesheet[,4]
+Sticky_Web <- movesheet[,5] 
+Dragon_Tail <-movesheet[,6]
+Roar <-movesheet[,7]
+Whirlwind <-movesheet[,8]
+Early_Stealth_Rock <-movesheet[,9]
+Late_Stealth_Rock <-movesheet[,10]
+Early_Spikes <-movesheet[,11]
+Late_Spikes <-movesheet[,12]
+Early_Toxic_Spikes <-movesheet[,13]
+Late_Toxic_Spikes <-movesheet[,14]
+Early_Sticky_Web  <-movesheet[,15]
+Late_Sticky_Web  <-movesheet[,16]
+nmovesheet <- cbind.data.frame(Circle_Throw,
+Stealth_Rock,
+Spikes,
+Toxic_Spikes,
+Sticky_Web,
+Dragon_Tail,
+Roar,
+Whirlwind,
+Early_Stealth_Rock,
+Late_Stealth_Rock,
+Early_Spikes,
+Late_Spikes,
+Early_Toxic_Spikes,
+Late_Toxic_Spikes,
+Early_Sticky_Web,
+Late_Sticky_Web)
+```
+
+```{r summarystats2, results='asis', out.width = "\\textwidth", echo=FALSE}
+stargazer(nmovesheet, title="Non-Pokémon Summary Table" ,min.max=FALSE,nobs=FALSE,header=FALSE)
+```
+
+## Interpretation of Basic Regressions  
+Before delving into an analysis of specific variables and their coefficients, it is important make a preliminary note. Since there is dependence between the rows of the dataset used to make the probit models, the standard errors are underestimated. This dependence occurs because each battle is used as two observations, one for each player of a battle. While the standard errors reported in the following models are underestimated because of this dependence, the estimators are nonetheless not biased.
+
+This being said, due to the primary focus on the move Stealth Rock in the models constructed, the term is interacted with the seven other specified moves in model (3). This includes the seven moves squared terms. Tables 3.3 to 3.6 indicate that the model's accuracy is improved by the inclusion of move interactions and squared terms. However, the constant of models (1) through (3) bear some note. The constant for all three model specifications is negative, indicating that players have a greater likelihood of losing a battle when they don't utilize entry hazards or moves considered complementary to entry hazards. 
+
+Additionally, the coefficients of each entry hazard vary between positive and negative across specifications, notably for the move Sticky Web. Sticky Web is of particular interest and is detailed in later specifications. Considering complementary moves, the move Dragon Tail has a negative impact on player's likelihood of winning a battle. However, surprisingly the interaction between Stealth Rock and Dragon Tail is positive and statistically significant. Not only this, but the squared term for Dragon Tail is also positive. Taken in conjunction, this provides some preliminary evidence that entry hazards and complementary moves are an effective Pokémon battling strategy. The same results are found for the other damaging complementary move: Circle Throw. While the squared interaction with Stealth Rock is negative, the combination of Stealth Rock and Circle Throw is positive. Interestingly, these results only apply to complementary moves that also damage Pokémon. Though this point is elaborated upon in detail in later specifications, this is overall an indication that supplementary moves can positively impact a player's win outcome if they also damage opposing Pokémon when they force a Pokémon to switch out. 
+
+Taken literally, utilizing either Stealth Rock, Stealth Rock and Dragon Tail, or Stealth Rock and Circle Throw will increase the likelihood of winning a battle. However, this interpretation should be taken with some hesistance, as the magnitude of using just Stealth Rock is greater than the interaction between Dragon Tail and Stealth Rock. Furthermore, Circle Throw is used infrequently in the dataset, which could explain both why the interaction between Stealth Rock and Circle Throw being 0.29 and not statistically significant. Not only this, the coefficeints report the how a change in the predictor will change the z-score, holding all other factors constant and in comparison to any players that did not utilize that move. This means that the comparison group for using Stealth Rock and a complementary move is any player that did not utilize both strategies. Furthermore, the two other moves Whirlwind and Roar are negative and statistically insignificant in later model specifications. Thus, Tables 3.3 to 3.6 indicate some preliminary evidence that entry hazards not only influence the probability of winning a battle, but that they do so to considerably different degrees. 
+
+Following the preliminary models of (1) through (3) in Table 3.3 to 3.6, let us consider models (6) through (8). The corresponding tables are Table 3.7 through 3.12. One of the first outstanding features of models (6) through (8) is the difference across time specifications. Namely, all coefficients attached to "Early" variables are more positive than their "Late" counterparts. Beyond this point, the signage of each move indicator variable is similar to those discussed previously for models (1) through (3). Stealth Rock is positive across both model and time specifications, lending further credence to the view that the move positively impacts a player's likelihood of winning a battle. Furthermore, the interactions between "Early" Stealth Rock and damaging complementary moves are positive. This point does not include interactions between "Late" Stealth Rock and the squared terms for the damaging complementary moves. Generally, these models further support the use of Stealth Rock and complementary moves, but typically only when Stealth Rock or other entry hazards are utilized within the first five turns of a battle. 
+
+```{r table1231, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit1.rds"), read_rds("probit2.rds"),read_rds("probit3.rds"), title="Models 1-3 Basic Move Set", keep = c("\\bStealth_Rock\\b", "\\bSpikes\\b", "\\bToxic_Spikes\\b", "\\bSticky_Web\\b", "\\bDragon_Tail\\b", "\\bCircle_Throw\\b","\\bRoar\\b", "\\bWhirlwind\\b", "Constant"),notes="Normal Standard Errors Shown in Parenthesis .", 
+          header=FALSE )
+```
+  
+```{r table1232, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit1.rds"), read_rds("probit2.rds"),read_rds("probit3.rds"), title="Models 1-3 Cont.: Squared Move Set.", keep= c("\\bStealth_Rock2\\b" ,
+                  "\\bSpikes2\\b" ,
+                  "\\bToxic_Spikes2\\b" , 
+                  "\\bSticky_Web2\\b" ,
+                  "\\bDragon_Tail2\\b" ,
+                   "\\bCircle_Throw2\\b" ,
+                  "\\bRoar2\\b" ,
+                   "\\bWhirlwind2\\b" ),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+             
+```{r table1233, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit1.rds"), read_rds("probit2.rds"),read_rds("probit3.rds"), title="Models 1-3 Cont.: Squared Move Set with Interactions", keep= c(      
+               "\\bStealth_Rock_Spikes2\\b" ,
+               "\\bStealth_Rock_Sticky_Web2\\b" ,
+               "\\bStealth_Rock_Toxic_Spikes2\\b" ,
+               "\\bStealth_Rock_Whirlwind2\\b" ,
+               "\\bStealth_Rock_Roar2\\b" ,
+               "\\bStealth_Rock_Dragon_Tail2\\b" ,
+               "\\bStealth_Rock_Circle_Throw2\\b" ),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+               
+```{r table1234, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit1.rds"), read_rds("probit2.rds"),read_rds("probit3.rds"), title="Models 1-3 Cont.: Move Set Interactions", keep= c("\\bStealth_Rock_Spikes\\b","\\bStealth_Rock_Toxic_Spikes\\b","\\bStealth_Rock_Sticky_Web\\b","\\bStealth_Rock_Dragon_Tail\\b","\\bStealth_Rock_Circle_Throw\\b","\\bStealth_Rock_Roar\\b","\\bStealth_Rock_Whirlwind\\b"),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+
+```{r table7891, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit7.rds"), read_rds("probit8.rds"),read_rds("probit9.rds"), title="Models 6-8 Basic Move Set",keep =  c(
+"\\bEarly_Stealth_Rock\\b", 
+"\\bLate_Stealth_Rock\\b" ,
+"\\bEarly_Spikes\\b", 
+"\\bLate_Spikes\\b" ,
+"\\bEarly_Toxic_Spikes\\b" ,
+"\\bLate_Toxic_Spikes\\b", 
+"\\bEarly_Sticky_Web\\b", 
+"\\bLate_Sticky_Web\\b"),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+         
+```{r table7892, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit7.rds"), read_rds("probit8.rds"),read_rds("probit9.rds"), title="Models 6-8 Cont.: Complementary Moves and Early Entry Hazards",keep =c("\\bDragon_Tail2\\b",
+               "\\bCircle_Throw2\\b" ,
+               "\\bRoar2\\b" ,
+               "\\bWhirlwind2\\b", "Constant"),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE)
+```
+
+```{r table7893, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit7.rds"), read_rds("probit8.rds"),read_rds("probit9.rds"), title="Models 6-8 Cont.: Complementary Move Set and Early Entry Hazards",keep =c(
+               "\\bEarly_Stealth_RockXWhirlwind2\\b" ,
+               "\\bEarly_Stealth_RockXDragon_Tail2\\b" ,
+               "\\bEarly_Stealth_RockXRoar2\\b" ,
+               "\\bEarly_Stealth_RockXCircle_Throw2\\b",
+               "\\bLate_Stealth_RockXWhirlwind2\\b" ,
+               "\\bLate_Stealth_RockXDragon_Tail2\\b" ,
+               "\\bLate_Stealth_RockXRoar2\\b" ,
+               "\\bLate_Stealth_RockXCircle_Throw2\\b"),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE)
+```
+
+```{r table7894, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit7.rds"), read_rds("probit8.rds"),read_rds("probit9.rds"), title="Models 6-8 Cont.: Early and Late Move Interactions Cont.",keep =  c("\\bEarly_Stealth_RockXEarly_Spikes\\b",
+"\\bEarly_Stealth_RockXLate_Spikes\\b", 
+"\\bEarly_Stealth_RockXEarly_Sticky_Web\\b", 
+"\\bEarly_Stealth_RockXLate_Sticky_Web\\b",
+"\\bEarly_Stealth_RockXEarly_Toxic_Spikes\\b", 
+"\\bEarly_Stealth_RockXLate_Toxic_Spikes\\b", 
+"\\bEarly_Stealth_RockXWhirlwind\\b", 
+"\\bEarly_Stealth_RockXDragon_Tail\\b"),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+
+```{r table7895, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit7.rds"), read_rds("probit8.rds"),read_rds("probit9.rds"), title="Models 6-8 Cont.: Early and Late Move Interactions Cont.",keep = c("\\bEarly_Stealth_RockXRoar\\b", 
+"\\bEarly_Stealth_RockXCircle_Throw\\b", 
+"\\bLate_Stealth_RockXEarly_Spikes\\b", 
+"\\bLate_Stealth_RockXLate_Spikes\\b", 
+"\\bLate_Stealth_RockXEarly_Sticky_Web\\b", 
+"\\bLate_Stealth_RockXLate_Sticky_Web\\b", 
+"\\bLate_Stealth_RockXEarly_Toxic_Spikes\\b", 
+"\\bLate_Stealth_RockXLate_Toxic_Spikes\\b"),notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+
+```{r table7896, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit7.rds"), read_rds("probit8.rds"),read_rds("probit9.rds"), title="Models 6-8 Cont.: Complementary Moves and Late Interactions Cont.",keep= c("\\bLate_Stealth_RockXWhirlwind\\b", 
+"\\bLate_Stealth_RockXDragon_Tail\\b", 
+"\\bLate_Stealth_RockXRoar\\b", 
+"\\bLate_Stealth_RockXCircle_Throw\\b",
+"\\bCircle_Throw\\b",
+"\\bDragon_Tail\\b", 
+"\\bRoar\\b", 
+"\\bWhirlwind\\b") ,notes="Normal Standard Errors Shown in Parenthesis .", header=FALSE )
+```
+
+## Interpretation of Final Models 
+Including both the Pokémon and mega-Pokémon rosters adds some additional nuance to the models. The results of models (3) through (5) are highlighted in tables 3.13 to 3.16. Similar to the previous regressions, the coefficients of the Pokémon and mega-Pokémon are not shown for the sake of space. Additionally, even if these regressions included coefficients for using a specific Pokémon or mega-Pokémon, it is important to note that the coefficients assigned to each variable do not directly report marginal impact of Pokémon or mega-Pokémon choice. Additionally, these variables noticeably provide scant prescriptive use, as they do not include the 415 choose 6 different teams possible under the specifications explored. Furthermore, even the 415 choose 6 different Pokémon teams possible does not include the different mega-Pokémon options. Needless to say, Tables 3.13 through 3.16 are included to provide a test of robustness for the move variables specifically, along with highlighting the improved accuracy of later model specifications. 
+
+Specifically, Table 3.13 in particular corroborates the statistical significance and signage of the Stealth Rock variable. However, the coefficient of the Stealth Rock variable decreases as additional parameters are included. Furthermore, the values of the Akaike Information Criterion (AIC) and log likelihood indicate that the model improves in quality when including the Pokémon roster. The model also improves even more when both Pokémon and Mega-Pokémon are included into the mix. This is not surprising given the role that Pokémon play in a battle and the sheer number of parameters composing the roster of Pokémon and Mega-Pokémon.  
+
+Tables 3.13 through 3.16 also highlight an additional point, as the coefficients assigned to both Spikes and Sticky Web are positive and are statistically significant in later specifications. Though both Spikes and Stealth Rock remain statistically significant across specifications, Toxic Spikes is only positive and not statistically significant in model (5). Interestingly, Spikes and Toxic Spikes can be applied to a battle environment more than once. Given that the squared terms of all entry hazards are negative, the results indicate that entry hazards are best utilized only once, regardless of the specific entry hazard being used. However, there are some caveats to this point, specifically in using Stealth Rock with multiple applications of Spikes or Toxic Spikes. In both of these instances, the initial interaction coefficient is negative but the squared interaction coefficient is both positive and statistically significant. Furthermore, the combination of damaging complementary moves with Stealth Rock again continues to be positive, though the statistical insignificance of Circle Throw continues across model specifications.   
+
+Tables 3.17 through 3.22 further detail the inclusion of the Pokémon and mega-Pokémon roster. The tables correspond to the regressions of models (8) through (10). Similar to the analysis of models (6) through (8), specifications for "Early" entry hazards are more positive than their "Late" counterparts. In fact, the only "Early" entry hazard that is not statistically significant in the final specification is Toxic Spikes, though the signage of this variable changes from negative to positive in models (9) and (10) respectively. This is especially interesting, as the results closely mirror those found in models (3) through (5). Furthermore, while the count variable of Dragon Tail is negative, its squared term is positive. Taken in conjunction with the fact that the interaction between "Early" and "Late" Stealth Rock with Dragon Tail is positive and statistically significant, there is further evidence that utilizing both entry hazards and damaging complementary moves positively impacts a player's likelihood of winning a battle. 
+
+There is one particularly noticeable caveat to the information presented thus far. It is specific to the use of Stealth Rock and Circle Throw. This point is related to the fact that the coefficient on the variable interacting "Early" Stealth Rock with Circle Throw is negative, though statistically insignificant. This in of itself is not alarming. What is alarming is that the variable interacting "Late" Stealth Rock with Circle throw is both positive and statistically significant. This is alarming because the coefficient of this variable ranges from 0.998 to 1.069. As reflected by the standard error ranging from 0.450 to 0.649, this is a result to take with a grain of salt. Simply put, while there is evidence that utilizing damaging complementary moves in conjunction with entry hazards is an effective strategy, there are a number of other move combinations to consider when generalizing the results discussed thus far. 
+
+Overall, the inclusion of 415 Pokémon and 39 mega-Pokémon improves both the accuracy of the models and generalizability of the results. Notably, Log Likelihood values and AIC values improve when additional variables are added to the model. This improvement in model quality is also found when comparing models (1) through (5) with models (6) through (10). The inclusion of a time parameterization appears to improve not only model quality, but also interpretation of specific strategies. Thus, the results lend credence to utilizing both entry hazards and complementary moves, most notably moves that damage opposing Pokémon and then force them to switch. Furthermore, evidence indicates that utilizing entry hazards early in a match improves the likelihood a winning a battle more than utilizing entry hazards later in a match. There is additional evidence that utilizing some combination of entry hazards and complementary moves increases the likelihood of winning a battle, implicitly lending support that it is a more effective Pokémon battling strategy than either not using any of the moves or just one of the moves singularly.  
+
+```{r table4561, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit3.rds"), read_rds("probit4.rds"), read_rds("probit5.rds"), title="Models 3-5 Basic Move Set",keep = c("\\bStealth_Rock\\b", "\\bSpikes\\b", "\\bToxic_Spikes\\b", "\\bSticky_Web\\b", "\\bDragon_Tail\\b", "\\bCircle_Throw\\b","\\bRoar\\b", "\\bWhirlwind\\b", "Constant"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+
+```{r table4562, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit3.rds"), read_rds("probit4.rds"),read_rds("probit5.rds"), title="Models 3-5 Cont.: Squared Moves", keep= c("\\bStealth_Rock2\\b" ,
+                  "\\bSpikes2\\b" ,
+                  "\\bToxic_Spikes2\\b" , 
+                  "\\bSticky_Web2\\b" ,
+                  "\\bDragon_Tail2\\b" ,
+                   "\\bCircle_Throw2\\b" ,
+                  "\\bRoar2\\b" ,
+                   "\\bWhirlwind2\\b" ),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+             
+```{r table4563, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit3.rds"), read_rds("probit4.rds"),read_rds("probit5.rds"), title="Models 3-5 Cont.: Squared Moves with Interactions", keep= c(      
+               "\\bStealth_Rock_Spikes2\\b" ,
+               "\\bStealth_Rock_Sticky_Web2\\b" ,
+               "\\bStealth_Rock_Toxic_Spikes2\\b" ,
+               "\\bStealth_Rock_Whirlwind2\\b" ,
+               "\\bStealth_Rock_Roar2\\b" ,
+               "\\bStealth_Rock_Dragon_Tail2\\b" ,
+               "\\bStealth_Rock_Circle_Throw2\\b" ),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+
+```{r table4564, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit3.rds"), read_rds("probit4.rds"), read_rds("probit5.rds"), title="Models 3-5 Cont.: Move Set Interactions", keep= c("\\bStealth_Rock_Spikes\\b","\\bStealth_Rock_Toxic_Spikes\\b","\\bStealth_Rock_Sticky_Web\\b","\\bStealth_Rock_Dragon_Tail\\b","\\bStealth_Rock_Circle_Throw\\b","\\bStealth_Rock_Roar\\b","\\bStealth_Rock_Whirlwind\\b"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+
+```{r table910111, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit9.rds"), read_rds("probit10.rds"),read_rds("probit11.rds"), title="Models 8-10 Basic Move Set",keep =  c(
+"\\bEarly_Stealth_Rock\\b", 
+"\\bLate_Stealth_Rock\\b" ,
+"\\bEarly_Spikes\\b", 
+"\\bLate_Spikes\\b" ,
+"\\bEarly_Toxic_Spikes\\b" ,
+"\\bLate_Toxic_Spikes\\b", 
+"\\bEarly_Sticky_Web\\b", 
+"\\bLate_Sticky_Web\\b"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+         
+```{r table910112, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit9.rds"), read_rds("probit10.rds"),read_rds("probit11.rds"), title="Models 8-10 Cont.: Complementary Move Set and Early Entry Hazards",keep =c("\\bDragon_Tail2\\b",
+               "\\bCircle_Throw2\\b" ,
+               "\\bRoar2\\b" ,
+               "\\bWhirlwind2\\b", "Constant"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE)
+```
+
+```{r table910113, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit9.rds"), read_rds("probit10.rds"),read_rds("probit11.rds"), title="Models 8-10 Cont.: Early Move Interactions",keep =c(
+               "\\bEarly_Stealth_RockXWhirlwind2\\b" ,
+               "\\bEarly_Stealth_RockXDragon_Tail2\\b" ,
+               "\\bEarly_Stealth_RockXRoar2\\b" ,
+               "\\bEarly_Stealth_RockXCircle_Throw2\\b",
+               "\\bLate_Stealth_RockXWhirlwind2\\b" ,
+               "\\bLate_Stealth_RockXDragon_Tail2\\b" ,
+               "\\bLate_Stealth_RockXRoar2\\b" ,
+               "\\bLate_Stealth_RockXCircle_Throw2\\b"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE)
+```
+
+```{r table910114, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit9.rds"), read_rds("probit10.rds"),read_rds("probit11.rds"), title="Models 8-10 Cont.: Early and Late Interactions Cont.",font.size="small", keep =  c("\\bEarly_Stealth_RockXEarly_Spikes\\b",
+"\\bEarly_Stealth_RockXLate_Spikes\\b", 
+"\\bEarly_Stealth_RockXEarly_Sticky_Web\\b", 
+"\\bEarly_Stealth_RockXLate_Sticky_Web\\b",
+"\\bEarly_Stealth_RockXEarly_Toxic_Spikes\\b", 
+"\\bEarly_Stealth_RockXLate_Toxic_Spikes\\b", 
+"\\bEarly_Stealth_RockXWhirlwind\\b", 
+"\\bEarly_Stealth_RockXDragon_Tail\\b"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+
+```{r table101195, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit9.rds"), read_rds("probit10.rds"),read_rds("probit11.rds"), title="Models 8-10 Cont.: Early and Late Interactions Cont.",keep = c("\\bEarly_Stealth_RockXRoar\\b", 
+"\\bEarly_Stealth_RockXCircle_Throw\\b", 
+"\\bLate_Stealth_RockXEarly_Spikes\\b", 
+"\\bLate_Stealth_RockXLate_Spikes\\b", 
+"\\bLate_Stealth_RockXEarly_Sticky_Web\\b", 
+"\\bLate_Stealth_RockXLate_Sticky_Web\\b", 
+"\\bLate_Stealth_RockXEarly_Toxic_Spikes\\b", 
+"\\bLate_Stealth_RockXLate_Toxic_Spikes\\b"),notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```
+
+```{r table9910116, results='asis', out.width = "\\textwidth", out.length="\\textlength", echo=FALSE}
+stargazer(read_rds("probit9.rds"), read_rds("probit10.rds"),read_rds("probit11.rds"), title="Models 8-10 Cont.: Complementary Move Set and Late Interactions",keep= c("\\bLate_Stealth_RockXWhirlwind\\b", 
+"\\bLate_Stealth_RockXDragon_Tail\\b", 
+"\\bLate_Stealth_RockXRoar\\b", 
+"\\bLate_Stealth_RockXCircle_Throw\\b",
+"\\bCircle_Throw\\b",
+"\\bDragon_Tail\\b", 
+"\\bRoar\\b", 
+"\\bWhirlwind\\b") ,notes="Normal Standard Errors Shown in Parenthesis.", header=FALSE )
+```

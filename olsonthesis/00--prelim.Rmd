@@ -7,9 +7,9 @@ output: pdf_document
 
 I wanted to thank everyone working for Pokémon Showdown for the opportunity to work with a rich dataset that continues to pose challenges well beyond the realm of Pokémon battling. 
 
-## Preface {-}
+<!-- ## Preface {-}
 
-Overall, the this study highlights the gains to model quality when including parameters of team composition rather than battle decisions. Specifically in regards to Pokémon battling, the effectiveness of utilizing entry hazards is considered. Some evidence is provided that supports the statistical significance of using entry hazards, but the variability between entry hazards is highlighted in greater detail.  
+This study attempts to answer a simple question specific to Pokémon battling: is it effective to utilize entry hazards as a battling strategy? In the process of testing this hypothesis, a number of additional parameters such as Pokémon and Mega-Pokémon choices are added to test the robustness of results. Overall, there is evidence that some entry hazards positively impact the marginal probability of a player winning a game, and that entry hazards are able to enhanced by a moves that are considered complementary. However, the study fails to find generalizable evidence of these points beyond one move, Stealth Rock, and the interaction of Stealth Rock with Dragon Tail respectively. Furthermore, this study notes the limitations of the results being taken prescriptively to a player's choice of Pokémon and Mega-Pokémon. --> 
 
 ## Dedication {-}
 

@@ -1,10 +1,10 @@
 ---
 author: 'Samuel D. Olson'
 date: 'May 2017'
-division: 'Mathematics and Natural Sciences'
-advisor: 'Prof. Bray'
-altadvisor: 'Prof. Lau'
-department: 'Mathematics'
+division: 'Mathematics and Economics'
+advisor: 'Prof. Andrew Bray'
+altadvisor: 'Prof. Yan Lau'
+department: 'Mathematics and Economics'
 title: 'A Big Data Analysis of Pokémon Battling'
 knit: "bookdown::render_book"
 site: bookdown::bookdown_site
@@ -25,8 +25,8 @@ acknowledgements: >
   I wanted to thank everyone working for Pokémon Showdown for the opportunity to work with a rich dataset that continues to pose challenges well beyond the realm of Pokémon battling. 
 dedication: >
   This work is dedicated to all past, current and future members of The Rocking Chair.
-preface: >
-  Overall, the this study highlights the gains to model quality when including parameters of team composition rather than battle decisions. Specifically in regards to Pokémon battling, the effectiveness of utilizing entry hazards is considered. Some evidence is provided that supports the statistical significance of using entry hazards, but the variability between entry hazards is highlighted in greater detail.The study lends support to the use of entry hazards as an effective Pokémon battling strategy, while at the same time highlighting the limitations of using the results prescriptively in a Pokémon battle.  
+# preface: >
+#  Overall, the this study highlights the gains to model quality when including parameters of team composition rather than battle #decisions. Specifically in regards to Pokémon battling, the effectiveness of utilizing entry hazards is considered. Some evidence #is provided that supports the statistical significance of using entry hazards, but the variability between entry hazards is #highlighted in greater detail.The study lends support to the use of entry hazards as an effective Pokémon battling strategy, while # at the same time highlighting the limitations of using the results prescriptively in a Pokémon battle.  
 
 # bibliography: bib/thesis.bib
 # Download your specific bibliography database file and refer to it in the line above.
@@ -34,11 +34,12 @@ csl: csl/apa.csl
 # Download your specific csl file and refer to it in the line above.
 lot: true
 lof: true
-#space_between_paragraphs: true
+space_between_paragraphs: true
 # Delete the # at the beginning of the previous line if you'd like
 # to have a blank new line between each paragraph
-#header-includes:
-#- \usepackage{tikz}
+header-includes:
+- \usepackage{setspace}
+- \doublespacing
 ---
 
 <!--
